@@ -1,0 +1,60 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+/* ###### BODY ###### */
+
+
+/*  #### HEADER ####  */
+header {
+    background-color: #efeded;
+}
+nav {
+    margin: 0 10%;
+    display: flex;
+    gap: 10px;
+}
+nav .logo {
+    position: absolute;
+    background-color: white;
+    top: -10px;
+    padding: 15px;
+}
+.gris {
+    height: 56px;
+}
+.blue {
+    background-color: #1b3168;
+    height: 56px;
+
+
+}
+.blue ul {
+    display: flex;
+    list-style: none;
+}
+
+
+/*  #### FOOTER ####  */
+
+footer{
+    margin-top: 10%;
+    background-color: #B6A886;
+    height: 142px;
+    display:flex;
+    
+}
+
+.logo_footer{
+    width: 25%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;    
+
+}
+
+.logo_footer img{
+    background: white;
+    padding: 15px; 
+}
