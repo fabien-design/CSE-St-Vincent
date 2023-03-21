@@ -1,26 +1,26 @@
 <?php 
     session_start();
     require('include/connexion_db.php');
-    if(!empty($_POST)){
-        $erreurs = [];
-        if(empty($_POST['email'])){
-            $erreurs['email'] = "Veuillez saisir une adresse mail.";
+    if(!empty($_POST['login'])){
+        $erreursLogin = [];
+        if(empty($_POST['login']['email'])){
+            $erreursLogin['email'] = "Veuillez saisir une adresse mail.";
         }
         else{
-            if(filter_var($_POST['email'],FILTER_VALIDATE_EMAIL)){
-                $email = $_POST['email'];
+            if(filter_var($_POST['login']['email'],FILTER_VALIDATE_EMAIL)){
+                $email = $_POST['login']['email'];
             }
             else{
-                $erreurs['email'] = "Veuillez saisir une adresse mail valide.";
+                $erreursLogin['email'] = "Veuillez saisir une adresse mail valide.";
             }
         }
-        if(empty($_POST['password'])){
-            $erreurs['password'] = "Veuillez saisir une adresse mail.";
+        if(empty($_POST['login']['password'])){
+            $erreursLogin['password'] = "Veuillez saisir une adresse mail.";
         }
         else{
-            $password = $_POST['password']; 
+            $password = $_POST['login']['password']; 
         }
-        if(empty($erreurs)){
+        if(empty($erreursLogin)){
             try{
                 $req = $connexion->prepare("SELECT * FROM utilisateur WHERE Email_Utilisateur = :email");
                 $req->bindParam('email',$email);
@@ -36,16 +36,17 @@
                         $_SESSION['Droit_Utilisateur'] = $droit['Libelle_Droit'];
                     }
                     else{
-                        $erreurs['password'] = "Mot de passe incorrect.";
+                        $erreursLogin['password'] = "Mot de passe incorrect.";
                     }
                 }
                 else{
-                    $erreurs['email'] = "Adresse email incorrecte.";
+                    $erreursLogin['email'] = "Adresse email incorrecte.";
                 }
             }catch(Exception $e){
                 echo "La requette n'a pas pu être faite.";
             }
     }
+
 }?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -63,17 +64,17 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
  
     <div class="formulaire">
-        <form action="Backoffice.php" method="post">
+        <form action="Backoffice.php" method="post" name="login">
             <div class="formGroup">
                 <h1 class="formTitle">Connexion au backoffice</h1>
-                <?= isset($erreurs['email']) ||isset($erreurs['password']) ? "La combinaison email / mot de passe n'existe pas." : null ?>
+                <?= isset($erreursLogin['email']) ||isset($erreursLogin['password']) ? "La combinaison email / mot de passe n'existe pas." : null ?>
                 <div class="inputGroup">
-                    <input type="email" id="email" required="" name="email">
+                    <input type="email" id="email" required="" name="login[email]">
                     <label for="email">Email*</label>
                     
                 </div>
                 <div class="inputGroup">
-                    <input type="password" id="password" required="" name="password">
+                    <input type="password" id="password" required="" name="login[password]">
                     <label for="password">Mot de passe*</label>
                 </div>
                 <div class="btnGroup">
@@ -84,15 +85,79 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
     </div>
 <?php
 }else{ 
-    if($_SESSION['Droit_Utilisateur'] === "Administrateur" || $_SESSION['Droit_Utilisateur'] === "Utilisateur"){ ?>
-       <div class="Accueil">
-            <h1 class="helloBox">
-                Bonjour, vous avez les droits d'<?= $_SESSION['Droit_Utilisateur'] ?>.
-            </h1>
-       </div>
+    if($_SESSION['Droit_Utilisateur'] === "Administrateur"){ ?>
+        <header>
+            <div class="gris">
+            </div>
+            <div class="blue">
+                <nav>
+                    <div class="logo"><img src="assets/logo_lycee.png" alt="logo_st_vincent"></div>
+                    <ul>
+                        <li>
+                            <a href="Backoffice.php?page=accueil">Accueil</a>
+                        </li>
+                        <li><a href="Backoffice.php?page=partenaires">Partenariats</a></li>
+                        <li><a href="Backoffice.php?page=billetterie">Billetterie</a></li>
+                        <li><a href="Backoffice.php?page=message">Messages</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <main> <?php
+        if(!empty($_GET)){
+        if(!empty($_GET['page']) && $_GET['page'] !== "accueil"){
+            if($_GET['page'] === "partenaires"){
+                /**/ 
+            }else if($_GET['page'] === "billetterie"){
+                /**/ 
+            }else if($_GET['page'] === "message"){
+                /**/ 
+            }
+        }else{ ?>
+            <div class="titlePage">
+                <h1>Modifier les informations de la page d'accueil</h1>
+            </div>
+            <div class="formEdit">
+                <form action="Backoffice.php" method="post" name="accueilEdit">
+                    <?php 
+                        $req = $connexion->prepare("SELECT * FROM info_accueil");
+                        $req->execute();
+                        $infoAccueil = $req->fetch();
+                    ?>
+                    <div class="inputgroup">
+                        <label for="tel">Numéro de téléphone* :</label>
+                        <input type="tel" name="accueilEdit[phone]" id="phone" required="" value="<?php echo $infoAccueil['Num_Tel_Info_Accueil'] ?>">
+                    </div>
+                    <div class="inputgroup">
+                        <label for="email">Email* :</label>
+                        <input type="email" name="accueilEdit[email]" id="email" required="" value="<?php echo $infoAccueil['Email_Info_Accueil'] ?>">
+                    </div>
+                    <div class="inputgroup">
+                        <label for="bureau">Emplacement du Bureau* :</label>
+                        <textarea type="text" name="accueilEdit[bureau]" id="bureau" required=""><?php echo $infoAccueil['Emplacement_Bureau_Info_Accueil'] ?></textarea>
+                    </div>
+                    <div class="inputgroup">
+                        <label for="titre">Titre de la page* :</label>
+                        <input type="text" name="accueilEdit[titre]" id="titre" required="" value="<?php echo $infoAccueil['Titre_Info_Accueil'] ?>">
+                    </div>
+                    <div class="inputgroup">
+                        <label for="description">Description de la page* :</label>
+                        <input type="text" name="accueilEdit[description]" id="description" required="" value="<?php echo $infoAccueil['Texte_Info_Accueil'] ?>">
+                    </div>
+                    <div class="btnGroup">
+                        <button type="submit">Valider</button>
+                    </div>
+                </form>
+            </div>
+        <?php 
+        }
+    }
+     ?>
+            
+        </main>
     <?php
     }else{
-    header('Location: index.html');
+        header('Location: index.html');
     }
 
 }?>
