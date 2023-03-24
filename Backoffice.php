@@ -47,6 +47,18 @@
             }
     }
 
+}
+if(!empty($_GET['accueilEdit'])){
+    $erreursaccueilEdit = [];
+    if(empty($_GET['accueilEdit']['phone'])){
+        $erreursaccueilEdit['phone'] = "Veuillez saisir un numéro de téléphone.";
+    }else{
+        if(preg_match('/^[0-9]{10}+$/', $_GET['accueilEdit']['phone'])) {
+                $phone = $_GET['accueilEdit']['phone'];
+        } else {
+                $erreursaccueilEdit['phone'] = "Veuillez saisir un numéro de téléphone valide.";
+        }
+    }
 }?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -104,53 +116,53 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
             </div>
         </header>
         <main> <?php
-        if(!empty($_GET)){
-        if(!empty($_GET['page']) && $_GET['page'] !== "accueil"){
-            if($_GET['page'] === "partenaires"){
-                /**/ 
-            }else if($_GET['page'] === "billetterie"){
-                /**/ 
-            }else if($_GET['page'] === "message"){
-                /**/ 
-            }
-        }else{ ?>
-            <div class="titlePage">
-                <h1>Modifier les informations de la page d'accueil</h1>
-            </div>
-            <div class="formEdit">
-                <form action="Backoffice.php" method="post" name="accueilEdit">
-                    <?php 
-                        $req = $connexion->prepare("SELECT * FROM info_accueil");
-                        $req->execute();
-                        $infoAccueil = $req->fetch();
-                    ?>
-                    <div class="inputgroup">
-                        <label for="tel">Numéro de téléphone* :</label>
-                        <input type="tel" name="accueilEdit[phone]" id="phone" required="" value="<?php echo $infoAccueil['Num_Tel_Info_Accueil'] ?>">
-                    </div>
-                    <div class="inputgroup">
-                        <label for="email">Email* :</label>
-                        <input type="email" name="accueilEdit[email]" id="email" required="" value="<?php echo $infoAccueil['Email_Info_Accueil'] ?>">
-                    </div>
-                    <div class="inputgroup">
-                        <label for="bureau">Emplacement du Bureau* :</label>
-                        <textarea type="text" name="accueilEdit[bureau]" id="bureau" required=""><?php echo $infoAccueil['Emplacement_Bureau_Info_Accueil'] ?></textarea>
-                    </div>
-                    <div class="inputgroup">
-                        <label for="titre">Titre de la page* :</label>
-                        <input type="text" name="accueilEdit[titre]" id="titre" required="" value="<?php echo $infoAccueil['Titre_Info_Accueil'] ?>">
-                    </div>
-                    <div class="inputgroup">
-                        <label for="description">Description de la page* :</label>
-                        <input type="text" name="accueilEdit[description]" id="description" required="" value="<?php echo $infoAccueil['Texte_Info_Accueil'] ?>">
-                    </div>
-                    <div class="btnGroup">
-                        <button type="submit">Valider</button>
-                    </div>
-                </form>
-            </div>
-        <?php 
-        }
+        if(!empty($_GET) && $_GET['page'] !== "accueil"){
+            if(!empty($_GET['page']) && $_GET['page'] !== "accueil"){
+                if($_GET['page'] === "partenaires"){
+                    /**/ 
+                }else if($_GET['page'] === "billetterie"){
+                    /**/ 
+                }else if($_GET['page'] === "message"){
+                    /**/ 
+                }
+            } 
+    }else{ ?>
+        <div class="titlePage">
+            <h1>Modifier les informations de la page d'accueil</h1>
+        </div>
+        <div class="formEdit">
+            <form action="Backoffice.php" method="post" name="accueilEdit">
+                <?php 
+                    $req = $connexion->prepare("SELECT * FROM info_accueil");
+                    $req->execute();
+                    $infoAccueil = $req->fetch();
+                ?>
+                <div class="inputgroup">
+                    <label for="tel">Numéro de téléphone* :</label>
+                    <input type="tel" name="accueilEdit[phone]" id="phone" required="" value="<?php echo $infoAccueil['Num_Tel_Info_Accueil'] ?>">
+                </div>
+                <div class="inputgroup">
+                    <label for="email">Email* :</label>
+                    <input type="email" name="accueilEdit[email]" id="email" required="" value="<?php echo $infoAccueil['Email_Info_Accueil'] ?>">
+                </div>
+                <div class="inputgroup">
+                    <label for="bureau">Emplacement du Bureau* :</label>
+                    <textarea type="text" name="accueilEdit[bureau]" id="bureau" required=""><?php echo $infoAccueil['Emplacement_Bureau_Info_Accueil'] ?></textarea>
+                </div>
+                <div class="inputgroup">
+                    <label for="titre">Titre de la page* :</label>
+                    <input type="text" name="accueilEdit[titre]" id="titre" required="" value="<?php echo $infoAccueil['Titre_Info_Accueil'] ?>">
+                </div>
+                <div class="inputgroup">
+                    <label for="description">Description de la page* :</label>
+                    <textarea type="text" name="accueilEdit[description]" id="description" required=""><?php echo $infoAccueil['Texte_Info_Accueil'] ?></textarea>
+                </div>
+                <div class="btnGroup">
+                    <button type="submit">Valider</button>
+                </div>
+            </form>
+        </div>
+    <?php 
     }
      ?>
             
