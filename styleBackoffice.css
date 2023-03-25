@@ -1,11 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 *{
     padding: 0;
     margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
 }
 body{
     width: 100%;
     height: 100vh;
 }
+a{
+    text-decoration: none;
+    color: #000;
+}
+.graynav{
+    background-color: #efeded;
+    height: 56px;
+}
+nav{
+    background-color: #1b3168;
+    display: flex;
+    justify-content: space-between;
+    height: 56px;
+    position: relative;
+    padding-left: 10%;
+    padding-right: 10%;
+    font-size: 18px;
+}
+nav .bgLogo{
+    background-color: white;
+    padding: 5px 20px;
+    position: absolute;
+    top: -55px;
+    height: 101px;
+    width: 260px;
+    display: flex;
+    justify-content: center;
+}
+nav .bgLogo img{
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+}
+nav ul{
+    list-style: none;
+    display: flex;
+    align-items: center;
+    margin-left: 300px;
+}
+nav ul li{
+    height: 100%;
+    
+}
+nav ul li a{
+    color: white;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    height: 100%;
+    padding: 0 30px;
+}
+nav ul li a.active{
+    background-color: #B6A886;
+}
+
 .formulaire{
     display: flex;
     justify-content: center;
@@ -72,4 +130,142 @@ body{
     border-radius: 20px;
     border: solid 4px #D9D9D9;
     cursor: pointer;
+}
+
+.accueil .msgvalide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+
+}
+.accueil .titlePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    
+}
+.accueil .titlePage h1{
+    font-weight: 900;
+    color: #1b3168;
+    text-decoration: underline;
+}
+.accueil .formEdit{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.accueil .formEdit form{
+    display: grid;
+    align-items: center;
+    width: 40%;
+    min-width: 250px;
+}
+.accueil .formEdit form label{
+    font-size: 20px;
+    color: #1b3168;
+    padding-bottom: 5px;
+}
+.accueil .formEdit form label span{
+    color: red;
+}
+.accueil .formEdit form input, .accueil .formEdit form textarea{
+    padding: 15px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+    border: solid 2px #1b3168;
+}
+.accueil .formEdit form textarea{
+    min-height: 50px;
+}
+.accueil .formEdit .btnGroup{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+}
+.accueil .formEdit .btnGroup button{
+    padding: 10px 40px;
+    font-size: 20px;
+    border-radius: 10px;
+    border: solid 2px #1b3168;
+    background-color: #1b3168;
+    color: #fff;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+
+}
+.accueil .formEdit .btnGroup button p{
+    position: relative;
+    z-index: 1;
+}
+.accueil .formEdit .btnGroup button .bghover{
+    left: -154px;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #B6A886;
+    position: absolute;
+    border-radius: 10px;
+    border: solid 2px #B6A886;
+}
+.accueil .formEdit .btnGroup button:hover{
+    border: solid 2px #B6A886;
+    background-color: #B6A886;
+    transition: all .6s ease-in-out;
+}
+.accueil .formEdit .btnGroup button:hover .bghover{
+    left: 0;
+    transition: all .5s ease-in-out;
+
+}
+
+.partenaires .msgvalide{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+    font-size: 20px;
+
+}
+.partenaires .titlePage{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+.partenaires .tablepartenaires{
+    display: flex;
+    justify-content: center;
+}
+.partenaires .tablepartenaires table{
+    width: 60%;
+    padding: 15px;
+    border: 2px solid #1b3168;
+    border-radius: 10px;
+}
+.partenaires .tablepartenaires table tbody .actionBtn{
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+.partenaires .tablepartenaires table tbody td .modifBtn, .partenaires .tablepartenaires table tbody td .supprBtn{
+    padding: 8px 15px;
+    border-radius: 10px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.partenaires .tablepartenaires table tbody td .modifBtn{
+    background-color: #1b3168;
+}
+.partenaires .tablepartenaires table tbody td .supprBtn{
+    background-color: #ff0000;
 }

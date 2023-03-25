@@ -48,15 +48,70 @@
     }
 
 }
-if(!empty($_GET['accueilEdit'])){
+if(!empty($_POST['accueilEdit'])){
     $erreursaccueilEdit = [];
-    if(empty($_GET['accueilEdit']['phone'])){
+    if(empty($_POST['accueilEdit']['phone'])){
         $erreursaccueilEdit['phone'] = "Veuillez saisir un numéro de téléphone.";
     }else{
-        if(preg_match('/^[0-9]{10}+$/', $_GET['accueilEdit']['phone'])) {
-                $phone = $_GET['accueilEdit']['phone'];
+        if(preg_match('/^[0-9]{11}+$/', $_POST['accueilEdit']['phone'])) {
+                $phone = $_POST['accueilEdit']['phone'];
         } else {
                 $erreursaccueilEdit['phone'] = "Veuillez saisir un numéro de téléphone valide.";
+        }
+    }
+    if(empty($_POST['accueilEdit']['email'])){
+        $erreursaccueilEdit['email']="Veuillez saisir une adresse mail.";
+    }else{
+        if(filter_var($_POST['accueilEdit']['email'],FILTER_VALIDATE_EMAIL)){
+            if(strlen($_POST['accueilEdit']['email']) >255){
+                $erreursaccueilEdit['email']="L'adresse mail saisie est trop longue.";
+            }else{
+                $email = $_POST['accueilEdit']['email'];
+            }
+        }else{
+            $erreursaccueilEdit['email']="Veuillez saisir une adresse mail valide.";
+        }
+    }
+    if(empty($_POST['accueilEdit']['bureau'])){
+        $erreursaccueilEdit['bureau'] = "Veuillez saisir un emplacement du bureau.";
+    }else{
+        $bureau = htmlspecialchars($_POST['accueilEdit']['bureau']);
+        if(strlen($bureau) > 255){
+            $erreursaccueilEdit['bureau'] = "Veuillez saisir un emplacement du bureau plus court.";
+        }
+    }
+    if(empty($_POST['accueilEdit']['titre'])){
+        $erreursaccueilEdit['titre'] = "Veuillez saisir un titre.";
+    }else{
+        if(strlen($_POST['accueilEdit']['titre']) > 255){
+            $erreursaccueilEdit['titre'] = "Veuillez saisir un titre plus court.";
+        }else{
+            $titre = htmlspecialchars($_POST['accueilEdit']['titre']);
+        }
+    }
+    if(empty($_POST['accueilEdit']['description'])){
+        $erreursaccueilEdit['texte'] = "Veuillez saisir un texte.";
+    }else{
+        if(strlen($_POST['accueilEdit']['description'])>3000){
+            $erreursaccueilEdit['texte'] = "Veuillez saisir un texte de moins de 3000 caractères.";
+        }else{
+            $description = htmlspecialchars($_POST['accueilEdit']['description']); 
+        }
+    }
+    if(empty($erreursaccueilEdit)){
+        try{
+            $req = $connexion->prepare("UPDATE info_accueil SET Num_Tel_Info_Accueil = :phone, Email_Info_Accueil = :email, Emplacement_Bureau_Info_Accueil = :bureau, Titre_Info_Accueil = :titre, Texte_Info_Accueil = :descrip");
+            $req->bindParam('phone',$phone);
+            $req->bindParam('email',$email);
+            $req->bindParam('bureau',$bureau);
+            $req->bindParam('titre',$titre);
+            $req->bindParam('descrip',$description);
+            $req->execute();
+            $msgvalidation = "<div class='msgvalide'>
+                La modification a bien été effectuée.
+            </div>";
+        }catch(Exception $e){
+            echo "Erreur lors de la modification";
         }
     }
 }?>
@@ -98,36 +153,102 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 <?php
 }else{ 
     if($_SESSION['Droit_Utilisateur'] === "Administrateur"){ ?>
-        <header>
-            <div class="gris">
+    <header>
+        <div class="graynav"></div>
+        <nav>
+            <div class="bgLogo">
+                <img src="assets/logo_lycee.png" alt="logo du lycée">
             </div>
-            <div class="blue">
-                <nav>
-                    <div class="logo"><img src="assets/logo_lycee.png" alt="logo_st_vincent"></div>
-                    <ul>
-                        <li>
-                            <a href="Backoffice.php?page=accueil">Accueil</a>
-                        </li>
-                        <li><a href="Backoffice.php?page=partenaires">Partenariats</a></li>
-                        <li><a href="Backoffice.php?page=billetterie">Billetterie</a></li>
-                        <li><a href="Backoffice.php?page=message">Messages</a></li>
-                    </ul>
-                </nav>
-            </div>
-        </header>
+            <ul> <?php
+            if(empty($_GET) || $_GET['page'] === "accueil"){?>
+                <li><a href="Backoffice.php?page=accueil" class="active">Accueil</a></li>
+            <?php }else{ ?>
+                <li><a href="Backoffice.php?page=accueil">Accueil</a></li>
+            <?php }
+            if(!empty($_GET) && $_GET['page'] === "partenaires"){ ?>
+                <li><a href="Backoffice.php?page=partenaires" class="active">Partenariats</a></li>
+            <?php }else{ ?>
+                <li><a href="Backoffice.php?page=partenaires">Partenariats</a></li>
+            <?php }if(!empty($_GET) && $_GET['page'] === "billetterie"){ ?>
+                <li><a href="Backoffice.php?page=billetterie" class="active">Billeterie</a></li>
+            <?php }else{ ?> 
+                <li><a href="Backoffice.php?page=billetterie">Billeterie</a></li>
+            <?php }if(!empty($_GET) && $_GET['page'] === "message"){?>
+                <li><a href="Backoffice.php?page=message" class="active">Messages</a></li>
+            <?php }else{?>
+                <li><a href="Backoffice.php?page=message">Messages</a></li>
+            <?php } ?>
+            </ul>
+        </nav>
+    </header>
         <main> <?php
         if(!empty($_GET) && $_GET['page'] !== "accueil"){
+
             if(!empty($_GET['page']) && $_GET['page'] !== "accueil"){
-                if($_GET['page'] === "partenaires"){
-                    /**/ 
-                }else if($_GET['page'] === "billetterie"){
+                if($_GET['page'] === "partenaires"){?>
+
+
+                    <div class="partenaires">
+
+                    <?= isset($msgvalidation) ? $msgvalidation : null ?>
+                    <div class="titlePage"> 
+                        <h1>Modifier les partenaires</h1>
+                    </div>
+                    <div class="tablepartenaires">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nom</th>
+                                <th>Description</th>
+                                <th>Lien du site</th>
+                                <th>Image</th>
+                                <th>Action</th>
+                                <th><a href="Backoffice?modalAjout=partenaire">Ajouter un partenaire</a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            try{
+                                $req = $connexion->prepare("SELECT * FROM partenaire");
+                                $req->execute();
+                                $partenaires= $req->fetchAll();
+                                foreach($partenaires as $partenaire){ ?>
+                                    <tr>
+                                        <td><?php echo $partenaire["Nom_Partenaire"] ?></td>
+                                        <td><?php echo $partenaire["Description_Partenaire"] ?></td>
+                                        <td><?php echo $partenaire["Lien_Partenaire"] ?></td>
+                                        <td><?= !empty($partenaire["Id_Image"]) ? 'xxx'  : "Aucune image" ?></td>
+                                        <td class="actionBtn">  
+                                            <a href="Backoffice?modalModifPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="modifBtn">Modifier</a>
+                                            <a href="Backoffice?modalSupprPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="supprBtn">Supprimer</a>
+                                        </td>
+                                    </tr>
+                               <?php }
+                            }catch(Exception $e){
+                                echo "Erreur lors de l'affichage";
+                            }
+
+                            ?>
+                        </tbody>
+                    </table>
+                    </div>
+
+                    </div>
+                    
+                    
+
+
+          <?php }else if($_GET['page'] === "billetterie"){
                     /**/ 
                 }else if($_GET['page'] === "message"){
                     /**/ 
                 }
-            } 
+            }
+
     }else{ ?>
-        <div class="titlePage">
+    <div class="accueil">
+        <?= isset($msgvalidation) ? $msgvalidation : null ?>
+        <div class="titlePage"> 
             <h1>Modifier les informations de la page d'accueil</h1>
         </div>
         <div class="formEdit">
@@ -137,31 +258,31 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     $req->execute();
                     $infoAccueil = $req->fetch();
                 ?>
-                <div class="inputgroup">
-                    <label for="tel">Numéro de téléphone* :</label>
+                    <label for="tel">Numéro de téléphone<span>*</span> :</label>
                     <input type="tel" name="accueilEdit[phone]" id="phone" required="" value="<?php echo $infoAccueil['Num_Tel_Info_Accueil'] ?>">
-                </div>
-                <div class="inputgroup">
-                    <label for="email">Email* :</label>
+                    <?= isset($erreursaccueilEdit['phone']) ? $erreursaccueilEdit['phone'] : null ?>
+
+                    <label for="email">Email<span>*</span> :</label>
                     <input type="email" name="accueilEdit[email]" id="email" required="" value="<?php echo $infoAccueil['Email_Info_Accueil'] ?>">
-                </div>
-                <div class="inputgroup">
-                    <label for="bureau">Emplacement du Bureau* :</label>
+                    <?= isset($erreursaccueilEdit['email']) ? $erreursaccueilEdit['email'] : null ?>
+                    
+                    <label for="bureau">Emplacement du Bureau<span>*</span> :</label>
                     <textarea type="text" name="accueilEdit[bureau]" id="bureau" required=""><?php echo $infoAccueil['Emplacement_Bureau_Info_Accueil'] ?></textarea>
-                </div>
-                <div class="inputgroup">
-                    <label for="titre">Titre de la page* :</label>
+                    <?= isset($erreursaccueilEdit['bureau']) ? $erreursaccueilEdit['bureau'] : null ?>
+                    
+                    <label for="titre">Titre de la page<span>*</span> :</label>
                     <input type="text" name="accueilEdit[titre]" id="titre" required="" value="<?php echo $infoAccueil['Titre_Info_Accueil'] ?>">
-                </div>
-                <div class="inputgroup">
-                    <label for="description">Description de la page* :</label>
+                    <?= isset($erreursaccueilEdit['titre']) ? $erreursaccueilEdit['titre'] : null ?>
+                    
+                    <label for="description">Description de la page<span>*</span> :</label>
                     <textarea type="text" name="accueilEdit[description]" id="description" required=""><?php echo $infoAccueil['Texte_Info_Accueil'] ?></textarea>
-                </div>
+                    <?= isset($erreursaccueilEdit['description']) ? $erreursaccueilEdit['description'] : null ?>
                 <div class="btnGroup">
-                    <button type="submit">Valider</button>
+                    <button type="submit"><div class="bghover"></div><p>Valider</p></button>
                 </div>
             </form>
         </div>
+    </div>
     <?php 
     }
      ?>
