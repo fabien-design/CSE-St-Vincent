@@ -4,18 +4,43 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-p{
+
+p {
     /*font-size: clamp(14px,1vw,1.5vw);*/
     font-size: clamp(0.95rem, 0.31vw + 0.81rem, 1.28rem);
 }
 
-/* ###### BODY ###### 
+h1 {
+    font-weight: 400;
+    margin: 3vh 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+
+.chevron-droit {
+    max-width: 14px;
+    max-height: 14px;
+}
+
+.active{
+    background-color: #B6A886;
+}
+
+/* ###### BODY ###### */
+main {
+    display: flex;
+    margin: 0 10%;
+}
 
 
 /*  #### HEADER ####  */
 header {
     background-color: #efeded;
 }
+
 nav {
     margin: 0 10%;
     display: flex;
@@ -23,6 +48,7 @@ nav {
     flex-direction: row;
 
 }
+
 nav .logo {
     position: absolute;
     background-color: white;
@@ -30,65 +56,195 @@ nav .logo {
     padding: 15px;
     display: block;
 }
+
 .gris {
     height: 56px;
 }
+
 .blue {
     background-color: #1b3168;
     height: 56px;
-
-
 }
+
 .blue ul {
     display: flex;
     list-style: none;
     position: sticky;
     margin: 0 0 0 234px;
     color: white;
+    transition: color 0.1s ease-in-out;
 }
+
 .blue ul li {
     padding: 18.5px 30px;
     max-height: 56px;
 }
-.blue ul :hover{
-    background-color: #B6A886;
+
+.blue ul :hover {
+    background-color:#B6A886;
 }
 
-/* ###### BODY ###### */
-main{
-    display: flex;
-    margin:0 10% 0 10%;
-}
+
+
+
+
+
+
 
 /*  #### ASIDE ####  */
 
-aside{
+aside {
     padding: 10px;
     max-width: 250px;
 }
 
-.right{
+
+
+
+/*  #### ACCUEIL ####  */
+
+.right {
+    padding: 15px;
+}
+
+.info_accueil {
+    margin: 5vh 0 3vh;
+    padding: 10px;
+    background-color: #D9D9D9;
+
+}
+
+.titre {
+    padding: 5px;
+    padding-left: 10px;
+    margin-bottom: 10px;
+    color: #1B3168;
+    font-family: 'Inter', sans-serif;
+}
+
+.info_accueil p {
     padding: 10px;
 }
 
+/*  #### OFFRES ####  */
+
+.offre_billetterie {
+    margin-top: 3vh;
+    padding: 15px;
+    background-color: #EFEDED;
+
+}
+
+.offre_billetterie_header {
+    padding-bottom: 15px;
+    background-color: #EFEDED;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.tag_offre {
+    display: inline-block;
+    max-width: 146px;
+    width: 100%;
+    height: 22px;
+    padding: 5px;
+    color: white;
+    background-color: #1B3168;
+    border-radius: 7px;
+    font-weight: 400;
+    font-size: 10px;
+    text-align: center;
+}
+
+.date_offre {
+    padding-left: 5px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 17px;
+}
+
+.offre_learnmore {
+    width: 100%;
+    display: block;
+    text-align: end;
+    text-decoration: none;
+    color: black;
+    transition: all 0.2s ease-in-out;
+}
+
+.offre_learnmore:hover {
+    color: #B6A886;
+    font-weight: 300;
+    letter-spacing: -0.1px;
+}
+
+#offres_decouvrir {
+    margin-top: 3vh;
+    height: 35px;
+    display: inline-block;
+    padding: 5px;
+    color: white;
+    background-color: #1B3168;
+    border-radius: 7px;
+    text-align: center;
+    transition: all 0.1s ease-in-out;
+}
+
+#offres_decouvrir:hover {
+    scale: 1.05;
+}
+
+/*  #### PARTENARIATS ####  */
+
+.partenaires_grid-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    gap: 20px;
+    width: 60vw;
+    height: auto;
+    margin-top: 3vh;
+    padding: 15px;
+    background-color: #EFEDED;
+}
+
+.partenaires_grid-item {
+    width: 150px;
+    height: 150px;
+    color: red;
+    background-color: rgba(255, 255, 255, 0.8);
+    border: 1px solid rgba(0, 0, 0, 0.8);
+    font-size: 30px;
+    text-align: center;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+.partenaires_grid-item img{
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+}
+
+
 /*  #### FOOTER ####  */
 
-footer{
+footer {
     margin-top: 10%;
     background-color: #B6A886;
     height: 142px;
-    display:flex;
-    
+    display: flex;
+
 }
 
-.logo_footer{
+.logo_footer {
     display: flex;
     align-items: center;
     margin-left: 10%;
 
 }
 
-.logo_footer img{
+.logo_footer img {
     background: white;
-    padding: 15px; 
+    padding: 15px;
 }
