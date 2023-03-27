@@ -93,9 +93,113 @@ nav .logo {
 
 /*  #### ASIDE ####  */
 
-aside {
+aside{
     padding: 10px;
     max-width: 250px;
+}
+aside.left div{
+    padding-bottom: 10px;
+}
+aside.left .sectiontitle{
+    font-size: 22px;
+    padding-bottom: 20px;
+    color: #B6A886;
+}
+aside.left .home{
+    display: flex;
+    align-items: center;
+    padding: 30px 5px;
+}
+aside.left .home img{
+    width: 22px;
+}
+aside.left .home img:nth-child(2){
+    width: 14px;
+    padding-right: 3px;
+}
+aside.left .home .sectiontitle{
+    padding-bottom: 0;
+}
+aside.left .chevron-droit{
+    width: 12px;
+}
+aside.left .infocontact div{
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+}
+aside.left .infocontact div:last-child{
+    display: flex;
+    align-items: baseline;
+}
+aside.left .infocontact div p span{
+    color: #1b3168;
+}
+aside.left .partenaire .mySlides {display: none}
+aside.left .partenaire img {vertical-align: middle;}
+aside.left .partenaire .boxSlider{
+    padding: 30px 50px 0 50px;
+    background: rgba(27, 49, 104, 0.1);
+    position: relative;
+}
+/* Slideshow container */
+aside.left .partenaire .slideshow-container {
+  max-width: 1000px;
+  position: relative;
+  margin: auto;
+}
+/* Next & previous buttons */
+aside.left .partenaire .prev, aside.left .partenaire .next {
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  width: auto;
+  padding: 14px;
+  margin-top: -22px;
+  color: white;
+  font-weight: bold;
+  font-size: 18px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+}
+aside.left .partenaire .prev, aside.left .partenaire .next{
+    width: 50px;
+}
+/* Position the "next button" to the right */
+aside.left .partenaire .next {
+  right: 0;
+  border-radius: 3px 0 0 3px;
+}
+aside.left .partenaire .prev {
+    left: 0;
+    
+  }
+
+/* On hover, add a black background color with a little bit see-through */
+aside.left .partenaire .prev:hover, .next:hover {
+  background-color: rgba(0,0,0,0.6);
+}
+/* The dots/bullets/indicators */
+aside.left .partenaire .dot {
+  cursor: pointer;
+  height: 12px;
+  width: 12px;
+  margin: 0 2px;
+  background-color: #C4C4C4;
+  border-radius: 50%;
+  display: inline-block;
+  transition: background-color 0.6s ease;
+}
+aside.left .partenaire .active, .dot:hover {
+  background-color: #000;
+}
+aside.left .decouverte{
+    display: flex;
+    justify-content: center;
+}
+aside.left .decouverte a{
+    font-size: 14px;
+    text-decoration: underline;
 }
 
 
