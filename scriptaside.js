@@ -1,11 +1,17 @@
 let slideIndex = 1;
+let timer = setInterval(() => plusSlides(1), 5000); // Ajout du timer pour défilement automatique
+
 showSlides(slideIndex);
 
 function plusSlides(n) {
+  clearInterval(timer); // Arrêt du timer lorsqu'on clique sur les flèches
+  timer = setInterval(() => plusSlides(1), 5000);
   showSlides(slideIndex += n);
 }
 
 function currentSlide(n) {
+  clearInterval(timer); // Arrêt du timer lorsqu'on clique sur les points
+  timer = setInterval(() => plusSlides(1), 5000);
   showSlides(slideIndex = n);
 }
 

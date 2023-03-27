@@ -177,7 +177,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
  
     <div class="formulaire">
-        <form action="Backoffice.php" method="post" name="login">
+        <form action="backoffice.php" method="post" name="login">
             <div class="formGroup">
                 <h1 class="formTitle">Connexion au backoffice</h1>
                 <?= isset($erreursLogin['email']) ||isset($erreursLogin['password']) ? "La combinaison email / mot de passe n'existe pas." : null ?>
@@ -207,22 +207,22 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
             </div>
             <ul> <?php
             if(empty($_GET) || $_GET['page'] === "accueil"){?>
-                <li><a href="Backoffice.php?page=accueil" class="active">Accueil</a></li>
+                <li><a href="backoffice.php?page=accueil" class="active">Accueil</a></li>
             <?php }else{ ?>
-                <li><a href="Backoffice.php?page=accueil">Accueil</a></li>
+                <li><a href="backoffice.php?page=accueil">Accueil</a></li>
             <?php }
             if(!empty($_GET) && $_GET['page'] === "partenaires"){ ?>
-                <li><a href="Backoffice.php?page=partenaires" class="active">Partenariats</a></li>
+                <li><a href="backoffice.php?page=partenaires" class="active">Partenariats</a></li>
             <?php }else{ ?>
-                <li><a href="Backoffice.php?page=partenaires">Partenariats</a></li>
+                <li><a href="backoffice.php?page=partenaires">Partenariats</a></li>
             <?php }if(!empty($_GET) && $_GET['page'] === "billetterie"){ ?>
-                <li><a href="Backoffice.php?page=billetterie" class="active">Billeterie</a></li>
+                <li><a href="backoffice.php?page=billetterie" class="active">Billeterie</a></li>
             <?php }else{ ?> 
-                <li><a href="Backoffice.php?page=billetterie">Billeterie</a></li>
+                <li><a href="backoffice.php?page=billetterie">Billeterie</a></li>
             <?php }if(!empty($_GET) && $_GET['page'] === "message"){?>
-                <li><a href="Backoffice.php?page=message" class="active">Messages</a></li>
+                <li><a href="backoffice.php?page=message" class="active">Messages</a></li>
             <?php }else{?>
-                <li><a href="Backoffice.php?page=message">Messages</a></li>
+                <li><a href="backoffice.php?page=message">Messages</a></li>
             <?php } ?>
             </ul>
         </nav>
@@ -249,7 +249,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 <th>Lien du site</th>
                                 <th>Image</th>
                                 <th>Action</th>
-                                <th><a href="Backoffice.php?page=partenaires&modalAjout=partenaire">Ajouter un partenaire</a></th>
+                                <th><a href="backoffice.php?page=partenaires&modalAjout=partenaire">Ajouter un partenaire</a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -271,8 +271,8 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                         <td><?php echo $partenaire["Lien_Partenaire"] ?></td>
                                         <td class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire">' : "Aucune image" ?></td>
                                         <td class="actionBtn">  
-                                            <a href="Backoffice.php?page=partenaires&modalModifPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="modifBtn">Modifier</a>
-                                            <a href="Backoffice.php?page=partenaires&modalSupprPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="supprBtn">Supprimer</a>
+                                            <a href="backoffice.php?page=partenaires&modalModifPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="modifBtn">Modifier</a>
+                                            <a href="backoffice.php?page=partenaires&modalSupprPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="supprBtn">Supprimer</a>
                                         </td>
                                     </tr>
                                <?php }
@@ -304,7 +304,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
             <h1>Modifier les informations de la page d'accueil</h1>
         </div>
         <div class="formEdit">
-            <form action="Backoffice.php" method="post" name="accueilEdit">
+            <form action="backoffice.php" method="post" name="accueilEdit">
                 <?php 
                     $req = $connexion->prepare("SELECT * FROM info_accueil");
                     $req->execute();
