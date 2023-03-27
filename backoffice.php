@@ -156,6 +156,50 @@ if(isset($_GET['modalSupprPartenaire'])){
     </div>
 <?php
 }
+if(isset($_GET['modalModifPartenaire'])){
+    $req = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
+    $req->bindParam('id',$_GET['modalModifPartenaire']);
+    $req->execute();
+    $partenaire = $req->fetch();
+    $reqImg = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image = :id");
+    $reqImg->bindParam('id',$partenaire['Id_Image']);
+    $reqImg->execute();
+    $imgPart = $reqImg->fetch();
+     ?>
+    <div id="modalModifPartenaire" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="formBox">
+                <form id="formModifPartenaire" enctype="multipart/form-data">
+                    <input type="hidden" name="idPart" value="<?php echo $partenaire['Id_Partenaire'] ?>">
+
+                    <label for="nompart">Nom* :</label>
+                    <input type="text" name="nompart" value="<?php echo $partenaire['Nom_Partenaire'] ?>">
+
+                    <label for="descrippart">Description* :</label>
+                    <textarea name="descrippart" cols="30" rows="10"><?php echo $partenaire['Description_Partenaire'] ?></textarea>
+
+                    <label for="lienpart">Lien* :</label>
+                    <input type="text" name="lienpart" value="<?php echo $partenaire['Lien_Partenaire'] ?>">
+
+                    <label for="imgpart">Image* :</label>
+                    <div class="imgBox">
+                        <img src="assets/<?php echo $imgPart['Nom_Image'] ?>" alt="Image du partenaire">
+                        <input type="file" name="lienpart">
+                    </div>
+
+                    <div class="modifBtn">
+                        <button type="submit" class="formModifOui">OUI</button>
+                        <button class="formModifNon">NON</button>
+                    </div>
+                </form>
+            </div>
+            
+        </div>
+
+    </div>
+<?php
+}
 ?>
 
 <!-- Debut Page HTML -->
