@@ -269,3 +269,64 @@ nav ul li a.active{
 .partenaires .tablepartenaires table tbody td .supprBtn{
     background-color: #ff0000;
 }
+.partenaires .tablepartenaires table tbody .imgPart img{
+    max-width: 80px;
+}
+#modalSupprPartenaire {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0,0,0); 
+    background-color: rgba(0,0,0,0.4);
+}
+#modalSupprPartenaire .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+#modalSupprPartenaire .modal-content .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+#modalSupprPartenaire .modal-content .close:hover,
+#modalSupprPartenaire .modal-content .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+#modalSupprPartenaire .modal-content .title{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+#modalSupprPartenaire .modal-content .modalBox{
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+#modalSupprPartenaire .modal-content .modalBox .supprBox{
+    display: grid;
+    align-items: center;
+}
+#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn button{
+    padding: 10px 20px;
+    cursor: pointer;
+}
