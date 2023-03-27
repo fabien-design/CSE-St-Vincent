@@ -114,7 +114,52 @@ if(!empty($_POST['accueilEdit'])){
             echo "Erreur lors de la modification";
         }
     }
-}?>
+}
+
+
+// CODE MODAL POUR SUPPRESSION D'UN PARTENAIRE
+
+
+if(isset($_GET['modalSupprPartenaire'])){
+    $req = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
+    $req->bindParam('id',$_GET['modalSupprPartenaire']);
+    $req->execute();
+    $partenaire = $req->fetch();
+    $reqImg = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image = :id");
+    $reqImg->bindParam('id',$partenaire['Id_Image']);
+    $reqImg->execute();
+    $imgPart = $reqImg->fetch();
+     ?>
+    <div id="modalSupprPartenaire" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="title">
+                <h2><?php echo $partenaire['Nom_Partenaire']; ?></h2>
+            </div>
+            <div class="modalBox"> <?php
+                if(!empty($partenaire["Id_Image"])){?>
+                <img src="assets/<?= $imgPart['Nom_Image']; ?>" alt="Image <?php echo $partenaire['Nom_Partenaire']; ?>">
+                <?php } ?>
+                <div class="supprBox">
+                    <p>Êtes-vous sûr de vouloir supprimer ce partenaire ?</p>
+                    <div class="supprBtn">
+                        <form id="formSupprPartenaire">
+                            <input type="hidden" name="idPart" value="<?php echo $partenaire['Id_Partenaire'] ?>">
+                            <button type="submit" class="formSupprOui">OUI</button>
+                        </form>
+                        <button class="formSupprNon">NON</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+<?php
+}
+?>
+
+<!-- Debut Page HTML -->
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
@@ -123,6 +168,7 @@ if(!empty($_POST['accueilEdit'])){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Backoffice</title>
     <link rel="stylesheet" href="styleBackoffice.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
 </head>
 <body> 
 <?php
@@ -203,7 +249,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 <th>Lien du site</th>
                                 <th>Image</th>
                                 <th>Action</th>
-                                <th><a href="Backoffice?modalAjout=partenaire">Ajouter un partenaire</a></th>
+                                <th><a href="Backoffice.php?page=partenaires&modalAjout=partenaire">Ajouter un partenaire</a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -212,15 +258,21 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 $req = $connexion->prepare("SELECT * FROM partenaire");
                                 $req->execute();
                                 $partenaires= $req->fetchAll();
-                                foreach($partenaires as $partenaire){ ?>
+                                foreach($partenaires as $partenaire){
+                                    if(!empty($partenaire["Id_Image"])){
+                                        $req = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image = :id");
+                                        $req->bindParam('id',$partenaire["Id_Image"]);
+                                        $req->execute();
+                                        $imgPart= $req->fetch();}
+                                    ?>
                                     <tr>
                                         <td><?php echo $partenaire["Nom_Partenaire"] ?></td>
                                         <td><?php echo $partenaire["Description_Partenaire"] ?></td>
                                         <td><?php echo $partenaire["Lien_Partenaire"] ?></td>
-                                        <td><?= !empty($partenaire["Id_Image"]) ? 'xxx'  : "Aucune image" ?></td>
+                                        <td class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire">' : "Aucune image" ?></td>
                                         <td class="actionBtn">  
-                                            <a href="Backoffice?modalModifPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="modifBtn">Modifier</a>
-                                            <a href="Backoffice?modalSupprPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="supprBtn">Supprimer</a>
+                                            <a href="Backoffice.php?page=partenaires&modalModifPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="modifBtn">Modifier</a>
+                                            <a href="Backoffice.php?page=partenaires&modalSupprPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="supprBtn">Supprimer</a>
                                         </td>
                                     </tr>
                                <?php }
@@ -296,5 +348,6 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 }?>
 
 <!-- Fin Page HTML -->
+<script src="scriptBackoffice.js"></script>
 </body>
 </html>
