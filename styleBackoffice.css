@@ -84,7 +84,7 @@ nav ul li a.active{
 }
 .formulaire form .formGroup .inputGroup {
     font-family: 'Segoe UI', sans-serif;
-    margin: 1em 0 1em 0;
+    margin: 1em 1.8em 1em 0;
     position: relative;
 }
 .formulaire form .formGroup .inputGroup input {
