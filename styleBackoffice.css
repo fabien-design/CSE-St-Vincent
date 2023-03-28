@@ -350,14 +350,14 @@ nav ul li a.active{
     border: 1px solid #888;
     width: 80%;
 }
-#modalModifPartenaire .modal-content .close {
+#modalModifPartenaire .modal-content .closeModif {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
-#modalModifPartenaire .modal-content .close:hover,
-#modalModifPartenaire .modal-content .close:focus {
+#modalModifPartenaire .modal-content .closeModif:hover,
+#modalModifPartenaire .modal-content .closeModif:focus {
     color: #000;
     text-decoration: none;
     cursor: pointer;

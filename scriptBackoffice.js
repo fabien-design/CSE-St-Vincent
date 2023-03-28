@@ -1,25 +1,25 @@
 // Code Modal suppression d'un partenaire
 
-var modal = document.getElementById("modalSupprPartenaire");
+var modalSuppr = document.getElementById("modalSupprPartenaire");
 var span = document.getElementsByClassName("close")[0];
 var btnNon = document.getElementsByClassName("formSupprNon")[0];
 var btnOui = document.getElementsByClassName("formSupprOui")[0];
 // cacher modal au click de la croix ou du btn non
 span.onclick = function() {
-  modal.style.display = "none";
+  modalSuppr.style.display = "none";
   history.pushState(null, null, window.location.href.split("&")[0]);
 }
 btnNon.onclick = function() {
-    modal.style.display = "none";
+    modalSuppr.style.display = "none";
     history.pushState(null, null, window.location.href.split("&")[0]);
 }
 btnOui.onclick = function() {
     history.pushState(null, null, window.location.href.split("&")[0]);
-    setTimeout(modal.style.display = "none", 2000);
+    setTimeout(modalSuppr.style.display = "none", 2000);
 }
 window.onclick = function(event) {
-  if (event.target == modal) {
-    modal.style.display = "none";
+  if (event.target == modalSuppr) {
+    modalSuppr.style.display = "none";
     history.pushState(null, null, window.location.href.split("&")[0]);
   }
 }
