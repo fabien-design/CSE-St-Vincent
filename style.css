@@ -413,5 +413,5 @@ footer {
 .links_footer a:hover{
     transition: 0.5s;
     color: #cdcdcd;
-    transform:scale(0.97)
+    transform:scale(0.97);
 }
