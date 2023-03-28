@@ -168,9 +168,9 @@ if(isset($_GET['modalModifPartenaire'])){
      ?>
     <div id="modalModifPartenaire" class="modal">
         <div class="modal-content">
-            <span class="close">&times;</span>
+            <span class="closeModif">&times;</span>
             <div class="formBox">
-                <form id="formModifPartenaire" enctype="multipart/form-data">
+                <form id="formModifPartenaire" enctype="multipart/form-data" method="POST">
                     <input type="hidden" name="idPart" value="<?php echo $partenaire['Id_Partenaire'] ?>">
 
                     <label for="nompart">Nom* :</label>
@@ -185,19 +185,73 @@ if(isset($_GET['modalModifPartenaire'])){
                     <label for="imgpart">Image* :</label>
                     <div class="imgBox">
                         <img src="assets/<?php echo $imgPart['Nom_Image'] ?>" alt="Image du partenaire">
-                        <input type="file" name="lienpart">
+                        <input type="file" name="imgpart">
                     </div>
 
                     <div class="modifBtn">
-                        <button type="submit" class="formModifOui">OUI</button>
+                        <button type="submit" class="formModifOui">OUI</button></form>
                         <button class="formModifNon">NON</button>
                     </div>
-                </form>
+                
             </div>
             
         </div>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal modif d'un partenaire
+        var modalModif = document.getElementById("modalModifPartenaire");
+        var span = document.getElementsByClassName("closeModif")[0];
+        var btnNon = document.getElementsByClassName("formModifNon")[0];
+        var btnOui = document.getElementsByClassName("formModifOui")[0];
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+        modalModif.style.display = "none";
+        history.pushState(null, null, window.location.href.split("&")[0]);
+        }
+        btnNon.onclick = function(e) {
+            e.preventDefault();
+            modalModif.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+        }
+        btnOui.onclick = function() {
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            setTimeout(function() {modalModif.style.display = "none";}, 2000);
+        }
+        window.onclick = function(event) {
+        if (event.target == modalModif) {
+            modalModif.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+        }
+        }
+        
+        // Code Jquery en AJAX pour la modif d'un partenaire
+
+        $(document).ready(function(){
+            $("#formModifPartenaire").submit(function(e){
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    type: "POST",
+                    url: "modifPartenaire.php",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                        alert(response);
+                        setTimeout(function() {
+                            location.reload(true);
+                        }, 2000);
+
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                    }
+                });
+            }); 
+        });
+    </script>
 <?php
 }
 ?>
