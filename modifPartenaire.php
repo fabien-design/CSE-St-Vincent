@@ -6,7 +6,7 @@ if(isset($_POST['idPart'], $_POST['nompart'], $_POST['descrippart'], $_POST['lie
     $descrip = $_POST['descrippart'];
     $lien = $_POST['lienpart'];
 
-    if (isset($_FILES['imgpart'])) {
+    if (!empty($_FILES['imgpart']['name'])) {
         $nom_image = $_FILES['imgpart']['name'];
         $nom_image = rand(1000,9999)."-".$nom_image;
         move_uploaded_file($_FILES['imgpart']['tmp_name'], 'assets/' . $nom_image);

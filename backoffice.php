@@ -156,6 +156,9 @@ if(isset($_GET['modalSupprPartenaire'])){
     </div>
 <?php
 }
+
+// CODE MODAL POUR MODIFIER UN PARTENAIRE
+
 if(isset($_GET['modalModifPartenaire'])){
     $req = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
     $req->bindParam('id',$_GET['modalModifPartenaire']);
@@ -254,6 +257,97 @@ if(isset($_GET['modalModifPartenaire'])){
     </script>
 <?php
 }
+
+// CODE MODAL POUR AJOUTER UN PARTENAIRE
+
+if(isset($_GET['modalAjoutPartenaire'])){
+     ?>
+    <div id="modalAjoutPartenaire" class="modal">
+        <div class="modal-content">
+            <span class="closeAjout">&times;</span>
+            <div class="formBox">
+                <form id="formAjoutPartenaire" enctype="multipart/form-data" method="POST">
+                    <label for="nompart">Nom* :</label>
+                    <input type="text" name="nompart" placeholder="Nom du partenaire">
+
+                    <label for="descrippart">Description* :</label>
+                    <textarea name="descrippart" cols="30" rows="10" placeholder="Description du partenaire"></textarea>
+
+                    <label for="lienpart">Lien* :</label>
+                    <input type="url" name="lienpart" placeholder="Lien du partenaire">
+
+                    <label for="imgpart">Image* :</label>
+                    <div class="imgBox">
+                        <input type="file" name="imgpart">
+                    </div>
+
+                    <div class="ajoutBtn">
+                        <button type="submit" class="formAjoutOui">OUI</button></form>
+                        <button class="formAjoutNon">NON</button>
+                    </div>
+                
+            </div>
+            
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal modif d'un partenaire
+        var modalAjout = document.getElementById("modalAjoutPartenaire");
+        var span = document.getElementsByClassName("closeAjout")[0];
+        var btnNon = document.getElementsByClassName("formAjoutNon")[0];
+        var btnOui = document.getElementsByClassName("formAjoutOui")[0];
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+            modalAjout.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+        }
+        btnNon.onclick = function(e) {
+            e.preventDefault();
+            modalAjout.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+        }
+        btnOui.onclick = function() {
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            setTimeout(function() {modalAjout.style.display = "none";}, 2000);
+        }
+        window.onclick = function(event) {
+        if (event.target == modalAjout) {
+            modalAjout.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+        }
+        }
+        
+        // Code Jquery en AJAX pour la modif d'un partenaire
+
+        $(document).ready(function(){
+            $("#formAjoutPartenaire").submit(function(e){
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    type: "POST",
+                    url: "ajoutPartenaire.php",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                        alert(response);
+                        setTimeout(function() {
+                            location.reload(true);
+                        }, 2000);
+
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                    }
+                });
+            }); 
+        });
+    </script>
+<?php
+}
+
 ?>
 
 <!-- Debut Page HTML -->
@@ -347,7 +441,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 <th>Lien du site</th>
                                 <th>Image</th>
                                 <th>Action</th>
-                                <th><a href="backoffice.php?page=partenaires&modalAjout=partenaire">Ajouter un partenaire</a></th>
+                                <th class="addPart"><a href="backoffice.php?page=partenaires&modalAjoutPartenaire=partenaire"><div>Ajouter</div></a></th>
                             </tr>
                         </thead>
                         <tbody>
