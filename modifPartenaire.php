@@ -26,7 +26,6 @@ if(isset($_POST['idPart'], $_POST['nompart'], $_POST['descrippart'], $_POST['lie
             try{
                 unlink('assets/'.$LastnomImg['Nom_Image']);
             }catch(Exception $e){
-                pass;
             }
             $InsertImg = $connexion->prepare("INSERT INTO image (Nom_Image) VALUES (:nom)");
             $InsertImg->bindParam("nom",$nom_image);
