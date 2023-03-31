@@ -8,7 +8,9 @@ if(isset($_POST['idPart'], $_POST['nompart'], $_POST['descrippart'], $_POST['lie
 
     if (!empty($_FILES['imgpart']['name'])) {
         $nom_image = $_FILES['imgpart']['name'];
-        $nom_image = rand(1000,9999)."-".$nom_image;
+        $nomexplode = explode(".",$nom_image);
+        $ext = end($nomexplode);
+        $nom_image .= "-".rand(1000,9999).$ext;
         move_uploaded_file($_FILES['imgpart']['tmp_name'], 'assets/' . $nom_image);
         $SelectLastImg = $connexion->prepare("SELECT Id_Image FROM partenaire WHERE Id_Partenaire = :idpart ");
         $SelectLastImg->bindParam("idpart",$id);
@@ -21,8 +23,11 @@ if(isset($_POST['idPart'], $_POST['nompart'], $_POST['descrippart'], $_POST['lie
             $reqLastImg->bindParam("idimg",$LastImg['Id_Image']);
             $reqLastImg->execute();
             $LastnomImg = $reqLastImg->fetch();
-            unlink('assets/'.$LastnomImg['Nom_Image']);
-
+            try{
+                unlink('assets/'.$LastnomImg['Nom_Image']);
+            }catch(Exception $e){
+                pass;
+            }
             $InsertImg = $connexion->prepare("INSERT INTO image (Nom_Image) VALUES (:nom)");
             $InsertImg->bindParam("nom",$nom_image);
             if($InsertImg->execute() === false){
@@ -58,9 +63,10 @@ if(isset($_POST['idPart'], $_POST['nompart'], $_POST['descrippart'], $_POST['lie
         }else{
             echo "Error: " . $req . "<br>" . $connexion->error;
         }
-    }
-
+    } 
+    
 }else{
     header('Location : backoffice.php');
 }
+
 ?>
