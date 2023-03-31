@@ -177,16 +177,19 @@ if(isset($_GET['modalModifPartenaire'])){
                     <input type="hidden" name="idPart" value="<?php echo $partenaire['Id_Partenaire'] ?>">
 
                     <label for="nompart">Nom* :</label>
-                    <input type="text" name="nompart" value="<?php echo $partenaire['Nom_Partenaire'] ?>">
+                    <input type="text" name="nompart"  placeholder="Le nom du Partenaire." value="<?php echo $partenaire['Nom_Partenaire'] ?>">
 
                     <label for="descrippart">Description* :</label>
-                    <textarea name="descrippart" cols="30" rows="10"><?php echo $partenaire['Description_Partenaire'] ?></textarea>
+                    <textarea name="descrippart" cols="30" rows="10" placeholder="La description du Partenaire."><?php echo $partenaire['Description_Partenaire'] ?></textarea>
 
                     <label for="lienpart">Lien* :</label>
-                    <input type="text" name="lienpart" value="<?php echo $partenaire['Lien_Partenaire'] ?>">
+                    <input type="text" name="lienpart"  placeholder="Le lien du Partenaire." value="<?php echo $partenaire['Lien_Partenaire'] ?>">
 
                     <label for="imgpart">Image* :</label>
                     <div class="imgBox">
+                        <div class="edit-button">
+                            <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
+                        </div>
                         <img src="assets/<?php echo $imgPart['Nom_Image'] ?>" alt="Image du partenaire">
                         <input type="file" name="imgpart">
                     </div>
@@ -208,24 +211,30 @@ if(isset($_GET['modalModifPartenaire'])){
         var span = document.getElementsByClassName("closeModif")[0];
         var btnNon = document.getElementsByClassName("formModifNon")[0];
         var btnOui = document.getElementsByClassName("formModifOui")[0];
+        var body = document.body;
+        body.style.overflow= "hidden";
         // cacher modal au click de la croix ou du btn non
         span.onclick = function() {
-        modalModif.style.display = "none";
-        history.pushState(null, null, window.location.href.split("&")[0]);
+            modalModif.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
         }
         btnNon.onclick = function(e) {
             e.preventDefault();
             modalModif.style.display = "none";
             history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
         }
         btnOui.onclick = function() {
             history.pushState(null, null, window.location.href.split("&")[0]);
             setTimeout(function() {modalModif.style.display = "none";}, 2000);
+            body.style.overflow = "auto";
         }
         window.onclick = function(event) {
         if (event.target == modalModif) {
             modalModif.style.display = "none";
             history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
         }
         }
         
@@ -436,11 +445,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     <table>
                         <thead>
                             <tr>
-                                <th>Nom</th>
-                                <th>Description</th>
-                                <th>Lien du site</th>
-                                <th>Image</th>
-                                <th>Action</th>
+                                <th class="tableNom">Nom</th>
+                                <th class="tableDescription">Description</th>
+                                <th class="tableLien">Lien du site</th>
+                                <th class="tableImage">Image</th>
+                                <th class="tableAction">Action</th>
                                 <th class="addPart"><a href="backoffice.php?page=partenaires&modalAjoutPartenaire=partenaire"><div>Ajouter</div></a></th>
                             </tr>
                         </thead>
