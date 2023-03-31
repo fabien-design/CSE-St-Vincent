@@ -391,6 +391,7 @@ nav ul li a.active{
 }
 #modalModifPartenaire .modal-content #formModifPartenaire .imgBox img{
     width: 100%;
+    max-width: 300px;
 }
 #modalModifPartenaire .modal-content #formModifPartenaire .imgBox input{
     position: absolute;
