@@ -373,14 +373,45 @@ footer {
 
 }
 
-.logo_footer {
+.left_footer {
     display: flex;
     align-items: center;
     margin-left: 10%;
 
 }
 
+.logo_footer{
+    width: 100%;
+}
+
 .logo_footer img {
     background: white;
     padding: 15px;
+}
+
+.right_footer{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding-left: 5%;
+}
+.title_footer{
+    font-size: 65%;
+    color: white;
+}
+
+.links_footer{
+    width: 40%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.links_footer a{
+    color: white;
+}
+
+.links_footer a:hover{
+    transition: 0.5s;
+    color: #cdcdcd;
+    transform:scale(0.97);
 }
