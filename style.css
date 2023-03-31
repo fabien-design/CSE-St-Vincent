@@ -366,11 +366,10 @@ aside.left .decouverte a {
 /*  #### FOOTER ####  */
 
 footer {
-    margin-top: 10%;
+    padding: 20px 0;
     background-color: #B6A886;
-    height: 142px;
+    width: 100%;
     display: flex;
-
 }
 
 .left_footer {
@@ -401,7 +400,7 @@ footer {
 }
 
 .links_footer{
-    width: 40%;
+    max-width: 40%;
     display: flex;
     justify-content: space-between;
 }
@@ -410,8 +409,22 @@ footer {
     color: white;
 }
 
-.links_footer a:hover{
+
+.links_list_footer{
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    flex-wrap: nowrap;
+}
+
+.links_list_footer img{
+    -webkit-filter: invert(100%);
+    filter: invert(100%);
+}
+
+.links_footer li:hover{
     transition: 0.5s;
-    color: #cdcdcd;
+    filter: invert(15%);
     transform:scale(0.97);
 }
+
