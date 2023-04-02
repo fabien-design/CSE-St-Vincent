@@ -244,11 +244,42 @@ nav ul li a.active{
     justify-content: center;
 }
 .partenaires .tablepartenaires table{
-    width: 60%;
+    width: 92%;
     padding: 15px;
     border: 2px solid #1b3168;
     border-radius: 10px;
 }
+
+.tablepartenaires thead tr {
+    background-color: #1b3168;
+    color: #ffffff;
+    text-align: center;
+
+}
+
+.tablepartenaires th,
+.tablepartenaires td {
+    padding: 12px 15px;
+}
+
+.tablepartenaires tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+.tablepartenaires tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+
+.tablepartenaires tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.tablepartenaires tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+
+
 .partenaires .tablepartenaires table thead .addPart{
     background: #1b3168;
     border-radius: 6px;
@@ -294,6 +325,12 @@ nav ul li a.active{
     overflow: auto;
     background-color: rgb(0,0,0); 
     background-color: rgba(0,0,0,0.4);
+}
+.modal{
+    scrollbar-width: none;
+}
+.modal-content{
+    margin-bottom: 200px !important;
 }
 #modalSupprPartenaire .modal-content {
     background-color: #fefefe;
@@ -379,9 +416,13 @@ nav ul li a.active{
     align-items: center;
 }
 #modalModifPartenaire .modal-content #formModifPartenaire{
-    display: grid;
+    display: flex;
+    flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+.imgBox{
+    margin: 20px 0;
 }
 #modalModifPartenaire .modal-content #formModifPartenaire .imgBox{
     position: relative;
@@ -392,6 +433,7 @@ nav ul li a.active{
 #modalModifPartenaire .modal-content #formModifPartenaire .imgBox img{
     width: 100%;
     max-width: 300px;
+    transition: all 0.3 ease-in-out;
 }
 #modalModifPartenaire .modal-content #formModifPartenaire .imgBox input{
     position: absolute;
@@ -399,6 +441,37 @@ nav ul li a.active{
     height: 100%;
     background-color: transparent;
     color: transparent;
+}
+.edit-button{
+    display: none;
+    top: 30%;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    background-color: #ffffffba;
+    border-radius: 50%;
+    opacity: 0.7;
+    z-index: 3;
+    transition: all 0.3s ease-in-out;
+}
+.imgBox:hover .edit-button{
+    display: flex;
+}
+.edit-button:hover{
+    scale: 1.1;
+    opacity: 1;
+    cursor: pointer;
+}
+.edit-button:hover ~ img{
+    filter: blur(3px);
+    transition: all 0.3s ease-in-out;
+}
+.edit-button img{
+    position: absolute;
+    max-width: 32px !important;
 }
 #modalModifPartenaire .modal-content .modalBox .modifBtn{
     display: flex;
@@ -409,6 +482,50 @@ nav ul li a.active{
     padding: 10px 20px;
     cursor: pointer;
 }
+
+.contactForm{
+    width: 92%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border: 1px solid white;
+    margin: auto;
+    padding: 30px;
+    border-radius: 15px;
+    background-color: white;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+input[type=text], select, textarea {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+  }
+  
+  input[type=submit] {
+    background-color: #04AA6D;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  input[type=submit]:hover {
+    background-color: #45a049;
+  }
+  
+  .container {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+  }
+
 #modalAjoutPartenaire {
     display: block;
     position: fixed;
