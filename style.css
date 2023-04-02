@@ -362,6 +362,51 @@ aside.left .decouverte a {
     border-radius: 10px;
 }
 
+.pagination {
+    align-items: center;
+    margin: 20px auto;
+    justify-content: center;
+    display: flex;
+    gap: 20px
+}
+
+.pagination span {
+    height: 55px;
+    width: 55px;
+    color: white;
+    font-weight: 700;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.pagination span:hover {
+    opacity: 0.8;
+    transition: all 0.3s ease-in-out;
+}
+
+.page {
+    background-color: #1B3168;
+    border: #1B3168 solid 2px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.activepage {
+    border: #B6A886 solid 3px !important;
+}
+
+.etc {
+    color: rgba(0, 0, 0, 0.674) !important;
+    align-items: end;
+    justify-content: center;
+    display: flex;
+    font-weight: 900;
+    font-size: 35px;
+    letter-spacing: 2px;
+    cursor: default !important;
+    opacity: 1 !important;
+}
 
 /*  #### FOOTER ####  */
 
@@ -379,7 +424,7 @@ footer {
 
 }
 
-.logo_footer{
+.logo_footer {
     width: 100%;
 }
 
@@ -388,43 +433,43 @@ footer {
     padding: 15px;
 }
 
-.right_footer{
+.right_footer {
     width: 100%;
     display: flex;
     flex-direction: column;
     padding-left: 5%;
 }
-.title_footer{
+
+.title_footer {
     font-size: 65%;
     color: white;
 }
 
-.links_footer{
+.links_footer {
     max-width: 40%;
     display: flex;
     justify-content: space-between;
 }
 
-.links_footer a{
+.links_footer a {
     color: white;
 }
 
 
-.links_list_footer{
+.links_list_footer {
     list-style: none;
     display: flex;
     gap: 20px;
     flex-wrap: nowrap;
 }
 
-.links_list_footer img{
+.links_list_footer img {
     -webkit-filter: invert(100%);
     filter: invert(100%);
 }
 
-.links_footer li:hover{
+.links_footer li:hover {
     transition: 0.5s;
     filter: invert(15%);
-    transform:scale(0.97);
+    transform: scale(0.97);
 }
-
