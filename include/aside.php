@@ -56,7 +56,7 @@ $nomImg = $imgPart->fetchAll();
                             href="mailto:cse@lyceestvincent.fr"><?= $adresseEmail ?></a>
                     </p>
                 </div>
-                <div class="lieu">
+                <div class="place">
                     <p><img src="assets/chevron-droit.png" class="chevron-droit">
                         Au lycée : <a target="_blank"
                             href="https://www.google.com/maps/place/49%C2%B012'08.1%22N+2%C2%B035'18.9%22E/@49.202244,2.5880054,19z/data=!3m1!4b1!4m4!3m3!8m2!3d49.202244!4d2.58857"><?= $office ?></a>

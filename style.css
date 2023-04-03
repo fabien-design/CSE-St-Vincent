@@ -172,7 +172,7 @@ aside.left .partenaire .boxSlider {
     color: #000;
 }
 
-.lieu a{
+.place a{
     color: #0000EE;
 }
 
@@ -285,6 +285,10 @@ aside.left .decouverte a {
 }
 aside.left a{
     transition: opacity 0.3s ease;
+}
+
+.offreaccess a:hover, .contactaccess a:hover, .tel a:hover, .email a:hover, .place a:hover,.decouverte a:hover{
+    opacity: 0.5;
 }
 
 
