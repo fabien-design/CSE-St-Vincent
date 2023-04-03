@@ -40,7 +40,7 @@ $nomImg = $imgPart->fetchAll();
                 </div>
                 <div class="contactaccess">
                     <img src="assets/chevron-droit.png" class="chevron-droit">
-                    <a href="contaphp">Nous contacter</a>
+                    <a href="contact.php">Nous contacter</a>
                 </div>
             </div>
             <div class="infocontact">
