@@ -1,3 +1,52 @@
+<?php 
+ require 'include/connexion_db.php';
+
+ //Récupération des données de Téléphone
+$tel = $connexion -> prepare('SELECT Num_TEL_Info_Accueil FROM info_accueil');
+$tel ->execute();
+$phone = $tel->fetch();
+$phone = $phone['Num_TEL_Info_Accueil'];
+
+//Récpération des données de l'email
+$email = $connexion -> prepare('SELECT Email_Info_Accueil FROM info_accueil');
+$email ->execute();
+$adresseEmail = $email->fetch();
+$adresseEmail = $adresseEmail['Email_Info_Accueil'];
+
+//Récupération des données de l'emplacement du bureau du CSE
+$place = $connexion -> prepare('SELECT Emplacement_Bureau_Info_Accueil FROM info_accueil');
+$place ->execute();
+$office = $place->fetch();
+$office = $office['Emplacement_Bureau_Info_Accueil'];
+
+//Images partenaires
+$imgPart = $connexion -> prepare("SELECT DISTINCT * FROM image ORDER BY RAND() LIMIT 3");
+$imgPart -> execute();
+$nomImg = $imgPart->fetchAll();
+
+//Récupération des données du Titre de la page d'accueil
+$titreInfoAccueil = $connexion -> prepare('SELECT Titre_Info_Accueil FROM info_accueil');
+$titreInfoAccueil ->execute();
+$TitreAccueil = $titreInfoAccueil->fetch();
+$TitreAccueil = $TitreAccueil['Titre_Info_Accueil'];
+
+//Récupération des données de la description de la page d'accueil
+$texteInfoAccueil = $connexion -> prepare('SELECT Texte_Info_Accueil FROM info_accueil');
+$texteInfoAccueil ->execute();
+$TexteAccueil = $texteInfoAccueil->fetch();
+$TexteAccueil = $TexteAccueil['Texte_Info_Accueil'];
+
+//Images partenaires
+$offres = $connexion -> prepare("SELECT DISTINCT * FROM offre ORDER BY Id_Offre DESC LIMIT 3");
+$offres -> execute();
+$chaqueOffre = $offres->fetchAll();
+
+setlocale(LC_TIME,"fr_FR.utf8");
+
+
+?>
+
+
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -49,25 +98,27 @@
         <?php require 'include/aside.php'?>
         <div class="right">
             <div class="info_accueil">
-                <h2 class="titre">CSE Lycée Saint-Vincent</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quisquam quas veritatis mollitia libero
-                    provident eius. <br>Perferendis eos aperiam pariatur accusantium minus quo vitae! Totam voluptate
-                    soluta necessitatibus harum praesentium officia.</p>
+                <h2 class="titre"><?=$TitreAccueil?></h2>
+                <p><?=$TexteAccueil?></p>
+                <p>Découvrez l'équipe et le rôle et missions de votre CSE.</p>
             </div>
             <h1>Dernières offres de la Billetterie</h1>
+            
+            <?php foreach($chaqueOffre as $offre ){?>
             <div class="offre_billetterie">
                 <div class="offre_billetterie_header">
                     <span class="tag_offre">OFFRE</span>
-                    <span class="date_offre">Publiée le 11 septembre 2001</span>
+                    <span class="date_offre">Publié le <?php echo date('d F Y',strtotime($offre['Date_Debut_Offre']))?></span>
                 </div>
-                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Minima, delectus et numquam amet quis
-                    cumque natus sunt quos odit similique itaque enim sint atque, mollitia quidem officia a nulla! Vel.
-                </p>
-                <a href="">
-                    <span class="offre_learnmore">EN SAVOIR PLUS <img class="chevron-droit"
-                            src="assets/chevron-droit.png" alt="chevron-droit"></span>
-                </a>
+                <p><?=$offre['Description_Offre']?></p>
+                
+                    <span class="offre_learnmore"><a target="blank" href="billetterie.php">EN SAVOIR PLUS <img class="chevron-droit"
+                            src="assets/chevron-droit.png" alt="chevron-droit"> </a></span>
+               
             </div>
+                <?php } ?>
+            
+
             <a target="_blank" href="billetterie.php">
                 <span id="offres_decouvrir">Découvrir toutes nos offres 〉</span>
             </a>
