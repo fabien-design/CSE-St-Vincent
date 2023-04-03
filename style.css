@@ -162,11 +162,24 @@ aside.left .partenaire .boxSlider {
     border-radius: 10px;
 }
 
+.contactaccess a, .offreaccess a{
+    color: #000;
+}
+
 /* Slideshow container */
 aside.left .partenaire .slideshow-container {
     max-width: 1000px;
     position: relative;
     margin: auto;
+}
+
+.mySlides{
+    object-fit: cover;
+}
+.mySlides img{
+    width: 60px;
+    height: 60px;
+    aspect-ratio: 1/1;
 }
 
 /* Next & previous buttons */
@@ -424,7 +437,7 @@ footer {
 
 }
 
-.logo_footer {
+.logo_footer{
     width: 100%;
 }
 
@@ -433,43 +446,42 @@ footer {
     padding: 15px;
 }
 
-.right_footer {
+.right_footer{
     width: 100%;
     display: flex;
     flex-direction: column;
     padding-left: 5%;
 }
-
-.title_footer {
+.title_footer{
     font-size: 65%;
     color: white;
 }
 
-.links_footer {
+.links_footer{
     max-width: 40%;
     display: flex;
     justify-content: space-between;
 }
 
-.links_footer a {
+.links_footer a{
     color: white;
 }
 
 
-.links_list_footer {
+.links_list_footer{
     list-style: none;
     display: flex;
     gap: 20px;
     flex-wrap: nowrap;
 }
 
-.links_list_footer img {
+.links_list_footer img{
     -webkit-filter: invert(100%);
     filter: invert(100%);
 }
 
-.links_footer li:hover {
+.links_footer li:hover{
     transition: 0.5s;
     filter: invert(15%);
-    transform: scale(0.97);
+    transform:scale(0.97);
 }
