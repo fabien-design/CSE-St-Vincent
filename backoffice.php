@@ -175,6 +175,7 @@ if(isset($_GET['modalModifPartenaire'])){
             <div class="formBox">
                 <form id="formModifPartenaire" enctype="multipart/form-data" method="POST">
                     <input type="hidden" name="idPart" value="<?php echo $partenaire['Id_Partenaire'] ?>">
+                    <h1 style="margin-bottom:20px;">Modification du Partenaire</h1>
 
                     <label for="nompart">Nom* :</label>
                     <input type="text" name="nompart"  placeholder="Le nom du Partenaire." value="<?php echo $partenaire['Nom_Partenaire'] ?>">
@@ -189,6 +190,7 @@ if(isset($_GET['modalModifPartenaire'])){
                     <div class="imgBox">
                         <div class="edit-button">
                             <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
+                            <input type="file" name="imgpart">
                         </div>
                         <img src="assets/<?php echo $imgPart['Nom_Image'] ?>" alt="Image du partenaire">
                         <input type="file" name="imgpart">

@@ -1,23 +1,28 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
-*{
+
+* {
     padding: 0;
     margin: 0;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
 }
-body{
+
+body {
     width: 100%;
     height: 100vh;
 }
-a{
+
+a {
     text-decoration: none;
     color: #000;
 }
-.graynav{
+
+.graynav {
     background-color: #efeded;
     height: 56px;
 }
-nav{
+
+nav {
     background-color: #1b3168;
     display: flex;
     justify-content: space-between;
@@ -27,7 +32,8 @@ nav{
     padding-right: 10%;
     font-size: 18px;
 }
-nav .bgLogo{
+
+nav .bgLogo {
     background-color: white;
     padding: 5px 20px;
     position: absolute;
@@ -37,22 +43,26 @@ nav .bgLogo{
     display: flex;
     justify-content: center;
 }
-nav .bgLogo img{
+
+nav .bgLogo img {
     height: 100%;
     width: 100%;
     object-fit: contain;
 }
-nav ul{
+
+nav ul {
     list-style: none;
     display: flex;
     align-items: center;
     margin-left: 300px;
 }
-nav ul li{
+
+nav ul li {
     height: 100%;
-    
+
 }
-nav ul li a{
+
+nav ul li a {
     color: white;
     align-items: center;
     display: flex;
@@ -60,17 +70,19 @@ nav ul li a{
     height: 100%;
     padding: 0 30px;
 }
-nav ul li a.active{
+
+nav ul li a.active {
     background-color: #B6A886;
 }
 
-.formulaire{
+.formulaire {
     display: flex;
     justify-content: center;
     height: 100%;
     align-items: center;
 }
-.formulaire form{
+
+.formulaire form {
     width: 30%;
     height: 400px;
     display: flex;
@@ -79,14 +91,17 @@ nav ul li a.active{
     border: solid 4px #d9d9d9;
     border-radius: 20px;
 }
-.formulaire form .formGroup .formTitle{
+
+.formulaire form .formGroup .formTitle {
     padding: 20px 0 40px 0;
 }
+
 .formulaire form .formGroup .inputGroup {
     font-family: 'Segoe UI', sans-serif;
     margin: 1em 1.8em 1em 0;
     position: relative;
 }
+
 .formulaire form .formGroup .inputGroup input {
     font-size: 100%;
     padding: 0.8em;
@@ -96,6 +111,7 @@ nav ul li a.active{
     border-radius: 20px;
     width: 100%;
 }
+
 .formulaire form .formGroup .inputGroup label {
     font-size: 100%;
     position: absolute;
@@ -108,31 +124,35 @@ nav ul li a.active{
     transition: all 0.3s ease;
     color: rgb(100, 100, 100);
 }
+
 .formulaire form .formGroup .inputGroup :is(input:focus, input:valid)~label {
     -webkit-transform: translateY(-50%) scale(.9);
-        -ms-transform: translateY(-50%) scale(.9);
-            transform: translateY(-50%) scale(.9);
+    -ms-transform: translateY(-50%) scale(.9);
+    transform: translateY(-50%) scale(.9);
     margin: 0em;
     margin-left: 1.3em;
     padding: 0.4em;
     background-color: #efeded;
-  }
+}
+
 .formulaire form .formGroup .inputGroup :is(input:focus, input:valid) {
     border-color: rgb(150, 150, 200);
 }
-.formulaire form .formGroup .btnGroup{
+
+.formulaire form .formGroup .btnGroup {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.formulaire form .formGroup .btnGroup button{
+
+.formulaire form .formGroup .btnGroup button {
     padding: 20px;
     border-radius: 20px;
     border: solid 4px #D9D9D9;
     cursor: pointer;
 }
 
-.accueil .msgvalide{
+.accueil .msgvalide {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -140,53 +160,64 @@ nav ul li a.active{
     font-size: 20px;
 
 }
-.accueil .titlePage{
+
+.accueil .titlePage {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
-    
+
 }
-.accueil .titlePage h1{
+
+.accueil .titlePage h1 {
     font-weight: 900;
     color: #1b3168;
     text-decoration: underline;
 }
-.accueil .formEdit{
+
+.accueil .formEdit {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.accueil .formEdit form{
+
+.accueil .formEdit form {
     display: grid;
     align-items: center;
     width: 40%;
     min-width: 250px;
 }
-.accueil .formEdit form label{
+
+.accueil .formEdit form label {
     font-size: 20px;
     color: #1b3168;
     padding-bottom: 5px;
 }
-.accueil .formEdit form label span{
+
+.accueil .formEdit form label span {
     color: red;
 }
-.accueil .formEdit form input, .accueil .formEdit form textarea{
+
+.accueil .formEdit form input,
+.accueil .formEdit form textarea {
     padding: 15px;
     border-radius: 10px;
     margin-bottom: 10px;
     border: solid 2px #1b3168;
 }
-.accueil .formEdit form textarea{
+
+.accueil .formEdit form textarea {
     min-height: 50px;
 }
-.accueil .formEdit .btnGroup{
+
+.accueil .formEdit .btnGroup {
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
 }
-.accueil .formEdit .btnGroup button{
+
+.accueil .formEdit .btnGroup button {
     padding: 10px 40px;
     font-size: 20px;
     border-radius: 10px;
@@ -200,11 +231,13 @@ nav ul li a.active{
     position: relative;
 
 }
-.accueil .formEdit .btnGroup button p{
+
+.accueil .formEdit .btnGroup button p {
     position: relative;
     z-index: 1;
 }
-.accueil .formEdit .btnGroup button .bghover{
+
+.accueil .formEdit .btnGroup button .bghover {
     left: -154px;
     top: 0;
     width: 100%;
@@ -214,18 +247,20 @@ nav ul li a.active{
     border-radius: 10px;
     border: solid 2px #B6A886;
 }
-.accueil .formEdit .btnGroup button:hover{
+
+.accueil .formEdit .btnGroup button:hover {
     border: solid 2px #B6A886;
     background-color: #B6A886;
     transition: all .6s ease-in-out;
 }
-.accueil .formEdit .btnGroup button:hover .bghover{
+
+.accueil .formEdit .btnGroup button:hover .bghover {
     left: 0;
     transition: all .5s ease-in-out;
 
 }
 
-.partenaires .msgvalide{
+.partenaires .msgvalide {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -233,17 +268,20 @@ nav ul li a.active{
     font-size: 20px;
 
 }
-.partenaires .titlePage{
+
+.partenaires .titlePage {
     display: flex;
     justify-content: center;
     align-items: center;
     padding: 40px;
 }
-.partenaires .tablepartenaires{
+
+.partenaires .tablepartenaires {
     display: flex;
     justify-content: center;
 }
-.partenaires .tablepartenaires table{
+
+.partenaires .tablepartenaires table {
     width: 92%;
     padding: 15px;
     border: 2px solid #1b3168;
@@ -273,6 +311,7 @@ nav ul li a.active{
 .tablepartenaires tbody tr:last-of-type {
     border-bottom: 2px solid #009879;
 }
+
 .tablepartenaires tbody tr.active-row {
     font-weight: bold;
     color: #009879;
@@ -280,23 +319,28 @@ nav ul li a.active{
 
 
 
-.partenaires .tablepartenaires table thead .addPart{
+.partenaires .tablepartenaires table thead .addPart {
     background: #1b3168;
     border-radius: 6px;
 }
-.partenaires .tablepartenaires table thead .addPart a{
+
+.partenaires .tablepartenaires table thead .addPart a {
     color: white;
 }
-.partenaires .tablepartenaires table thead .addPart a div{
+
+.partenaires .tablepartenaires table thead .addPart a div {
     padding: 8px 20px;
 }
-.partenaires .tablepartenaires table tbody .actionBtn{
+
+.partenaires .tablepartenaires table tbody .actionBtn {
     display: grid;
     justify-content: center;
     gap: 10px;
     align-items: center;
 }
-.partenaires .tablepartenaires table tbody td .modifBtn, .partenaires .tablepartenaires table tbody td .supprBtn{
+
+.partenaires .tablepartenaires table tbody td .modifBtn,
+.partenaires .tablepartenaires table tbody td .supprBtn {
     padding: 8px 15px;
     border-radius: 10px;
     color: #fff;
@@ -304,15 +348,19 @@ nav ul li a.active{
     justify-content: center;
     display: flex;
 }
-.partenaires .tablepartenaires table tbody td .modifBtn{
+
+.partenaires .tablepartenaires table tbody td .modifBtn {
     background-color: #1b3168;
 }
-.partenaires .tablepartenaires table tbody td .supprBtn{
+
+.partenaires .tablepartenaires table tbody td .supprBtn {
     background-color: #ff0000;
 }
-.partenaires .tablepartenaires table tbody .imgPart img{
+
+.partenaires .tablepartenaires table tbody .imgPart img {
     max-width: 80px;
 }
+
 #modalSupprPartenaire {
     display: block;
     position: fixed;
@@ -323,15 +371,18 @@ nav ul li a.active{
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
-.modal{
+
+.modal {
     scrollbar-width: none;
 }
-.modal-content{
+
+.modal-content {
     margin-bottom: 200px !important;
 }
+
 #modalSupprPartenaire .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -339,12 +390,14 @@ nav ul li a.active{
     border: 1px solid #888;
     width: 80%;
 }
+
 #modalSupprPartenaire .modal-content .close {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
+
 #modalSupprPartenaire .modal-content .close:hover,
 #modalSupprPartenaire .modal-content .close:focus {
     color: #000;
@@ -352,31 +405,37 @@ nav ul li a.active{
     cursor: pointer;
     transition: color 0.35s ease-in-out;
 }
-#modalSupprPartenaire .modal-content .title{
+
+#modalSupprPartenaire .modal-content .title {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-bottom: 20px;
 }
-#modalSupprPartenaire .modal-content .modalBox{
+
+#modalSupprPartenaire .modal-content .modalBox {
     display: flex;
     justify-content: center;
     gap: 60px;
     margin-bottom: 40px;
 }
-#modalSupprPartenaire .modal-content .modalBox .supprBox{
+
+#modalSupprPartenaire .modal-content .modalBox .supprBox {
     display: grid;
     align-items: center;
 }
-#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn{
+
+#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
-#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn button{
+
+#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn button {
     padding: 10px 20px;
     cursor: pointer;
 }
+
 #modalModifPartenaire {
     display: block;
     position: fixed;
@@ -387,9 +446,10 @@ nav ul li a.active{
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
+
 #modalModifPartenaire .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -397,12 +457,14 @@ nav ul li a.active{
     border: 1px solid #888;
     width: 80%;
 }
+
 #modalModifPartenaire .modal-content .closeModif {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
+
 #modalModifPartenaire .modal-content .closeModif:hover,
 #modalModifPartenaire .modal-content .closeModif:focus {
     color: #000;
@@ -410,41 +472,53 @@ nav ul li a.active{
     cursor: pointer;
     transition: color 0.35s ease-in-out;
 }
-#modalModifPartenaire .modal-content .formBox{
+
+#modalModifPartenaire .modal-content .formBox {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#modalModifPartenaire .modal-content #formModifPartenaire{
+
+#modalModifPartenaire .modal-content #formModifPartenaire {
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
-.imgBox{
+
+.imgBox {
     margin: 20px 0;
 }
-#modalModifPartenaire .modal-content #formModifPartenaire .imgBox{
+
+#modalModifPartenaire .modal-content #formModifPartenaire .imgBox {
     position: relative;
     display: flex;
     justify-content: center;
     overflow: hidden;
+    border: 1px solid rgba(0, 0, 0, 0.155);
 }
-#modalModifPartenaire .modal-content #formModifPartenaire .imgBox img{
+
+#modalModifPartenaire .modal-content #formModifPartenaire .imgBox img {
     width: 100%;
     max-width: 300px;
-    transition: all 0.3 ease-in-out;
+    transition: filter 1s ease;
 }
-#modalModifPartenaire .modal-content #formModifPartenaire .imgBox input{
+
+#modalModifPartenaire .modal-content #formModifPartenaire .imgBox input {
     position: absolute;
     width: 100%;
     height: 100%;
     background-color: transparent;
     color: transparent;
+    overflow: hidden;
+    opacity: 0;
 }
-.edit-button{
-    display: none;
-    top: 30%;
+
+.edit-button {
+    display: flex;
+    opacity: 0;
+    top: 50%;
+    bottom: 50%;
     align-items: center;
     justify-content: center;
     margin: auto;
@@ -453,37 +527,76 @@ nav ul li a.active{
     height: 70px;
     background-color: #ffffffba;
     border-radius: 50%;
-    opacity: 0.7;
     z-index: 3;
-    transition: all 0.3s ease-in-out;
+    transition: opacity 0.3s ease,scale 0.3s ease;
 }
-.imgBox:hover .edit-button{
+
+.imgBox:hover .edit-button {
     display: flex;
+    opacity: 1;
 }
-.edit-button:hover{
+
+.edit-button:hover {
     scale: 1.1;
     opacity: 1;
-    cursor: pointer;
+    transition: scale 0.3s ease;
 }
-.edit-button:hover ~ img{
+
+.edit-button:hover~img {
     filter: blur(3px);
-    transition: all 0.3s ease-in-out;
 }
-.edit-button img{
+
+.edit-button img {
     position: absolute;
     max-width: 32px !important;
 }
-#modalModifPartenaire .modal-content .modalBox .modifBtn{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-}
-#modalModifPartenaire .modal-content .modalBox .modifBtn button{
-    padding: 10px 20px;
-    cursor: pointer;
+.edit-button input{
+    cursor: pointer !important;
 }
 
-.contactForm{
+#modalModifPartenaire .modifBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: 100%;
+}
+
+
+
+
+#modalModifPartenaire .modifBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.15s ease-in-out;
+}
+#modalModifPartenaire .modifBtn button:hover{
+    background-color: initial;
+    background-position: 0 0;
+}
+.formModifNon{
+    background: #FF4742;
+    border: 1px solid #FF4742;
+}
+.formModifNon:hover{
+    color: #FF4742 !important;
+}
+.formModifOui{
+    background: #27bb56;
+    border: 1px solid #27bb56;
+}
+.formModifOui:hover{
+    color: #27bb56 !important;
+}
+
+
+.contactForm {
     width: 92%;
     display: flex;
     flex-wrap: wrap;
@@ -496,7 +609,9 @@ nav ul li a.active{
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
 
-input[type=text], select, textarea {
+input[type=text],
+select,
+textarea {
     width: 100%;
     padding: 12px;
     border: 1px solid #ccc;
@@ -505,26 +620,26 @@ input[type=text], select, textarea {
     margin-top: 6px;
     margin-bottom: 16px;
     resize: vertical;
-  }
-  
-  input[type=submit] {
+}
+
+input[type=submit] {
     background-color: #04AA6D;
     color: white;
     padding: 12px 20px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-  }
-  
-  input[type=submit]:hover {
+}
+
+input[type=submit]:hover {
     background-color: #45a049;
-  }
-  
-  .container {
+}
+
+.container {
     border-radius: 5px;
     background-color: #f2f2f2;
     padding: 20px;
-  }
+}
 
 #modalAjoutPartenaire {
     display: block;
@@ -536,9 +651,10 @@ input[type=text], select, textarea {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgb(0,0,0); 
-    background-color: rgba(0,0,0,0.4);
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
 }
+
 #modalAjoutPartenaire .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -546,12 +662,14 @@ input[type=text], select, textarea {
     border: 1px solid #888;
     width: 80%;
 }
+
 #modalAjoutPartenaire .modal-content .closeAjout {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
+
 #modalAjoutPartenaire .modal-content .closeAjout:hover,
 #modalAjoutPartenaire .modal-content .closeAjout:focus {
     color: #000;
@@ -559,28 +677,33 @@ input[type=text], select, textarea {
     cursor: pointer;
     transition: color 0.35s ease-in-out;
 }
-#modalAjoutPartenaire .modal-content .formBox{
+
+#modalAjoutPartenaire .modal-content .formBox {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-#modalAjoutPartenaire .modal-content #formAjoutPartenaire{
+
+#modalAjoutPartenaire .modal-content #formAjoutPartenaire {
     display: grid;
     justify-content: center;
     align-items: center;
 }
-#modalAjoutPartenaire .modal-content #formAjoutPartenaire .imgBox{
+
+#modalAjoutPartenaire .modal-content #formAjoutPartenaire .imgBox {
     position: relative;
     display: flex;
     justify-content: center;
     overflow: hidden;
 }
-#modalAjoutPartenaire .modal-content .modalBox .ajoutBtn{
+
+#modalAjoutPartenaire .modal-content .modalBox .ajoutBtn {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
-#modalAjoutPartenaire .modal-content .modalBox .ajoutBtn button{
+
+#modalAjoutPartenaire .modal-content .modalBox .ajoutBtn button {
     padding: 10px 20px;
     cursor: pointer;
 }
