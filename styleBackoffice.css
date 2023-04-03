@@ -111,7 +111,9 @@ nav ul li a.active {
     border-radius: 20px;
     width: 100%;
 }
-
+input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0 30px #efeded inset !important;
+}
 .formulaire form .formGroup .inputGroup label {
     font-size: 100%;
     position: absolute;
@@ -124,8 +126,7 @@ nav ul li a.active {
     transition: all 0.3s ease;
     color: rgb(100, 100, 100);
 }
-
-.formulaire form .formGroup .inputGroup :is(input:focus, input:valid)~label {
+.formulaire form .formGroup .inputGroup :is(input:focus, input:valid, input:invalid)~label {
     -webkit-transform: translateY(-50%) scale(.9);
     -ms-transform: translateY(-50%) scale(.9);
     transform: translateY(-50%) scale(.9);
@@ -134,18 +135,15 @@ nav ul li a.active {
     padding: 0.4em;
     background-color: #efeded;
 }
-
 .formulaire form .formGroup .inputGroup :is(input:focus, input:valid) {
     border-color: rgb(150, 150, 200);
 }
-
-.formulaire form .formGroup .btnGroup {
+.formulaire form .formGroup .btnGroup{
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
-.formulaire form .formGroup .btnGroup button {
+.formulaire form .formGroup .btnGroup button{
     padding: 20px;
     border-radius: 20px;
     border: solid 4px #D9D9D9;
