@@ -195,6 +195,7 @@ aside.left .partenaire .slideshow-container {
     height: 150px;
     aspect-ratio: 1/1;
     object-fit: cover;
+    border-radius: 10px;
 }
 
 .mySlides p{
@@ -210,6 +211,7 @@ aside.left .partenaire .slideshow-container {
 }
 
 .mySlides p:hover{
+    border-radius: 10px;
     transition: 0.3s ease;
     background-color: rgba(255, 255, 255, 0.653);
     opacity: 1;
@@ -225,7 +227,7 @@ aside.left .partenaire .next {
     z-index: 4;
     top: 50%;
     width: auto;
-    padding: 14px;
+    padding: 10px;
     margin-top: -22px;
     color: white;
     font-weight: bold;
@@ -237,7 +239,7 @@ aside.left .partenaire .next {
 
 aside.left .partenaire .prev,
 aside.left .partenaire .next {
-    width: 50px;
+    width: 40px;
 }
 
 /* Position the "next button" to the right */
