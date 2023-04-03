@@ -419,9 +419,9 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
             <?php }else{ ?>
                 <li><a href="backoffice.php?page=partenaires">Partenariats</a></li>
             <?php }if(!empty($_GET) && $_GET['page'] === "billetterie"){ ?>
-                <li><a href="backoffice.php?page=billetterie" class="active">Billeterie</a></li>
+                <li><a href="backoffice.php?page=billetterie" class="active">Billetterie</a></li>
             <?php }else{ ?> 
-                <li><a href="backoffice.php?page=billetterie">Billeterie</a></li>
+                <li><a href="backoffice.php?page=billetterie">Billetterie</a></li>
             <?php }if(!empty($_GET) && $_GET['page'] === "message"){?>
                 <li><a href="backoffice.php?page=message" class="active">Messages</a></li>
             <?php }else{?>
@@ -435,7 +435,6 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
             if(!empty($_GET['page']) && $_GET['page'] !== "accueil"){
                 if($_GET['page'] === "partenaires"){?>
-
 
                     <div class="partenaires">
 
@@ -493,9 +492,75 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     
 
 
-          <?php }else if($_GET['page'] === "billetterie"){
-                    /**/ 
-                }else if($_GET['page'] === "message"){
+          <?php }else if($_GET['page'] === "billetterie"){ ?>
+                    
+                    <div class="billetterie">
+
+                    <?= isset($msgvalidation) ? $msgvalidation : null ?>
+                    <div class="titlePage"> 
+                        <h1>Modifier les offres</h1>
+                    </div>
+                    <div class="tableoffres">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="tableNom">Nom</th>
+                                <th class="tableDescription">Description</th>
+                                <th class="tableDate">Dates</th>
+                                <th class="tablePartenaire">Partenaire</th>
+                                <th class="tablePlace">Nombres de places</th>
+                                <th class="tableImage">Nombres d'images</th>
+                                <th class="tableAction">Action</th>
+                                <th class="addPart"><a href="backoffice.php?page=billetterie&modalAjoutBilletterie=offre"><div>Ajouter</div></a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            try{
+                                $req = $connexion->prepare("SELECT * FROM offre");
+                                $req->execute();
+                                $offres= $req->fetchAll();
+                                foreach($offres as $offre){
+                                    if(!empty($offre["Id_Image"])){
+                                        $reqPart = $connexion->prepare("SELECT Nom_Partenaire FROM partenaire WHERE Id_Partenaire = :idpart");
+                                        $reqPart->bindParam("idpart",$offre["Id_Partenaire"]);
+                                        $reqPart->execute();
+                                        $NomPart = $reqPart->fetch();
+                                    }
+                                    $reqImgOffre = $connexion->prepare("SELECT * FROM offre_image WHERE Id_Offre = :idoffre");
+                                    $reqImgOffre->bindParam("idoffre",$offre['Id_Offre']);
+                                    $reqImgOffre->execute();
+                                    $ImgOffres = $reqImgOffre->fetchAll();
+                                    $nbImgOffre = 0;
+                                    foreach($ImgOffres as $img){
+                                        $nbImgOffre += $nbImgOffre;
+                                    }
+                                    ?>
+                                    <tr>
+                                        <td><?php echo $offre["Nom_Offre"] ?></td>
+                                        <td class="colonneDescription"><?php echo $offre["Description_Offre"] ?></td>
+                                        <td><?php echo date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Debut_Offre"]),"d-m-Y")." - ".date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Fin_Offre"]),"d-m-Y") ?></td>
+                                        <td><?= !empty($offre["Id_Partenaire"]) ? $NomPart['Nom_Partenaire'] : "Aucun partenaire Associé" ?></td>
+                                        <td><?php echo $offre['Nombre_Place_Min_Offre'] ?></td>
+                                        <td><?php echo $nbImgOffre." image(s)" ?></td>
+                                        <td class="actionBtn">  
+                                            <a href="backoffice.php?page=billetterie&modalModifBilletterie=<?= $offre["Id_Offre"]; ?>" class="modifBtn">Modifier</a>
+                                            <a href="backoffice.php?page=billetterie&modalSupprBilletterie=<?= $offre["Id_Offre"]; ?>" class="supprBtn">Supprimer</a>
+                                        </td>
+                                    </tr>
+                               <?php }
+                            }catch(Exception $e){
+                                echo "Erreur lors de l'affichage";
+                            }
+
+                            ?>
+                        </tbody>
+                    </table>
+                    </div>
+
+                    </div>
+
+               <?php }else if($_GET['page'] === "message"){
                     /**/ 
                 }
             }

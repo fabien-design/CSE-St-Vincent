@@ -314,29 +314,22 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     font-weight: bold;
     color: #009879;
 }
-
-
-
 .partenaires .tablepartenaires table thead .addPart {
     background: #1b3168;
     border-radius: 6px;
 }
-
 .partenaires .tablepartenaires table thead .addPart a {
     color: white;
 }
-
 .partenaires .tablepartenaires table thead .addPart a div {
     padding: 8px 20px;
 }
-
 .partenaires .tablepartenaires table tbody .actionBtn {
     display: grid;
     justify-content: center;
     gap: 10px;
     align-items: center;
 }
-
 .partenaires .tablepartenaires table tbody td .modifBtn,
 .partenaires .tablepartenaires table tbody td .supprBtn {
     padding: 8px 15px;
@@ -346,15 +339,12 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     justify-content: center;
     display: flex;
 }
-
 .partenaires .tablepartenaires table tbody td .modifBtn {
     background-color: #1b3168;
 }
-
 .partenaires .tablepartenaires table tbody td .supprBtn {
     background-color: #ff0000;
 }
-
 .partenaires .tablepartenaires table tbody .imgPart img {
     max-width: 80px;
 }
@@ -704,4 +694,87 @@ input[type=submit]:hover {
 #modalAjoutPartenaire .modal-content .modalBox .ajoutBtn button {
     padding: 10px 20px;
     cursor: pointer;
+}
+
+
+.billetterie .titlePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+.billetterie .tableoffres {
+    display: flex;
+    justify-content: center;
+}
+.billetterie .tableoffres table {
+    width: 92%;
+    padding: 15px;
+    border: 2px solid #1b3168;
+    border-radius: 10px;
+}
+.tableoffres thead tr {
+    background-color: #1b3168;
+    color: #ffffff;
+    text-align: center;
+
+}
+.tableoffres th,
+.tableoffres td {
+    padding: 12px 15px;
+}
+.tableoffres tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.tableoffres tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.tableoffres tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.tableoffres tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+.billetterie .tableoffres tbody .colonneDescription{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    padding-bottom: 0;
+    max-width: 400px;
+}
+.billetterie .tableoffres table thead .addPart {
+    background: #1b3168;
+    border-radius: 6px;
+}
+.billetterie .tableoffres table thead .addPart a {
+    color: white;
+}
+.billetterie .tableoffres table thead .addPart a div {
+    padding: 8px 20px;
+}
+.billetterie .tableoffres table tbody .actionBtn {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+.billetterie .tableoffres table tbody td .modifBtn,
+.billetterie .tableoffres table tbody td .supprBtn {
+    padding: 8px 15px;
+    border-radius: 10px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.billetterie .tableoffres table tbody td .modifBtn {
+    background-color: #1b3168;
+}
+.billetterie .tableoffres table tbody td .supprBtn {
+    background-color: #ff0000;
+}
+.billetterie .tableoffres table tbody .imgPart img {
+    max-width: 80px;
 }
