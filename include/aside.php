@@ -68,12 +68,10 @@ $nomImg = $imgPart->fetchAll();
                 <div class="boxSlider">
                     <div class="slideshow-container">
                         <?php foreach($nomImg as $image ){?>
-                        <div class="mySlides">
-                            <img src="<?php echo "assets/".$image['Nom_Image']."" ?>">
+                        <div class="mySlides"> 
                             <a href="partenariats.php">
-                                 <div class="see_more_img_partenaires">
-                                     <h1>Voir plus</h1>
-                                </div>  
+                               <p>Voir plus</p>
+                                <img src="<?php echo "assets/".$image['Nom_Image']."" ?>">
                             </a>
                             
                         </div>
