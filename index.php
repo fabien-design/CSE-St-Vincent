@@ -60,13 +60,13 @@ $nomImg = $imgPart->fetchAll();
                             Accueil
                         </li>
                     </a>
-                    <a href="partenariats.html">
+                    <a href="partenariats.php">
                         <li>Partenariats</li>
                     </a>
-                    <a href="billetterie.html">
+                    <a href="billetterie.php">
                         <li>Billetterie</li>
                     </a>
-                    <a href="contact.html">
+                    <a href="contact.php">
                         <li>Contact</li>
                     </a>
                 </ul>
@@ -86,11 +86,11 @@ $nomImg = $imgPart->fetchAll();
                 <h1 class="sectiontitle">Accès rapide</h1>
                 <div class="offreaccess">
                     <img src="assets/chevron-droit.png" class="chevron-droit">
-                    <a href="billetterie.html">Offres / Billeterie</a>
+                    <a href="billetterie.php">Offres / Billeterie</a>
                 </div>
                 <div class="contactaccess">
                     <img src="assets/chevron-droit.png" class="chevron-droit">
-                    <a href="contact.html">Nous contacter</a>
+                    <a href="contaphp">Nous contacter</a>
                 </div>
             </div>
             <div class="infocontact">
@@ -134,7 +134,7 @@ $nomImg = $imgPart->fetchAll();
                 </div>
             </div>
             <div class="decouverte">
-                <a target="_blank" href="partenariats.html">Découvrir tous nos partenaires</a>
+                <a target="_blank" href="partenariats.php">Découvrir tous nos partenaires</a>
             </div>
         </aside>
         <div class="right">
@@ -158,37 +158,13 @@ $nomImg = $imgPart->fetchAll();
                             src="assets/chevron-droit.png" alt="chevron-droit"></span>
                 </a>
             </div>
-            <a target="_blank" href="billetterie.html">
+            <a target="_blank" href="billetterie.php">
                 <span id="offres_decouvrir">Découvrir toutes nos offres 〉</span>
             </a>
         </div>
 
     </main>
-    <footer>
-        <div class="left_footer">
-            <div class="logo_footer">
-                <img src="assets/logo_lycee.png" alt="logo_st_vincent">
-            </div>
-        </div>
-        <div class="right_footer">
-            <div class="title_footer">
-                <h1><strong> CSE Lycée Saint-Vincent</strong></h1>
-            </div>
-            <div class="links_footer">
-                <ul class="links_list_footer">
-                    <a href="partenariats.html">
-                        <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Partenariats</li>
-                    </a>
-                    <a href="billetterie.html">
-                        <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Billeterie</li>
-                    </a>
-                    <a href="contact.html">
-                        <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Contact</li>
-                    </a>
-                </ul>
-            </div>
-        </div>
-    </footer>
+    <?php require 'include/footer.php'?>
     <script src="scriptaside.js"></script>
 </body>
 
