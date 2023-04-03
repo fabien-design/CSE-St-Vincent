@@ -186,14 +186,11 @@ aside.left .partenaire .slideshow-container {
     aspect-ratio: 1/1;
     object-fit: cover;
 }
-/*
-.mySlides img:hover .see_more_img_partenaires{
-    display: flex;
-}
-*/
+
 .mySlides a{
     width: 100%;
     background: transparent;
+    opacity: 1 !important;
 }
 .mySlides:hover .see_more_img_partenaires{
     opacity: 1;
@@ -256,7 +253,7 @@ aside.left .partenaire .prev {
 /* On hover, add a black background color with a little bit see-through */
 aside.left .partenaire .prev:hover,
 .next:hover {
-    background-color: rgba(0, 0, 0, 0.6);
+    background-color: rgba(0, 0, 0, 0.4);
 }
 
 /* The dots/bullets/indicators */
@@ -284,6 +281,12 @@ aside.left .decouverte {
 aside.left .decouverte a {
     font-size: 14px;
     text-decoration: underline;
+}
+aside.left a{
+    transition: opacity 0.3s ease;
+}
+aside.left a:hover{
+    opacity: 0.5;
 }
 
 
