@@ -642,7 +642,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     $ImgOffres = $reqImgOffre->fetchAll();
                                     $nbImgOffre = 0;
                                     foreach($ImgOffres as $img){
-                                        $nbImgOffre += $nbImgOffre;
+                                        $nbImgOffre += 1;
                                     }
                                     ?>
                                     <tr>

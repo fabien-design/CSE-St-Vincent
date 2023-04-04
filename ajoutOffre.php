@@ -29,28 +29,29 @@ if(isset($_POST['nomoffre'], $_POST['descripoffre'], $_POST['datedeboffre'], $_P
             if($req->execute()){
                 $idoffre = $connexion->lastInsertId();
                 $pos = 0;
-                foreach($_FILES['imgoffre'] as $img){
-                    var_dump($img);
-                    $nom_image = $img[$pos];
-                    $nomexplode = explode(".",$nom_image);
-                    $ext = end($nomexplode);
-                    $nom_image = substr($nom_image,0,-(strlen($ext)+1));
-                    $nom_image .= "-".rand(1000,9999).".".$ext;
-                    move_uploaded_file($img[$pos], 'assets/' . $nom_image);
-                    $InsertImg = $connexion->prepare("INSERT INTO image (Nom_Image) VALUES (:nom)");
-                    $InsertImg->bindParam("nom",$nom_image);
-                    if($InsertImg->execute() === false){
-                        echo "Erreur lors de l'insertion de l'image";
-                    }else{
-                        $idimg = $connexion->lastInsertId();
-                        $req = $connexion->prepare("INSERT INTO offre_image (Id_Image, Id_Offre) VALUES (:idimg ,:idoffre)");
-                        $req->bindParam("idimg", $idimg);
-                        $req->bindParam("idoffre", $idoffre);
-                        if($req->execute() == false){
-                           echo "Probleme avec l'insertion de l'image";
-                        }
-                    };
-                    $pos+=1;
+                foreach($_FILES['imgoffre']["name"] as $img){
+                    if(!empty($_FILES['imgoffre']["name"][$pos]) && $_FILES['imgoffre']["name"][$pos] !== ""){
+                        $nom_image = $_FILES['imgoffre']["name"][$pos];
+                        $nomexplode = explode(".",$nom_image);
+                        $ext = end($nomexplode);
+                        $nom_image = substr($nom_image,0,-(strlen($ext)+1));
+                        $nom_image .= "-".rand(1000,9999).".".$ext;
+                        move_uploaded_file($_FILES['imgoffre']["tmp_name"][$pos], 'assets/' . $nom_image);
+                        $InsertImg = $connexion->prepare("INSERT INTO image (Nom_Image) VALUES (:nom)");
+                        $InsertImg->bindParam("nom",$nom_image);
+                        if($InsertImg->execute() === false){
+                            echo "Erreur lors de l'insertion de l'image";
+                        }else{
+                            $idimg = $connexion->lastInsertId();
+                            $req = $connexion->prepare("INSERT INTO offre_image (Id_Image, Id_Offre) VALUES (:idimg ,:idoffre)");
+                            $req->bindParam("idimg", $idimg);
+                            $req->bindParam("idoffre", $idoffre);
+                            if($req->execute() == false){
+                            echo "Probleme avec l'insertion de l'image";
+                            }
+                        };
+                        $pos+=1;
+                    }
                 }
                 echo "L'offre ".$nom." a bien été ajouté.";
             }else{
