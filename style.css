@@ -279,11 +279,13 @@ aside.left .partenaire .active,
 aside.left .decouverte {
     display: flex;
     justify-content: center;
+    
 }
 
 aside.left .decouverte a {
     font-size: 14px;
     text-decoration: underline;
+    text-align: center;
 }
 aside.left a{
     transition: opacity 0.3s ease;
