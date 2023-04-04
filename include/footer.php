@@ -2,9 +2,6 @@
 
 $end_link = $_SERVER['PHP_SELF'];
 ?>
-
-
-
 <footer>
     <div class="left_footer">
         <div class="logo_footer">
@@ -58,7 +55,7 @@ $end_link = $_SERVER['PHP_SELF'];
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Partenariats</li>
                 </a>
                 <a href="billetterie.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Billeterie</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Billetterie</li>
                 </a>
                 <?php }?>
             </ul>
