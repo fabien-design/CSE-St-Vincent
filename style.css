@@ -503,13 +503,14 @@ footer {
     flex-direction: column;
     padding-left: 5%;
 }
+
 .title_footer{
     font-size: 65%;
     color: white;
 }
 
 .links_footer{
-    max-width: 40%;
+    max-width: 100px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -519,10 +520,20 @@ footer {
     color: white;
 }
 
+.links_footer ul{
+    width: 100%;
+    display: flex;
+}
+
+.links_footer li{
+    display: flex;
+    flex-wrap: nowrap;
+}
+
 
 .links_list_footer{
     list-style: none;
-    display: flex;
+    display:flex;
     gap: 20px;
     flex-wrap: nowrap;
 }
