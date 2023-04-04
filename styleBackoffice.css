@@ -549,10 +549,6 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     gap: 50px;
     width: 100%;
 }
-
-
-
-
 #modalModifPartenaire .modifBtn button {
     padding: 10px 20px;
     cursor: pointer;
@@ -642,7 +638,6 @@ input[type=submit]:hover {
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
-
 #modalAjoutPartenaire .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -650,14 +645,12 @@ input[type=submit]:hover {
     border: 1px solid #888;
     width: 80%;
 }
-
 #modalAjoutPartenaire .modal-content .closeAjout {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
-
 #modalAjoutPartenaire .modal-content .closeAjout:hover,
 #modalAjoutPartenaire .modal-content .closeAjout:focus {
     color: #000;
@@ -665,32 +658,27 @@ input[type=submit]:hover {
     cursor: pointer;
     transition: color 0.35s ease-in-out;
 }
-
 #modalAjoutPartenaire .modal-content .formBox {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-
 #modalAjoutPartenaire .modal-content #formAjoutPartenaire {
     display: grid;
     justify-content: center;
     align-items: center;
 }
-
 #modalAjoutPartenaire .modal-content #formAjoutPartenaire .imgBox {
     position: relative;
     display: flex;
     justify-content: center;
     overflow: hidden;
 }
-
 #modalAjoutPartenaire .modal-content .modalBox .ajoutBtn {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
-
 #modalAjoutPartenaire .modal-content .modalBox .ajoutBtn button {
     padding: 10px 20px;
     cursor: pointer;
@@ -778,3 +766,99 @@ input[type=submit]:hover {
 .billetterie .tableoffres table tbody .imgPart img {
     max-width: 80px;
 }
+
+#modalAjoutBilletterie {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+#modalAjoutBilletterie .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+#modalAjoutBilletterie .modal-content .closeAjout {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+#modalAjoutBilletterie .modal-content .closeAjout:hover,
+#modalAjoutBilletterie .modal-content .closeAjout:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+#modalAjoutBilletterie .modal-content .formBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#modalAjoutBilletterie .modal-content #formAjoutBilletterie {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+#modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    overflow: hidden;
+}
+#modalAjoutBilletterie .modal-content .modalBox .ajoutBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#modalAjoutBilletterie .modal-content .modalBox .ajoutBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+#modalAjoutBilletterie .ajoutBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: 100%;
+}
+#modalAjoutBilletterie .ajoutBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.15s ease-in-out;
+}
+#modalAjoutBilletterie .ajoutBtn button:hover{
+    background-color: initial;
+    background-position: 0 0;
+}
+#modalAjoutBilletterie .formAjoutNon{
+    background: #FF4742;
+    border: 1px solid #FF4742;
+}
+#modalAjoutBilletterie .formAjoutNon:hover{
+    color: #FF4742 !important;
+}
+#modalAjoutBilletterie .formAjoutOui{
+    background: #27bb56;
+    border: 1px solid #27bb56;
+}
+#modalAjoutBilletterie .formAjoutOui:hover{
+    color: #27bb56 !important;
+}
+

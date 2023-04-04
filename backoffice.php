@@ -330,7 +330,7 @@ if(isset($_GET['modalAjoutPartenaire'])){
         }
         }
         
-        // Code Jquery en AJAX pour la modif d'un partenaire
+        // Code Jquery en AJAX pour l'ajout d'un partenaire
 
         $(document).ready(function(){
             $("#formAjoutPartenaire").submit(function(e){
@@ -359,6 +359,116 @@ if(isset($_GET['modalAjoutPartenaire'])){
 <?php
 }
 
+// CODE MODAL POUR AJOUTER UNE OFFRE 
+
+if(isset($_GET['modalAjoutBilletterie'])){
+    ?>
+   <div id="modalAjoutBilletterie" class="modal">
+       <div class="modal-content">
+           <span class="closeAjout">&times;</span>
+           <div class="formBox">
+               <form id="formAjoutBilletterie" enctype="multipart/form-data" method="POST">
+                   <label for="nomoffre">Nom* :</label>
+                   <input type="text" name="nomoffre" placeholder="Nom de l'Offre">
+
+                    <label for="descripoffre">Description* :</label>
+                    <textarea name="descripoffre" cols="30" rows="10" placeholder="Description de l'Offre"></textarea>
+                    
+                    <div class="datesoffre">
+                        <label for="datedeboffre">Date de début de l'offre* :</label>
+                        <input type="date" name="datedeboffre" id="datedeboffre">
+                        <label for="datefinoffre">Date de fin de l'offre* :</label>
+                        <input type="date" name="datefinoffre" id="datefinoffre">
+                    </div>
+
+                    <label for="placeoffre">Nombre de place minimum* :</label>
+                    <input type="number" name="placeoffre" placeholder="place de l'Offre" value="0" min="0">
+
+                   <label for="partoffre">Nom du partenaire* :</label>
+                   <select name="partoffre" id="partoffre">
+                        <?php 
+                            $reqPart = $connexion->prepare("SELECT * FROM partenaire");
+                            $reqPart->execute();
+                            $Part = $reqPart->fetchAll();
+                            foreach($Part as $part){ ?>
+                                <option value="<?= $part['Id_Partenaire'] ?>"><?= $part['Nom_Partenaire'] ?></option>
+                           <?php }
+                        ?>
+                   </select>
+
+                   <label for="imgoffre">Image* (Minimum une) :</label>
+                   <div class="imgBox">
+                       <input type="file" name="imgoffre">
+                       <input type="file" name="imgoffre">
+                       <input type="file" name="imgoffre">
+                   </div>
+
+                   <div class="ajoutBtn">
+                       <button type="submit" class="formAjoutOui">OUI</button></form>
+                       <button class="formAjoutNon">NON</button>
+                   </div>
+               
+           </div>
+           
+       </div>
+
+   </div>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+   <script>
+       // Code Modal modif d'ajout d'une offre
+       var modalAjout = document.getElementById("modalAjoutBilletterie");
+       var span = document.getElementsByClassName("closeAjout")[0];
+       var btnNon = document.getElementsByClassName("formAjoutNon")[0];
+       var btnOui = document.getElementsByClassName("formAjoutOui")[0];
+       // cacher modal au click de la croix ou du btn non
+       span.onclick = function() {
+           modalAjout.style.display = "none";
+           history.pushState(null, null, window.location.href.split("&")[0]);
+       }
+       btnNon.onclick = function(e) {
+           e.preventDefault();
+           modalAjout.style.display = "none";
+           history.pushState(null, null, window.location.href.split("&")[0]);
+       }
+       btnOui.onclick = function() {
+           history.pushState(null, null, window.location.href.split("&")[0]);
+           setTimeout(function() {modalAjout.style.display = "none";}, 2000);
+       }
+       window.onclick = function(event) {
+       if (event.target == modalAjout) {
+           modalAjout.style.display = "none";
+           history.pushState(null, null, window.location.href.split("&")[0]);
+       }
+       }
+       
+       // Code Jquery en AJAX pour l'ajout d'une offre
+
+       $(document).ready(function(){
+           $("#formAjoutBilletterie").submit(function(e){
+               e.preventDefault();
+               var formData = new FormData(this);
+               $.ajax({
+                   type: "POST",
+                   url: "ajoutOffre.php",
+                   data: formData,
+                   contentType: false,
+                   processData: false,
+                   success: function(response){
+                       alert(response);
+                       setTimeout(function() {
+                           location.reload(true);
+                       }, 2000);
+
+                   },
+                   error: function(xhr, status, error) {
+                       alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                   }
+               });
+           }); 
+       });
+   </script>
+<?php
+}
 ?>
 
 <!-- Debut Page HTML -->
@@ -378,7 +488,6 @@ if(isset($_GET['modalAjoutPartenaire'])){
 if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur'])){
 ?>
 
- 
     <div class="formulaire">
         <form action="backoffice.php" method="post" name="login">
             <div class="formGroup">
