@@ -630,7 +630,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 $req->execute();
                                 $offres= $req->fetchAll();
                                 foreach($offres as $offre){
-                                    if(!empty($offre["Id_Image"])){
+                                    if(!empty($offre["Id_Partenaire"])){
                                         $reqPart = $connexion->prepare("SELECT Nom_Partenaire FROM partenaire WHERE Id_Partenaire = :idpart");
                                         $reqPart->bindParam("idpart",$offre["Id_Partenaire"]);
                                         $reqPart->execute();
