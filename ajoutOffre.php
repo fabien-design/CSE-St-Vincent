@@ -1,6 +1,5 @@
 <?php
 require('include/connexion_db.php');
-var_dump($_POST);
 if(isset($_POST['nomoffre'], $_POST['descripoffre'], $_POST['datedeboffre'], $_POST['datefinoffre'], $_POST['placeoffre'], $_POST['partoffre'])){
     $nom = htmlspecialchars($_POST['nomoffre']);
     $descrip = htmlspecialchars($_POST['descripoffre']);
@@ -28,14 +27,16 @@ if(isset($_POST['nomoffre'], $_POST['descripoffre'], $_POST['datedeboffre'], $_P
             $req->bindParam('nbplace', $places);
             $req->bindParam('idpart', $_POST['partoffre']);
             if($req->execute()){
-                $idoffre = $req->lastInsertId();
+                $idoffre = $connexion->lastInsertId();
+                $pos = 0;
                 foreach($_FILES['imgoffre'] as $img){
-                    $nom_image = $img['name'];
+                    var_dump($img);
+                    $nom_image = $img[$pos];
                     $nomexplode = explode(".",$nom_image);
                     $ext = end($nomexplode);
                     $nom_image = substr($nom_image,0,-(strlen($ext)+1));
                     $nom_image .= "-".rand(1000,9999).".".$ext;
-                    move_uploaded_file($img['tmp_name'], 'assets/' . $nom_image);
+                    move_uploaded_file($img[$pos], 'assets/' . $nom_image);
                     $InsertImg = $connexion->prepare("INSERT INTO image (Nom_Image) VALUES (:nom)");
                     $InsertImg->bindParam("nom",$nom_image);
                     if($InsertImg->execute() === false){
@@ -49,6 +50,7 @@ if(isset($_POST['nomoffre'], $_POST['descripoffre'], $_POST['datedeboffre'], $_P
                            echo "Probleme avec l'insertion de l'image";
                         }
                     };
+                    $pos+=1;
                 }
                 echo "L'offre ".$nom." a bien été ajouté.";
             }else{

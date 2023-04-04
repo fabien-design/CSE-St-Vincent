@@ -398,9 +398,9 @@ if(isset($_GET['modalAjoutBilletterie'])){
 
                    <label for="imgoffre">Image* (Minimum une) :</label>
                    <div class="imgBox">
-                       <input type="file" name="imgoffre">
-                       <input type="file" name="imgoffre">
-                       <input type="file" name="imgoffre">
+                       <input type="file" name="imgoffre[]">
+                       <input type="file" name="imgoffre[]">
+                       <input type="file" name="imgoffre[]">
                    </div>
 
                    <div class="ajoutBtn">
