@@ -514,28 +514,29 @@ footer {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    justify-content: center;
+    align-items: center;
 }
 
 .links_footer a{
     color: white;
 }
 
-.links_footer ul{
-    width: 100%;
-    display: flex;
-}
-
 .links_footer li{
     display: flex;
+    justify-content: center;
+    align-items: center;
     flex-wrap: nowrap;
 }
 
 
 .links_list_footer{
+    width: 100%;
     list-style: none;
     display:flex;
     gap: 20px;
     flex-wrap: nowrap;
+    align-items: center;
 }
 
 .links_list_footer img{
