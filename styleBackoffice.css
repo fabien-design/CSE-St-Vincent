@@ -483,6 +483,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     justify-content: center;
     overflow: hidden;
     border: 1px solid rgba(0, 0, 0, 0.155);
+    min-height: 100px;
 }
 
 #modalModifPartenaire .modal-content #formModifPartenaire .imgBox img {
