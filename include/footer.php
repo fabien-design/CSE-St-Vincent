@@ -1,6 +1,7 @@
 <?php
 
 $end_link = $_SERVER['PHP_SELF'];
+
 ?>
 <footer>
     <div class="left_footer">
@@ -14,7 +15,7 @@ $end_link = $_SERVER['PHP_SELF'];
         </div>
         <div class="links_footer">
             <ul class="links_list_footer">
-                <?php if($end_link=='/CSE SAINT VINCENT/CSE-St-Vincent/index.php'){?>
+                <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/index.php'){?>
                 <a href="partenariats.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Partenariats</li>
                 </a>
