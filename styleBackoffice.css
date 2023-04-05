@@ -523,17 +523,14 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     display: flex;
     opacity: 1;
 }
-
 .edit-button:hover {
     scale: 1.1;
     opacity: 1;
     transition: scale 0.3s ease;
 }
-
 .edit-button:hover~img {
     filter: blur(3px);
 }
-
 .edit-button img {
     position: absolute;
     max-width: 32px !important;
@@ -861,4 +858,137 @@ input[type=submit]:hover {
 #modalAjoutBilletterie .formAjoutOui:hover{
     color: #27bb56 !important;
 }
+#modalModifBilletterie {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
 
+#modalModifBilletterie .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalModifBilletterie .modal-content .closeModif {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#modalModifBilletterie .modal-content .closeModif:hover,
+#modalModifBilletterie .modal-content .closeModif:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+
+#modalModifBilletterie .modal-content .formBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalModifBilletterie .modal-content #formModifBilletterie {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox {
+    position: relative;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    overflow: hidden;
+}
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.155);
+}
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box:hover .edit-button {
+    display: flex;
+    opacity: 1;
+}
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box .edit-button:hover {
+    scale: 1.1;
+    opacity: 1;
+    transition: scale 0.3s ease;
+}
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box .edit-button:hover~img {
+    filter: blur(3px);
+}
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box .edit-button img {
+    position: absolute;
+    max-width: 32px !important;
+}
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box .edit-button input{
+    cursor: pointer !important;
+}
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox img {
+    width: 100%;
+    max-width: 300px;
+    transition: filter 1s ease;
+}
+
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: transparent;
+    overflow: hidden;
+    opacity: 0;
+    left: 0;
+}
+#modalModifBilletterie .modifBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: 100%;
+}
+#modalModifBilletterie .modifBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.15s ease-in-out;
+}
+#modalModifBilletterie .modifBtn button:hover{
+    background-color: initial;
+    background-position: 0 0;
+}
+.formModifNon{
+    background: #FF4742;
+    border: 1px solid #FF4742;
+}
+.formModifNon:hover{
+    color: #FF4742 !important;
+}
+.formModifOui{
+    background: #27bb56;
+    border: 1px solid #27bb56;
+}
+.formModifOui:hover{
+    color: #27bb56 !important;
+}

@@ -401,6 +401,7 @@ if(isset($_GET['modalAjoutBilletterie'])){
                        <input type="file" name="imgoffre[]">
                        <input type="file" name="imgoffre[]">
                        <input type="file" name="imgoffre[]">
+                       <input type="file" name="imgoffre[]">
                    </div>
 
                    <div class="ajoutBtn">
@@ -469,6 +470,164 @@ if(isset($_GET['modalAjoutBilletterie'])){
    </script>
 <?php
 }
+
+// CODE MODAL POUR MODIFIER UNE OFFRE
+
+if(isset($_GET['modalModifBilletterie'])){
+    $req = $connexion->prepare("SELECT * FROM offre WHERE Id_Offre = :id");
+    $req->bindParam('id',$_GET['modalModifBilletterie']);
+    $req->execute();
+    $offre = $req->fetch();
+    $reqImg = $connexion->prepare("SELECT * FROM image WHERE Id_Image in (SELECT Id_Image FROM offre_image WHERE Id_Offre = :id)");
+    $reqImg->bindParam('id',$offre['Id_Offre']);
+    $reqImg->execute();
+    $imgOffre = $reqImg->fetchAll();
+     ?>
+    <div id="modalModifBilletterie" class="modal">
+        <div class="modal-content">
+            <span class="closeModif">&times;</span>
+            <div class="formBox">
+               <form id="formModifBilletterie" enctype="multipart/form-data" method="POST">
+                   <input type="hidden" name="idoffre" value="<?php echo $offre['Id_Offre'] ?>">
+                   <label for="nomoffre">Nom* :</label>
+                   <input type="text" name="nomoffre" placeholder="Nom de l'Offre" value="<?php echo $offre['Nom_Offre'] ?>">
+
+                    <label for="descripoffre">Description* :</label>
+                    <textarea name="descripoffre" cols="30" rows="10" placeholder="Description de l'Offre" value="<?php echo $offre['Description_Offre'] ?>"></textarea>
+                    
+                    <div class="datesoffre">
+                        <label for="datedeboffre">Date de début de l'offre* :</label>
+                        <input type="date" name="datedeboffre" id="datedeboffre" value="<?php echo $offre['Date_Debut_Offre'] ?>">
+                        <label for="datefinoffre">Date de fin de l'offre* :</label>
+                        <input type="date" name="datefinoffre" id="datefinoffre" value="<?php echo $offre['Date_Fin_Offre'] ?>">
+                    </div>
+
+                    <label for="placeoffre">Nombre de place minimum* :</label>
+                    <input type="number" name="placeoffre" placeholder="place de l'Offre" value="<?php echo $offre['Nombre_Place_Min_Offre'] ?>" min="0" >
+
+                   <label for="partoffre">Nom du partenaire* :</label>
+                   <select name="partoffre" id="partoffre">
+                        <?php 
+                            $reqPart = $connexion->prepare("SELECT * FROM partenaire");
+                            $reqPart->execute();
+                            $Part = $reqPart->fetchAll();
+                            foreach($Part as $part){ 
+                                if($part['Id_Partenaire'] == $offre['Id_Partenaire']){
+                                ?>
+                                    <option value="<?= $part['Id_Partenaire'] ?>" selected><?= $part['Nom_Partenaire'] ?></option>
+                           <?php 
+                                }else{ ?>
+                                    <option value="<?= $part['Id_Partenaire'] ?>" ><?= $part['Nom_Partenaire'] ?></option>
+                               <?php }
+                           }
+                        ?>
+                   </select>
+
+                   <label for="imgoffre">Image*:</label>
+                   <div class="imgBox">
+                        <?php 
+                            $nb = 0;
+                            foreach($imgOffre as $imgO){ ?>
+                                <div class="Box">
+                                    <div class="edit-button">
+                                        <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
+                                        <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
+                                    </div>
+                                    <img id="ImgPrev<?= $nb ?>" src="assets/<?= $imgO['Nom_Image'] ?>" alt="Image(s) de l'offre">
+                                    <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
+                                </div>
+                          <?php 
+                            $nb++;
+                           }
+                           if($nb<3){
+                                $nbmax = 3-$nb;
+                                for($i=0;$i<=$nbmax;$i++){?>
+                                    <div class="Box">
+                                        <div class="edit-button">
+                                            <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
+                                            <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
+                                        </div>
+                                        <img id="ImgPrev<?= $nb ?>" src="assets/individual-man.png" alt="Image(s) de l'offre">
+                                        <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
+                                    </div>
+                            <?php }
+                           }
+                        ?>
+                   </div>
+
+                   <div class="modifBtn">
+                       <button type="submit" class="formModifOui">OUI</button></form>
+                       <button class="formModifNon">NON</button>
+                   </div>
+               
+           </div>
+            
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal modif d'un partenaire
+        var modalModif = document.getElementById("modalModifBilletterie");
+        var span = document.getElementsByClassName("closeModif")[0];
+        var btnNon = document.getElementsByClassName("formModifNon")[0];
+        var btnOui = document.getElementsByClassName("formModifOui")[0];
+        var body = document.body;
+        body.style.overflow= "hidden";
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+            modalModif.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
+        }
+        btnNon.onclick = function(e) {
+            e.preventDefault();
+            modalModif.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
+        }
+        btnOui.onclick = function() {
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            setTimeout(function() {modalModif.style.display = "none";}, 2000);
+            body.style.overflow = "auto";
+        }
+        window.onclick = function(event) {
+        if (event.target == modalModif) {
+            modalModif.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
+        }
+        }
+        
+        // Code Jquery en AJAX pour la modif d'un partenaire
+
+        $(document).ready(function(){
+            $("#formModifBilletterie").submit(function(e){
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    type: "POST",
+                    url: "modifBilletterie.php",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                        alert(response);
+                        setTimeout(function() {
+                            location.reload(true);
+                        }, 2000);
+
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                    }
+                });
+            }); 
+        });
+    </script>
+<?php
+}
+
 ?>
 
 <!-- Debut Page HTML -->
