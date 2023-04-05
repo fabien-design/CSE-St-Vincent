@@ -17,46 +17,46 @@ $end_link = $_SERVER['PHP_SELF'];
             <ul class="links_list_footer">
                 <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/index.php'){?>
                 <a href="partenariats.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Partenariats</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Partenariats</li>
                 </a>
                 <a href="billetterie.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Billetterie</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Billetterie</li>
                 </a>
                 <a href="contact.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Contact</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Contact</li>
                 </a>
                 <?php }?>
                 <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/partenariats.php'){?>
                 <a href="index.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Accueil</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Accueil</li>
                 </a>
                 <a href="billetterie.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Billetterie</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Billetterie</li>
                 </a>
                 <a href="contact.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Contact</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Contact</li>
                 </a>
                 <?php }?>
                 <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/billetterie.php'){?>
                 <a href="index.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Accueil</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Accueil</li>
                 </a>
                 <a href="partenariats.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Partenariats</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Partenariats</li>
                 </a>
                 <a href="contact.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Contact</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Contact</li>
                 </a>
                 <?php }?>
                 <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/contact.php'){?>
                 <a href="index.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Accueil</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Accueil</li>
                 </a>
                 <a href="partenariats.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Partenariats</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Partenariats</li>
                 </a>
                 <a href="billetterie.php">
-                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Billetterie</li>
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Billetterie</li>
                 </a>
                 <?php }?>
             </ul>
