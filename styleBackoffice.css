@@ -227,7 +227,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     cursor: pointer;
     overflow: hidden;
     position: relative;
-
+    transition: all .6s ease-in-out;
 }
 
 .accueil .formEdit .btnGroup button p {
@@ -249,7 +249,6 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .accueil .formEdit .btnGroup button:hover {
     border: solid 2px #B6A886;
     background-color: #B6A886;
-    transition: all .6s ease-in-out;
 }
 
 .accueil .formEdit .btnGroup button:hover .bghover {
