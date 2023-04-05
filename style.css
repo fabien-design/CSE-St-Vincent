@@ -474,6 +474,13 @@ aside.left a{
     opacity: 1 !important;
 }
 
+/*  #### BILLETTERIE #### */
+.right{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 /*  #### FOOTER ####  */
 
 footer {

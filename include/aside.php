@@ -36,7 +36,7 @@ $nomImg = $imgPart->fetchAll();
                 <h1 class="sectiontitle">Accès rapide</h1>
                 <div class="offreaccess">
                     <img src="assets/chevron-droit.png" class="chevron-droit">
-                    <a href="billetterie.php">Offres / Billeterie</a>
+                    <a href="billetterie.php">Offres / Billetterie</a>
                 </div>
                 <div class="contactaccess">
                     <img src="assets/chevron-droit.png" class="chevron-droit">

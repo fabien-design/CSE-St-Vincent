@@ -26,7 +26,7 @@ $end_link = $_SERVER['PHP_SELF'];
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Contact</li>
                 </a>
                 <?php }?>
-                <?php if($end_link=='/CSE SAINT VINCENT/CSE-St-Vincent/partenariats.php'){?>
+                <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/partenariats.php'){?>
                 <a href="index.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Accueil</li>
                 </a>
@@ -37,7 +37,7 @@ $end_link = $_SERVER['PHP_SELF'];
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Contact</li>
                 </a>
                 <?php }?>
-                <?php if($end_link=='/CSE SAINT VINCENT/CSE-St-Vincent/billetterie.php'){?>
+                <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/billetterie.php'){?>
                 <a href="index.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Accueil</li>
                 </a>
@@ -48,7 +48,7 @@ $end_link = $_SERVER['PHP_SELF'];
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Contact</li>
                 </a>
                 <?php }?>
-                <?php if($end_link=='/CSE SAINT VINCENT/CSE-St-Vincent/contact.php'){?>
+                <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/contact.php'){?>
                 <a href="index.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt=""> Accueil</li>
                 </a>

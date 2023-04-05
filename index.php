@@ -68,7 +68,6 @@ setlocale(LC_TIME,"fr_FR.utf8");
 <body>
     <header>
         <div class="gris">
-
         </div>
         <div class="blue">
             <nav>
@@ -103,7 +102,7 @@ setlocale(LC_TIME,"fr_FR.utf8");
                 <p>Découvrez l'équipe et le rôle et missions de votre CSE.</p>
             </div>
             <h1>Dernières offres de la Billetterie</h1>
-            
+
             <?php foreach($chaqueOffre as $offre ){?>
             <div class="offre_billetterie">
                 <div class="offre_billetterie_header">
@@ -117,8 +116,6 @@ setlocale(LC_TIME,"fr_FR.utf8");
                
             </div>
                 <?php } ?>
-            
-
             <a target="_blank" href="billetterie.php">
                 <span id="offres_decouvrir">Découvrir toutes nos offres 〉</span>
             </a>
