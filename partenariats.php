@@ -1,7 +1,10 @@
 <?php
 
-$end_link = $_SERVER['PHP_SELF'];
+require 'include/connexion_db.php';
 
+$imgPartenaire = $connexion -> prepare("SELECT Nom_Image FROM image WHERE Id_Image in (SELECT Id_Image FROM partenaire)");
+$imgPartenaire -> execute();
+$nomImgPartenaire = $imgPartenaire->fetchAll();
 ?>
 
 
@@ -58,15 +61,9 @@ $end_link = $_SERVER['PHP_SELF'];
         <div class="right">
             <h1>Tous nos partenaires</h1>
             <div class="partenaires_grid-container">
-                <div class="partenaires_grid-item"><img src="assets/leonidas.jpg" alt=""></div>
-                <div class="partenaires_grid-item"><img src="assets/leonidas.jpg" alt=""></div>
-                <div class="partenaires_grid-item"><img src="assets/leonidas.jpg" alt=""></div>
-                <div class="partenaires_grid-item"><img src="assets/leonidas.jpg" alt=""></div>
-                <div class="partenaires_grid-item"><img src="assets/leonidas.jpg" alt=""></div>
-                <div class="partenaires_grid-item"><img src="assets/leonidas.jpg" alt=""></div>
-                <div class="partenaires_grid-item"><img src="assets/leonidas.jpg" alt=""></div>
-                <div class="partenaires_grid-item"><img src="assets/leonidas.jpg" alt=""></div>
-                <div class="partenaires_grid-item"><img src="assets/leonidas.jpg" alt=""></div>
+                <?php foreach($nomImgPartenaire as $image ){?>
+                    <div class="partenaires_grid-item"><img src="assets/<?=$image['Nom_Image']?>" alt="erreur_image_partenaire"></div>
+                <?php } ?>
             </div>
             <div class="pagination">
                 <span class="page activepage">1</span>

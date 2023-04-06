@@ -8,6 +8,7 @@
 p {
     /*font-size: clamp(14px,1vw,1.5vw);*/
     font-size: clamp(0.95rem, 0.31vw + 0.81rem, 1.28rem);
+    white-space: pre-line;
 }
 
 h1 {
@@ -415,10 +416,11 @@ aside.left a{
     width: 150px;
     height: 150px;
     color: red;
-    font-size: 30px;
     text-align: center;
     object-fit: cover;
     margin-bottom: 15px;
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 10px;
 }
 
 .partenaires_grid-item img {
@@ -472,6 +474,13 @@ aside.left a{
     letter-spacing: 2px;
     cursor: default !important;
     opacity: 1 !important;
+}
+
+/*  #### BILLETTERIE #### */
+.right{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
 }
 
 /*  #### FOOTER ####  */
