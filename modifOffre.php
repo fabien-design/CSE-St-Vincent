@@ -59,6 +59,10 @@ if(isset($_POST['idoffre'], $_POST['nomoffre'], $_POST['descripoffre'], $_POST['
                                 $ErreurUpdate = TRUE;
                             }else{
                                 $ErreurUpdate = FALSE;
+                                try{
+                                    unlink('assets/'.$LastImg[$pos]['Nom_Image']);
+                                }catch(Exception $e){
+                                }
                             }
                         }else{
                             echo "Nouvelle image ".$nom_image;

@@ -119,7 +119,6 @@ if(!empty($_POST['accueilEdit'])){
 
 // CODE MODAL POUR SUPPRESSION D'UN PARTENAIRE
 
-
 if(isset($_GET['modalSupprPartenaire'])){
     $req = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
     $req->bindParam('id',$_GET['modalSupprPartenaire']);
@@ -154,6 +153,51 @@ if(isset($_GET['modalSupprPartenaire'])){
         </div>
 
     </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal suppression d'un partenaire
+        var modalSuppr = document.getElementById("modalSupprPartenaire");
+        var span = document.getElementsByClassName("close")[0];
+        var btnNon = document.getElementsByClassName("formSupprNon")[0];
+        var btnOui = document.getElementsByClassName("formSupprOui")[0];
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+        modalSuppr.style.display = "none";
+        history.pushState(null, null, window.location.href.split("&")[0]);
+        }
+        btnNon.onclick = function() {
+            modalSuppr.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+        }
+        btnOui.onclick = function() {
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            setTimeout(modalSuppr.style.display = "none", 2000);
+        }
+        window.onclick = function(event) {
+        if (event.target == modalSuppr) {
+            modalSuppr.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+        }
+        }
+
+        // Code Jquery en AJAX pour la suppression d'un partenaire
+
+        $(document).ready(function(){
+            $("#formSupprPartenaire").submit(function(e){
+            e.preventDefault();
+            var formData = $("#formSupprPartenaire").serialize();
+            $.ajax({
+                type: "POST",
+                url: "supprPartenaire.php",
+                data: formData,
+                success: function(response){
+                alert(response);
+                setTimeout(location.reload(true) , 3000);
+                }
+            });
+            });
+        });
+    </script>
 <?php
 }
 
@@ -568,7 +612,7 @@ if(isset($_GET['modalModifBilletterie'])){
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
-        // Code Modal modif d'un partenaire
+        // Code Modal modif d'une offre
         var modalModif = document.getElementById("modalModifBilletterie");
         var span = document.getElementsByClassName("closeModif")[0];
         var btnNon = document.getElementsByClassName("formModifNon")[0];
@@ -600,7 +644,7 @@ if(isset($_GET['modalModifBilletterie'])){
         }
         }
         
-        // Code Jquery en AJAX pour la modif d'un partenaire
+        // Code Jquery en AJAX pour la modif d'une offre
 
         $(document).ready(function(){
             $("#formModifBilletterie").submit(function(e){
@@ -608,7 +652,7 @@ if(isset($_GET['modalModifBilletterie'])){
                 var formData = new FormData(this);
                 $.ajax({
                     type: "POST",
-                    url: "modifBilletterie.php",
+                    url: "modifOffre.php",
                     data: formData,
                     contentType: false,
                     processData: false,
@@ -624,6 +668,120 @@ if(isset($_GET['modalModifBilletterie'])){
                     }
                 });
             }); 
+        });
+    </script>
+<?php
+}
+
+// CODE MODAL POUR SUPPRIMER UNE OFFRE
+
+if(isset($_GET['modalSupprBilletterie'])){
+    $req = $connexion->prepare("SELECT * FROM offre WHERE Id_Offre = :id");
+    $req->bindParam('id',$_GET['modalSupprBilletterie']);
+    $req->execute();
+    $offre = $req->fetch();
+    ?>
+    <div id="modalSupprBilletterie" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="title">
+                <h2><?php echo $offre['Nom_Offre']; ?></h2>
+            </div>
+            <div class="modalBox">
+            <?php 
+            $SelectOffre_Img = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image in (SELECT Id_Image FROM offre_image WHERE Id_Offre = :idoffre)");
+            $SelectOffre_Img->bindParam("idoffre",$_GET['modalSupprBilletterie']);
+            $SelectOffre_Img->execute();
+            $offres_images = $SelectOffre_Img->fetchAll();
+            if(!empty($offres_images)){ ?>
+                <div class="slider">
+                    <div class="boxSlider">
+                        <div class="slideshow-container"> <?php
+                            foreach($offres_images as $image ){?>
+                                <div class="mySlides"> 
+                                    <img src="<?php echo "assets/".$image['Nom_Image']."" ?>" alt="Image(s) de l'offre">
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <img class="prev" onclick="plusSlides(-1)" src="assets/chevron-gauche.png">
+                        <img class="next" onclick="plusSlides(1)" src="assets/chevron-droit.png">
+                        <div style="text-align:center">
+                            <span class="dot" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                        </div>
+                    </div>
+                </div>
+                <script src="scriptaside.js"></script>
+                <?php } ?>
+                <div class="supprBox">
+                    <p>Êtes-vous sûr de vouloir supprimer cette offre ?</p>
+                    <div class="supprBtn">
+                        <form id="formSupprBilletterie">
+                            <input type="hidden" name="idOffre" value="<?php echo $offre['Id_Offre'] ?>">
+                            <button type="submit" class="formSupprOui">OUI</button>
+                        </form>
+                        <button class="formSupprNon">NON</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal suppression d'une offre
+
+        var modalSuppr = document.getElementById("modalSupprBilletterie");
+        var span = document.getElementsByClassName("close")[0];
+        var btnNon = document.getElementsByClassName("formSupprNon")[0];
+        var btnOui = document.getElementsByClassName("formSupprOui")[0];
+        var body = document.body;
+        body.style.overflow= "hidden";
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+            modalSuppr.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
+        }
+        btnNon.onclick = function(e) {
+            e.preventDefault();
+            modalSuppr.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
+        }
+        btnOui.onclick = function() {
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
+            body.style.overflow = "auto";
+        }
+        window.onclick = function(event) {
+        if (event.target == modalSuppr) {
+            modalSuppr.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
+        }
+        }
+
+
+        // Code Jquery en AJAX pour la suppression d'une offre
+
+        $(document).ready(function(){
+            $("#formSupprBilletterie").submit(function(e){
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: "POST",
+                url: "supprOffre.php",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    alert(response);
+                    setTimeout(location.reload(true) , 3000);
+                }
+            });
+            });
         });
     </script>
 <?php

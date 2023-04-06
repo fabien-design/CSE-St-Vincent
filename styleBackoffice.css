@@ -992,3 +992,137 @@ input[type=submit]:hover {
 .formModifOui:hover{
     color: #27bb56 !important;
 }
+#modalSupprBilletterie {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalSupprBilletterie .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalSupprBilletterie .modal-content .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+#modalSupprBilletterie .modal-content .close:hover,
+#modalSupprBilletterie .modal-content .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+#modalSupprBilletterie .modal-content .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+#modalSupprBilletterie .modal-content .modalBox {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+#modalSupprBilletterie .modal-content .modalBox .supprBox {
+    display: grid;
+    align-items: center;
+}
+#modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+#modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+/* Slideshow container */
+#modalSupprBilletterie .modal-content .modalBox .slider{
+    max-width: 250px;
+    position: relative;
+}
+#modalSupprBilletterie .modal-content .modalBox .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+#modalSupprBilletterie .modal-content .modalBox .slideshow-container .mySlides{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalSupprBilletterie .modal-content .modalBox .slideshow-container .mySlides img{
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 10px;
+}
+/* Next & previous buttons */
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .prev,
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .next {
+    cursor: pointer;
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    width: auto;
+    padding: 10px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    transition: background-color 0.3s;
+}
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .prev,
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .next {
+    width: 40px;
+}
+/* Position the "next button" to the right */
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .prev {
+    left: 0;
+
+}
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .prev:hover,
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .next:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .dot {
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    margin: 0 2px;
+    background-color: #C4C4C4;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .active,
+#modalSupprBilletterie .modal-content .modalBox .boxSlider .dot:hover {
+    background-color: #000;
+}
