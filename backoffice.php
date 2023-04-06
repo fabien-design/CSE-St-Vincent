@@ -538,17 +538,20 @@ if(isset($_GET['modalModifBilletterie'])){
                           <?php 
                             $nb++;
                            }
-                           if($nb<3){
+                           if($nb<4){
                                 $nbmax = 3-$nb;
+                                $nb1 = $nb;
                                 for($i=0;$i<=$nbmax;$i++){?>
                                     <div class="Box">
                                         <div class="edit-button">
                                             <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
-                                            <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
+                                            <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb1 ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
                                         </div>
-                                        <img id="ImgPrev<?= $nb ?>" src="assets/individual-man.png" alt="Image(s) de l'offre">
+                                        <img id="ImgPrev<?= $nb1 ?>" src="assets/individual-man.png" alt="Image(s) de l'offre">
                                     </div>
-                            <?php }
+                            <?php 
+                                $nb1++;
+                            }
                            }
                         ?>
                    </div>
