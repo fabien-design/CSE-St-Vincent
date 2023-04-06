@@ -534,7 +534,6 @@ if(isset($_GET['modalModifBilletterie'])){
                                         <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
                                     </div>
                                     <img id="ImgPrev<?= $nb ?>" src="assets/<?= $imgO['Nom_Image'] ?>" alt="Image(s) de l'offre">
-                                    <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
                                 </div>
                           <?php 
                             $nb++;
@@ -548,7 +547,6 @@ if(isset($_GET['modalModifBilletterie'])){
                                             <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
                                         </div>
                                         <img id="ImgPrev<?= $nb ?>" src="assets/individual-man.png" alt="Image(s) de l'offre">
-                                        <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
                                     </div>
                             <?php }
                            }

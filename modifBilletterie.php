@@ -17,13 +17,23 @@ if(isset($_POST['idoffre'], $_POST['nomoffre'], $_POST['descripoffre'], $_POST['
     }
     $datedeb = $_POST['datedeboffre'];
     $datefin = $_POST['datefinoffre'];
-
-    if (!empty($_FILES['imgpart']['name'])) {
-        $nom_image = $_FILES['imgpart']['name'];
-        $nomexplode = explode(".",$nom_image);
-        $ext = end($nomexplode);
-        $nom_image = substr($nom_image,0,-(strlen($ext)+1));
-        $nom_image .= "-".rand(1000,9999).".".$ext;
+    if (!empty($_FILES['imgoffre'])) {
+        $pos = 0;
+        
+        foreach($_FILES['imgoffre']["name"] as $img){ 
+            if(!empty($_FILES['imgoffre']['name'][$pos])){
+                $nom_image = $_FILES['imgoffre']['name'][$pos];
+                $nomexplode = explode(".",$nom_image);
+                $ext = end($nomexplode);
+                $nom_image = substr($nom_image,0,-(strlen($ext)+1));
+                $nom_image .= "-".rand(1000,9999).".".$ext;
+                echo $nom_image."\n";
+            }
+            $pos++;
+        }
+        echo $pos;
+        var_dump($_FILES['imgoffre']["name"]);
+        /*
         move_uploaded_file($_FILES['imgpart']['tmp_name'], 'assets/' . $nom_image);
         $SelectLastImg = $connexion->prepare("SELECT Id_Image FROM image WHERE Id_Image in (SELECT Id_Image FROM offre_image WHERE Id_Offre = :idoffre)");
         $SelectLastImg->bindParam("idoffre",$id);
@@ -71,7 +81,8 @@ if(isset($_POST['idoffre'], $_POST['nomoffre'], $_POST['descripoffre'], $_POST['
         }else{
             echo "Error: " . $req . "<br>" . $connexion->error;
         }
-    } 
+    
+    */} 
     
 }else{
     header('Location : backoffice.php');
