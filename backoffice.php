@@ -799,7 +799,7 @@ if(isset($_GET['modalSupprMessage'])){
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="title">
-                <h2>Message de <?php echo $message['Nom_Message']." ".$message['Nom_Message']; ?></h2>
+                <h2>Message de <?php echo $message['Nom_Message']." ".$message['Prenom_Message']; ?></h2>
             </div>
             <div class="modalBox">
                 <div class="supprBox">
