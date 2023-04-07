@@ -787,6 +787,94 @@ if(isset($_GET['modalSupprBilletterie'])){
 <?php
 }
 
+// CODE MODAL POUR SUPPRIMER UN MESSAGE
+
+if(isset($_GET['modalSupprMessage'])){
+    $req = $connexion->prepare("SELECT * FROM message WHERE Id_Message = :id");
+    $req->bindParam('id',$_GET['modalSupprMessage']);
+    $req->execute();
+    $message = $req->fetch();
+    ?>
+    <div id="modalSupprMessage" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="title">
+                <h2>Message de <?php echo $message['Nom_Message']." ".$message['Nom_Message']; ?></h2>
+            </div>
+            <div class="modalBox">
+                <div class="supprBox">
+                    <p>Êtes-vous sûr de vouloir supprimer ce message ?</p>
+                    <div class="supprBtn">
+                        <form id="formSupprMessage">
+                            <input type="hidden" name="idMsg" value="<?php echo $message['Id_Message'] ?>">
+                            <button type="submit" class="formSupprOui">OUI</button>
+                        </form>
+                        <button class="formSupprNon">NON</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal suppression d'une offre
+
+        var modalSuppr = document.getElementById("modalSupprMessage");
+        var span = document.getElementsByClassName("close")[0];
+        var btnNon = document.getElementsByClassName("formSupprNon")[0];
+        var btnOui = document.getElementsByClassName("formSupprOui")[0];
+        var body = document.body;
+        body.style.overflow= "hidden";
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+            modalSuppr.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
+        }
+        btnNon.onclick = function(e) {
+            e.preventDefault();
+            modalSuppr.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
+        }
+        btnOui.onclick = function() {
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
+            body.style.overflow = "auto";
+        }
+        window.onclick = function(event) {
+        if (event.target == modalSuppr) {
+            modalSuppr.style.display = "none";
+            history.pushState(null, null, window.location.href.split("&")[0]);
+            body.style.overflow = "auto";
+        }
+        }
+
+
+        // Code Jquery en AJAX pour la suppression d'une offre
+
+        $(document).ready(function(){
+            $("#formSupprMessage").submit(function(e){
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: "POST",
+                url: "supprMessage.php",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    alert(response);
+                    setTimeout(location.reload(true) , 3000);
+                }
+            });
+            });
+        });
+    </script>
+<?php
+}
+
 ?>
 
 <!-- Debut Page HTML -->
@@ -919,7 +1007,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     
 
 
-          <?php }else if($_GET['page'] === "billetterie"){ ?>
+            <?php }else if($_GET['page'] === "billetterie"){ ?>
                     
                     <div class="billetterie">
 
@@ -987,9 +1075,68 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
                     </div>
 
-               <?php }else if($_GET['page'] === "message"){
-                    /**/ 
-                }
+            <?php }else if($_GET['page'] === "message"){ ?>
+             
+                <div class="message">
+
+                <?= isset($msgvalidation) ? $msgvalidation : null ?>
+                <div class="titlePage"> 
+                    <h1>Tous les messages</h1>
+                </div>
+                <div class="tablemessages">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="tableNom">Nom Prénom</th>
+                            <th class="tableEmail">Email</th>
+                            <th class="tableContenu">Contenu</th>
+                            <th class="tableOffre">Offre associée</th>
+                            <th class="tablePart">Partenaire associé</th>
+                            <th class="tableAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        try{
+                            $req = $connexion->prepare("SELECT * FROM message");
+                            $req->execute();
+                            $messages= $req->fetchAll();
+                            foreach($messages as $message){
+                                if(!empty($message["Id_Offre"])){
+                                    $req = $connexion->prepare("SELECT Nom_Offre FROM offre WHERE Id_Offre = :id");
+                                    $req->bindParam('id',$message["Id_Offre"]);
+                                    $req->execute();
+                                    $Offre= $req->fetch();
+                                }
+                                if(!empty($message["Id_Partenaire"])){
+                                    $req = $connexion->prepare("SELECT Nom_Partenaire FROM partenaire WHERE Id_Partenaire = :id");
+                                    $req->bindParam('id',$message["Id_Partenaire"]);
+                                    $req->execute();
+                                    $Partenaire= $req->fetch();
+                                }
+                                ?>
+                                <tr>
+                                    <td><?php echo $message["Nom_Message"]." ".$message["Prenom_Message"]  ?></td>
+                                    <td><?php echo $message["Email_Message"] ?></td>
+                                    <td class="colonneContenu"><?php echo $message["Contenu_Message"] ?></td>
+                                    <td ><?= !empty($message["Id_Offre"]) ? $Offre['Nom_Offre'] : "Aucune offre associée" ?></td>
+                                    <td ><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
+                                    <td class="actionBtn">  
+                                        <a href="backoffice.php?page=message&modalSupprMessage=<?= $message["Id_Message"]; ?>" class="supprBtn">Supprimer</a>
+                                    </td>
+                                </tr>
+                            <?php }
+                        }catch(Exception $e){
+                            echo "Erreur lors de l'affichage";
+                        }
+
+                        ?>
+                    </tbody>
+                </table>
+                </div>
+
+                </div><?php 
+            }
             }
 
     }else{ ?>

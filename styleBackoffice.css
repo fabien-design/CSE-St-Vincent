@@ -1126,3 +1126,103 @@ input[type=submit]:hover {
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .dot:hover {
     background-color: #000;
 }
+
+.message .titlePage {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+}
+.message .tablemessages {
+    display: flex;
+    justify-content: center;
+}
+.billetterie .tablemessages table {
+    width: 92%;
+    padding: 15px;
+    border: 2px solid #1b3168;
+    border-radius: 10px;
+}
+.tablemessages thead tr {
+    background-color: #1b3168;
+    color: #ffffff;
+    text-align: center;
+
+}
+.tablemessages th,
+.tablemessages td {
+    padding: 12px 15px;
+}
+.tablemessages tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+.tablemessages tbody tr:nth-of-type(even) {
+    background-color: #f3f3f3;
+}
+.tablemessages tbody tr:last-of-type {
+    border-bottom: 2px solid #009879;
+}
+.tablemessages tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+.message .tablemessages tbody .colonneContenu{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    padding-bottom: 0;
+    max-width: 400px;
+}
+.message .tablemessages table thead .addPart {
+    background: #1b3168;
+    border-radius: 6px;
+}
+.message .tablemessages table thead .addPart a {
+    color: white;
+}
+.message .tablemessages table thead .addPart a div {
+    padding: 8px 20px;
+}
+.message .tablemessages table tbody .actionBtn {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+.message .tablemessages table tbody td .modifBtn,
+.message .tablemessages table tbody td .supprBtn {
+    padding: 8px 15px;
+    border-radius: 10px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.message .tablemessages table tbody td .modifBtn {
+    background-color: #1b3168;
+}
+.message .tablemessages table tbody td .supprBtn {
+    background-color: #ff0000;
+}
+.message .tablemessages table tbody .imgPart img {
+    max-width: 80px;
+}
+
+.message .tablemessages table tbody .actionBtn {
+    display: grid;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+.message .tablemessages table tbody td .supprBtn {
+    padding: 8px 15px;
+    border-radius: 10px;
+    color: #fff;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+.message .tablemessages table tbody td .supprBtn {
+    background-color: #ff0000;
+}
