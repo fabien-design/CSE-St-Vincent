@@ -75,7 +75,7 @@ $nomImg = $imgPart->fetchAll();
                             $Part = $SelectPart->fetch();
                                     
                             ?>
-                            <a href="partenariats.php?page=partenariats&modalOuvirPartenaire=<?php echo $Part['Id_Partenaire'] ?>">
+                            <a href="partenariats.php?modalOuvirPartenaire=<?php echo $Part['Id_Partenaire'] ?>">
                                <p>Voir plus</p>
                                 <img src="<?php echo "assets/".$image['Nom_Image']."" ?>" alt="Image du partenaire <?php echo $Part['Nom_Partenaire'] ?>">
                             </a>

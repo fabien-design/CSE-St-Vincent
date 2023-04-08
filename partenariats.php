@@ -80,7 +80,7 @@ $idPartenaire = $req->fetchAll();
 
                 ?>
 
-                    <div class="partenaires_grid-item"><a href="partenariats.php?page=partenariats&modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>"><img src="assets/<?= $image['Nom_Image'] ?>" alt="erreur_image_partenaire"></a></div>
+                    <div class="partenaires_grid-item"><a href="partenariats.php?modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>"><img src="assets/<?= $image['Nom_Image'] ?>" alt="erreur_image_partenaire"></a></div>
                 <?php } ?>
             </div>
             <div class="pagination">
@@ -95,7 +95,7 @@ $idPartenaire = $req->fetchAll();
     </main>
     <?php require 'include/footer.php' ?>
     <?php
-    // CODE MODAL POUR MODIFIER UN PARTENAIRE
+    // CODE MODAL POUR AFFICHER UN PARTENAIRE
     if (isset($_GET['modalOuvirPartenaire'])) {
         $req = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
         $req->bindParam('id', $_GET['modalOuvirPartenaire']);
@@ -127,7 +127,7 @@ $idPartenaire = $req->fetchAll();
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
         <script>
-            // Code Modal modif d'un partenaire
+            // Code Modal afficher d'un partenaire
             var modalModif = document.getElementById("modalModifPartenaire");
             var span = document.getElementsByClassName("closeModif")[0];
             var body = document.body;
@@ -135,14 +135,14 @@ $idPartenaire = $req->fetchAll();
             // cacher modal au click de la croix ou du btn non
             span.onclick = function() {
                 modalModif.style.display = "none";
-                history.pushState(null, null, window.location.href.split("&")[0]);
+                history.pushState(null, null, window.location.href.split("?")[0]);
                 body.style.overflow = "auto";
             }
             
             window.onclick = function(event) {
                 if (event.target == modalModif) {
                     modalModif.style.display = "none";
-                    history.pushState(null, null, window.location.href.split("&")[0]);
+                    history.pushState(null, null, window.location.href.split("?")[0]);
                     body.style.overflow = "auto";
                 }
             }
