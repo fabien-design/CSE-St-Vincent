@@ -234,10 +234,16 @@ if(isset($_GET['modalModifPartenaire'])){
                     <div class="imgBox">
                         <div class="edit-button">
                             <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
-                            <input type="file" name="imgpart">
+                            <input type="file" name="imgpart" onchange="document.getElementById('imgPrev').src = window.URL.createObjectURL(this.files[0])">
                         </div>
-                        <img src="assets/<?php echo $imgPart['Nom_Image'] ?>" alt="Image du partenaire">
-                        <input type="file" name="imgpart">
+                        <?php if(!empty($imgPart['Nom_Image'])){ ?>
+                        <img id="imgPrev" src='assets/<?php echo $imgPart['Nom_Image'] ?>' alt="Image du partenaire" > 
+                        <?php }
+                        else{
+                             ?>
+                            <img id="imgPrev" src="assets/individual-man.png" alt="Image(s) de l'offre"> 
+                    <?php
+                        } ?> 
                     </div>
 
                     <div class="modifBtn">
