@@ -69,9 +69,15 @@ $nomImg = $imgPart->fetchAll();
                     <div class="slideshow-container">
                         <?php foreach($nomImg as $image ){?>
                         <div class="mySlides"> 
-                            <a href="partenariats.php">
+                        <?php $SelectPart = $connexion->prepare("SELECT Id_Partenaire, Nom_Partenaire FROM partenaire WHERE Id_Image = :idimg");
+                            $SelectPart->bindParam('idimg',$image['Id_Image']);
+                            $SelectPart->execute();
+                            $Part = $SelectPart->fetch();
+                                    
+                            ?>
+                            <a href="partenariats.php?page=partenariats&modalOuvirPartenaire=<?php echo $Part['Id_Partenaire'] ?>">
                                <p>Voir plus</p>
-                                <img src="<?php echo "assets/".$image['Nom_Image']."" ?>">
+                                <img src="<?php echo "assets/".$image['Nom_Image']."" ?>" alt="Image du partenaire <?php echo $Part['Nom_Partenaire'] ?>">
                             </a>
                             
                         </div>
