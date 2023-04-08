@@ -25,6 +25,7 @@ $idPartenaire = $req->fetchAll();
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="stylePartenariats.css">
     <link rel="stylesheet" href="styleBackoffice.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -67,7 +68,34 @@ $idPartenaire = $req->fetchAll();
         <?php require 'include/aside.php' ?>
         <div class="right">
 
-            <?php
+            
+
+
+
+
+            <h1>Tous nos partenaires</h1>
+            <div class="partenaires_grid-container">
+                <?php
+                foreach ($nomImgPartenaire as $index => $image) {
+                    $test = $idPartenaire[$index];
+
+                ?>
+
+                    <div class="partenaires_grid-item"><a href="partenariats.php?page=partenariats&modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>"><img src="assets/<?= $image['Nom_Image'] ?>" alt="erreur_image_partenaire"></a></div>
+                <?php } ?>
+            </div>
+            <div class="pagination">
+                <span class="page activepage">1</span>
+                <span class="page">2</span>
+                <span class="page">3</span>
+                <span class="etc">...</span>
+                <span class="page">10</span>
+            </div>
+
+        </div>
+    </main>
+    <?php require 'include/footer.php' ?>
+    <?php
             // CODE MODAL POUR MODIFIER UN PARTENAIRE
             if (isset($_GET['modalOuvirPartenaire'])) {
                 $req = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
@@ -79,7 +107,7 @@ $idPartenaire = $req->fetchAll();
                 $reqImg->execute();
                 $imgPart = $reqImg->fetch();
             ?>
-                <div id="modalOuvirPartenaire" id="modalModifPartenaire" class="modal">
+                <div id="modalModifPartenaire" id="modalOuvirPartenaire"  class="modal">
                     <div class="modal-content">
                         <span class="closeModif">&times;</span>
                         <div class="formBox">
@@ -120,7 +148,7 @@ $idPartenaire = $req->fetchAll();
                 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
                 <script>
                     // Code Modal modif d'un partenaire
-                    var modalModif = document.getElementById("modalOuvirPartenaire");
+                    var modalModif = document.getElementById("modalModifPartenaire");
                     var span = document.getElementsByClassName("closeModif")[0];
                     var btnNon = document.getElementsByClassName("formModifNon")[0];
                     var btnOui = document.getElementsByClassName("formModifOui")[0];
@@ -158,32 +186,6 @@ $idPartenaire = $req->fetchAll();
             // FIN CODE
 
             ?>
-
-
-
-
-            <h1>Tous nos partenaires</h1>
-            <div class="partenaires_grid-container">
-                <?php
-                foreach ($nomImgPartenaire as $index => $image) {
-                    $test = $idPartenaire[$index];
-
-                ?>
-
-                    <div class="partenaires_grid-item"><a href="partenariats.php?page=partenariats&modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>"><img src="assets/<?= $image['Nom_Image'] ?>" alt="erreur_image_partenaire"></a></div>
-                <?php } ?>
-            </div>
-            <div class="pagination">
-                <span class="page activepage">1</span>
-                <span class="page">2</span>
-                <span class="page">3</span>
-                <span class="etc">...</span>
-                <span class="page">10</span>
-            </div>
-
-        </div>
-    </main>
-    <?php require 'include/footer.php' ?>
 
     <script src="scriptaside.js"></script>
 </body>
