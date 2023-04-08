@@ -34,7 +34,7 @@ $idPartenaire = $req->fetchAll();
     <title>CSE Saint-Vincent - Partenariats</title>
 </head>
 
-<body>
+<body id="body" class="no-transition">
     <header>
         <div class="gris">
 

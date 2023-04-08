@@ -65,7 +65,7 @@ setlocale(LC_TIME,"fr_FR.utf8");
     <title>CSE Saint-Vincent - Accueil</title>
 </head>
 
-<body>
+<body id="body" class="no-transition">
     <header>
         <div class="gris">
         </div>

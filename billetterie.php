@@ -26,7 +26,7 @@ $chaqueOffre = $offres->fetchAll();
     <title>CSE Saint-Vincent - Billetterie</title>
 </head>
 
-<body>
+<body id="body" class="no-transition">
     <header>
         <div class="gris">
 

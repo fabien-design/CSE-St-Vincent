@@ -30,3 +30,19 @@ function showSlides(n) {
   slides[slideIndex-1].style.display = "block";  
   dots[slideIndex-1].className += " active";
 }
+
+
+
+function transitionAfterPageLoad() {
+  document.getElementById("body").classList.remove("no-transition");
+}
+
+// call the function inside an Immediately Invoked Function Expression (IIFE) to invoke it immediately after page load
+(function() {
+  transitionAfterPageLoad();
+})()
+
+// jQuery 
+$(function() {
+  $("#body").removeClass("no-transition");
+});

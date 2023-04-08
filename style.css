@@ -34,6 +34,14 @@ a:visited {
     background-color: #B6A886;
 }
 
+.no-transition * {
+    -webkit-transition: none !important;
+    -moz-transition: none !important;
+    -ms-transition: none !important;
+    -o-transition: none !important;
+    transition: none !important;
+}
+
 /* ###### BODY ###### */
 main {
     display: flex;

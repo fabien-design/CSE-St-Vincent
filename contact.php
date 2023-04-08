@@ -16,7 +16,7 @@
     <title>CSE Saint-Vincent - Contact</title>
 </head>
 
-<body>
+<body id="body" class="no-transition">
     <header>
         <div class="gris">
 
