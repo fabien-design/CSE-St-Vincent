@@ -20,7 +20,7 @@ $office = $place->fetch();
 $office = $office['Emplacement_Bureau_Info_Accueil'];
 
 //Images partenaires
-$imgPart = $connexion -> prepare("SELECT DISTINCT * FROM image ORDER BY RAND() LIMIT 3");
+$imgPart = $connexion -> prepare("SELECT DISTINCT * FROM image WHERE Id_Image in (SELECT Id_Image FROM partenaire) ORDER BY RAND() LIMIT 3 ");
 $imgPart -> execute();
 $nomImg = $imgPart->fetchAll();
 
