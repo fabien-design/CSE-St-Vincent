@@ -80,7 +80,7 @@ $idPartenaire = $req->fetchAll();
 
                 ?>
 
-                    <div class="partenaires_grid-item"><a href="partenariats.php?modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>"><img src="assets/<?= $image['Nom_Image'] ?>" alt="erreur_image_partenaire"></a></div>
+                    <div class="partenaires_grid-item"><a href="partenariats.php?modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>"><img src="assets/<?= $image['Nom_Image'] ?>" alt="Image du partenaire"></a></div>
                 <?php } ?>
             </div>
             <div class="pagination">
