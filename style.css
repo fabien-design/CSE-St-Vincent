@@ -19,7 +19,8 @@ h1 {
 a {
     text-decoration: none;
 }
-a:visited{
+
+a:visited {
     color: inherit;
 }
 
@@ -169,12 +170,13 @@ aside.left .partenaire .boxSlider {
     flex-direction: column;
 }
 
-.contactaccess a, .offreaccess a{
+.contactaccess a,
+.offreaccess a {
     color: #000;
 }
 
-.place a{
-    color: #0000EE;
+.place a {
+    color: rgb(0, 102, 204);
 }
 
 /* Slideshow container */
@@ -184,13 +186,13 @@ aside.left .partenaire .slideshow-container {
     margin: auto;
 }
 
-.mySlides{
+.mySlides {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.mySlides img{
+.mySlides img {
     z-index: 1;
     width: 150px;
     height: 150px;
@@ -199,7 +201,7 @@ aside.left .partenaire .slideshow-container {
     border-radius: 10px;
 }
 
-.mySlides p{
+.mySlides p {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -211,7 +213,7 @@ aside.left .partenaire .slideshow-container {
     color: #000000;
 }
 
-.mySlides p:hover{
+.mySlides p:hover {
     border-radius: 10px;
     transition: 0.3s ease;
     background-color: rgba(255, 255, 255, 0.653);
@@ -280,7 +282,7 @@ aside.left .partenaire .active,
 aside.left .decouverte {
     display: flex;
     justify-content: center;
-    
+
 }
 
 aside.left .decouverte a {
@@ -288,11 +290,17 @@ aside.left .decouverte a {
     text-decoration: underline;
     text-align: center;
 }
-aside.left a{
+
+aside.left a {
     transition: opacity 0.3s ease;
 }
 
-.offreaccess a:hover, .contactaccess a:hover, .tel a:hover, .email a:hover, .place a:hover,.decouverte a:hover{
+.offreaccess a:hover,
+.contactaccess a:hover,
+.tel a:hover,
+.email a:hover,
+.place a:hover,
+.decouverte a:hover {
     opacity: 0.5;
 }
 
@@ -477,7 +485,7 @@ aside.left a{
 }
 
 /*  #### BILLETTERIE #### */
-.right{
+.right {
     display: flex;
     flex-direction: column;
     width: 100%;
@@ -499,7 +507,7 @@ footer {
 
 }
 
-.logo_footer{
+.logo_footer {
     width: 100%;
 }
 
@@ -508,19 +516,19 @@ footer {
     padding: 15px;
 }
 
-.right_footer{
+.right_footer {
     width: 100%;
     display: flex;
     flex-direction: column;
     padding-left: 5%;
 }
 
-.title_footer{
+.title_footer {
     font-size: 65%;
     color: white;
 }
 
-.links_footer{
+.links_footer {
     max-width: 100px;
     display: flex;
     flex-direction: row;
@@ -529,11 +537,11 @@ footer {
     align-items: center;
 }
 
-.links_footer a{
+.links_footer a {
     color: white;
 }
 
-.links_footer li{
+.links_footer li {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -541,51 +549,53 @@ footer {
 }
 
 
-.links_list_footer{
+.links_list_footer {
     width: 100%;
     list-style: none;
-    display:flex;
+    display: flex;
     gap: 20px;
     flex-wrap: nowrap;
     align-items: center;
 }
 
-.links_list_footer img{
+.links_list_footer img {
     -webkit-filter: invert(100%);
     filter: invert(100%);
 }
 
-.links_footer li:hover{
+.links_footer li:hover {
     transition: 0.5s;
     filter: invert(15%);
-    transform:scale(0.97);
+    transform: scale(0.97);
 }
 
 
 @media screen and (max-width: 900px) {
-    footer{
+    footer {
         justify-content: center;
         align-items: center;
         flex-direction: column-reverse;
     }
-    .right_footer{
+
+    .right_footer {
         align-items: center;
         justify-content: center;
         padding: 0 0 5% 0;
     }
-    .logo_footer img{
+
+    .logo_footer img {
         opacity: 1;
     }
 
-    
 
-    .left_footer{
+
+    .left_footer {
         margin: 0;
         justify-content: center;
         align-items: center;
     }
 
-    .links_footer ul{
+    .links_footer ul {
         flex-direction: column;
     }
 }
