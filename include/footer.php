@@ -1,6 +1,7 @@
 <?php
 
-$end_link = $_SERVER['PHP_SELF'];
+$parts = explode('/', $_SERVER["SCRIPT_NAME"]);
+$file = $parts[count($parts) - 1];
 
 ?>
 <footer>
@@ -15,7 +16,7 @@ $end_link = $_SERVER['PHP_SELF'];
         </div>
         <div class="links_footer">
             <ul class="links_list_footer">
-                <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/index.php'){?>
+                <?php if($file=='index.php'){?>
                 <a href="partenariats.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Partenariats</li>
                 </a>
@@ -26,7 +27,7 @@ $end_link = $_SERVER['PHP_SELF'];
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Contact</li>
                 </a>
                 <?php }?>
-                <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/partenariats.php'){?>
+                <?php if($file=='partenariats.php'){?>
                 <a href="index.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Accueil</li>
                 </a>
@@ -37,7 +38,7 @@ $end_link = $_SERVER['PHP_SELF'];
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Contact</li>
                 </a>
                 <?php }?>
-                <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/billetterie.php'){?>
+                <?php if($file=='billetterie.php'){?>
                 <a href="index.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Accueil</li>
                 </a>
@@ -48,7 +49,7 @@ $end_link = $_SERVER['PHP_SELF'];
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Contact</li>
                 </a>
                 <?php }?>
-                <?php if($end_link=='/CSE Saint Vincent/CSE-St-Vincent/contact.php'){?>
+                <?php if($file=='contact.php'){?>
                 <a href="index.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Accueil</li>
                 </a>
