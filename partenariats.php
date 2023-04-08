@@ -24,9 +24,8 @@ $idPartenaire = $req->fetchAll();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="stylePartenariats.css">
-    <link rel="stylesheet" href="styleBackoffice.css">
+    <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -68,7 +67,7 @@ $idPartenaire = $req->fetchAll();
         <?php require 'include/aside.php' ?>
         <div class="right">
 
-            
+
 
 
 
@@ -96,96 +95,63 @@ $idPartenaire = $req->fetchAll();
     </main>
     <?php require 'include/footer.php' ?>
     <?php
-            // CODE MODAL POUR MODIFIER UN PARTENAIRE
-            if (isset($_GET['modalOuvirPartenaire'])) {
-                $req = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
-                $req->bindParam('id', $_GET['modalOuvirPartenaire']);
-                $req->execute();
-                $partenaire = $req->fetch();
-                $reqImg = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image = :id");
-                $reqImg->bindParam('id', $partenaire['Id_Image']);
-                $reqImg->execute();
-                $imgPart = $reqImg->fetch();
-            ?>
-                <div id="modalModifPartenaire" id="modalOuvirPartenaire"  class="modal">
-                    <div class="modal-content">
-                        <span class="closeModif">&times;</span>
-                        <div class="formBox">
-                            <form id="formModifPartenaire" enctype="multipart/form-data" method="POST">
-                                <input type="hidden" name="idPart" value="<?php echo $partenaire['Id_Partenaire'] ?>">
-                                <h1 style="margin-bottom:20px;">AFFICHAGE du Partenaire</h1>
+    // CODE MODAL POUR MODIFIER UN PARTENAIRE
+    if (isset($_GET['modalOuvirPartenaire'])) {
+        $req = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
+        $req->bindParam('id', $_GET['modalOuvirPartenaire']);
+        $req->execute();
+        $partenaire = $req->fetch();
+        $reqImg = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image = :id");
+        $reqImg->bindParam('id', $partenaire['Id_Image']);
+        $reqImg->execute();
+        $imgPart = $reqImg->fetch();
+    ?>
+        <div id="modalModifPartenaire" class="modal">
+            <div class="modal-content">
+                <span class="closeModif">&times;</span>
+                <div class="formBox">
 
-                                <label for="nompart">Nom* :</label>
-                                <input type="text" name="nompart" placeholder="Le nom du Partenaire." value="<?php echo $partenaire['Nom_Partenaire'] ?>">
+                    <h1 style="margin-bottom:20px;"><?= $partenaire['Nom_Partenaire'] ?></h1>
+                    
+                    <div class="imagePartenaire"><img class="imagePartenaire" src="assets/<?php echo $imgPart['Nom_Image'] ?>" alt="Image du partenaire"></div>
+                    
+                    <p><?= $partenaire['Description_Partenaire'] ?></p>
 
-                                <label for="descrippart">Description* :</label>
-                                <textarea name="descrippart" cols="30" rows="10" placeholder="La description du Partenaire."><?php echo $partenaire['Description_Partenaire'] ?></textarea>
-
-                                <label for="lienpart">Lien* :</label>
-                                <input type="text" name="lienpart" placeholder="Le lien du Partenaire." value="<?php echo $partenaire['Lien_Partenaire'] ?>">
-
-                                <label for="imgpart">Image* :</label>
-                                <div class="imgBox">
-                                    <div class="edit-button">
-                                        <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
-                                        <input type="file" name="imgpart">
-                                    </div>
-                                    <img src="assets/<?php echo $imgPart['Nom_Image'] ?>" alt="Image du partenaire">
-                                    <input type="file" name="imgpart">
-                                </div>
-
-                                <div class="modifBtn">
-                                    <button type="submit" class="formModifOui">OUI</button>
-                            </form>
-                            <button class="formModifNon">NON</button>
-                        </div>
-
-                    </div>
-
+                    <a target="_blank" href="<?= $partenaire['Lien_Partenaire'] ?>"><div id="offres_decouvrir">Voir Site du Partenaire</div></a>
                 </div>
 
+            </div>
 
-                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-                <script>
-                    // Code Modal modif d'un partenaire
-                    var modalModif = document.getElementById("modalModifPartenaire");
-                    var span = document.getElementsByClassName("closeModif")[0];
-                    var btnNon = document.getElementsByClassName("formModifNon")[0];
-                    var btnOui = document.getElementsByClassName("formModifOui")[0];
-                    var body = document.body;
-                    body.style.overflow = "hidden";
-                    // cacher modal au click de la croix ou du btn non
-                    span.onclick = function() {
-                        modalModif.style.display = "none";
-                        history.pushState(null, null, window.location.href.split("&")[0]);
-                        body.style.overflow = "auto";
-                    }
-                    btnNon.onclick = function(e) {
-                        e.preventDefault();
-                        modalModif.style.display = "none";
-                        history.pushState(null, null, window.location.href.split("&")[0]);
-                        body.style.overflow = "auto";
-                    }
-                    btnOui.onclick = function() {
-                        history.pushState(null, null, window.location.href.split("&")[0]);
-                        setTimeout(function() {
-                            modalModif.style.display = "none";
-                        }, 2000);
-                        body.style.overflow = "auto";
-                    }
-                    window.onclick = function(event) {
-                        if (event.target == modalModif) {
-                            modalModif.style.display = "none";
-                            history.pushState(null, null, window.location.href.split("&")[0]);
-                            body.style.overflow = "auto";
-                        }
-                    }
-                </script>
-            <?php }
+        </div>
 
-            // FIN CODE
 
-            ?>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
+            // Code Modal modif d'un partenaire
+            var modalModif = document.getElementById("modalModifPartenaire");
+            var span = document.getElementsByClassName("closeModif")[0];
+            var body = document.body;
+            body.style.overflow = "hidden";
+            // cacher modal au click de la croix ou du btn non
+            span.onclick = function() {
+                modalModif.style.display = "none";
+                history.pushState(null, null, window.location.href.split("&")[0]);
+                body.style.overflow = "auto";
+            }
+            
+            window.onclick = function(event) {
+                if (event.target == modalModif) {
+                    modalModif.style.display = "none";
+                    history.pushState(null, null, window.location.href.split("&")[0]);
+                    body.style.overflow = "auto";
+                }
+            }
+        </script>
+    <?php }
+
+    // FIN CODE
+
+    ?>
 
     <script src="scriptaside.js"></script>
 </body>

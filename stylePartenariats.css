@@ -1,0 +1,75 @@
+.modal {
+    scrollbar-width: none;
+}
+
+.modal-content {
+    margin-bottom: 200px !important;
+}
+
+
+#modalModifPartenaire {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalModifPartenaire .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalModifPartenaire .modal-content .closeModif {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    transition: color 0.35s ease-in-out;
+}
+
+#modalModifPartenaire .modal-content .closeModif:hover,
+#modalModifPartenaire .modal-content .closeModif:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+
+}
+
+#modalModifPartenaire .modal-content .formBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.imagePartenaire {
+    max-width: 60vw;
+    max-height: 50vh;
+}
+
+.partenaires_grid-item img {
+    transition: all 0.3s ease;
+}
+
+.partenaires_grid-item img:hover {
+    opacity: 0.7;
+    scale: 1.05;
+}
+
+.formBox>* {
+    margin: 20px 0;
+}
+
+#offres_decouvrir {
+    margin: 0 !important;
+}

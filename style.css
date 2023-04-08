@@ -227,7 +227,7 @@ aside.left .partenaire .prev,
 aside.left .partenaire .next {
     cursor: pointer;
     position: absolute;
-    z-index: 4;
+    z-index: 0;
     top: 50%;
     width: auto;
     padding: 10px;
@@ -427,7 +427,6 @@ aside.left a {
     text-align: center;
     object-fit: cover;
     margin-bottom: 15px;
-    border: 1px solid rgba(0, 0, 0, 0.125);
     border-radius: 10px;
 }
 
