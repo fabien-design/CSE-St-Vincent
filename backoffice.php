@@ -537,7 +537,7 @@ if(isset($_GET['modalModifBilletterie'])){
                    <input type="text" name="nomoffre" placeholder="Nom de l'Offre" value="<?php echo $offre['Nom_Offre'] ?>">
 
                     <label for="descripoffre">Description* :</label>
-                    <textarea name="descripoffre" cols="30" rows="10" placeholder="Description de l'Offre" value="<?php echo $offre['Description_Offre'] ?>"></textarea>
+                    <textarea name="descripoffre" cols="30" rows="10" placeholder="Description de l'Offre" value="<?php echo $offre['Description_Offre'] ?>"><?php echo $offre['Description_Offre'] ?></textarea>
                     
                     <div class="datesoffre">
                         <label for="datedeboffre">Date de début de l'offre* :</label>
@@ -1117,7 +1117,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 ?>
                                 <tr>
                                     <td><?php echo $message["Nom_Message"]." ".$message["Prenom_Message"]  ?></td>
-                                    <td><?php echo $message["Email_Message"] ?></td>
+                                    <td><a href="mailto:"><?php echo $message["Email_Message"] ?></a></td>
                                     <td class="colonneContenu"><?php echo $message["Contenu_Message"] ?></td>
                                     <td ><?= !empty($message["Id_Offre"]) ? $Offre['Nom_Offre'] : "Aucune offre associée" ?></td>
                                     <td ><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
