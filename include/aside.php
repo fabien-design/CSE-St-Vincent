@@ -93,6 +93,6 @@ $nomImg = $imgPart->fetchAll();
                 </div>
             </div>
             <div class="decouverte">
-                <a target="_blank" href="partenariats.php">Découvrir tous nos partenaires</a>
+                <a href="partenariats.php">Découvrir tous nos partenaires</a>
             </div>
         </aside>

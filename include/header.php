@@ -17,6 +17,9 @@ if($file === "partenariats.php"){
 if($file == "billetterie.php"){
     $link_billetterie = 'active';
 }
+if($file == "contenu_offre_billetterie.php"){
+    $link_billetterie = 'active';
+}
 if($file == "contact.php"){
     $link_contact = 'active';
 }

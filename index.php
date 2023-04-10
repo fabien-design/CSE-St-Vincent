@@ -85,12 +85,12 @@ setlocale(LC_TIME,"fr_FR.utf8");
                 </div>
                 <p><?=$offre['Description_Offre']?></p>
                 
-                    <span class="offre_learnmore"><a target="blank" href="contenu_offre_billetterie.php?id=<?=$offre['Id_Offre']?>">EN SAVOIR PLUS <img class="chevron-droit"
+                    <span class="offre_learnmore"><a href="contenu_offre_billetterie.php?id=<?=$offre['Id_Offre']?>">EN SAVOIR PLUS <img class="chevron-droit"
                             src="assets/chevron-droit.png" alt="chevron-droit"> </a></span>
                
             </div>
                 <?php } ?>
-            <a target="_blank" href="billetterie.php">
+            <a href="billetterie.php">
                 <span id="offres_decouvrir">Découvrir toutes nos offres 〉</span>
             </a>
         </div>

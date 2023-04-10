@@ -501,7 +501,7 @@ aside.left a {
 
 /* #### CONTENU BILLETTERIE #### */
 
-.date_contenu_offre_billetterie span{
+.date_contenu_offre_billetterie {
     padding-top: 25px;
 }
 
