@@ -492,11 +492,19 @@ aside.left a {
 }
 
 /*  #### BILLETTERIE #### */
+
 .right {
     display: flex;
     flex-direction: column;
     width: 100%;
 }
+
+/* #### CONTENU BILLETTERIE #### */
+
+.date_contenu_offre_billetterie span{
+    padding-top: 25px;
+}
+
 
 /*  #### FOOTER ####  */
 

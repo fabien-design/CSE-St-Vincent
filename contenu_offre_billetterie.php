@@ -1,10 +1,19 @@
+
 <?php
 
 require 'include/connexion_db.php';
 
-$offres = $connexion -> prepare("SELECT DISTINCT * FROM offre ORDER BY Id_Offre DESC LIMIT 5");
-$offres -> execute();
-$chaqueOffre = $offres->fetchAll();
+var_dump($_GET['id']);
+
+if(empty($_GET) || empty($_GET['id'])){
+    header('Location: billetterie.php');
+}
+
+
+$selectOffre = $connexion->prepare('SELECT * FROM offre WHERE Id_Offre = :id;');
+$selectOffre->bindParam(':id', $_GET['id']);
+$selectOffre->execute();
+$DescOffres = $selectOffre->fetch(PDO::FETCH_ASSOC);
 
 ?>
 
@@ -23,7 +32,7 @@ $chaqueOffre = $offres->fetchAll();
         rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/sv_logo.png">
-    <title>CSE Saint-Vincent - Billetterie</title>
+    <title>CSE Saint-Vincent - <?= $DescOffres['Nom_Offre']?></title>
 </head>
 
 <body id="body" class="no-transition">
@@ -57,28 +66,24 @@ $chaqueOffre = $offres->fetchAll();
     <main>
     <?php require 'include/aside.php'?>
         <div class="right">
-            <h1>Page de billetterie</h1>
-            <?php foreach($chaqueOffre as $offre ){?>
-            <div class="offre_billetterie">
-                <div class="offre_billetterie_header">
-                    <span class="tag_offre">OFFRE</span>
-                    <span class="date_offre">Publié le <?php echo date('d F Y',strtotime($offre['Date_Debut_Offre']))?></span>
-                </div>
-                <p><?=$offre['Description_Offre']?></p>
-                
-                    <span class="offre_learnmore"><a target="blank" href="contenu_offre_billetterie.php?id=<?=$offre['Id_Offre']?>">EN SAVOIR PLUS <img class="chevron-droit"
-                            src="assets/chevron-droit.png" alt="chevron-droit"> </a></span>
-               
+            <h1><?= $DescOffres['Nom_Offre']?></h1>
+            <div class="Description_Offre">
+                <?= $DescOffres['Description_Offre'] ?>
+                <p>
+                    Pour les groupes d'un minimum de 4 personnes, profitez d'une réduction de -50% sur un large choix de sucreries pendant vos concerts. Offre valable dans tout nos établissements.
+                </p>
             </div>
-                <?php } ?>
-                <div class="pagination">
+            <div class="date_contenu_offre_billetterie">
+            <span class="date_contenu_offre">Publié le <?php echo date('d F Y',strtotime($DescOffres['Date_Debut_Offre']))?></span>
+            </div>
+            <div class="pagination">
                 <span class="page activepage">1</span>
                 <span class="page">2</span>
                 <span class="page">3</span>
                 <span class="etc">...</span>
                 <span class="page">10</span>
             </div>
-        </div>
+            </div>
     </main>
     <?php require 'include/footer.php'?>
     <script src="scriptaside.js"></script>
