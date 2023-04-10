@@ -78,14 +78,7 @@ $DescOffres = $selectOffre->fetch(PDO::FETCH_ASSOC);
             <div class="back">
                 <a href="billetterie.php"><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit">Retour</a>
             </div>
-            <div class="pagination">
-                <span class="page activepage">1</span>
-                <span class="page">2</span>
-                <span class="page">3</span>
-                <span class="etc">...</span>
-                <span class="page">10</span>
-            </div>
-            </div>
+        </div>
     </main>
     <?php require 'include/footer.php'?>
     <script src="scriptaside.js"></script>
