@@ -76,6 +76,9 @@ $DescOffres = $selectOffre->fetch(PDO::FETCH_ASSOC);
             <div class="date_contenu_offre_billetterie">
             <span class="date_contenu_offre">Publié le <?php echo date('d F Y',strtotime($DescOffres['Date_Debut_Offre']))?></span>
             </div>
+            <div class="back">
+                <a href="billetterie.php"><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit">Retour</a>
+            </div>
             <div class="pagination">
                 <span class="page activepage">1</span>
                 <span class="page">2</span>

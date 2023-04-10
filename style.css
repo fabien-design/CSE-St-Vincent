@@ -505,6 +505,14 @@ aside.left a {
     padding-top: 25px;
 }
 
+.back{
+    padding-top: 10%;
+}
+
+.back :hover{
+    opacity: 0.60;
+}
+
 
 /*  #### FOOTER ####  */
 
