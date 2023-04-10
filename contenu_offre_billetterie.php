@@ -3,13 +3,12 @@
 
 require 'include/connexion_db.php';
 
-var_dump($_GET['id']);
-
+// Si $_GET est vide alors renvoie sur la page billetterie
 if(empty($_GET) || empty($_GET['id'])){
     header('Location: billetterie.php');
 }
 
-
+//Selection des valeurs de la table offre
 $selectOffre = $connexion->prepare('SELECT * FROM offre WHERE Id_Offre = :id;');
 $selectOffre->bindParam(':id', $_GET['id']);
 $selectOffre->execute();
