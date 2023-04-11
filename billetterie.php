@@ -31,7 +31,7 @@ $chaqueOffre = $offres->fetchAll();
     <main>
     <?php require 'include/aside.php'?>
         <div class="right">
-            <h1>Page de billetterie</h1>
+            <h1>Billetterie</h1>
             <?php foreach($chaqueOffre as $offre ){?>
             <div class="offre_billetterie">
                 <div class="offre_billetterie_header">
