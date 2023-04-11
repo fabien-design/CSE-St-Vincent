@@ -1137,7 +1137,7 @@ input[type=submit]:hover {
     display: flex;
     justify-content: center;
 }
-.billetterie .tablemessages table {
+.message .tablemessages table {
     width: 92%;
     padding: 15px;
     border: 2px solid #1b3168;
