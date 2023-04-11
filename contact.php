@@ -22,7 +22,7 @@
     <main>
         <?php require 'include/aside.php'?>
         <div class="right">
-            <h1>Page de contact</h1>
+            <h1>Contact</h1>
 
             <section class="contact" id="linkToContact">
 		<div class="contactForm">
