@@ -159,7 +159,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 }
 
-.accueil .titlePage {
+.titlePage {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -167,7 +167,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 
 }
 
-.accueil .titlePage h1 {
+.titlePage h1 {
     font-weight: 900;
     color: #1b3168;
     text-decoration: underline;
