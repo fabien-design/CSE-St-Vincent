@@ -14,10 +14,15 @@ $selectOffre->bindParam(':id', $_GET['id']);
 $selectOffre->execute();
 $DescOffres = $selectOffre->fetch(PDO::FETCH_ASSOC);
 
-$imgContenuBilletterie = $connexion -> prepare("SELECT Nom_Image FROM image WHERE Id_Image in (SELECT Id_Image FROM partenaire WHERE Id_Partenaire = :id)");
+$imgContenuBilletterie = $connexion -> prepare("SELECT image.Nom_Image, image.Id_Image FROM image INNER JOIN partenaire ON image.Id_Image = partenaire.Id_Image INNER JOIN offre ON partenaire.Id_Partenaire = offre.Id_Partenaire WHERE offre.Id_Offre = :id");
 $imgContenuBilletterie -> bindParam(":id", $_GET["id"]);
 $imgContenuBilletterie -> execute();
-$imgContenu = $imgContenuBilletterie->fetchAll();
+$imgContenu = $imgContenuBilletterie->fetch();
+
+$modalLink = $connexion->prepare("SELECT* FROM partenaire INNER JOIN offre ON partenaire.Id_Partenaire = offre.Id_Partenaire WHERE offre.Id_Offre = :id");
+$modalLink-> bindParam(":id", $_GET["id"]);
+$modalLink -> execute();
+$link = $modalLink->fetch();
 
                      
 
@@ -57,9 +62,10 @@ $imgContenu = $imgContenuBilletterie->fetchAll();
             <span class="date_contenu_offre">Publié le <?php echo date('d F Y',strtotime($DescOffres['Date_Debut_Offre']))?></span>
             <div class="img_partenaire">
                 <div class="contain_img_partenaire">
-                    <a href="partenariats.php?modalOuvirPartenaire=<?php echo $Part['Id_Partenaire'] ?>">
-                        <p>Voir plus</p>
-                        <img src="<?php echo "assets/".$imgContenu['Nom_Image']."" ?> alt="Image du partenaire">
+                    <h1>Partenaire</h1>
+                    <a href="partenariats.php?modalOuvirPartenaire=<?php echo $link['Nom_Partenaire'] ?>">
+
+                        <img src="<?php echo "assets/".$imgContenu['Nom_Image']."" ?>" alt="Image du partenaire">
                     </a>
                 </div>
             </div>

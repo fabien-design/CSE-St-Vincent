@@ -520,11 +520,45 @@ aside.left a {
 }
 
 .back{
+    display: flex;
+    justify-content: center;
     padding-top: 10%;
 }
 
 .back :hover{
     opacity: 0.60;
+}
+
+.img_partenaire{
+    display: flex;
+    justify-content: center;
+    margin-top: 10%;
+    width: 100%;
+}
+
+.contain_img_partenaire{
+    width: 30%;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background: #C4C4C4 ;
+}
+
+.contain_img_partenaire h1{
+    font-size: 20px;
+}
+
+.contain_img_partenaire a{
+    width: 75%;
+    padding-bottom: 10%;
+}
+
+
+.contain_img_partenaire img{
+    width: 100%;
+    height: 100%;
 }
 
 

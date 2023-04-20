@@ -86,11 +86,11 @@ $idPartenaire = $req->fetchAll();
 
                     <h1 style="margin-bottom:20px;"><?= $partenaire['Nom_Partenaire'] ?></h1>
                     
-                    <div class="imagePartenaire"><img class="imagePartenaire" src="assets/<?php echo $imgPart['Nom_Image'] ?>" alt="Image du partenaire"></div>
+                    <div class="imagePartenaire"><img class="imagePartenaire" src="assets/<?php echo $imgPart['Nom_Image']  ?>" alt="Image du partenaire"></div>
                     
                     <p><?= $partenaire['Description_Partenaire'] ?></p>
 
-                    <a target="_blank" href="<?= $partenaire['Lien_Partenaire'] ?>"><div id="offres_decouvrir">Voir Site du Partenaire</div></a>
+                    <a href="<?= $partenaire['Lien_Partenaire'] ?>"><div id="offres_decouvrir">Voir Site du Partenaire</div></a>
                 </div>
 
             </div>
