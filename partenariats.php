@@ -90,7 +90,7 @@ $idPartenaire = $req->fetchAll();
                     
                     <p><?= $partenaire['Description_Partenaire'] ?></p>
 
-                    <a href="<?= $partenaire['Lien_Partenaire'] ?>"><div id="offres_decouvrir">Voir Site du Partenaire</div></a>
+                    <a target='blank' href="<?= $partenaire['Lien_Partenaire'] ?>"><div id="offres_decouvrir">Voir Site du Partenaire</div></a>
                 </div>
 
             </div>
