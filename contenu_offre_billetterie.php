@@ -14,11 +14,13 @@ $selectOffre->bindParam(':id', $_GET['id']);
 $selectOffre->execute();
 $DescOffres = $selectOffre->fetch(PDO::FETCH_ASSOC);
 
+//Selection du nom de l'image par rapport a l'id de l'offre
 $imgContenuBilletterie = $connexion -> prepare("SELECT image.Nom_Image, image.Id_Image FROM image INNER JOIN partenaire ON image.Id_Image = partenaire.Id_Image INNER JOIN offre ON partenaire.Id_Partenaire = offre.Id_Partenaire WHERE offre.Id_Offre = :id");
 $imgContenuBilletterie -> bindParam(":id", $_GET["id"]);
 $imgContenuBilletterie -> execute();
 $imgContenu = $imgContenuBilletterie->fetch();
 
+//Selection des données de la table partenaire en fonction de l'id de l'offre
 $modalLink = $connexion->prepare("SELECT* FROM partenaire INNER JOIN offre ON partenaire.Id_Partenaire = offre.Id_Partenaire WHERE offre.Id_Offre = :id");
 $modalLink-> bindParam(":id", $_GET["id"]);
 $modalLink -> execute();
