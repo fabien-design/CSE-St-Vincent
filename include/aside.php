@@ -46,19 +46,17 @@ $nomImg = $imgPart->fetchAll();
             <div class="infocontact">
                 <h1 class="sectiontitle">Informations de contact</h1>
                 <div class="tel">
-                    <p><img src="assets/chevron-droit.png" class="chevron-droit">
-                        Par téléphone : <a target="_blank" href="tel:+3330303030303">+<?=$phone ?></a>
+                    <p><img src="assets/chevron-droit.png" class="chevron-droit">Par téléphone : <a target="_blank" href="tel:+3330303030303">+<?=$phone ?></a>
                     </p>
                 </div>
                 <div class="email">
-                    <p><img src="assets/chevron-droit.png" class="chevron-droit">
-                        Par email : <a target="_blank"
+                    <p>
+                        <img src="assets/chevron-droit.png" class="chevron-droit">Par email : <a target="_blank"
                             href="mailto:cse@lyceestvincent.fr"><?= $adresseEmail ?></a>
                     </p>
                 </div>
                 <div class="place">
-                    <p><img src="assets/chevron-droit.png" class="chevron-droit">
-                        Au lycée : <a target="_blank"
+                    <p><img src="assets/chevron-droit.png" class="chevron-droit">Au lycée : <a target="_blank"
                             href="https://www.google.com/maps/place/49%C2%B012'08.1%22N+2%C2%B035'18.9%22E/@49.202244,2.5880054,19z/data=!3m1!4b1!4m4!3m3!8m2!3d49.202244!4d2.58857"><?= $office ?></a>
                     </p>
                 </div>
