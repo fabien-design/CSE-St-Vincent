@@ -30,7 +30,9 @@ if($file == "contact.php"){
     </div>
     <div class="blue">
         <nav>
-            <div class="logo"><img src="assets/logo_lycee.png" alt="logo_st_vincent"></div>
+            <div class="logo">
+                <img src="assets/logo_lycee.png" alt="logo_st_vincent">
+            </div>
             <ul>
                 <a href="index.php">
                     <li class="<?= $link_index ?>">

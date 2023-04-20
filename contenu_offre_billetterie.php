@@ -14,6 +14,13 @@ $selectOffre->bindParam(':id', $_GET['id']);
 $selectOffre->execute();
 $DescOffres = $selectOffre->fetch(PDO::FETCH_ASSOC);
 
+$imgContenuBilletterie = $connexion -> prepare("SELECT Nom_Image FROM image WHERE Id_Image in (SELECT Id_Image FROM partenaire WHERE Id_Partenaire = :id)");
+$imgContenuBilletterie -> bindParam(":id", $_GET["id"]);
+$imgContenuBilletterie -> execute();
+$imgContenu = $imgContenuBilletterie->fetchAll();
+
+                     
+
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +55,14 @@ $DescOffres = $selectOffre->fetch(PDO::FETCH_ASSOC);
             </div>
             <div class="date_contenu_offre_billetterie">
             <span class="date_contenu_offre">Publié le <?php echo date('d F Y',strtotime($DescOffres['Date_Debut_Offre']))?></span>
+            <div class="img_partenaire">
+                <div class="contain_img_partenaire">
+                    <a href="partenariats.php?modalOuvirPartenaire=<?php echo $Part['Id_Partenaire'] ?>">
+                        <p>Voir plus</p>
+                        <img src="<?php echo "assets/".$imgContenu['Nom_Image']."" ?> alt="Image du partenaire">
+                    </a>
+                </div>
+            </div>
             </div>
             <div class="back">
                 <a href="billetterie.php"><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit">Retour</a>

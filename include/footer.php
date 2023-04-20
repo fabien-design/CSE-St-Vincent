@@ -60,6 +60,18 @@ $file = $parts[count($parts) - 1];
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Billetterie</li>
                 </a>
                 <?php }?>
+
+                <?php if($file=='contenu_offre_billetterie.php'){?>
+                <a href="index.php">
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Accueil</li>
+                </a>
+                <a href="partenariats.php">
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Partenariats</li>
+                </a>
+                <a href="contact.php">
+                    <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> contact</li>
+                </a>
+                <?php }?>
             </ul>
         </div>
     </div>

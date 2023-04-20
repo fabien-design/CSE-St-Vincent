@@ -62,12 +62,26 @@ nav {
 
 }
 
-nav .logo {
+nav .logo { 
     position: absolute;
     background-color: white;
     top: -10px;
     padding: 15px;
     display: block;
+}
+
+span .logo_st_vincent_responsive{
+    width: 50%;
+    position: absolute;
+}
+
+span .logo_st_vincent_responsive img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.logo_responsive{
+    width: 10%;
 }
 
 .gris {
