@@ -63,8 +63,8 @@ $link = $modalLink->fetch();
             <div class="img_partenaire">
                 <div class="contain_img_partenaire">
                     <h1>Partenaire</h1>
-                    <a href="partenariats.php?modalOuvirPartenaire=<?php echo $link['Nom_Partenaire'] ?>">
-
+                    <a href="partenariats.php?modalOuvirPartenaire=<?php echo $link['Id_Partenaire'] ?>">
+                        <p>Voir plus</p>
                         <img src="<?php echo "assets/".$imgContenu['Nom_Image']."" ?>" alt="Image du partenaire">
                     </a>
                 </div>

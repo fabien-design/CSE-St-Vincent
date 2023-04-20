@@ -543,7 +543,7 @@ aside.left a {
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: #C4C4C4 ;
+    background: rgba(27, 49, 104, 0.1) ;
 }
 
 .contain_img_partenaire h1{
@@ -551,15 +551,39 @@ aside.left a {
 }
 
 .contain_img_partenaire a{
+    display: flex;
+    justify-content: center;
+    align-items: center;
     width: 75%;
     padding-bottom: 10%;
+    border-radius: 20px;
 }
 
 
 .contain_img_partenaire img{
+    z-index: 3;
     width: 100%;
     height: 100%;
+    border-radius: 20px;
 }
+
+.contain_img_partenaire p{
+    position: absolute;
+    font-size: 20px;
+    font-weight: bold;
+    z-index: 2;
+    color: #000000;
+}
+
+.contain_img_partenaire img:hover {
+    opacity: 0.25;
+    z-index: 2;
+    transition: 0.2s ease-in-out;
+}
+
+ 
+
+
 
 
 /*  #### FOOTER ####  */
