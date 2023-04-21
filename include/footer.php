@@ -20,7 +20,7 @@ $file = $parts[count($parts) - 1];
                 <a href="partenariats.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Partenariats</li>
                 </a>
-                <a href="billetterie.php">
+                <a href="billetterie.php?page=1">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Billetterie</li>
                 </a>
                 <a href="contact.php">
@@ -31,7 +31,7 @@ $file = $parts[count($parts) - 1];
                 <a href="index.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Accueil</li>
                 </a>
-                <a href="billetterie.php">
+                <a href="billetterie.php?page=1">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Billetterie</li>
                 </a>
                 <a href="contact.php">
@@ -56,7 +56,7 @@ $file = $parts[count($parts) - 1];
                 <a href="partenariats.php">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Partenariats</li>
                 </a>
-                <a href="billetterie.php">
+                <a href="billetterie.php?page=1">
                     <li><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit"> Billetterie</li>
                 </a>
                 <?php }?>

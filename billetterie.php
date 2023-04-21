@@ -2,9 +2,20 @@
 
 require 'include/connexion_db.php';
 
-$offres = $connexion -> prepare("SELECT DISTINCT * FROM offre ORDER BY Id_Offre DESC LIMIT 5");
-$offres -> execute();
-$chaqueOffre = $offres->fetchAll();
+$count = $connexion -> prepare("SELECT COUNT(Id_Offre)  as infos FROM offre");
+$count->setFetchMode(PDO::FETCH_ASSOC);
+$count -> execute();
+$tcount = $count->fetchAll();
+
+@$page = $_GET["page"];
+$nb_elements_par_page = 5;
+$pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
+$debut = ($page - 1) * $nb_elements_par_page;
+
+$select = $connexion -> prepare("SELECT * FROM offre ORDER BY Date_Debut_Offre desc LIMIT $debut, $nb_elements_par_page ");
+$select->setFetchMode(PDO::FETCH_ASSOC);
+$select ->execute();
+$tab = $select->fetchAll();
 
 ?>
 
@@ -32,7 +43,7 @@ $chaqueOffre = $offres->fetchAll();
     <?php require 'include/aside.php'?>
         <div class="right">
             <h1>Billetterie</h1>
-            <?php foreach($chaqueOffre as $offre ){?>
+            <?php foreach($tab as $offre ){?>
             <div class="offre_billetterie">
                 <div class="offre_billetterie_header">
                     <span class="tag_offre">OFFRE</span>
@@ -46,11 +57,12 @@ $chaqueOffre = $offres->fetchAll();
             </div>
                 <?php } ?>
                 <div class="pagination">
-                <span class="page activepage">1</span>
-                <span class="page">2</span>
-                <span class="page">3</span>
-                <span class="etc">...</span>
-                <span class="page">10</span>
+                    <?php
+                    for($i=1; $i<= $pages; $i++){
+                        ?>
+                        <a href="?page=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
+                    <?php } ?>
+                
             </div>
         </div>
     </main>

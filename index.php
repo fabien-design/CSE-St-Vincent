@@ -90,7 +90,7 @@ setlocale(LC_TIME,"fr_FR.utf8");
                
             </div>
                 <?php } ?>
-            <a href="billetterie.php">
+            <a href="billetterie.php?page=1">
                 <span id="offres_decouvrir">Découvrir toutes nos offres 〉</span>
             </a>
         </div>

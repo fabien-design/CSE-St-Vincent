@@ -73,7 +73,7 @@ $link = $modalLink->fetch();
             </div>
             </div>
             <div class="back">
-                <a href="billetterie.php"><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit">Retour</a>
+                <a href="billetterie.php?page=1"><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit">Retour</a>
             </div>
         </div>
     </main>
