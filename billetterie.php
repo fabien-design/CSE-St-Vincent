@@ -59,9 +59,15 @@ $tab = $select->fetchAll();
                 <div class="pagination">
                     <?php
                     for($i=1; $i<= $pages; $i++){
+                        if($page != $i){
+
+                        
                         ?>
                         <a href="?page=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
-                    <?php } ?>
+                    <?php }else{?>
+                        <a href="?page=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
+                    <?php }
+                } ?>
                 
             </div>
         </div>
