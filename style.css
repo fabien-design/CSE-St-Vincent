@@ -112,6 +112,15 @@ span .logo_st_vincent_responsive img{
     background-color: #B6A886;
 }
 
+.menu-burger{
+    position: absolute;
+    margin-top: 7px ;
+    right: 5vw;
+    width: 35px;
+    height: 40px;
+    filter: invert(100);
+    display: none;
+}
 
 
 
@@ -143,7 +152,7 @@ aside.left .sectiontitle {
 aside.left .home {
     display: flex;
     align-items: center;
-    padding: 30px 5px;
+    padding: 15px 5px;
 }
 
 aside.left .home img {
@@ -416,9 +425,8 @@ aside.left a {
 
 #offres_decouvrir {
     margin-top: 3vh;
-    height: 35px;
     display: inline-block;
-    padding: 5px 20px;
+    padding: 10px 20px;
     color: white;
     background-color: #1B3168;
     border-radius: 7px;
@@ -676,12 +684,17 @@ footer {
     }
 
     .img_responsive{
+        padding: 15px 0;
         display: block;
         object-fit: cover;
     }
 
     .img_base{
         display: none;
+    }
+
+    .menu-burger{
+        display: block;
     }
 
     

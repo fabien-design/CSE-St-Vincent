@@ -1,6 +1,11 @@
 <?php
 require 'include/connexion_db.php';
 
+$parts = explode('/', $_SERVER["SCRIPT_NAME"]);
+$file = $parts[count($parts) - 1];
+
+
+
  //Récupération des données de Téléphone
 $tel = $connexion -> prepare('SELECT Num_TEL_Info_Accueil FROM info_accueil');
 $tel ->execute();
@@ -28,9 +33,39 @@ $nomImg = $imgPart->fetchAll();
 
 <aside class="left">
             <div class="home">
+                <?php
+                if($file === "index.php"){
+                   
+                ?>
                 <img src="assets/homeIcon.png">
                 <img src="assets/chevron-droit.png" class="chevron-droit">
-                <a href="index.php" class="sectiontitle">Accueil</a>
+                <h1 class="sectiontitle">Accueil</h1>
+                <?php }?>
+                <?php
+                if($file === "partenariats.php"){
+                    
+                ?>
+                <img src="assets/partenaireIcon.png">
+                <img src="assets/chevron-droit.png" class="chevron-droit">
+                <h1 class="sectiontitle">Partenaires</h1>
+                <?php }?>
+                <?php
+                if($file === "billetterie.php"){
+                    
+                ?>
+                <img src="assets/billetIcon.png">
+                <img src="assets/chevron-droit.png" class="chevron-droit">
+                <h1 class="sectiontitle">Billetterie</h1>
+                <?php }?>
+                <?php
+                if($file === "contact.php"){
+                   
+                ?>
+                <img src="assets/contactsIcon.png">
+                <img src="assets/chevron-droit.png" class="chevron-droit">
+                <h1 class="sectiontitle">Contact</h1>
+                <?php }?>
+                
             </div>
             <div class="fastaccess">
                 <h1 class="sectiontitle">Accès rapide</h1>

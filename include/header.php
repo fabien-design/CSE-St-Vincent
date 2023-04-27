@@ -49,8 +49,9 @@ if($file == "contact.php"){
                 <a href="contact.php">
                     <li class="<?= $link_contact ?>">Contact</li>
                 </a>
+                
             </ul>
-
+            <img class="menu-burger" src="assets/menu.png" alt="menu-burger">
         </nav>
     </div>
 </header>
