@@ -732,9 +732,7 @@ footer {
     .logo_footer img {
         opacity: 1;
     }
-
-
-
+    
     .left_footer {
         margin: 0;
         justify-content: center;
@@ -744,5 +742,14 @@ footer {
     .links_footer ul {
         flex-direction: column;
     }
+    .logo_footer{
+        display: flex;
+        justify-content: center;
+    }
+    footer .img_responsive{
+        background: none;
+        width: 30%;
+    }
 }
+
 

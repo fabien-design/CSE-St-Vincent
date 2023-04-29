@@ -47,7 +47,7 @@ $nomImg = $imgPart->fetchAll();
                 ?>
                 <img src="assets/partenaireIcon.png">
                 <img src="assets/chevron-droit.png" class="chevron-droit">
-                <h1 class="sectiontitle">Partenaires</h1>
+                <h1 class="sectiontitle">Partenariats</h1>
                 <?php }?>
                 <?php
                 if($file === "billetterie.php"){
