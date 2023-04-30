@@ -4,7 +4,9 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-
+body{
+    overflow-x:hidden;
+}
 p {
     /*font-size: clamp(14px,1vw,1.5vw);*/
     font-size: clamp(0.95rem, 0.31vw + 0.81rem, 1.28rem);
