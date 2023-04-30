@@ -3,11 +3,13 @@
 }
 
 .modal-content {
+    
     margin-bottom: 200px !important;
 }
 
 
 #modalModifPartenaire {
+    overflow-y: hidden;
     display: block;
     position: fixed;
     z-index: 1;
@@ -16,7 +18,6 @@
     top: 0;
     width: 100%;
     height: 100%;
-    overflow: auto;
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
@@ -26,7 +27,7 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 80%;
+    width: 70%;
 }
 
 #modalModifPartenaire .modal-content .closeModif {
@@ -35,6 +36,10 @@
     font-size: 28px;
     font-weight: bold;
     transition: color 0.35s ease-in-out;
+}
+
+.closeModif{
+    position: absolute;
 }
 
 #modalModifPartenaire .modal-content .closeModif:hover,
@@ -52,9 +57,13 @@
     flex-direction: column;
 }
 
+.formBox p{
+   text-align: center;
+}
+
 .imagePartenaire {
-    max-width: 60vw;
-    max-height: 50vh;
+    max-width: 250px;
+    max-height: 250px;
 }
 
 .partenaires_grid-item img {
