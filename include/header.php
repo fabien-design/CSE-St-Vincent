@@ -48,7 +48,7 @@ if($file == "contact.php"){
                     </a>
                     <a href="billetterie.php?page=1">
                         <li class="<?= $link_billetterie ?>">
-                            billetterie
+                            Billetterie
                         </li>
                     </a>
                     <a href="contact.php">
