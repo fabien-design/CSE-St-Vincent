@@ -780,6 +780,12 @@ footer {
         background: none;
         width: 30%;
     }
+
+    /* Responsive Contenu Billetterie */
+
+        .contain_img_partenaire{
+            min-width: 150px;
+        }
 }
 
 @keyframes slideMenuBurger {
