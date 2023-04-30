@@ -34,24 +34,31 @@ if($file == "contact.php"){
                 <img class="img_base" src="assets/logo_lycee.png" alt="logo_st_vincent">
                 <img class="img_responsive" src="assets/Logo_St_Vincent_2.jpg" alt="logo_st_vincent_responsive">
             </div>
-            <ul>
-                <a href="index.php">
-                    <li class="<?= $link_index ?>">
+            <div class="links">
+                <ul>
+                    <a href="index.php">
+                        <li class="<?= $link_index ?>">
                         Accueil
-                    </li>
-                </a>
-                <a href="partenariats.php">
-                    <li class="<?= $link_partenaires ?>">Partenariats</li>
-                </a>
-                <a href="billetterie.php?page=1">
-                    <li class="<?= $link_billetterie ?>">Billetterie</li>
-                </a>
-                <a href="contact.php">
-                    <li class="<?= $link_contact ?>">Contact</li>
-                </a>
-                
-            </ul>
+                        </li>
+                    </a>
+                    <a href="partenariats.php">
+                        <li class="<?= $link_partenaires ?>">
+                            Partenariats
+                        </li>
+                    </a>
+                    <a href="billetterie.php?page=1">
+                        <li class="<?= $link_billetterie ?>">
+                            billetterie
+                        </li>
+                    </a>
+                    <a href="contact.php">
+                        <li class="<?= $link_contact ?>">Contact</li>
+                    </a>
+                    
+                </ul>
+            </div>
             <img class="menu-burger" src="assets/menu.png" alt="menu-burger">
         </nav>
     </div>
 </header>
+<script src="scriptMenuBurger.js"></script>
