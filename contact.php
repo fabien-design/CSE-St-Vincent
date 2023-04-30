@@ -22,8 +22,8 @@
     <?php require 'include/header.php'?>
     <main>
         <?php require 'include/aside.php'?>
-        <div class="right">
-            <h1>Contact</h1>
+        <div class="right_contact">
+            <h1>Contactez-nous !</h1>
 
             <section class="contact" id="linkToContact">
 		<div class="contactForm">

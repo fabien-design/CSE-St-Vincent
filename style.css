@@ -439,7 +439,20 @@ aside.left a {
     opacity: 0.9;
 }
 
+
+
+
 /*  #### PARTENARIATS ####  */
+
+.right_partenaire{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+ .right_partenaire h1, .right_billetterie h1, .right_contact h1{
+    text-align: center;
+}
 
 .partenaires_grid-container {
     display: flex;
@@ -518,7 +531,7 @@ aside.left a {
 
 /*  #### BILLETTERIE #### */
 
-.right {
+.right_billetterie {
     display: flex;
     flex-direction: column;
     width: 100%;

@@ -39,13 +39,7 @@ $idPartenaire = $req->fetchAll();
     <?php require 'include/header.php'?>
     <main>
         <?php require 'include/aside.php' ?>
-        <div class="right">
-
-
-
-
-
-
+        <div class="right_partenaire">
             <h1>Tous nos partenaires</h1>
             <div class="partenaires_grid-container">
                 <?php

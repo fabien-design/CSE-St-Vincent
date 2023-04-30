@@ -42,8 +42,8 @@ $tab = $select->fetchAll();
     <?php require 'include/header.php'?>
     <main>
     <?php require 'include/aside.php'?>
-        <div class="right">
-            <h1>Billetterie</h1>
+        <div class="right_billetterie">
+            <h1>Toutes nos offres</h1>
             <?php foreach($tab as $offre ){?>
             <div class="offre_billetterie">
                 <div class="offre_billetterie_header">
