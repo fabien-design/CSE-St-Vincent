@@ -1316,3 +1316,40 @@ input[type=submit]:hover {
 #modalSupprMessage .modal-content .modalBox .supprBox .supprBtn .formSupprOui:hover{
     color: #27bb56 !important;
 }
+
+
+/* Pagination */
+
+.pagination {
+    align-items: center;
+    margin: 20px auto;
+    justify-content: center;
+    display: flex;
+    gap: 20px
+}
+
+.pagination span {
+    height: 55px;
+    width: 55px;
+    color: white;
+    font-weight: 700;
+    border-radius: 3px;
+    cursor: pointer;
+}
+
+.pagination span:hover {
+    opacity: 0.8;
+    transition: all 0.3s ease-in-out;
+}
+
+.page {
+    background-color: #1B3168;
+    border: #1B3168 solid 2px;
+    align-items: center;
+    justify-content: center;
+    display: flex;
+}
+
+.activepage {
+    border: #B6A886 solid 3px !important;
+}

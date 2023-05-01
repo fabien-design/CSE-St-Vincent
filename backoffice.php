@@ -163,20 +163,48 @@ if(isset($_GET['modalSupprPartenaire'])){
         // cacher modal au click de la croix ou du btn non
         span.onclick = function() {
         modalSuppr.style.display = "none";
-        history.pushState(null, null, window.location.href.split("&")[0]);
+        //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
         }
         btnNon.onclick = function() {
             modalSuppr.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
         }
         btnOui.onclick = function() {
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             setTimeout(modalSuppr.style.display = "none", 2000);
         }
         window.onclick = function(event) {
         if (event.target == modalSuppr) {
             modalSuppr.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
         }
         }
 
@@ -268,24 +296,52 @@ if(isset($_GET['modalModifPartenaire'])){
         // cacher modal au click de la croix ou du btn non
         span.onclick = function() {
             modalModif.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         btnNon.onclick = function(e) {
             e.preventDefault();
             modalModif.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         btnOui.onclick = function() {
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             setTimeout(function() {modalModif.style.display = "none";}, 2000);
             body.style.overflow = "auto";
         }
         window.onclick = function(event) {
         if (event.target == modalModif) {
             modalModif.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         }
@@ -362,21 +418,49 @@ if(isset($_GET['modalAjoutPartenaire'])){
         // cacher modal au click de la croix ou du btn non
         span.onclick = function() {
             modalAjout.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
         }
         btnNon.onclick = function(e) {
             e.preventDefault();
             modalAjout.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
         }
         btnOui.onclick = function() {
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             setTimeout(function() {modalAjout.style.display = "none";}, 2000);
         }
         window.onclick = function(event) {
         if (event.target == modalAjout) {
             modalAjout.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
         }
         }
         
@@ -474,21 +558,49 @@ if(isset($_GET['modalAjoutBilletterie'])){
        // cacher modal au click de la croix ou du btn non
        span.onclick = function() {
            modalAjout.style.display = "none";
-           history.pushState(null, null, window.location.href.split("&")[0]);
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
        }
        btnNon.onclick = function(e) {
            e.preventDefault();
            modalAjout.style.display = "none";
-           history.pushState(null, null, window.location.href.split("&")[0]);
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
        }
        btnOui.onclick = function() {
-           history.pushState(null, null, window.location.href.split("&")[0]);
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
            setTimeout(function() {modalAjout.style.display = "none";}, 2000);
        }
        window.onclick = function(event) {
        if (event.target == modalAjout) {
            modalAjout.style.display = "none";
-           history.pushState(null, null, window.location.href.split("&")[0]);
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
        }
        }
        
@@ -628,24 +740,52 @@ if(isset($_GET['modalModifBilletterie'])){
         // cacher modal au click de la croix ou du btn non
         span.onclick = function() {
             modalModif.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         btnNon.onclick = function(e) {
             e.preventDefault();
             modalModif.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         btnOui.onclick = function() {
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             setTimeout(function() {modalModif.style.display = "none";}, 2000);
             body.style.overflow = "auto";
         }
         window.onclick = function(event) {
         if (event.target == modalModif) {
             modalModif.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         }
@@ -747,24 +887,52 @@ if(isset($_GET['modalSupprBilletterie'])){
         // cacher modal au click de la croix ou du btn non
         span.onclick = function() {
             modalSuppr.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         btnNon.onclick = function(e) {
             e.preventDefault();
             modalSuppr.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         btnOui.onclick = function() {
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
             body.style.overflow = "auto";
         }
         window.onclick = function(event) {
         if (event.target == modalSuppr) {
             modalSuppr.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         }
@@ -835,24 +1003,52 @@ if(isset($_GET['modalSupprMessage'])){
         // cacher modal au click de la croix ou du btn non
         span.onclick = function() {
             modalSuppr.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         btnNon.onclick = function(e) {
             e.preventDefault();
             modalSuppr.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         btnOui.onclick = function() {
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
             body.style.overflow = "auto";
         }
         window.onclick = function(event) {
         if (event.target == modalSuppr) {
             modalSuppr.style.display = "none";
-            history.pushState(null, null, window.location.href.split("&")[0]);
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
             body.style.overflow = "auto";
         }
         }
@@ -1014,7 +1210,23 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
 
             <?php }else if($_GET['page'] === "billetterie"){ ?>
+                    <?php 
+                    $count = $connexion -> prepare("SELECT COUNT(Id_Offre)  as infos FROM offre");
+                    $count->setFetchMode(PDO::FETCH_ASSOC);
+                    $count -> execute();
+                    $tcount = $count->fetchAll();
                     
+                    $nb_elements_par_page = 7;
+                    $pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
+                    @$page = $_GET["numpage"];
+                    // Verif validité 
+                    if(empty($page)){
+                        $page = 1;
+                    }
+                    $page = max(1, min($pages, $page));
+
+                    $debut = ($page - 1) * $nb_elements_par_page;
+                    ?>
                     <div class="billetterie">
 
                     <?= isset($msgvalidation) ? $msgvalidation : null ?>
@@ -1038,7 +1250,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         <tbody>
                             <?php 
                             try{
-                                $req = $connexion->prepare("SELECT * FROM offre");
+                                $req = $connexion->prepare("SELECT * FROM offre LIMIT $debut, $nb_elements_par_page");
                                 $req->execute();
                                 $offres= $req->fetchAll();
                                 foreach($offres as $offre){
@@ -1064,9 +1276,21 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                         <td><?= !empty($offre["Id_Partenaire"]) ? $NomPart['Nom_Partenaire'] : "Aucun partenaire Associé" ?></td>
                                         <td><?php echo $offre['Nombre_Place_Min_Offre'] ?></td>
                                         <td><?php echo $nbImgOffre." image(s)" ?></td>
-                                        <td class="actionBtn">  
-                                            <a href="backoffice.php?page=billetterie&modalModifBilletterie=<?= $offre["Id_Offre"]; ?>" class="modifBtn">Modifier</a>
-                                            <a href="backoffice.php?page=billetterie&modalSupprBilletterie=<?= $offre["Id_Offre"]; ?>" class="supprBtn">Supprimer</a>
+                                        <td class="actionBtn"> 
+                                            <?php 
+                                            //recup param de l'url
+                                            $params = $_GET;
+
+                                            //Creation GET + Construct url
+                                            $params['modalModifBilletterie'] = $offre["Id_Offre"];
+                                            $urlmodif = http_build_query($params);
+                                            unset($params['modalModifBilletterie']); // je suppr la colonne pour pas l'avoir dans urlsuppr
+
+                                            $params['modalSupprBilletterie'] = $offre["Id_Offre"];
+                                            $urlsuppr = http_build_query($params);
+                                            ?> 
+                                            <a href="backoffice.php?<?= $urlmodif; ?>" class="modifBtn">Modifier</a>
+                                            <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
                                         </td>
                                     </tr>
                                <?php }
@@ -1078,7 +1302,16 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         </tbody>
                     </table>
                     </div>
-
+                    <div class="pagination">
+                        <?php
+                        for($i=1; $i<= $pages; $i++){
+                            if($page != $i){ ?>
+                            <a href="?page=billetterie&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
+                        <?php }else{?>
+                            <a href="?page=billetterie&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
+                        <?php }
+                        } ?>
+                    </div>
                     </div>
 
             <?php }else if($_GET['page'] === "message"){ ?>
