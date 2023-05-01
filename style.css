@@ -740,6 +740,7 @@ footer {
 
     .menu-burger{
         display: block;
+        cursor: pointer;
     }
 
     
