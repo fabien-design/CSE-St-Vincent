@@ -59,6 +59,7 @@
     }
 
 }
+if(!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur']) && $_SESSION['Droit_Utilisateur'] === "Administrateur"){ 
 if(!empty($_POST['accueilEdit'])){
     $erreursaccueilEdit = [];
     if(empty($_POST['accueilEdit']['phone'])){
@@ -126,7 +127,6 @@ if(!empty($_POST['accueilEdit'])){
         }
     }
 }
-
 
 // CODE MODAL POUR SUPPRESSION D'UN PARTENAIRE
 
@@ -1087,7 +1087,7 @@ if(isset($_GET['modalSupprMessage'])){
     </script>
 <?php
 }
-
+}
 ?>
 
 <!-- Debut Page HTML -->
@@ -1504,7 +1504,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
         </main>
     <?php
     }else{
-        header('Location: index.html');
+        header('Location: index.php');
     }
 
 }?>
