@@ -7,8 +7,8 @@ $count->setFetchMode(PDO::FETCH_ASSOC);
 $count -> execute();
 $tcount = $count->fetchAll();
 
-$pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
 $nb_elements_par_page = 5;
+$pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
 @$page = $_GET["page"];
 // Verif validité 
 if(empty($page)){
