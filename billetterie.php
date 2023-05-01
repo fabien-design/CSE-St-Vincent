@@ -25,7 +25,9 @@ if(isset($_GET["anciennepage"])){
     }catch(Exception $e){
         $page = 1;
     }
-    
+}
+if($page === 0){
+    $page = 1;
 }
 $debut = ($page - 1) * $nb_elements_par_page;
 
