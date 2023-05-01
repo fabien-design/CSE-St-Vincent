@@ -1152,7 +1152,30 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
             if(!empty($_GET['page']) && $_GET['page'] !== "accueil"){
                 if($_GET['page'] === "partenaires"){?>
+                    <?php 
+                        $count = $connexion -> prepare("SELECT COUNT(Id_Partenaire)  as infos FROM partenaire");
+                        $count->setFetchMode(PDO::FETCH_ASSOC);
+                        $count -> execute();
+                        $tcount = $count->fetchAll();
+                        
+                        $nb_elements_par_page = 7;
+                        $pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
+                        @$page = $_GET["numpage"];
+                        // Verif validité 
+                        if(empty($page)){
+                            $page = 1;
+                        }
+                        $page = max(1, min($pages, $page));
+                        $debut = ($page - 1) * $nb_elements_par_page;
 
+                        //recup param de l'url
+                        $params = $_GET;
+                        //Creation GET + Construct url
+                        $params['modalAjoutPartenaire'] = "partenaire";
+                        $urlajout = http_build_query($params);
+                        unset($params['modalAjoutPartenaire']);// je suppr la colonne pour pas l'avoir dans les autres url (urlmodif et urlsuppr)
+
+                    ?>
                     <div class="partenaires">
 
                     <?= isset($msgvalidation) ? $msgvalidation : null ?>
@@ -1168,13 +1191,13 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 <th class="tableLien">Lien du site</th>
                                 <th class="tableImage">Image</th>
                                 <th class="tableAction">Action</th>
-                                <th class="addPart"><a href="backoffice.php?page=partenaires&modalAjoutPartenaire=partenaire"><div>Ajouter</div></a></th>
+                                <th class="addPart"><a href="backoffice.php?<?= $urlajout; ?>"><div>Ajouter</div></a></th>
                             </tr>
                         </thead>
                         <tbody>
                             <?php 
                             try{
-                                $req = $connexion->prepare("SELECT * FROM partenaire");
+                                $req = $connexion->prepare("SELECT * FROM partenaire LIMIT $debut, $nb_elements_par_page");
                                 $req->execute();
                                 $partenaires= $req->fetchAll();
                                 foreach($partenaires as $partenaire){
@@ -1190,8 +1213,18 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                         <td><?php echo $partenaire["Lien_Partenaire"] ?></td>
                                         <td class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire">' : "Aucune image" ?></td>
                                         <td class="actionBtn">  
-                                            <a href="backoffice.php?page=partenaires&modalModifPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="modifBtn">Modifier</a>
-                                            <a href="backoffice.php?page=partenaires&modalSupprPartenaire=<?= $partenaire["Id_Partenaire"]; ?>" class="supprBtn">Supprimer</a>
+                                            <?php 
+                                            $params['modalModifPartenaire'] = $partenaire["Id_Partenaire"];
+                                            $urlmodif = http_build_query($params);
+                                            unset($params['modalModifPartenaire']); // je suppr la colonne pour pas l'avoir dans urlsuppr
+                    
+                                            $params['modalSupprPartenaire'] = $partenaire["Id_Partenaire"];
+                                            $urlsuppr = http_build_query($params);
+                                            unset($params['modalSupprPartenaire']);
+
+                                            ?>
+                                            <a href="backoffice.php?<?= $urlmodif; ?>" class="modifBtn">Modifier</a>
+                                            <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
                                         </td>
                                     </tr>
                                <?php }
@@ -1203,7 +1236,16 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         </tbody>
                     </table>
                     </div>
-
+                    <div class="pagination">
+                        <?php
+                        for($i=1; $i<= $pages; $i++){
+                            if($page != $i){ ?>
+                            <a href="?page=partenaires&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
+                        <?php }else{?>
+                            <a href="?page=partenaires&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
+                        <?php }
+                        } ?>
+                    </div>
                     </div>
                     
                     
@@ -1224,8 +1266,14 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         $page = 1;
                     }
                     $page = max(1, min($pages, $page));
-
                     $debut = ($page - 1) * $nb_elements_par_page;
+
+                    //recup param de l'url
+                    $params = $_GET;
+
+                    $params['modalAjoutBilletterie'] = "offre";
+                    $urlajout = http_build_query($params);
+                    unset($params['modalAjoutBilletterie']);
                     ?>
                     <div class="billetterie">
 
@@ -1244,7 +1292,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 <th class="tablePlace">Nombres de places</th>
                                 <th class="tableImage">Nombres d'images</th>
                                 <th class="tableAction">Action</th>
-                                <th class="addPart"><a href="backoffice.php?page=billetterie&modalAjoutBilletterie=offre"><div>Ajouter</div></a></th>
+                                <th class="addPart"><a href="backoffice.php?<?= $urlajout ?>"><div>Ajouter</div></a></th>
                             </tr>
                         </thead>
                         <tbody>
@@ -1288,6 +1336,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
                                             $params['modalSupprBilletterie'] = $offre["Id_Offre"];
                                             $urlsuppr = http_build_query($params);
+                                            unset($params['modalSupprBilletterie']);
                                             ?> 
                                             <a href="backoffice.php?<?= $urlmodif; ?>" class="modifBtn">Modifier</a>
                                             <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
@@ -1315,7 +1364,25 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     </div>
 
             <?php }else if($_GET['page'] === "message"){ ?>
-             
+                <?php 
+                    $count = $connexion -> prepare("SELECT COUNT(Id_Message)  as infos FROM message");
+                    $count->setFetchMode(PDO::FETCH_ASSOC);
+                    $count -> execute();
+                    $tcount = $count->fetchAll();
+                    
+                    $nb_elements_par_page = 7;
+                    $pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
+                    @$page = $_GET["numpage"];
+                    // Verif validité 
+                    if(empty($page)){
+                        $page = 1;
+                    }
+                    $page = max(1, min($pages, $page));
+                    $debut = ($page - 1) * $nb_elements_par_page;
+
+                    //recup param de l'url
+                    $params = $_GET;
+                ?>
                 <div class="message">
 
                 <?= isset($msgvalidation) ? $msgvalidation : null ?>
@@ -1337,7 +1404,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     <tbody>
                         <?php 
                         try{
-                            $req = $connexion->prepare("SELECT * FROM message");
+                            $req = $connexion->prepare("SELECT * FROM message LIMIT $debut, $nb_elements_par_page");
                             $req->execute();
                             $messages= $req->fetchAll();
                             foreach($messages as $message){
@@ -1361,7 +1428,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     <td ><?= !empty($message["Id_Offre"]) ? $Offre['Nom_Offre'] : "Aucune offre associée" ?></td>
                                     <td ><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
                                     <td class="actionBtn">  
-                                        <a href="backoffice.php?page=message&modalSupprMessage=<?= $message["Id_Message"]; ?>" class="supprBtn">Supprimer</a>
+                                        <?php
+                                            $params['modalSupprMessage'] = $message["Id_Message"];
+                                            $urlsuppr = http_build_query($params);
+                                            unset($params['modalSupprMessage']);
+                                        ?>
+                                        <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
                                     </td>
                                 </tr>
                             <?php }
@@ -1373,7 +1445,16 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     </tbody>
                 </table>
                 </div>
-
+                <div class="pagination">
+                        <?php
+                        for($i=1; $i<= $pages; $i++){
+                            if($page != $i){ ?>
+                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
+                        <?php }else{?>
+                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
+                        <?php }
+                        } ?>
+                    </div>
                 </div><?php 
             }
             }
