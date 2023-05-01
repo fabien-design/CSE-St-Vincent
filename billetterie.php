@@ -7,9 +7,15 @@ $count->setFetchMode(PDO::FETCH_ASSOC);
 $count -> execute();
 $tcount = $count->fetchAll();
 
-@$page = $_GET["page"];
-$nb_elements_par_page = 5;
 $pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
+$nb_elements_par_page = 5;
+@$page = $_GET["page"];
+// Verif validité 
+if(empty($page)){
+    $page = 1;
+}
+$page = max(1, min($pages, $page));
+
 $debut = ($page - 1) * $nb_elements_par_page;
 
 $select = $connexion -> prepare("SELECT * FROM offre ORDER BY Date_Debut_Offre desc LIMIT $debut, $nb_elements_par_page ");
