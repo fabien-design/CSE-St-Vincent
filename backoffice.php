@@ -1144,6 +1144,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
             <?php }else{?>
                 <li><a href="backoffice.php?page=message">Messages</a></li>
             <?php } ?>
+            <?php if(!empty($_GET) && $_GET['page'] === "gestion"){?>
+                <li><a href="backoffice.php?page=gestion" class="active">Gestion</a></li>
+            <?php }else{?>
+                <li><a href="backoffice.php?page=gestion">Gestion</a></li>
+            <?php } ?>
             </ul>
         </nav>
     </header>
@@ -1456,6 +1461,101 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         } ?>
                     </div>
                 </div><?php 
+            }else if($_GET['page'] === "gestion"){ ?>
+                <?php 
+                    $count = $connexion -> prepare("SELECT COUNT(Id_Utilisateur)  as infos FROM utilisateur");
+                    $count->setFetchMode(PDO::FETCH_ASSOC);
+                    $count -> execute();
+                    $tcount = $count->fetchAll();
+                    
+                    $nb_elements_par_page = 7;
+                    $pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
+                    @$page = $_GET["numpage"];
+                    // Verif validité 
+                    if(empty($page)){
+                        $page = 1;
+                    }
+                    $page = max(1, min($pages, $page));
+                    $debut = ($page - 1) * $nb_elements_par_page;
+
+                    //recup param de l'url
+                    $params = $_GET;
+                    $params['modalAjoutUtilisateur'] = "user";
+                    $urlajout = http_build_query($params);
+                    unset($params['modalAjoutUtilisateur']);
+                ?>
+                <div class="message">
+
+                <?= isset($msgvalidation) ? $msgvalidation : null ?>
+                <div class="titlePage"> 
+                    <h1>Tous les messages</h1>
+                </div>
+                <div class="tablemessages">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="tableNom">Nom</th>
+                            <th class="tablePrenom">Prénom</th>
+                            <th class="tableEmail">Email</th>
+                            <th class="tableOffre">Niveau</th>
+                            <th class="tableAction">Action</th>
+                            <th class="addPart"><a href="backoffice.php?<?= $urlajout ?>"><div>Ajouter</div></a></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        try{
+                            $req = $connexion->prepare("SELECT Id_Utilisateur, Nom_Utilisateur, Prenom_Utilisateur, Email_Utilisateur, Id_Droit FROM utilisateur LIMIT $debut, $nb_elements_par_page");
+                            $req->execute();
+                            $users = $req->fetchAll();
+                            foreach($users as $user){
+                                if(!empty($user["Id_Droit"])){
+                                    $req = $connexion->prepare("SELECT Libelle_Droit FROM droit WHERE Id_Droit = :id");
+                                    $req->bindParam('id',$user["Id_Droit"]);
+                                    $req->execute();
+                                    $Droit= $req->fetch();
+                                }
+                                ?>
+                                <tr>
+                                    <td><?php echo $user["Nom_Utilisateur"] ?></td>
+                                    <td><?php echo $user["Prenom_Utilisateur"] ?></td>
+                                    <td><a href="mailto:"><?php echo $user["Email_Utilisateur"] ?></a></td>
+                                    <td ><?= !empty($user["Id_Droit"]) ? $Droit['Libelle_Droit'] : "Aucun droit associé" ?></td>
+                                    <td class="actionBtn">  
+                                        <?php
+                                            $params['modalModifUtilisateur'] = $user["Id_Utilisateur"];
+                                            $urlmodif = http_build_query($params);
+                                            unset($params['modalModifUtilisateur']);
+
+                                            $params['modalSupprUtilisateur'] = $user["Id_Utilisateur"];
+                                            $urlsuppr = http_build_query($params);
+                                            unset($params['modalSupprUtilisateur']);
+                                        ?>
+                                        <a href="backoffice.php?<?= $urlmodif; ?>" class="modifBtn">Modifier</a>
+                                        <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
+                                    </td>
+                                </tr>
+                            <?php }
+                        }catch(Exception $e){
+                            echo "Erreur lors de l'affichage";
+                        }
+
+                        ?>
+                    </tbody>
+                </table>
+                </div>
+                <div class="pagination">
+                        <?php
+                        for($i=1; $i<= $pages; $i++){
+                            if($page != $i){ ?>
+                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
+                        <?php }else{?>
+                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
+                        <?php }
+                        } ?>
+                    </div>
+                </div>
+                <?php 
             }
             }
 
@@ -1499,6 +1599,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
     </div>
     <?php 
     }
+
      ?>
             
         </main>
