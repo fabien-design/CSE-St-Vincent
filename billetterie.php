@@ -15,7 +15,18 @@ if(empty($page)){
     $page = 1;
 }
 $page = max(1, min($pages, $page));
-
+// Verif Si contenu offre renvoie une valeur de page 
+if(isset($_GET["anciennepage"])){
+    try{
+        $valeur = intval($_GET["anciennepage"]);
+        if(gettype($valeur == "integer")){
+            $page = $valeur;
+        }
+    }catch(Exception $e){
+        $page = 1;
+    }
+    
+}
 $debut = ($page - 1) * $nb_elements_par_page;
 
 $select = $connexion -> prepare("SELECT * FROM offre ORDER BY Date_Debut_Offre desc LIMIT $debut, $nb_elements_par_page ");
@@ -58,7 +69,7 @@ $tab = $select->fetchAll();
                 </div>
                 <p><?=$offre['Description_Offre']?></p>
                 
-                    <span class="offre_learnmore"><a href="contenu_offre_billetterie.php?id=<?=$offre['Id_Offre']?>">EN SAVOIR PLUS <img class="chevron-droit"
+                    <span class="offre_learnmore"><a href="contenu_offre_billetterie.php?id=<?=$offre['Id_Offre']?>&pageoffre=<?= $page ?>">EN SAVOIR PLUS <img class="chevron-droit"
                             src="assets/chevron-droit.png" alt="chevron-droit"> </a></span>
                
             </div>
