@@ -1213,11 +1213,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                         $imgPart= $req->fetch();}
                                     ?>
                                     <tr>
-                                        <td><?php echo $partenaire["Nom_Partenaire"] ?></td>
-                                        <td><?php echo $partenaire["Description_Partenaire"] ?></td>
-                                        <td><?php echo $partenaire["Lien_Partenaire"] ?></td>
-                                        <td class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire">' : "Aucune image" ?></td>
-                                        <td class="actionBtn">  
+                                        <td data-title="Nom"><?php echo $partenaire["Nom_Partenaire"] ?></td>
+                                        <td data-title="Description"><?php echo $partenaire["Description_Partenaire"] ?></td>
+                                        <td data-title="Lien du Site"><?php echo $partenaire["Lien_Partenaire"] ?></td>
+                                        <td data-title="Image" class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire">' : "Aucune image" ?></td>
+                                        <td data-title="Action" class="actionBtn">  
                                             <?php 
                                             $params['modalModifPartenaire'] = $partenaire["Id_Partenaire"];
                                             $urlmodif = http_build_query($params);
@@ -1323,12 +1323,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     }
                                     ?>
                                     <tr>
-                                        <td><?php echo $offre["Nom_Offre"] ?></td>
-                                        <td class="colonneDescription"><?php echo $offre["Description_Offre"] ?></td>
-                                        <td><?php echo date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Debut_Offre"]),"d-m-Y")." - ".date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Fin_Offre"]),"d-m-Y") ?></td>
-                                        <td><?= !empty($offre["Id_Partenaire"]) ? $NomPart['Nom_Partenaire'] : "Aucun partenaire Associé" ?></td>
-                                        <td><?php echo $offre['Nombre_Place_Min_Offre'] ?></td>
-                                        <td><?php echo $nbImgOffre." image(s)" ?></td>
+                                        <td data-title="Nom"><?php echo $offre["Nom_Offre"] ?></td>
+                                        <td data-title="Description" class="colonneDescription"><?php echo $offre["Description_Offre"] ?></td>
+                                        <td data-title="Dates"><?php echo date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Debut_Offre"]),"d-m-Y")." - ".date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Fin_Offre"]),"d-m-Y") ?></td>
+                                        <td data-title="Partenaires"><?= !empty($offre["Id_Partenaire"]) ? $NomPart['Nom_Partenaire'] : "Aucun partenaire Associé" ?></td>
+                                        <td data-title="Nombres de places"><?php echo $offre['Nombre_Place_Min_Offre'] ?></td>
+                                        <td data-title="Nombres d'images"><?php echo $nbImgOffre." image(s)" ?></td>
                                         <td class="actionBtn"> 
                                             <?php 
                                             //recup param de l'url
@@ -1517,11 +1517,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 }
                                 ?>
                                 <tr>
-                                    <td><?php echo $user["Nom_Utilisateur"] ?></td>
-                                    <td><?php echo $user["Prenom_Utilisateur"] ?></td>
-                                    <td><a href="mailto:"><?php echo $user["Email_Utilisateur"] ?></a></td>
-                                    <td ><?= !empty($user["Id_Droit"]) ? $Droit['Libelle_Droit'] : "Aucun droit associé" ?></td>
-                                    <td class="actionBtn">  
+                                    <td data-title="Nom"><?php echo $user["Nom_Utilisateur"] ?></td>
+                                    <td data-title="Prénom"><?php echo $user["Prenom_Utilisateur"] ?></td>
+                                    <td data-title="Email"><a href="mailto:"><?php echo $user["Email_Utilisateur"] ?></a></td>
+                                    <td data-title="Niveau"><?= !empty($user["Id_Droit"]) ? $Droit['Libelle_Droit'] : "Aucun droit associé" ?></td>
+                                    <td data-title="Action" class="actionBtn">  
                                         <?php
                                             $params['modalModifUtilisateur'] = $user["Id_Utilisateur"];
                                             $urlmodif = http_build_query($params);
