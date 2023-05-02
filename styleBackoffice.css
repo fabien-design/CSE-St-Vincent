@@ -1354,3 +1354,59 @@ input[type=submit]:hover {
 .activepage {
     border: #B6A886 solid 3px !important;
 }
+
+
+/* TABLE RESPONSIVE */
+
+@media only screen and (max-width: 1150px) {
+		
+    table, 
+    thead, 
+    tbody, 
+    th, 
+    td, 
+    tr{ 
+        
+    display: block
+        
+    }
+        
+    thead tr { 
+    position: absolute;
+    top: -9999px;
+    left: -9999px;
+    }
+     
+     
+    .tablemessages th,
+    .tablemessages td{
+        padding-top: 12px !important;
+        padding-bottom: 12px !important;
+    }
+
+    td {
+        position: relative;
+        padding-left: 50% !important;
+        white-space: normal;
+        text-align: left
+        }
+     
+    td:before {
+        position: absolute;
+        top: 6px;
+        left: 6px;
+        width: 30%;
+        padding-right: 10px;
+        font-weight: bold;
+        color: #1b3168;
+        white-space: nowrap;
+        text-align:left;
+        content: attr(data-title)
+        }
+    }
+
+@media only screen and (max-width: 670px){
+    td {
+        padding-left: 40% !important; 
+    }
+}

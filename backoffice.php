@@ -1427,12 +1427,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 }
                                 ?>
                                 <tr>
-                                    <td><?php echo $message["Nom_Message"]." ".$message["Prenom_Message"]  ?></td>
-                                    <td><a href="mailto:"><?php echo $message["Email_Message"] ?></a></td>
-                                    <td class="colonneContenu"><?php echo $message["Contenu_Message"] ?></td>
-                                    <td ><?= !empty($message["Id_Offre"]) ? $Offre['Nom_Offre'] : "Aucune offre associée" ?></td>
-                                    <td ><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
-                                    <td class="actionBtn">  
+                                    <td data-title="Nom Prénom"><?php echo $message["Nom_Message"]." ".$message["Prenom_Message"]  ?></td>
+                                    <td data-title="Email"><a href="mailto:"><?php echo $message["Email_Message"] ?></a></td>
+                                    <td data-title="Contenu" class="colonneContenu"><?php echo $message["Contenu_Message"] ?></td>
+                                    <td data-title="Offre"><?= !empty($message["Id_Offre"]) ? $Offre['Nom_Offre'] : "Aucune offre associée" ?></td>
+                                    <td data-title="Partenaire"><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
+                                    <td data-title="Action" class="actionBtn">  
                                         <?php
                                             $params['modalSupprMessage'] = $message["Id_Message"];
                                             $urlsuppr = http_build_query($params);
