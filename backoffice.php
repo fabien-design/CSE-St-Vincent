@@ -1488,7 +1488,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
                 <?= isset($msgvalidation) ? $msgvalidation : null ?>
                 <div class="titlePage"> 
-                    <h1>Tous les messages</h1>
+                    <h1>Tous les Administrateurs</h1>
                 </div>
                 <div class="tablemessages">
                 <table>
