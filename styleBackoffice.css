@@ -304,11 +304,6 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .tablepartenaires tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
-
-.tablepartenaires tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-}
-
 .tablepartenaires tbody tr.active-row {
     font-weight: bold;
     color: #009879;
@@ -713,9 +708,6 @@ input[type=submit]:hover {
 }
 .tableoffres tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
-}
-.tableoffres tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
 }
 .tableoffres tbody tr.active-row {
     font-weight: bold;
@@ -1159,9 +1151,6 @@ input[type=submit]:hover {
 .tablemessages tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
-.tablemessages tbody tr:last-of-type {
-    border-bottom: 2px solid #009879;
-}
 .tablemessages tbody tr.active-row {
     font-weight: bold;
     color: #009879;
@@ -1390,10 +1379,9 @@ input[type=submit]:hover {
         white-space: normal;
         text-align: left
         }
-     
     td:before {
         position: absolute;
-        top: 6px;
+        top: 0px;
         left: 6px;
         width: 30%;
         padding-right: 10px;
@@ -1401,8 +1389,16 @@ input[type=submit]:hover {
         color: #1b3168;
         white-space: nowrap;
         text-align:left;
-        content: attr(data-title)
+        content: attr(data-title);
+        height: 100%;
+        border-right: 2px solid #1b3168;
         }
+    }
+    td:nth-child(1):before{
+        padding-top: 6px;
+    }
+    td.colonneContenu{
+        padding-bottom: 0px !important;
     }
 
 @media only screen and (max-width: 670px){
