@@ -2,43 +2,43 @@
  require 'include/connexion_db.php';
 
  //Récupération des données de Téléphone
-$tel = $connexion -> prepare('SELECT Num_TEL_Info_Accueil FROM info_accueil');
-$tel ->execute();
+$tel = $connexion->prepare('SELECT Num_TEL_Info_Accueil FROM info_accueil');
+$tel->execute();
 $phone = $tel->fetch();
 $phone = $phone['Num_TEL_Info_Accueil'];
 
 //Récpération des données de l'email
-$email = $connexion -> prepare('SELECT Email_Info_Accueil FROM info_accueil');
-$email ->execute();
+$email = $connexion->prepare('SELECT Email_Info_Accueil FROM info_accueil');
+$email->execute();
 $adresseEmail = $email->fetch();
 $adresseEmail = $adresseEmail['Email_Info_Accueil'];
 
 //Récupération des données de l'emplacement du bureau du CSE
-$place = $connexion -> prepare('SELECT Emplacement_Bureau_Info_Accueil FROM info_accueil');
-$place ->execute();
+$place = $connexion->prepare('SELECT Emplacement_Bureau_Info_Accueil FROM info_accueil');
+$place->execute();
 $office = $place->fetch();
 $office = $office['Emplacement_Bureau_Info_Accueil'];
 
 //Images partenaires
-$imgPart = $connexion -> prepare("SELECT DISTINCT * FROM image ORDER BY RAND() LIMIT 3");
-$imgPart -> execute();
+$imgPart = $connexion->prepare("SELECT DISTINCT * FROM image ORDER BY RAND() LIMIT 3");
+$imgPart->execute();
 $nomImg = $imgPart->fetchAll();
 
 //Récupération des données du Titre de la page d'accueil
-$titreInfoAccueil = $connexion -> prepare('SELECT Titre_Info_Accueil FROM info_accueil');
-$titreInfoAccueil ->execute();
+$titreInfoAccueil = $connexion->prepare('SELECT Titre_Info_Accueil FROM info_accueil');
+$titreInfoAccueil->execute();
 $TitreAccueil = $titreInfoAccueil->fetch();
 $TitreAccueil = $TitreAccueil['Titre_Info_Accueil'];
 
 //Récupération des données de la description de la page d'accueil
-$texteInfoAccueil = $connexion -> prepare('SELECT Texte_Info_Accueil FROM info_accueil');
-$texteInfoAccueil ->execute();
+$texteInfoAccueil = $connexion->prepare('SELECT Texte_Info_Accueil FROM info_accueil');
+$texteInfoAccueil->execute();
 $TexteAccueil = $texteInfoAccueil->fetch();
 $TexteAccueil = $TexteAccueil['Texte_Info_Accueil'];
 
 //Images partenaires
-$offres = $connexion -> prepare("SELECT DISTINCT * FROM offre ORDER BY Id_Offre DESC LIMIT 3");
-$offres -> execute();
+$offres = $connexion->prepare("SELECT DISTINCT * FROM offre ORDER BY Id_Offre DESC LIMIT 3");
+$offres->execute();
 $chaqueOffre = $offres->fetchAll();
 
 setlocale(LC_TIME,"fr_FR.utf8");
