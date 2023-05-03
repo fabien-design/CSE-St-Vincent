@@ -1376,7 +1376,8 @@ input[type=submit]:hover {
         position: relative;
         padding-left: 50% !important;
         white-space: normal;
-        text-align: left
+        text-align: left;
+        max-width: 500px !important;
         }
     td:before {
         position: absolute;

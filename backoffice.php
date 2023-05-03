@@ -1329,7 +1329,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                         <td data-title="Partenaires"><?= !empty($offre["Id_Partenaire"]) ? $NomPart['Nom_Partenaire'] : "Aucun partenaire Associé" ?></td>
                                         <td data-title="Nombres de places"><?php echo $offre['Nombre_Place_Min_Offre'] ?></td>
                                         <td data-title="Nombres d'images"><?php echo $nbImgOffre." image(s)" ?></td>
-                                        <td class="actionBtn"> 
+                                        <td data-title="Action" class="actionBtn"> 
                                             <?php 
                                             //recup param de l'url
                                             $params = $_GET;
