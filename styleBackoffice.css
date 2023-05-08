@@ -286,7 +286,6 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 }
 
 .tablepartenaires thead tr {
-    background-color: #1b3168;
     color: #ffffff;
     text-align: center;
 
@@ -309,8 +308,10 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     color: #009879;
 }
 .partenaires .tablepartenaires table thead .addPart {
-    background: #1b3168;
-    border-radius: 6px;
+    background-color: #2eb73d;
+}
+th{
+ background-color: #1b3168;
 }
 .partenaires .tablepartenaires table thead .addPart a {
     color: white;
@@ -694,7 +695,6 @@ input[type=submit]:hover {
     border-radius: 10px;
 }
 .tableoffres thead tr {
-    background-color: #1b3168;
     color: #ffffff;
     text-align: center;
 
@@ -722,9 +722,16 @@ input[type=submit]:hover {
     max-width: 400px;
 }
 .billetterie .tableoffres table thead .addPart {
-    background: #1b3168;
-    border-radius: 6px;
+    background-color: #2eb73d;
 }
+
+th:first-of-type{
+    border-radius: 6px 0 0 6px;
+}
+th:last-of-type{
+    border-radius: 0 6px 6px 0;
+}
+
 .billetterie .tableoffres table thead .addPart a {
     color: white;
 }
@@ -1136,7 +1143,6 @@ input[type=submit]:hover {
     border-radius: 10px;
 }
 .tablemessages thead tr {
-    background-color: #1b3168;
     color: #ffffff;
     text-align: center;
 
@@ -1165,7 +1171,6 @@ input[type=submit]:hover {
 }
 .message .tablemessages table thead .addPart {
     background: #1b3168;
-    border-radius: 6px;
 }
 .message .tablemessages table thead .addPart a {
     color: white;
