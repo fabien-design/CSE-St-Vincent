@@ -319,7 +319,7 @@ input:-webkit-autofill:active {
 }
 
 .partenaires .tablepartenaires table thead .addPart {
-    background-color: #2eb73d;
+    background-color: #2b9336;
 }
 
 th {
@@ -415,6 +415,51 @@ th {
     padding-bottom: 20px;
 }
 
+
+#modalSupprPartenaire {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalSupprPartenaire .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalSupprPartenaire .modal-content .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#modalSupprPartenaire .modal-content .close:hover,
+#modalSupprPartenaire .modal-content .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+
+#modalSupprPartenaire .modal-content .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
 #modalSupprPartenaire .modal-content .modalBox {
     display: flex;
     justify-content: center;
@@ -436,6 +481,36 @@ th {
 #modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn button {
     padding: 10px 20px;
     cursor: pointer;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.15s ease-in-out;
+}
+
+#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn button:hover {
+    background-color: initial;
+    background-position: 0 0;
+}
+
+#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn .formSupprNon {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+}
+
+#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn .formSupprNon:hover {
+    color: #FF4742 !important;
+}
+
+#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn .formSupprOui {
+    background: #27bb56;
+    border: 1px solid #27bb56;
+}
+
+#modalSupprPartenaire .modal-content .modalBox .supprBox .supprBtn .formSupprOui:hover {
+    color: #27bb56 !important;
 }
 
 #modalModifPartenaire {
@@ -763,12 +838,13 @@ input[type=submit]:hover {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-    padding-bottom: 0;
     max-width: 400px;
+    padding-bottom: 0;
+    margin-bottom: 12px;
 }
 
 .billetterie .tableoffres table thead .addPart {
-    background-color: #2eb73d;
+    background-color: #2b9336;
 }
 
 th:first-of-type {
@@ -1127,9 +1203,61 @@ th:last-of-type {
     margin-bottom: 40px;
 }
 
+#modalSupprBilletterie {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalSupprBilletterie .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalSupprBilletterie .modal-content .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#modalSupprBilletterie .modal-content .close:hover,
+#modalSupprBilletterie .modal-content .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+
+#modalSupprBilletterie .modal-content .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+#modalSupprBilletterie .modal-content .modalBox {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
 #modalSupprBilletterie .modal-content .modalBox .supprBox {
     display: grid;
     align-items: center;
+    gap: 30px;
 }
 
 #modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn {
@@ -1141,6 +1269,36 @@ th:last-of-type {
 #modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn button {
     padding: 10px 20px;
     cursor: pointer;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.15s ease-in-out;
+}
+
+#modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn button:hover {
+    background-color: initial;
+    background-position: 0 0;
+}
+
+#modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn .formSupprNon {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+}
+
+#modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn .formSupprNon:hover {
+    color: #FF4742 !important;
+}
+
+#modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn .formSupprOui {
+    background: #27bb56;
+    border: 1px solid #27bb56;
+}
+
+#modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn .formSupprOui:hover {
+    color: #27bb56 !important;
 }
 
 /* Slideshow container */
@@ -1273,7 +1431,6 @@ th:last-of-type {
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
-    padding-bottom: 0;
     max-width: 400px;
 }
 
@@ -1392,6 +1549,7 @@ th:last-of-type {
 #modalSupprMessage .modal-content .modalBox .supprBox {
     display: grid;
     align-items: center;
+    gap: 30px;
 }
 
 #modalSupprMessage .modal-content .modalBox .supprBox .supprBtn {
@@ -1525,6 +1683,7 @@ th:last-of-type {
         border-right: 2px solid #1b316838;
     }
 
+    /* add colors */
     tbody td:nth-of-type(even) {
         background-color: #ffffff;
     }
@@ -1532,6 +1691,7 @@ th:last-of-type {
     tbody td:nth-of-type(odd) {
         background-color: #f3f3f3;
     }
+    /* add colors */
 
     .actionBtn {
         display: flex !important;
@@ -1563,9 +1723,6 @@ td:nth-child(1):before {
     padding-top: 6px;
 }
 
-td.colonneContenu {
-    padding-bottom: 0px !important;
-}
 
 
 
