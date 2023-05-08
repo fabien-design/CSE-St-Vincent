@@ -347,7 +347,7 @@ aside.left a {
 /*  #### ACCUEIL ####  */
 
 .right {
-    padding: 15px;
+    padding: 0 15px;
     width: 100%;
 }
 
@@ -538,6 +538,7 @@ aside.left a {
     display: flex;
     flex-direction: column;
     width: 100%;
+    padding: 0 15px;
 }
 
 /* #### CONTENU BILLETTERIE #### */
