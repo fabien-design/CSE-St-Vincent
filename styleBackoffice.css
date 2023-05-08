@@ -111,9 +111,14 @@ nav ul li a.active {
     border-radius: 20px;
     width: 100%;
 }
-input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:focus, input:-webkit-autofill:active {
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0 30px #efeded inset !important;
 }
+
 .formulaire form .formGroup .inputGroup label {
     font-size: 100%;
     position: absolute;
@@ -126,6 +131,7 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     transition: all 0.3s ease;
     color: rgb(100, 100, 100);
 }
+
 .formulaire form .formGroup .inputGroup :is(input:focus, input:valid, input:invalid)~label {
     -webkit-transform: translateY(-50%) scale(.9);
     -ms-transform: translateY(-50%) scale(.9);
@@ -135,15 +141,18 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
     padding: 0.4em;
     background-color: #efeded;
 }
+
 .formulaire form .formGroup .inputGroup :is(input:focus, input:valid) {
     border-color: rgb(150, 150, 200);
 }
-.formulaire form .formGroup .btnGroup{
+
+.formulaire form .formGroup .btnGroup {
     display: flex;
     justify-content: center;
     align-items: center;
 }
-.formulaire form .formGroup .btnGroup button{
+
+.formulaire form .formGroup .btnGroup button {
     padding: 20px;
     border-radius: 20px;
     border: solid 4px #D9D9D9;
@@ -303,28 +312,35 @@ input:-webkit-autofill, input:-webkit-autofill:hover, input:-webkit-autofill:foc
 .tablepartenaires tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
+
 .tablepartenaires tbody tr.active-row {
     font-weight: bold;
     color: #009879;
 }
+
 .partenaires .tablepartenaires table thead .addPart {
     background-color: #2eb73d;
 }
-th{
- background-color: #1b3168;
+
+th {
+    background-color: #1b3168;
 }
+
 .partenaires .tablepartenaires table thead .addPart a {
     color: white;
 }
+
 .partenaires .tablepartenaires table thead .addPart a div {
     padding: 8px 20px;
 }
+
 .partenaires .tablepartenaires table tbody .actionBtn {
     display: grid;
     justify-content: center;
     gap: 10px;
     align-items: center;
 }
+
 .partenaires .tablepartenaires table tbody td .modifBtn,
 .partenaires .tablepartenaires table tbody td .supprBtn {
     padding: 8px 15px;
@@ -334,12 +350,15 @@ th{
     justify-content: center;
     display: flex;
 }
+
 .partenaires .tablepartenaires table tbody td .modifBtn {
     background-color: #1b3168;
 }
+
 .partenaires .tablepartenaires table tbody td .supprBtn {
     background-color: #ff0000;
 }
+
 .partenaires .tablepartenaires table tbody .imgPart img {
     max-width: 80px;
 }
@@ -512,26 +531,30 @@ th{
     background-color: #ffffffba;
     border-radius: 50%;
     z-index: 3;
-    transition: opacity 0.3s ease,scale 0.3s ease;
+    transition: opacity 0.3s ease, scale 0.3s ease;
 }
 
 .imgBox:hover .edit-button {
     display: flex;
     opacity: 1;
 }
+
 .edit-button:hover {
     scale: 1.1;
     opacity: 1;
     transition: scale 0.3s ease;
 }
+
 .edit-button:hover~img {
     filter: blur(3px);
 }
+
 .edit-button img {
     position: absolute;
     max-width: 32px !important;
 }
-.edit-button input{
+
+.edit-button input {
     cursor: pointer !important;
 }
 
@@ -542,6 +565,7 @@ th{
     gap: 50px;
     width: 100%;
 }
+
 #modalModifPartenaire .modifBtn button {
     padding: 10px 20px;
     cursor: pointer;
@@ -553,22 +577,27 @@ th{
     display: inline-block;
     transition: all 0.15s ease-in-out;
 }
-#modalModifPartenaire .modifBtn button:hover{
+
+#modalModifPartenaire .modifBtn button:hover {
     background-color: initial;
     background-position: 0 0;
 }
-.formModifNon{
+
+.formModifNon {
     background: #FF4742;
     border: 1px solid #FF4742;
 }
-.formModifNon:hover{
+
+.formModifNon:hover {
     color: #FF4742 !important;
 }
-.formModifOui{
+
+.formModifOui {
     background: #27bb56;
     border: 1px solid #27bb56;
 }
-.formModifOui:hover{
+
+.formModifOui:hover {
     color: #27bb56 !important;
 }
 
@@ -631,6 +660,7 @@ input[type=submit]:hover {
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
+
 #modalAjoutPartenaire .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -638,12 +668,14 @@ input[type=submit]:hover {
     border: 1px solid #888;
     width: 80%;
 }
+
 #modalAjoutPartenaire .modal-content .closeAjout {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
+
 #modalAjoutPartenaire .modal-content .closeAjout:hover,
 #modalAjoutPartenaire .modal-content .closeAjout:focus {
     color: #000;
@@ -651,27 +683,32 @@ input[type=submit]:hover {
     cursor: pointer;
     transition: color 0.35s ease-in-out;
 }
+
 #modalAjoutPartenaire .modal-content .formBox {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 #modalAjoutPartenaire .modal-content #formAjoutPartenaire {
     display: grid;
     justify-content: center;
     align-items: center;
 }
+
 #modalAjoutPartenaire .modal-content #formAjoutPartenaire .imgBox {
     position: relative;
     display: flex;
     justify-content: center;
     overflow: hidden;
 }
+
 #modalAjoutPartenaire .modal-content .modalBox .ajoutBtn {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
+
 #modalAjoutPartenaire .modal-content .modalBox .ajoutBtn button {
     padding: 10px 20px;
     cursor: pointer;
@@ -684,36 +721,44 @@ input[type=submit]:hover {
     align-items: center;
     padding: 40px;
 }
+
 .billetterie .tableoffres {
     display: flex;
     justify-content: center;
 }
+
 .billetterie .tableoffres table {
     width: 92%;
     padding: 15px;
     border: 2px solid #1b3168;
     border-radius: 10px;
 }
+
 .tableoffres thead tr {
     color: #ffffff;
     text-align: center;
 
 }
+
 .tableoffres th,
 .tableoffres td {
     padding: 12px 15px;
 }
+
 .tableoffres tbody tr {
     border-bottom: 1px solid #dddddd;
 }
+
 .tableoffres tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
+
 .tableoffres tbody tr.active-row {
     font-weight: bold;
     color: #009879;
 }
-.billetterie .tableoffres tbody .colonneDescription{
+
+.billetterie .tableoffres tbody .colonneDescription {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -721,29 +766,34 @@ input[type=submit]:hover {
     padding-bottom: 0;
     max-width: 400px;
 }
+
 .billetterie .tableoffres table thead .addPart {
     background-color: #2eb73d;
 }
 
-th:first-of-type{
+th:first-of-type {
     border-radius: 6px 0 0 6px;
 }
-th:last-of-type{
+
+th:last-of-type {
     border-radius: 0 6px 6px 0;
 }
 
 .billetterie .tableoffres table thead .addPart a {
     color: white;
 }
+
 .billetterie .tableoffres table thead .addPart a div {
     padding: 8px 20px;
 }
+
 .billetterie .tableoffres table tbody .actionBtn {
     display: grid;
     justify-content: center;
     gap: 10px;
     align-items: center;
 }
+
 .billetterie .tableoffres table tbody td .modifBtn,
 .billetterie .tableoffres table tbody td .supprBtn {
     padding: 8px 15px;
@@ -753,12 +803,15 @@ th:last-of-type{
     justify-content: center;
     display: flex;
 }
+
 .billetterie .tableoffres table tbody td .modifBtn {
     background-color: #1b3168;
 }
+
 .billetterie .tableoffres table tbody td .supprBtn {
     background-color: #ff0000;
 }
+
 .billetterie .tableoffres table tbody .imgPart img {
     max-width: 80px;
 }
@@ -776,6 +829,7 @@ th:last-of-type{
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
+
 #modalAjoutBilletterie .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -783,12 +837,14 @@ th:last-of-type{
     border: 1px solid #888;
     width: 80%;
 }
+
 #modalAjoutBilletterie .modal-content .closeAjout {
     color: #aaaaaa;
     float: right;
     font-size: 28px;
     font-weight: bold;
 }
+
 #modalAjoutBilletterie .modal-content .closeAjout:hover,
 #modalAjoutBilletterie .modal-content .closeAjout:focus {
     color: #000;
@@ -796,31 +852,37 @@ th:last-of-type{
     cursor: pointer;
     transition: color 0.35s ease-in-out;
 }
+
 #modalAjoutBilletterie .modal-content .formBox {
     display: flex;
     justify-content: center;
     align-items: center;
 }
+
 #modalAjoutBilletterie .modal-content #formAjoutBilletterie {
     display: grid;
     justify-content: center;
     align-items: center;
 }
+
 #modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox {
     position: relative;
     display: flex;
     justify-content: center;
     overflow: hidden;
 }
+
 #modalAjoutBilletterie .modal-content .modalBox .ajoutBtn {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
+
 #modalAjoutBilletterie .modal-content .modalBox .ajoutBtn button {
     padding: 10px 20px;
     cursor: pointer;
 }
+
 #modalAjoutBilletterie .ajoutBtn {
     display: flex;
     align-items: center;
@@ -828,6 +890,7 @@ th:last-of-type{
     gap: 50px;
     width: 100%;
 }
+
 #modalAjoutBilletterie .ajoutBtn button {
     padding: 10px 20px;
     cursor: pointer;
@@ -839,24 +902,30 @@ th:last-of-type{
     display: inline-block;
     transition: all 0.15s ease-in-out;
 }
-#modalAjoutBilletterie .ajoutBtn button:hover{
+
+#modalAjoutBilletterie .ajoutBtn button:hover {
     background-color: initial;
     background-position: 0 0;
 }
-#modalAjoutBilletterie .formAjoutNon{
+
+#modalAjoutBilletterie .formAjoutNon {
     background: #FF4742;
     border: 1px solid #FF4742;
 }
-#modalAjoutBilletterie .formAjoutNon:hover{
+
+#modalAjoutBilletterie .formAjoutNon:hover {
     color: #FF4742 !important;
 }
-#modalAjoutBilletterie .formAjoutOui{
+
+#modalAjoutBilletterie .formAjoutOui {
     background: #27bb56;
     border: 1px solid #27bb56;
 }
-#modalAjoutBilletterie .formAjoutOui:hover{
+
+#modalAjoutBilletterie .formAjoutOui:hover {
     color: #27bb56 !important;
 }
+
 #modalModifBilletterie {
     display: block;
     position: fixed;
@@ -906,6 +975,7 @@ th:last-of-type{
     justify-content: center;
     align-items: center;
 }
+
 #modalModifBilletterie .modal-content #formModifBilletterie .imgBox {
     position: relative;
     display: flex;
@@ -913,32 +983,39 @@ th:last-of-type{
     justify-content: center;
     overflow: hidden;
 }
-#modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box{
+
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box {
     position: relative;
     display: flex;
     justify-content: center;
     align-items: center;
     border: 1px solid rgba(0, 0, 0, 0.155);
 }
+
 #modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box:hover .edit-button {
     display: flex;
     opacity: 1;
 }
+
 #modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box .edit-button:hover {
     scale: 1.1;
     opacity: 1;
     transition: scale 0.3s ease;
 }
+
 #modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box .edit-button:hover~img {
     filter: blur(3px);
 }
+
 #modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box .edit-button img {
     position: absolute;
     max-width: 32px !important;
 }
-#modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box .edit-button input{
+
+#modalModifBilletterie .modal-content #formModifBilletterie .imgBox .Box .edit-button input {
     cursor: pointer !important;
 }
+
 #modalModifBilletterie .modal-content #formModifBilletterie .imgBox img {
     width: 100%;
     max-width: 300px;
@@ -955,6 +1032,7 @@ th:last-of-type{
     opacity: 0;
     left: 0;
 }
+
 #modalModifBilletterie .modifBtn {
     display: flex;
     align-items: center;
@@ -962,6 +1040,7 @@ th:last-of-type{
     gap: 50px;
     width: 100%;
 }
+
 #modalModifBilletterie .modifBtn button {
     padding: 10px 20px;
     cursor: pointer;
@@ -973,24 +1052,30 @@ th:last-of-type{
     display: inline-block;
     transition: all 0.15s ease-in-out;
 }
-#modalModifBilletterie .modifBtn button:hover{
+
+#modalModifBilletterie .modifBtn button:hover {
     background-color: initial;
     background-position: 0 0;
 }
-.formModifNon{
+
+.formModifNon {
     background: #FF4742;
     border: 1px solid #FF4742;
 }
-.formModifNon:hover{
+
+.formModifNon:hover {
     color: #FF4742 !important;
 }
-.formModifOui{
+
+.formModifOui {
     background: #27bb56;
     border: 1px solid #27bb56;
 }
-.formModifOui:hover{
+
+.formModifOui:hover {
     color: #27bb56 !important;
 }
+
 #modalSupprBilletterie {
     display: block;
     position: fixed;
@@ -1019,6 +1104,7 @@ th:last-of-type{
     font-size: 28px;
     font-weight: bold;
 }
+
 #modalSupprBilletterie .modal-content .close:hover,
 #modalSupprBilletterie .modal-content .close:focus {
     color: #000;
@@ -1026,49 +1112,56 @@ th:last-of-type{
     cursor: pointer;
     transition: color 0.35s ease-in-out;
 }
+
 #modalSupprBilletterie .modal-content .title {
     display: flex;
     align-items: center;
     justify-content: center;
     padding-bottom: 20px;
 }
+
 #modalSupprBilletterie .modal-content .modalBox {
     display: flex;
     justify-content: center;
     gap: 60px;
     margin-bottom: 40px;
 }
+
 #modalSupprBilletterie .modal-content .modalBox .supprBox {
     display: grid;
     align-items: center;
 }
+
 #modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
+
 #modalSupprBilletterie .modal-content .modalBox .supprBox .supprBtn button {
     padding: 10px 20px;
     cursor: pointer;
 }
+
 /* Slideshow container */
-#modalSupprBilletterie .modal-content .modalBox .slider{
+#modalSupprBilletterie .modal-content .modalBox .slider {
     max-width: 250px;
     position: relative;
 }
+
 #modalSupprBilletterie .modal-content .modalBox .slideshow-container {
     max-width: 1000px;
     position: relative;
     margin: auto;
 }
 
-#modalSupprBilletterie .modal-content .modalBox .slideshow-container .mySlides{
+#modalSupprBilletterie .modal-content .modalBox .slideshow-container .mySlides {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-#modalSupprBilletterie .modal-content .modalBox .slideshow-container .mySlides img{
+#modalSupprBilletterie .modal-content .modalBox .slideshow-container .mySlides img {
     z-index: 1;
     width: 150px;
     height: 150px;
@@ -1076,6 +1169,7 @@ th:last-of-type{
     object-fit: cover;
     border-radius: 10px;
 }
+
 /* Next & previous buttons */
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .prev,
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .next {
@@ -1093,23 +1187,28 @@ th:last-of-type{
     user-select: none;
     transition: background-color 0.3s;
 }
+
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .prev,
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .next {
     width: 40px;
 }
+
 /* Position the "next button" to the right */
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .next {
     right: 0;
     border-radius: 3px 0 0 3px;
 }
+
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .prev {
     left: 0;
 
 }
+
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .prev:hover,
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .next:hover {
     background-color: rgba(0, 0, 0, 0.4);
 }
+
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .dot {
     cursor: pointer;
     height: 12px;
@@ -1132,36 +1231,44 @@ th:last-of-type{
     align-items: center;
     padding: 40px;
 }
+
 .message .tablemessages {
     display: flex;
     justify-content: center;
 }
+
 .message .tablemessages table {
     width: 92%;
     padding: 15px;
     border: 2px solid #1b3168;
     border-radius: 10px;
 }
+
 .tablemessages thead tr {
     color: #ffffff;
     text-align: center;
 
 }
+
 .tablemessages th,
 .tablemessages td {
     padding: 12px 15px;
 }
+
 .tablemessages tbody tr {
     border-bottom: 1px solid #dddddd;
 }
+
 .tablemessages tbody tr:nth-of-type(even) {
     background-color: #f3f3f3;
 }
+
 .tablemessages tbody tr.active-row {
     font-weight: bold;
     color: #009879;
 }
-.message .tablemessages tbody .colonneContenu{
+
+.message .tablemessages tbody .colonneContenu {
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
@@ -1169,21 +1276,26 @@ th:last-of-type{
     padding-bottom: 0;
     max-width: 400px;
 }
+
 .message .tablemessages table thead .addPart {
     background: #1b3168;
 }
+
 .message .tablemessages table thead .addPart a {
     color: white;
 }
+
 .message .tablemessages table thead .addPart a div {
     padding: 8px 20px;
 }
+
 .message .tablemessages table tbody .actionBtn {
     display: grid;
     justify-content: center;
     gap: 10px;
     align-items: center;
 }
+
 .message .tablemessages table tbody td .modifBtn,
 .message .tablemessages table tbody td .supprBtn {
     padding: 8px 15px;
@@ -1193,12 +1305,15 @@ th:last-of-type{
     justify-content: center;
     display: flex;
 }
+
 .message .tablemessages table tbody td .modifBtn {
     background-color: #1b3168;
 }
+
 .message .tablemessages table tbody td .supprBtn {
     background-color: #ff0000;
 }
+
 .message .tablemessages table tbody .imgPart img {
     max-width: 80px;
 }
@@ -1209,6 +1324,7 @@ th:last-of-type{
     gap: 10px;
     align-items: center;
 }
+
 .message .tablemessages table tbody td .supprBtn {
     padding: 8px 15px;
     border-radius: 10px;
@@ -1217,9 +1333,11 @@ th:last-of-type{
     justify-content: center;
     display: flex;
 }
+
 .message .tablemessages table tbody td .supprBtn {
     background-color: #ff0000;
 }
+
 #modalSupprMessage {
     display: block;
     position: fixed;
@@ -1233,6 +1351,7 @@ th:last-of-type{
     background-color: rgb(0, 0, 0);
     background-color: rgba(0, 0, 0, 0.4);
 }
+
 #modalSupprMessage .modal-content {
     background-color: #fefefe;
     margin: auto;
@@ -1292,22 +1411,27 @@ th:last-of-type{
     display: inline-block;
     transition: all 0.15s ease-in-out;
 }
-#modalSupprMessage .modal-content .modalBox .supprBox .supprBtn button:hover{
+
+#modalSupprMessage .modal-content .modalBox .supprBox .supprBtn button:hover {
     background-color: initial;
     background-position: 0 0;
 }
-#modalSupprMessage .modal-content .modalBox .supprBox .supprBtn .formSupprNon{
+
+#modalSupprMessage .modal-content .modalBox .supprBox .supprBtn .formSupprNon {
     background: #FF4742;
     border: 1px solid #FF4742;
 }
-#modalSupprMessage .modal-content .modalBox .supprBox .supprBtn .formSupprNon:hover{
+
+#modalSupprMessage .modal-content .modalBox .supprBox .supprBtn .formSupprNon:hover {
     color: #FF4742 !important;
 }
-#modalSupprMessage .modal-content .modalBox .supprBox .supprBtn .formSupprOui{
+
+#modalSupprMessage .modal-content .modalBox .supprBox .supprBtn .formSupprOui {
     background: #27bb56;
     border: 1px solid #27bb56;
 }
-#modalSupprMessage .modal-content .modalBox .supprBox .supprBtn .formSupprOui:hover{
+
+#modalSupprMessage .modal-content .modalBox .supprBox .supprBtn .formSupprOui:hover {
     color: #27bb56 !important;
 }
 
@@ -1353,27 +1477,26 @@ th:last-of-type{
 /* TABLE RESPONSIVE */
 
 @media only screen and (max-width: 1150px) {
-		
-    table, 
-    thead, 
-    tbody, 
-    th, 
-    td, 
-    tr{ 
-        
-    display: block
-        
+
+    table,
+    thead,
+    tbody,
+    th,
+    td,
+    tr {
+
+        display: block
     }
-        
-    thead tr { 
-    position: absolute;
-    top: -9999px;
-    left: -9999px;
+
+    thead tr {
+        position: absolute;
+        top: -9999px;
+        left: -9999px;
     }
-     
-     
+
+
     .tablemessages th,
-    .tablemessages td{
+    .tablemessages td {
         padding-top: 12px !important;
     }
 
@@ -1383,7 +1506,8 @@ th:last-of-type{
         white-space: normal;
         text-align: left;
         max-width: 500px !important;
-        }
+    }
+
     td:before {
         position: absolute;
         top: 0px;
@@ -1393,21 +1517,60 @@ th:last-of-type{
         font-weight: bold;
         color: #1b3168;
         white-space: nowrap;
-        text-align:left;
+        display: flex;
+        justify-content: center;
+        align-items: center;
         content: attr(data-title);
         height: 100%;
-        border-right: 2px solid #1b3168;
-        }
-    }
-    td:nth-child(1):before{
-        padding-top: 6px;
-    }
-    td.colonneContenu{
-        padding-bottom: 0px !important;
+        border-right: 2px solid #1b316838;
     }
 
-@media only screen and (max-width: 670px){
+    tbody td:nth-of-type(even) {
+        background-color: #ffffff;
+    }
+
+    tbody td:nth-of-type(odd) {
+        background-color: #f3f3f3;
+    }
+
+    .actionBtn {
+        display: flex !important;
+        flex-direction: row-reverse;
+    }
+
+    tr {
+        border: 1px solid #1b316838 !important;
+        margin-bottom: 10px;
+        border-radius: 10px;
+    }
+
+    td:first-of-type {
+        border-radius: 10px 10px 0 0;
+    }
+
+    td:last-of-type {
+        border-radius: 0 0 10px 10px;
+    }
+
+    .imgPart {
+        justify-content: center;
+        margin: auto;
+        display: flex;
+    }
+}
+
+td:nth-child(1):before {
+    padding-top: 6px;
+}
+
+td.colonneContenu {
+    padding-bottom: 0px !important;
+}
+
+
+
+@media only screen and (max-width: 670px) {
     td {
-        padding-left: 40% !important; 
+        padding-left: 40% !important;
     }
 }
