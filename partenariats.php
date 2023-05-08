@@ -76,7 +76,9 @@ $idPartenaire = $req->fetchAll();
     ?>
         <div id="modalModifPartenaire" class="modal">
             <div class="modal-content">
-                <span class="closeModif">&times;</span>
+                <div class="closeModifDiv">
+                    <span class="closeModif">&times;</span>
+                </div>
                 <div class="formBox">
 
                     <h1 style="margin-bottom:20px;"><?= $partenaire['Nom_Partenaire'] ?></h1>

@@ -33,6 +33,11 @@
     border: 1px solid #888;
     width: 70%;
 }
+.closeModifDiv{
+    display: flex;
+    justify-content: right;
+}
+
 
 #modalModifPartenaire .modal-content .closeModif {
     color: #aaaaaa;
