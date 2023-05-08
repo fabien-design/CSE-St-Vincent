@@ -7,18 +7,18 @@ if (empty($_POST) === false) {
 
     // Vérification des données saisies
     if (empty($_POST['email'])) {
-        $erreurs['email'] = 'Veuillez saisir une adresse email.';
+        $erreurs['email'] = '<span class="erreur">Veuillez saisir une adresse email.</span>';
     } else {
         if (filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) === false) {
-            $erreurs['email'] = 'Veuillez saisir une adresse email valide.';
+            $erreurs['email'] = '<span class="erreur">Veuillez saisir une adresse email valide.</span>';
         }
     }
 
     if (empty($_POST['contenu'])) {
-        $erreurs['contenu'] = 'Veuillez saisir un contenu.';
+        $erreurs['contenu'] = '<span class="erreur">Veuillez saisir un contenu.';
     } else {
         if (strlen($_POST['contenu']) > 2000) {
-            $erreurs['contenu'] = 'Le contenu ne doit pas dépasser 2000 caractères.';
+            $erreurs['contenu'] = '<span class="erreur">Le contenu ne doit pas dépasser 2000 caractères.</span>';
         }
     }
 
@@ -26,35 +26,30 @@ if (empty($_POST) === false) {
 
     if (empty($_POST['prenom']) === false) {
         if (preg_match($expressionReguliere, $_POST['prenom'])) {
-            $erreurs['prenom'] = 'Le prénom ne doit pas contenir de chiffres et de caractères spéciaux.';
+            $erreurs['prenom'] = '<span class="erreur">Le prénom ne doit pas contenir de chiffres et de caractères spéciaux.</span>';
         }
     }
 
     if (empty($_POST['nom']) === false) {
         if (preg_match($expressionReguliere, $_POST['nom'])) {
-            $erreurs['nom'] = 'Le nom ne doit pas contenir de chiffres et de caractères spéciaux.';
+            $erreurs['nom'] = '<span class="erreur">Le nom ne doit pas contenir de chiffres et de caractères spéciaux.</span>';
         }
-    }
-
-    if (isset($sujets[$_POST['sujet']]) === false) {
-        $erreurs['sujet'] = 'Veuillez préciser un sujet valide.';
     }
 
 
     if (empty($erreurs)) {
         try {
-            $requeteInsertion = $connexion->prepare('INSERT INTO contact (contact_nom, contact_prenom, contact_email, contact_sujet, contact_contenu) VALUES (:contact_nom, :contact_prenom, :contact_email, :contact_sujet, :contact_contenu)');
-            $requeteInsertion->bindParam(':contact_nom', $_POST['nom']);
-            $requeteInsertion->bindParam(':contact_prenom', $_POST['prenom']);
-            $requeteInsertion->bindParam(':contact_email', $_POST['email']);
-            $requeteInsertion->bindParam(':contact_sujet', $_POST['sujet']);
-            $requeteInsertion->bindParam(':contact_contenu', $_POST['contenu']);
+            $requeteInsertion = $connexion->prepare('INSERT INTO message (Nom_Message, Prenom_Message, Email_Message, Contenu_Message) VALUES (:Nom_Message, :Prenom_Message, :Email_Message, :Contenu_Message)');
+            $requeteInsertion->bindParam(':Nom_Message', $_POST['nom']);
+            $requeteInsertion->bindParam(':Prenom_Message', $_POST['prenom']);
+            $requeteInsertion->bindParam(':Email_Message', $_POST['email']);
+            $requeteInsertion->bindParam(':Contenu_Message', $_POST['contenu']);
 
             $requeteInsertion->execute();
 
-            echo 'Votre demande a bien été prise en compte.';
+            $valider = '<span class="success">Votre message a bien été envoyé avec succès!</span>';
         } catch (\Exception $exception) {
-            echo 'Erreur lors de l\'ajout de la demande de contact.';
+            $valider = '<span class="erreur">Erreur lors de l\'envoi du message. Veuillez contactez un admin.</span>';
             // Debug de l'erreur :
             // var_dump($exception->getMessage());
         }
@@ -62,7 +57,6 @@ if (empty($_POST) === false) {
 }
 
 ?>
-
 
 <!DOCTYPE html>
 <html lang="fr">
@@ -94,25 +88,27 @@ if (empty($_POST) === false) {
 
                     <form action="#" method="POST">
 
-                            <label for="nom">Nom</label>
-                            <input type="text" name="nom" value="<?= isset($_POST['nom']) ? $_POST['nom'] : null; ?>" placeholder="Votre Nom">
-                            <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
+                        <label for="nom">Nom</label>
+                        <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
+                        <input type="text" name="nom" value="<?= isset($_POST['nom']) ? $_POST['nom'] : null; ?>" placeholder="Votre Nom (facultatif)">
 
-                            <label for="prenom">Prénom</label>
-                            <input type="text" name="prenom" value="<?= isset($_POST['prenom']) ? $_POST['prenom'] : null; ?>" placeholder="Votre Prénom">
-                            <?= isset($erreurs['prenom']) ? $erreurs['prenom'] : null; ?>
+                        <label for="prenom">Prénom</label>
+                        <?= isset($erreurs['prenom']) ? $erreurs['prenom'] : null; ?>
+                        <input type="text" name="prenom" value="<?= isset($_POST['prenom']) ? $_POST['prenom'] : null; ?>" placeholder="Votre Prénom (facultatif)">
 
-                            <label for="email">Email <span style="color: red;">*</span></label>
-                            <?= isset($erreurs['email']) ? $erreurs['email'] : null; ?>
-                            <input type="email" name="email" value="<?= isset($_POST['email']) ? $_POST['email'] : null; ?>" placeholder="Votre adresse Email">
+                        <label for="email">Email <span style="color: red;">*</span></label>
+                        <?= isset($erreurs['email']) ? $erreurs['email'] : null; ?>
+                        <input type="email" name="email" value="<?= isset($_POST['email']) ? $_POST['email'] : null; ?>" placeholder="Votre adresse Email">
 
-                            <label for="contenu">Contenu <span style="color: red;">*</span></label>
-                            <textarea name="contenu" placeholder="Saisir votre message"><?= isset($_POST['contenu']) ? $_POST['contenu'] : null; ?></textarea>
-                            <?= isset($erreurs['contenu']) ? $erreurs['contenu'] : null; ?>
+                        <label for="contenu">Contenu <span style="color: red;">*</span></label>
+                        <?= isset($erreurs['contenu']) ? $erreurs['contenu'] : null; ?>
+                        <textarea name="contenu" placeholder="Saisir votre message"><?= isset($_POST['contenu']) ? $_POST['contenu'] : null; ?></textarea>
 
                         <div>
                             <input type="submit" name="validation" value="Soumettre">
                         </div>
+
+                        <?= isset($valider) ? $valider : null; ?>
                     </form>
                 </div>
             </section>

@@ -1,3 +1,23 @@
+.right_contact {
+  width: 100%;
+}
+
+.erreur {
+  display: inline;
+  margin-left: 10px;
+  color: #ff0000b2 !important;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+.success {
+  display: block;
+  color: #00a669;
+  margin: 10px 0;
+  font-weight: 500;
+  font-size: 1.2rem;
+}
+
 .contactForm {
   width: 92%;
   display: flex;
@@ -6,6 +26,10 @@
   margin: auto;
   padding: 30px;
   background-color: white;
+}
+
+.contactForm>form {
+  width: 100%;
 }
 
 input[type=text],
