@@ -72,3 +72,8 @@ input[type=submit]:hover {
 .container {
   border-radius: 5px;
 }
+
+.cf-turnstile{
+  padding: 15px 0;
+  color: white;
+}

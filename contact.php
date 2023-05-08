@@ -73,6 +73,7 @@ if (empty($_POST) === false) {
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@700&display=swap" rel="stylesheet">
     <link rel="icon" href="assets/sv_logo.png">
+    <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
     <title>CSE Saint-Vincent - Contact</title>
 </head>
 
@@ -104,6 +105,7 @@ if (empty($_POST) === false) {
                         <?= isset($erreurs['contenu']) ? $erreurs['contenu'] : null; ?>
                         <textarea name="contenu" placeholder="Saisir votre message"><?= isset($_POST['contenu']) ? $_POST['contenu'] : null; ?></textarea>
 
+                        <div class="cf-turnstile" data-sitekey="0x4AAAAAAAEgyIjb34yA_KXM" data-callback="javascriptCallback"></div>
                         <div>
                             <input type="submit" name="validation" value="Soumettre">
                         </div>
@@ -115,6 +117,7 @@ if (empty($_POST) === false) {
         </div>
     </main>
     <?php require 'include/footer.php' ?>
+    <script src="contactScript.js"></script>
     <script src="scriptaside.js"></script>
 </body>
 
