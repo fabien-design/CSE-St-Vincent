@@ -1432,6 +1432,8 @@ th:last-of-type {
     -webkit-line-clamp: 2;
     overflow: hidden;
     max-width: 400px;
+    padding-bottom: 0;
+    margin-bottom:12px;
 }
 
 .message .tablemessages table thead .addPart {
