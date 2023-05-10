@@ -1220,7 +1220,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     <tr>
                                         <td data-title="Nom"><?php echo $partenaire["Nom_Partenaire"] ?></td>
                                         <td data-title="Description"><?php echo $partenaire["Description_Partenaire"] ?></td>
-                                        <td data-title="Lien du Site"><?php echo $partenaire["Lien_Partenaire"] ?></td>
+                                        <td data-title="Site"><?php echo $partenaire["Lien_Partenaire"] ?></td>
                                         <td data-title="Image" class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire">' : "Aucune image" ?></td>
                                         <td data-title="Action" class="actionBtn">  
                                             <?php 
@@ -1568,7 +1568,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
     <div class="accueil">
         <?= isset($msgvalidation) ? $msgvalidation : null ?>
         <div class="titlePage"> 
-            <h1>Modifier les informations de la page d'accueil</h1>
+            <h1>Modifier les informations de&nbsp;la page&nbsp;d'accueil</h1>
         </div>
         <div class="formEdit">
             <form action="backoffice.php" method="post" name="accueilEdit">

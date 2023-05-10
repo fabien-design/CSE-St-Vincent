@@ -1716,7 +1716,7 @@ th:last-of-type {
 
     .actionBtn {
         display: flex !important;
-        flex-direction: row-reverse;
+        flex-direction: row;
     }
 
     tr {
@@ -1780,11 +1780,36 @@ td:nth-child(1):before {
     padding-top: 6px;
 }
 
-
-
-
 @media only screen and (max-width: 670px) {
     td {
         padding-left: 40% !important;
+    }
+
+}
+
+@media only screen and (max-width: 450px) {
+    nav {
+        padding-left: 0 !important;
+        transition: padding-left 0.25s ease-in;
+    }
+    nav .bgLogo{
+        width: 40%;
+    }
+    nav .links.mobile-menu{
+        margin-left: calc(100% - 170.03px);
+    }
+    /* Direction Boutons table */ 
+    .actionBtn{
+        flex-direction: column;
+    }
+
+    /* Font table */
+    table tbody tr td{
+        font-size: 12px;
+    }
+
+    .pagination span{
+        height: 35px;
+        width: 35px;
     }
 }
