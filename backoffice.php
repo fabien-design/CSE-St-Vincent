@@ -1108,7 +1108,10 @@ if(isset($_GET['modalAjoutUtilisateur'])){
 
                     <label for="passuser">Mot de passe* :</label>
                     <input type="password" name="passuser" placeholder="Mot de passe de l'utilisateur">
+                    <label for="passuser2">Confirmez le mot de passe* :</label>
+                    <input type="password" name="passuser2" placeholder="Confirmez le mot de passe">
 
+                    <label for="droituser">Droit* :</label>
                     <select name="droituser" class="droituser">
                             <?php 
                                     $reqPart = $connexion->prepare("SELECT * FROM droit");
@@ -1199,7 +1202,7 @@ if(isset($_GET['modalAjoutUtilisateur'])){
                var formData = new FormData(this);
                $.ajax({
                    type: "POST",
-                   url: "ajoutUser.php",
+                   url: "BackofficePHP/ajoutUser.php",
                    data: formData,
                    contentType: false,
                    processData: false,
@@ -1223,88 +1226,51 @@ if(isset($_GET['modalAjoutUtilisateur'])){
 // CODE MODAL POUR MODIFIER UNE OFFRE
 
 if(isset($_GET['modalModifUtilisateur'])){
-    $req = $connexion->prepare("SELECT * FROM offre WHERE Id_Offre = :id");
+    $req = $connexion->prepare("SELECT * FROM utilisateur WHERE Id_Utilisateur = :id");
     $req->bindParam('id',$_GET['modalModifUtilisateur']);
     $req->execute();
-    $offre = $req->fetch();
-    $reqImg = $connexion->prepare("SELECT * FROM image WHERE Id_Image in (SELECT Id_Image FROM offre_image WHERE Id_Offre = :id)");
-    $reqImg->bindParam('id',$offre['Id_Offre']);
-    $reqImg->execute();
-    $imgOffre = $reqImg->fetchAll();
+    $user = $req->fetch();
      ?>
     <div id="modalModifUtilisateur" class="modal">
         <div class="modal-content">
             <span class="closeModif">&times;</span>
             <div class="formBox">
-               <form id="formModifBilletterie" enctype="multipart/form-data" method="POST">
-                   <input type="hidden" name="idoffre" value="<?php echo $offre['Id_Offre'] ?>">
-                   <label for="nomoffre">Nom* :</label>
-                   <input type="text" name="nomoffre" placeholder="Nom de l'Offre" value="<?php echo $offre['Nom_Offre'] ?>">
+               <form id="formModifUtilisateur" enctype="multipart/form-data" method="POST">
+                    <input type="hidden" name="iduser" value="<?php echo $user['Id_Utilisateur'] ?>">
 
-                    <label for="descripoffre">Description* :</label>
-                    <textarea name="descripoffre" cols="30" rows="10" placeholder="Description de l'Offre" value="<?php echo $offre['Description_Offre'] ?>"><?php echo $offre['Description_Offre'] ?></textarea>
-                    
-                    <div class="datesoffre">
-                        <label for="datedeboffre">Date de début de l'offre* :</label>
-                        <input type="date" name="datedeboffre" id="datedeboffre" value="<?php echo $offre['Date_Debut_Offre'] ?>">
-                        <label for="datefinoffre">Date de fin de l'offre* :</label>
-                        <input type="date" name="datefinoffre" id="datefinoffre" value="<?php echo $offre['Date_Fin_Offre'] ?>">
-                    </div>
+                    <label for="nomuser">Nom* :</label>
+                    <input type="text" name="nomuser" placeholder="Nom de l'utilisateur" value="<?php echo $user['Nom_Utilisateur'] ?>">
 
-                    <label for="placeoffre">Nombre de place minimum* :</label>
-                    <input type="number" name="placeoffre" placeholder="place de l'Offre" value="<?php echo $offre['Nombre_Place_Min_Offre'] ?>" min="0" >
+                    <label for="prenomuser">Prenom* :</label>
+                    <input type="text" name="prenomuser" placeholder="Prenom de l'utilisateur" value="<?php echo $user['Prenom_Utilisateur'] ?>">
+                   
+                    <label for="emailuser">Email* :</label>
+                    <input type="text" name="emailuser" placeholder="Email de l'utilisateur" value="<?php echo $user['Email_Utilisateur'] ?>">
 
-                   <label for="partoffre">Nom du partenaire* :</label>
-                   <select name="partoffre" id="partoffre">
+                    <label for="passuser">Mot de passe* :</label>
+                    <input type="password" name="passuser" placeholder="Mot de passe de l'utilisateur">
+                    <label for="passuser2">Confirmez le mot de passe* :</label>
+                    <input type="password" name="passuser2" placeholder="Confirmez le mot de passe">
+
+                   
+                    <label for="droituser">Droit* :</label>
+                    <select name="droituser">
                         <?php 
-                            $reqPart = $connexion->prepare("SELECT * FROM partenaire");
-                            $reqPart->execute();
-                            $Part = $reqPart->fetchAll();
-                            foreach($Part as $part){ 
-                                if($part['Id_Partenaire'] == $offre['Id_Partenaire']){
-                                ?>
-                                    <option value="<?= $part['Id_Partenaire'] ?>" selected><?= $part['Nom_Partenaire'] ?></option>
-                           <?php 
-                                }else{ ?>
-                                    <option value="<?= $part['Id_Partenaire'] ?>" ><?= $part['Nom_Partenaire'] ?></option>
-                               <?php }
-                           }
+                        $req = $connexion->prepare("SELECT * FROM droit");
+                        $req->execute();
+                        $droits = $req->fetchAll();
+                        var_dump($droits);
+                        foreach($droits as $droit){
+                            if($user['Id_Droit'] == $droit["Id_Droit"]){ ?>
+                                <option value="<?= $droit["Id_Droit"] ?>" selected><?= $droit["Libelle_Droit"] ?></option>
+                        <?php }else{ ?>
+                            <option value="<?= $droit["Id_Droit"] ?>"><?= $droit["Libelle_Droit"] ?></option>
+                        <?php }
+                        }
                         ?>
-                   </select>
+                    </select>
 
-                   <label for="imgoffre">Image*:</label>
-                   <div class="imgBox">
-                        <?php 
-                            $nb = 0;
-                            foreach($imgOffre as $imgO){ ?>
-                                <div class="Box">
-                                    <div class="edit-button">
-                                        <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
-                                        <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
-                                    </div>
-                                    <img id="ImgPrev<?= $nb ?>" src="assets/<?= $imgO['Nom_Image'] ?>" alt="Image(s) de l'offre">
-                                </div>
-                          <?php 
-                            $nb++;
-                           }
-                           if($nb<4){
-                                $nbmax = 3-$nb;
-                                $nb1 = $nb;
-                                for($i=0;$i<=$nbmax;$i++){?>
-                                    <div class="Box">
-                                        <div class="edit-button">
-                                            <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
-                                            <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb1 ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
-                                        </div>
-                                        <img id="ImgPrev<?= $nb1 ?>" src="assets/individual-man.png" alt="Image(s) de l'offre">
-                                    </div>
-                            <?php 
-                                $nb1++;
-                            }
-                           }
-                        ?>
-                   </div>
-
+                   
                    <div class="modifBtn">
                        <button type="submit" class="formModifOui">OUI</button></form>
                        <button class="formModifNon">NON</button>
@@ -1317,8 +1283,8 @@ if(isset($_GET['modalModifUtilisateur'])){
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
-        // Code Modal modif d'une offre
-        var modalModif = document.getElementById("modalModifBilletterie");
+        // Code Modal modif d'un utilisateur
+        var modalModif = document.getElementById("modalModifUtilisateur");
         var span = document.getElementsByClassName("closeModif")[0];
         var btnNon = document.getElementsByClassName("formModifNon")[0];
         var btnOui = document.getElementsByClassName("formModifOui")[0];
@@ -1377,15 +1343,15 @@ if(isset($_GET['modalModifUtilisateur'])){
         }
         }
         
-        // Code Jquery en AJAX pour la modif d'une offre
+        // Code Jquery en AJAX pour la modif d'un utilisateur
 
         $(document).ready(function(){
-            $("#formModifBilletterie").submit(function(e){
+            $("#formModifUtilisateur").submit(function(e){
                 e.preventDefault();
                 var formData = new FormData(this);
                 $.ajax({
                     type: "POST",
-                    url: "modifOffre.php",
+                    url: "BackofficePHP/modifUser.php",
                     data: formData,
                     contentType: false,
                     processData: false,

@@ -1,6 +1,6 @@
 <?php
-require('include/connexion_db.php');
-if(isset($_POST['nomuser'], $_POST['prenomuser'], $_POST['emailuser'], $_POST['passuser'], $_POST['droituser'])){
+require('../include/connexion_db.php');
+if(isset($_POST['nomuser'], $_POST['prenomuser'], $_POST['emailuser'], $_POST['passuser'], $_POST['passuser2'], $_POST['droituser'])){
     $nom = htmlspecialchars($_POST['nomuser']);
     $prenom = htmlspecialchars($_POST['prenomuser']);
     $password = $_POST['passuser'];
@@ -26,7 +26,13 @@ if(isset($_POST['nomuser'], $_POST['prenomuser'], $_POST['emailuser'], $_POST['p
     if(strlen($password) < 6){
         $erreurs['password'] = "Mot de passe trop court (< 6 caracteres) ";
     }else{
-        $password = password_hash($password, PASSWORD_ARGON2I);
+        if($password == $_POST['passuser2']){
+            $password = password_hash($password, PASSWORD_ARGON2I);
+        }
+        else{
+            $erreurs['password'] = "Les mots de passes sont différents";
+        }
+        
     }
     
     $verifdroit = $connexion->prepare('SELECT Id_Droit FROM droit');
@@ -57,7 +63,7 @@ if(isset($_POST['nomuser'], $_POST['prenomuser'], $_POST['emailuser'], $_POST['p
         
 
     }else{
-        $erreur_message = "Veuillez remplir correctement tous les champs.\n";
+        $erreur_message = "Veuillez remplir correctement tous les champs : \n";
         foreach ($erreurs as $cle => $valeur) {
             $erreur_message .= "-> " . $valeur . "\n";
         }
@@ -65,6 +71,6 @@ if(isset($_POST['nomuser'], $_POST['prenomuser'], $_POST['emailuser'], $_POST['p
 
     }
 }else{
-    header('Location : backoffice.php');
+    header('Location : ../backoffice.php');
 }
 ?>
