@@ -1180,6 +1180,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
                         //recup param de l'url
                         $params = $_GET;
+                        if(isset($params['modalModifPartenaire'])){
+                            unset($params['modalModifPartenaire']);
+                        }
+                        if(isset($params['modalSupprPartenaire'])){
+                            unset($params['modalSupprPartenaire']);
+                        }
                         //Creation GET + Construct url
                         $params['modalAjoutPartenaire'] = "partenaire";
                         $urlajout = http_build_query($params);
@@ -1281,7 +1287,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
                     //recup param de l'url
                     $params = $_GET;
-
+                    if(isset($params['modalModifBilletterie'])){
+                        unset($params['modalModifBilletterie']);
+                    }
+                    if(isset($params['modalSupprBilletterie'])){
+                        unset($params['modalSupprBilletterie']);
+                    }
                     $params['modalAjoutBilletterie'] = "offre";
                     $urlajout = http_build_query($params);
                     unset($params['modalAjoutBilletterie']);
@@ -1338,8 +1349,6 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                         <td data-title="Images"><?php echo $nbImgOffre." image(s)" ?></td>
                                         <td data-title="Action" class="actionBtn"> 
                                             <?php 
-                                            //recup param de l'url
-                                            $params = $_GET;
 
                                             //Creation GET + Construct url
                                             $params['modalModifBilletterie'] = $offre["Id_Offre"];
@@ -1487,6 +1496,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
                     //recup param de l'url
                     $params = $_GET;
+                    if(isset($params['modalModifUtilisateur'])){
+                        unset($params['modalModifUtilisateur']);
+                    }
+                    if(isset($params['modalSupprUtilisateur'])){
+                        unset($params['modalSupprUtilisateur']);
+                    }
                     $params['modalAjoutUtilisateur'] = "user";
                     $urlajout = http_build_query($params);
                     unset($params['modalAjoutUtilisateur']);
