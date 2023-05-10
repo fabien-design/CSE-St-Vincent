@@ -1123,9 +1123,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
         <div class="graynav"></div>
         <nav>
             <div class="bgLogo">
-                <img src="assets/logo_lycee.png" alt="logo du lycée">
+                <a href="index.php">
+                    <img class="img_base" src="assets/logo_lycee.png" alt="logo_st_vincent">
+                    <img class="img_responsive" src="assets/Logo_St_Vincent_2.jpg" alt="logo_st_vincent_responsive">
+                </a>
             </div>
-            <ul> <?php
+            <ul class="links"> <?php
             if(empty($_GET) || $_GET['page'] === "accueil"){?>
                 <li><a href="backoffice.php?page=accueil" class="active">Accueil</a></li>
             <?php }else{ ?>
@@ -1150,6 +1153,8 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                 <li><a href="backoffice.php?page=gestion">Gestion</a></li>
             <?php } ?>
             </ul>
+            <img class="menu-burger" src="assets/menu.png" alt="menu-burger">
+            <script src="scriptMenuBurger.js"></script>
         </nav>
     </header>
         <main> <?php

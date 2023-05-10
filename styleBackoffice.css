@@ -10,6 +10,7 @@
 body {
     width: 100%;
     height: 100vh;
+    overflow-x: hidden;
 }
 
 a {
@@ -44,10 +45,16 @@ nav .bgLogo {
     justify-content: center;
 }
 
-nav .bgLogo img {
+nav .bgLogo .img_base {
     height: 100%;
     width: 100%;
     object-fit: contain;
+}
+nav .bgLogo .img_responsive {
+    height: 100%;
+    width: 100%;
+    object-fit: contain;
+    display: none;
 }
 
 nav ul {
@@ -59,7 +66,6 @@ nav ul {
 
 nav ul li {
     height: 100%;
-
 }
 
 nav ul li a {
@@ -73,6 +79,19 @@ nav ul li a {
 
 nav ul li a.active {
     background-color: #B6A886;
+}
+nav ul li a:hover {
+    background-color: #B6A886;
+}
+nav .menu-burger{
+    position: absolute;
+    margin-top: 7px ;
+    right: 5vw;
+    width: 35px;
+    height: 40px;
+    filter: invert(100);
+    display: none;
+    cursor:pointer
 }
 
 .formulaire {
@@ -1634,7 +1653,7 @@ th:last-of-type {
 }
 
 
-/* TABLE RESPONSIVE */
+/* RESPONSIVE */
 
 @media only screen and (max-width: 1150px) {
 
@@ -1719,6 +1738,42 @@ th:last-of-type {
         margin: auto;
         display: flex;
     }
+
+    /* Nav responsive */
+    nav {
+        padding-right: 0;
+    }
+    nav .menu-burger{
+        display: block;
+    }
+    nav .bgLogo .img_base{
+        display: none;
+    }
+    nav .bgLogo .img_responsive{
+        display: block;
+    }
+    nav ul.links {
+        position: absolute;
+        flex-direction: column;
+        margin-top: 56px;
+        margin-left: 150%;
+        z-index: 2;
+    }
+    nav .links.mobile-menu{
+        margin-left: calc(90% - 170.03px);
+        transition: all .5s ease-in;
+    }
+    nav .links li{
+        height: 56px;
+        width: 100%;
+        background-color: #1B3168;
+    }
+    nav .links li a{
+        height: 56px;
+        background-color: #1B3168;
+    }
+
+
 }
 
 td:nth-child(1):before {
