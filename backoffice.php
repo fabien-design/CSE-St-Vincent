@@ -1223,7 +1223,7 @@ if(isset($_GET['modalAjoutUtilisateur'])){
 <?php
 }
 
-// CODE MODAL POUR MODIFIER UNE OFFRE
+// CODE MODAL POUR MODIFIER UN UTILISATEUR
 
 if(isset($_GET['modalModifUtilisateur'])){
     $req = $connexion->prepare("SELECT * FROM utilisateur WHERE Id_Utilisateur = :id");
@@ -1372,52 +1372,30 @@ if(isset($_GET['modalModifUtilisateur'])){
 <?php
 }
 
-// CODE MODAL POUR SUPPRIMER UNE OFFRE
+// CODE MODAL POUR SUPPRIMER UN UTILISATEUR
 
 if(isset($_GET['modalSupprUtilisateur'])){
-    $req = $connexion->prepare("SELECT * FROM offre WHERE Id_Offre = :id");
+    $req = $connexion->prepare("SELECT * FROM utilisateur WHERE Id_Utilisateur = :id");
     $req->bindParam('id',$_GET['modalSupprUtilisateur']);
     $req->execute();
-    $offre = $req->fetch();
+    $user = $req->fetch();
+    $reqDroit = $connexion->prepare("SELECT * FROM droit WHERE Id_Droit = :id");
+    $reqDroit->bindParam('id',$user['Id_Droit']);
+    $reqDroit->execute();
+    $droit = $reqDroit->fetch();
     ?>
     <div id="modalSupprUtilisateur" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="title">
-                <h2><?php echo $offre['Nom_Offre']; ?></h2>
+                <h2><?= $droit['Libelle_Droit'] == "Administrateur" ? "<span style='color:red'>[".$droit['Libelle_Droit']."]</span>" : "<span style='color:#1B3168'>[".$droit['Libelle_Droit']."]</span>"?><?= " ".$user["Nom_Utilisateur"]." ".$user["Prenom_Utilisateur"] ?></h2>
             </div>
             <div class="modalBox">
-            <?php 
-            $SelectOffre_Img = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image in (SELECT Id_Image FROM offre_image WHERE Id_Offre = :idoffre)");
-            $SelectOffre_Img->bindParam("idoffre",$_GET['modalSupprUtilisateur']);
-            $SelectOffre_Img->execute();
-            $offres_images = $SelectOffre_Img->fetchAll();
-            if(!empty($offres_images)){ ?>
-                <div class="slider">
-                    <div class="boxSlider">
-                        <div class="slideshow-container"> <?php
-                            foreach($offres_images as $image ){?>
-                                <div class="mySlides"> 
-                                    <img src="<?php echo "assets/".$image['Nom_Image']."" ?>" alt="Image(s) de l'offre">
-                                </div>
-                            <?php } ?>
-                        </div>
-                        <img class="prev" onclick="plusSlides(-1)" src="assets/chevron-gauche.png">
-                        <img class="next" onclick="plusSlides(1)" src="assets/chevron-droit.png">
-                        <div style="text-align:center">
-                            <span class="dot" onclick="currentSlide(1)"></span>
-                            <span class="dot" onclick="currentSlide(2)"></span>
-                            <span class="dot" onclick="currentSlide(3)"></span>
-                        </div>
-                    </div>
-                </div>
-                <script src="scriptaside.js"></script>
-                <?php } ?>
                 <div class="supprBox">
-                    <p>Êtes-vous sûr de vouloir supprimer cette offre ?</p>
+                    <p>Êtes-vous sûr de vouloir supprimer cet<?= " ".$droit['Libelle_Droit']." " ?>?</p>
                     <div class="supprBtn">
-                        <form id="formSupprBilletterie">
-                            <input type="hidden" name="idOffre" value="<?php echo $offre['Id_Offre'] ?>">
+                        <form id="formSupprUtilisateur">
+                            <input type="hidden" name="iduser" value="<?php echo $user['Id_Utilisateur'] ?>">
                             <button type="submit" class="formSupprOui">OUI</button>
                         </form>
                         <button class="formSupprNon">NON</button>
@@ -1431,7 +1409,7 @@ if(isset($_GET['modalSupprUtilisateur'])){
     <script>
         // Code Modal suppression d'une offre
 
-        var modalSuppr = document.getElementById("modalSupprBilletterie");
+        var modalSuppr = document.getElementById("modalSupprUtilisateur");
         var span = document.getElementsByClassName("close")[0];
         var btnNon = document.getElementsByClassName("formSupprNon")[0];
         var btnOui = document.getElementsByClassName("formSupprOui")[0];
@@ -1491,15 +1469,15 @@ if(isset($_GET['modalSupprUtilisateur'])){
         }
 
 
-        // Code Jquery en AJAX pour la suppression d'une offre
+        // Code Jquery en AJAX pour la suppression d'un utilisateur
 
         $(document).ready(function(){
-            $("#formSupprBilletterie").submit(function(e){
+            $("#formSupprUtilisateur").submit(function(e){
             e.preventDefault();
             var formData = new FormData(this);
             $.ajax({
                 type: "POST",
-                url: "supprOffre.php",
+                url: "BackofficePHP/supprUser.php",
                 data: formData,
                 contentType: false,
                 processData: false,

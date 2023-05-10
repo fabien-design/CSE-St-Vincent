@@ -1748,7 +1748,7 @@ th:last-of-type {
     align-items: center;
 }
 
-#modalModifUtilisateur .modal-content #formModifBilletterie {
+#modalModifUtilisateur .modal-content #formModifUtilisateur {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -1777,6 +1777,105 @@ th:last-of-type {
 #modalModifUtilisateur .modifBtn button:hover {
     background-color: initial;
     background-position: 0 0;
+}
+
+
+#modalSupprUtilisateur {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalSupprUtilisateur .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalSupprUtilisateur .modal-content .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#modalSupprUtilisateur .modal-content .close:hover,
+#modalSupprUtilisateur .modal-content .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+
+#modalSupprUtilisateur .modal-content .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+#modalSupprUtilisateur .modal-content .modalBox {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
+#modalSupprUtilisateur .modal-content .modalBox .supprBox {
+    display: grid;
+    align-items: center;
+    gap: 30px;
+}
+
+#modalSupprUtilisateur .modal-content .modalBox .supprBox .supprBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#modalSupprUtilisateur .modal-content .modalBox .supprBox .supprBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.15s ease-in-out;
+}
+
+#modalSupprUtilisateur .modal-content .modalBox .supprBox .supprBtn button:hover {
+    background-color: initial;
+    background-position: 0 0;
+}
+
+#modalSupprUtilisateur .modal-content .modalBox .supprBox .supprBtn .formSupprNon {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+}
+
+#modalSupprUtilisateur .modal-content .modalBox .supprBox .supprBtn .formSupprNon:hover {
+    color: #FF4742 !important;
+}
+
+#modalSupprUtilisateur .modal-content .modalBox .supprBox .supprBtn .formSupprOui {
+    background: #27bb56;
+    border: 1px solid #27bb56;
+}
+
+#modalSupprUtilisateur .modal-content .modalBox .supprBox .supprBtn .formSupprOui:hover {
+    color: #27bb56 !important;
 }
 
 
