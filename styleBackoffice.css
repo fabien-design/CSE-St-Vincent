@@ -720,8 +720,9 @@ th {
 
 input[type=text],
 select,
-textarea {
+textarea, input[type=password] {
     width: 100%;
+    min-width: 215px;
     padding: 12px;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -1606,6 +1607,102 @@ th:last-of-type {
     color: #27bb56 !important;
 }
 
+#modalAjoutUtilisateur {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+#modalAjoutUtilisateur .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+#modalAjoutUtilisateur .modal-content .closeAjout {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+#modalAjoutUtilisateur .modal-content .closeAjout:hover,
+#modalAjoutUtilisateur .modal-content .closeAjout:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+#modalAjoutUtilisateur .modal-content .formBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+#modalAjoutUtilisateur .modal-content #formAjoutUtilisateur {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+#modalAjoutUtilisateur .modal-content .modalBox .ajoutBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#modalAjoutUtilisateur .modal-content .modalBox .ajoutBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#modalAjoutUtilisateur .ajoutBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: 100%;
+}
+
+#modalAjoutUtilisateur .ajoutBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.15s ease-in-out;
+}
+
+#modalAjoutUtilisateur .ajoutBtn button:hover {
+    background-color: initial;
+    background-position: 0 0;
+}
+
+#modalAjoutUtilisateur .formAjoutNon {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+}
+
+#modalAjoutUtilisateur .formAjoutNon:hover {
+    color: #FF4742 !important;
+}
+
+#modalAjoutUtilisateur .formAjoutOui {
+    background: #27bb56;
+    border: 1px solid #27bb56;
+}
+
+#modalAjoutUtilisateur .formAjoutOui:hover {
+    color: #27bb56 !important;
+}
 
 /* Pagination */
 

@@ -1087,6 +1087,467 @@ if(isset($_GET['modalSupprMessage'])){
     </script>
 <?php
 }
+
+// CODE MODAL POUR AJOUTER UN UTILISATEUR 
+
+if(isset($_GET['modalAjoutUtilisateur'])){
+    ?>
+   <div id="modalAjoutUtilisateur" class="modal">
+       <div class="modal-content">
+           <span class="closeAjout">&times;</span>
+           <div class="formBox">
+               <form id="formAjoutUtilisateur" enctype="multipart/form-data" method="POST">
+                   <label for="nomuser">Nom* :</label>
+                   <input type="text" name="nomuser" placeholder="Nom de l'utilisateur">
+
+                    <label for="prenomuser">Prénom* :</label>
+                    <input type="text" name="prenomuser" placeholder="Prénom de l'utilisateur">
+                    
+                    <label for="emailuser">Email* :</label>
+                    <input type="text" name="emailuser" placeholder="Email de l'utilisateur">
+
+                    <label for="passuser">Mot de passe* :</label>
+                    <input type="password" name="passuser" placeholder="Mot de passe de l'utilisateur">
+
+                    <select name="droituser" class="droituser">
+                            <?php 
+                                    $reqPart = $connexion->prepare("SELECT * FROM droit");
+                                    $reqPart->execute();
+                                    $Part = $reqPart->fetchAll();
+                                    foreach($Part as $part){ 
+                                        if($part['Id_Droit'] == 2){ ?>
+                                            <option value="<?= $part['Id_Droit'] ?>" selected><?= $part['Libelle_Droit'] ?></option>
+                                  <?php }else{
+                                        ?>
+                                            <option value="<?= $part['Id_Droit'] ?>"><?= $part['Libelle_Droit'] ?></option>
+                                    <?php }    
+                                    }
+                                ?>
+                    </select>
+
+                   <div class="ajoutBtn">
+                       <button type="submit" class="formAjoutOui">OUI</button></form>
+                       <button class="formAjoutNon">NON</button>
+                   </div>
+               
+           </div>
+           
+       </div>
+
+   </div>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+   <script>
+       // Code Modal modif d'ajout d'un utilisateur
+       var modalAjout = document.getElementById("modalAjoutUtilisateur");
+       var span = document.getElementsByClassName("closeAjout")[0];
+       var btnNon = document.getElementsByClassName("formAjoutNon")[0];
+       var btnOui = document.getElementsByClassName("formAjoutOui")[0];
+       // cacher modal au click de la croix ou du btn non
+       span.onclick = function() {
+           modalAjout.style.display = "none";
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+       }
+       btnNon.onclick = function(e) {
+           e.preventDefault();
+           modalAjout.style.display = "none";
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+       }
+       btnOui.onclick = function() {
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+           setTimeout(function() {modalAjout.style.display = "none";}, 2000);
+       }
+       window.onclick = function(event) {
+       if (event.target == modalAjout) {
+           modalAjout.style.display = "none";
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+       }
+       }
+       
+       // Code Jquery en AJAX pour l'ajout d'un utilisateur
+
+       $(document).ready(function(){
+           $("#formAjoutUtilisateur").submit(function(e){
+               e.preventDefault();
+               var formData = new FormData(this);
+               $.ajax({
+                   type: "POST",
+                   url: "ajoutUser.php",
+                   data: formData,
+                   contentType: false,
+                   processData: false,
+                   success: function(response){
+                       alert(response);
+                       setTimeout(function() {
+                           location.reload(true);
+                       }, 2000);
+
+                   },
+                   error: function(xhr, status, error) {
+                       alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                   }
+               });
+           }); 
+       });
+   </script>
+<?php
+}
+
+// CODE MODAL POUR MODIFIER UNE OFFRE
+
+if(isset($_GET['modalModifUtilisateur'])){
+    $req = $connexion->prepare("SELECT * FROM offre WHERE Id_Offre = :id");
+    $req->bindParam('id',$_GET['modalModifUtilisateur']);
+    $req->execute();
+    $offre = $req->fetch();
+    $reqImg = $connexion->prepare("SELECT * FROM image WHERE Id_Image in (SELECT Id_Image FROM offre_image WHERE Id_Offre = :id)");
+    $reqImg->bindParam('id',$offre['Id_Offre']);
+    $reqImg->execute();
+    $imgOffre = $reqImg->fetchAll();
+     ?>
+    <div id="modalModifUtilisateur" class="modal">
+        <div class="modal-content">
+            <span class="closeModif">&times;</span>
+            <div class="formBox">
+               <form id="formModifBilletterie" enctype="multipart/form-data" method="POST">
+                   <input type="hidden" name="idoffre" value="<?php echo $offre['Id_Offre'] ?>">
+                   <label for="nomoffre">Nom* :</label>
+                   <input type="text" name="nomoffre" placeholder="Nom de l'Offre" value="<?php echo $offre['Nom_Offre'] ?>">
+
+                    <label for="descripoffre">Description* :</label>
+                    <textarea name="descripoffre" cols="30" rows="10" placeholder="Description de l'Offre" value="<?php echo $offre['Description_Offre'] ?>"><?php echo $offre['Description_Offre'] ?></textarea>
+                    
+                    <div class="datesoffre">
+                        <label for="datedeboffre">Date de début de l'offre* :</label>
+                        <input type="date" name="datedeboffre" id="datedeboffre" value="<?php echo $offre['Date_Debut_Offre'] ?>">
+                        <label for="datefinoffre">Date de fin de l'offre* :</label>
+                        <input type="date" name="datefinoffre" id="datefinoffre" value="<?php echo $offre['Date_Fin_Offre'] ?>">
+                    </div>
+
+                    <label for="placeoffre">Nombre de place minimum* :</label>
+                    <input type="number" name="placeoffre" placeholder="place de l'Offre" value="<?php echo $offre['Nombre_Place_Min_Offre'] ?>" min="0" >
+
+                   <label for="partoffre">Nom du partenaire* :</label>
+                   <select name="partoffre" id="partoffre">
+                        <?php 
+                            $reqPart = $connexion->prepare("SELECT * FROM partenaire");
+                            $reqPart->execute();
+                            $Part = $reqPart->fetchAll();
+                            foreach($Part as $part){ 
+                                if($part['Id_Partenaire'] == $offre['Id_Partenaire']){
+                                ?>
+                                    <option value="<?= $part['Id_Partenaire'] ?>" selected><?= $part['Nom_Partenaire'] ?></option>
+                           <?php 
+                                }else{ ?>
+                                    <option value="<?= $part['Id_Partenaire'] ?>" ><?= $part['Nom_Partenaire'] ?></option>
+                               <?php }
+                           }
+                        ?>
+                   </select>
+
+                   <label for="imgoffre">Image*:</label>
+                   <div class="imgBox">
+                        <?php 
+                            $nb = 0;
+                            foreach($imgOffre as $imgO){ ?>
+                                <div class="Box">
+                                    <div class="edit-button">
+                                        <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
+                                        <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
+                                    </div>
+                                    <img id="ImgPrev<?= $nb ?>" src="assets/<?= $imgO['Nom_Image'] ?>" alt="Image(s) de l'offre">
+                                </div>
+                          <?php 
+                            $nb++;
+                           }
+                           if($nb<4){
+                                $nbmax = 3-$nb;
+                                $nb1 = $nb;
+                                for($i=0;$i<=$nbmax;$i++){?>
+                                    <div class="Box">
+                                        <div class="edit-button">
+                                            <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
+                                            <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb1 ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
+                                        </div>
+                                        <img id="ImgPrev<?= $nb1 ?>" src="assets/individual-man.png" alt="Image(s) de l'offre">
+                                    </div>
+                            <?php 
+                                $nb1++;
+                            }
+                           }
+                        ?>
+                   </div>
+
+                   <div class="modifBtn">
+                       <button type="submit" class="formModifOui">OUI</button></form>
+                       <button class="formModifNon">NON</button>
+                   </div>
+               
+           </div>
+            
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal modif d'une offre
+        var modalModif = document.getElementById("modalModifBilletterie");
+        var span = document.getElementsByClassName("closeModif")[0];
+        var btnNon = document.getElementsByClassName("formModifNon")[0];
+        var btnOui = document.getElementsByClassName("formModifOui")[0];
+        var body = document.body;
+        body.style.overflow= "hidden";
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+            modalModif.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        btnNon.onclick = function(e) {
+            e.preventDefault();
+            modalModif.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        btnOui.onclick = function() {
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            setTimeout(function() {modalModif.style.display = "none";}, 2000);
+            body.style.overflow = "auto";
+        }
+        window.onclick = function(event) {
+        if (event.target == modalModif) {
+            modalModif.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        }
+        
+        // Code Jquery en AJAX pour la modif d'une offre
+
+        $(document).ready(function(){
+            $("#formModifBilletterie").submit(function(e){
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    type: "POST",
+                    url: "modifOffre.php",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                        alert(response);
+                        setTimeout(function() {
+                            location.reload(true);
+                        }, 2000);
+
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                    }
+                });
+            }); 
+        });
+    </script>
+<?php
+}
+
+// CODE MODAL POUR SUPPRIMER UNE OFFRE
+
+if(isset($_GET['modalSupprUtilisateur'])){
+    $req = $connexion->prepare("SELECT * FROM offre WHERE Id_Offre = :id");
+    $req->bindParam('id',$_GET['modalSupprUtilisateur']);
+    $req->execute();
+    $offre = $req->fetch();
+    ?>
+    <div id="modalSupprUtilisateur" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="title">
+                <h2><?php echo $offre['Nom_Offre']; ?></h2>
+            </div>
+            <div class="modalBox">
+            <?php 
+            $SelectOffre_Img = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image in (SELECT Id_Image FROM offre_image WHERE Id_Offre = :idoffre)");
+            $SelectOffre_Img->bindParam("idoffre",$_GET['modalSupprUtilisateur']);
+            $SelectOffre_Img->execute();
+            $offres_images = $SelectOffre_Img->fetchAll();
+            if(!empty($offres_images)){ ?>
+                <div class="slider">
+                    <div class="boxSlider">
+                        <div class="slideshow-container"> <?php
+                            foreach($offres_images as $image ){?>
+                                <div class="mySlides"> 
+                                    <img src="<?php echo "assets/".$image['Nom_Image']."" ?>" alt="Image(s) de l'offre">
+                                </div>
+                            <?php } ?>
+                        </div>
+                        <img class="prev" onclick="plusSlides(-1)" src="assets/chevron-gauche.png">
+                        <img class="next" onclick="plusSlides(1)" src="assets/chevron-droit.png">
+                        <div style="text-align:center">
+                            <span class="dot" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                        </div>
+                    </div>
+                </div>
+                <script src="scriptaside.js"></script>
+                <?php } ?>
+                <div class="supprBox">
+                    <p>Êtes-vous sûr de vouloir supprimer cette offre ?</p>
+                    <div class="supprBtn">
+                        <form id="formSupprBilletterie">
+                            <input type="hidden" name="idOffre" value="<?php echo $offre['Id_Offre'] ?>">
+                            <button type="submit" class="formSupprOui">OUI</button>
+                        </form>
+                        <button class="formSupprNon">NON</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal suppression d'une offre
+
+        var modalSuppr = document.getElementById("modalSupprBilletterie");
+        var span = document.getElementsByClassName("close")[0];
+        var btnNon = document.getElementsByClassName("formSupprNon")[0];
+        var btnOui = document.getElementsByClassName("formSupprOui")[0];
+        var body = document.body;
+        body.style.overflow= "hidden";
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+            modalSuppr.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        btnNon.onclick = function(e) {
+            e.preventDefault();
+            modalSuppr.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        btnOui.onclick = function() {
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
+            body.style.overflow = "auto";
+        }
+        window.onclick = function(event) {
+        if (event.target == modalSuppr) {
+            modalSuppr.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        }
+
+
+        // Code Jquery en AJAX pour la suppression d'une offre
+
+        $(document).ready(function(){
+            $("#formSupprBilletterie").submit(function(e){
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: "POST",
+                url: "supprOffre.php",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    alert(response);
+                    setTimeout(location.reload(true) , 3000);
+                }
+            });
+            });
+        });
+    </script>
+<?php
+}
+
 }
 ?>
 
