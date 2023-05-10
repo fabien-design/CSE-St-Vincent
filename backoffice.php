@@ -1219,8 +1219,8 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     ?>
                                     <tr>
                                         <td data-title="Nom"><?php echo $partenaire["Nom_Partenaire"] ?></td>
-                                        <td data-title="Description"><?php echo $partenaire["Description_Partenaire"] ?></td>
-                                        <td data-title="Site"><?php echo $partenaire["Lien_Partenaire"] ?></td>
+                                        <td data-title="Description" class="colonneDescription"><div><?php echo $partenaire["Description_Partenaire"] ?></div></td>
+                                        <td data-title="Site" class="colonneLien"><a href="<?php echo $partenaire["Lien_Partenaire"] ?>" target="_blank"><?php echo $partenaire["Lien_Partenaire"] ?></a></td>
                                         <td data-title="Image" class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire">' : "Aucune image" ?></td>
                                         <td data-title="Action" class="actionBtn">  
                                             <?php 
@@ -1329,11 +1329,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     ?>
                                     <tr>
                                         <td data-title="Nom"><?php echo $offre["Nom_Offre"] ?></td>
-                                        <td data-title="Description" class="colonneDescription"><?php echo $offre["Description_Offre"] ?></td>
+                                        <td data-title="Description" class="colonneDescription"><div><?php echo $offre["Description_Offre"] ?></div></td>
                                         <td data-title="Dates"><?php echo date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Debut_Offre"]),"d-m-Y")." - ".date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Fin_Offre"]),"d-m-Y") ?></td>
                                         <td data-title="Partenaires"><?= !empty($offre["Id_Partenaire"]) ? $NomPart['Nom_Partenaire'] : "Aucun partenaire Associé" ?></td>
-                                        <td data-title="Nombres de places"><?php echo $offre['Nombre_Place_Min_Offre'] ?></td>
-                                        <td data-title="Nombres d'images"><?php echo $nbImgOffre." image(s)" ?></td>
+                                        <td data-title="Places"><?php echo $offre['Nombre_Place_Min_Offre']." place(s)" ?></td>
+                                        <td data-title="Images"><?php echo $nbImgOffre." image(s)" ?></td>
                                         <td data-title="Action" class="actionBtn"> 
                                             <?php 
                                             //recup param de l'url
@@ -1434,7 +1434,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 <tr>
                                     <td data-title="Nom Prénom"><?php echo $message["Nom_Message"]." ".$message["Prenom_Message"]  ?></td>
                                     <td data-title="Email"><a href="mailto:"><?php echo $message["Email_Message"] ?></a></td>
-                                    <td data-title="Contenu" class="colonneContenu"><?php echo $message["Contenu_Message"] ?></td>
+                                    <td data-title="Contenu" class="colonneContenu"><div><?php echo $message["Contenu_Message"] ?></div></td>
                                     <td data-title="Offre"><?= !empty($message["Id_Offre"]) ? $Offre['Nom_Offre'] : "Aucune offre associée" ?></td>
                                     <td data-title="Partenaire"><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
                                     <td data-title="Action" class="actionBtn">  

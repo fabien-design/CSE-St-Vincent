@@ -352,7 +352,22 @@ th {
 .partenaires .tablepartenaires table thead .addPart a div {
     padding: 8px 20px;
 }
-
+.partenaires .tablepartenaires table tbody .colonneDescription div{
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        -webkit-line-clamp: 2;
+        overflow: hidden;
+        max-width: 400px;
+        padding-bottom: 0;
+}
+.partenaires .tablepartenaires table tbody .colonneLien a{
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2;
+    overflow: hidden;
+    max-width: 400px;
+    padding-bottom: 0;
+}
 .partenaires .tablepartenaires table tbody .actionBtn {
     display: grid;
     justify-content: center;
@@ -852,14 +867,13 @@ input[type=submit]:hover {
     color: #009879;
 }
 
-.billetterie .tableoffres tbody .colonneDescription {
+.billetterie .tableoffres tbody .colonneDescription div{
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
     max-width: 400px;
     padding-bottom: 0;
-    margin-bottom: 12px;
 }
 
 .billetterie .tableoffres table thead .addPart {
@@ -1445,14 +1459,13 @@ th:last-of-type {
     color: #009879;
 }
 
-.message .tablemessages tbody .colonneContenu {
+.message .tablemessages tbody .colonneContenu div{
     display: -webkit-box;
     -webkit-box-orient: vertical;
     -webkit-line-clamp: 2;
     overflow: hidden;
     max-width: 400px;
     padding-bottom: 0;
-    margin-bottom:12px;
 }
 
 .message .tablemessages table thead .addPart {
@@ -1685,6 +1698,7 @@ th:last-of-type {
         white-space: normal;
         text-align: left;
         max-width: 500px !important;
+        word-wrap: break-word;
     }
 
     td:before {
