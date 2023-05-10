@@ -194,11 +194,13 @@ input:-webkit-autofill:active {
     padding: 40px;
     text-align: center;
 }
-
 .titlePage h1 {
     font-weight: 900;
     color: #1b3168;
     text-decoration: underline;
+}
+.titlePage .addBtn{
+    display: none;
 }
 
 .accueil .formEdit {
@@ -293,14 +295,6 @@ input:-webkit-autofill:active {
     font-size: 20px;
 
 }
-
-.partenaires .titlePage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-}
-
 .partenaires .tablepartenaires {
     display: flex;
     justify-content: center;
@@ -821,14 +815,6 @@ input[type=submit]:hover {
 #modalAjoutPartenaire .modal-content .modalBox .ajoutBtn button {
     padding: 10px 20px;
     cursor: pointer;
-}
-
-
-.billetterie .titlePage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
 }
 
 .billetterie .tableoffres {
@@ -1416,13 +1402,6 @@ th:last-of-type {
     background-color: #000;
 }
 
-.message .titlePage {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 40px;
-}
-
 .message .tablemessages {
     display: flex;
     justify-content: center;
@@ -1752,6 +1731,24 @@ th:last-of-type {
         margin: auto;
         display: flex;
     }
+
+    /*  Add button */
+    .titlePage{
+        flex-direction: column;
+        
+    }
+    .titlePage .addBtn{
+        background-color: #2b9336;
+        border-radius: 10px;
+        display: block;
+        margin-top: 20px;
+    }
+    .titlePage .addBtn a{
+        color: white;
+    }
+    .titlePage .addBtn a div{
+        padding: 8px 20px;
+    } 
 
     /* Nav responsive */
     nav {

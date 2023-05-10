@@ -1191,6 +1191,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     <?= isset($msgvalidation) ? $msgvalidation : null ?>
                     <div class="titlePage"> 
                         <h1>Modifier les partenaires</h1>
+                        <div class="addBtn"><a href="backoffice.php?<?= $urlajout; ?>"><div>Ajouter</div></a></div>
                     </div>
                     <div class="tablepartenaires">
                     <table>
@@ -1290,6 +1291,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     <?= isset($msgvalidation) ? $msgvalidation : null ?>
                     <div class="titlePage"> 
                         <h1>Modifier les offres</h1>
+                        <div class="addBtn"><a href="backoffice.php?<?= $urlajout ?>"><div>Ajouter</div></a></div>
                     </div>
                     <div class="tableoffres">
                     <table>
@@ -1494,6 +1496,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                 <?= isset($msgvalidation) ? $msgvalidation : null ?>
                 <div class="titlePage"> 
                     <h1>Tous les Administrateurs</h1>
+                    <div class="addBtn"><a href="backoffice.php?<?= $urlajout ?>"><div>Ajouter</div></a></div>
                 </div>
                 <div class="tablemessages">
                 <table>
