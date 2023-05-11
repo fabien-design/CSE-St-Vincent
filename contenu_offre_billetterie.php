@@ -56,9 +56,8 @@ $link = $modalLink->fetch();
         <div class="right">
             <h1><?= $DescOffres['Nom_Offre']?></h1>
             <div class="Description_Offre">
-                <?= $DescOffres['Description_Offre'] ?>
                 <p>
-                    Pour les groupes d'un minimum de 4 personnes, profitez d'une réduction de -50% sur un large choix de sucreries pendant vos concerts. Offre valable dans tout nos établissements.
+                    <?= $DescOffres['Description_Offre'] ?>
                 </p>
             </div>
             <div class="date_contenu_offre_billetterie">
