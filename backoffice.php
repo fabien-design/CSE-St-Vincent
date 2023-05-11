@@ -1496,7 +1496,9 @@ if(isset($_GET['modalSupprUtilisateur'])){
 ?>
 
 <!-- Debut Page HTML -->
+
 <body> 
+<div class="bodyDiv">
 <?php
 if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur'])){
 ?>
@@ -2040,5 +2042,6 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
 <!-- Fin Page HTML -->
 <script src="scriptBackoffice.js"></script>
+</div>
 </body>
 </html>

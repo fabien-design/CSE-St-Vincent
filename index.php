@@ -68,6 +68,7 @@ setlocale(LC_TIME,"fr_FR.utf8");
 </head>
 
 <body id="body" class="no-transition">
+    <div class="bodyDiv">
     <?php require 'include/header.php'?>
     <main>
         <?php require 'include/aside.php'?>
@@ -100,6 +101,8 @@ setlocale(LC_TIME,"fr_FR.utf8");
     </main>
     <?php require 'include/footer.php'?>
     <script src="scriptaside.js"></script>
+            
+    </div>
 </body>
 
 </html>
