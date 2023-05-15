@@ -543,10 +543,23 @@ if(isset($_GET['modalAjoutBilletterie'])){
 
                    <label for="imgoffre">Image* (Minimum une) :</label>
                    <div class="imgBox">
+                        <?php
+                        $nb1 = 0;
+                        for($i=0;$i<4;$i++){?>
+                        <div class="Box">
+                            <div class="edit-button">
+                                <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
+                                <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb1 ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
+                            </div>
+                            <img id="ImgPrev<?= $nb1 ?>" src="assets/individual-man.png" alt="Image(s) de l'offre">
+                        </div>
+                        <?php 
+                            $nb1++;
+                        } ?>
+                        <!--
                        <input type="file" name="imgoffre[]">
                        <input type="file" name="imgoffre[]">
-                       <input type="file" name="imgoffre[]">
-                       <input type="file" name="imgoffre[]">
+                       <input type="file" name="imgoffre[]"> -->
                    </div>
 
                    <div class="ajoutBtn">

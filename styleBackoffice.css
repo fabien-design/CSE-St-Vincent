@@ -969,8 +969,58 @@ th:last-of-type {
 #modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox {
     position: relative;
     display: flex;
+    gap: 40px;
     justify-content: center;
     overflow: hidden;
+}
+
+#modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox .Box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.155);
+}
+
+#modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox .Box:hover .edit-button {
+    display: flex;
+    opacity: 1;
+}
+
+#modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox .Box .edit-button:hover {
+    scale: 1.1;
+    opacity: 1;
+    transition: scale 0.3s ease;
+}
+
+#modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox .Box .edit-button:hover~img {
+    filter: blur(3px);
+}
+
+#modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox .Box .edit-button img {
+    position: absolute;
+    max-width: 32px !important;
+}
+
+#modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox .Box .edit-button input {
+    cursor: pointer !important;
+}
+
+#modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox img {
+    width: 100%;
+    max-width: 300px;
+    transition: filter 1s ease;
+}
+
+#modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: transparent;
+    overflow: hidden;
+    opacity: 0;
+    left: 0;
 }
 
 #modalAjoutBilletterie .modal-content .modalBox .ajoutBtn {
