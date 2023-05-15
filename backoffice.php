@@ -692,10 +692,14 @@ if(isset($_GET['modalModifBilletterie'])){
                     <textarea name="descripoffre" cols="30" rows="10" placeholder="Description de l'Offre" value="<?php echo $offre['Description_Offre'] ?>"><?php echo $offre['Description_Offre'] ?></textarea>
                     
                     <div class="datesoffre">
-                        <label for="datedeboffre">Date de début de l'offre* :</label>
-                        <input type="date" name="datedeboffre" id="datedeboffre" value="<?php echo $offre['Date_Debut_Offre'] ?>">
-                        <label for="datefinoffre">Date de fin de l'offre* :</label>
-                        <input type="date" name="datefinoffre" id="datefinoffre" value="<?php echo $offre['Date_Fin_Offre'] ?>">
+                        <div>
+                            <label for="datedeboffre">Date de début de l'offre* :</label>
+                            <input type="date" name="datedeboffre" id="datedeboffre" value="<?php echo $offre['Date_Debut_Offre'] ?>">
+                        </div>
+                        <div>
+                            <label for="datefinoffre">Date de fin de l'offre* :</label>
+                            <input type="date" name="datefinoffre" id="datefinoffre" value="<?php echo $offre['Date_Fin_Offre'] ?>">
+                        </div>
                     </div>
 
                     <label for="placeoffre">Nombre de place minimum* :</label>
