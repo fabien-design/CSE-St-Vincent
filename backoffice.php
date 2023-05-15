@@ -526,10 +526,14 @@ if(isset($_GET['modalAjoutBilletterie'])){
                     <textarea name="descripoffre" cols="30" rows="10" placeholder="Description de l'Offre"></textarea>
                     
                     <div class="datesoffre">
-                        <label for="datedeboffre">Date de début de l'offre* :</label>
-                        <input type="date" name="datedeboffre" id="datedeboffre">
-                        <label for="datefinoffre">Date de fin de l'offre* :</label>
-                        <input type="date" name="datefinoffre" id="datefinoffre">
+                        <div>
+                            <label for="datedeboffre">Date de début de l'offre* :</label>
+                            <input type="date" name="datedeboffre" id="datedeboffre">
+                        </div>
+                        <div>
+                            <label for="datefinoffre">Date de fin de l'offre* :</label>
+                            <input type="date" name="datefinoffre" id="datefinoffre">
+                        </div>
                     </div>
 
                     <label for="placeoffre">Nombre de place minimum* :</label>
