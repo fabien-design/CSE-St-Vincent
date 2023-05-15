@@ -7,11 +7,44 @@ $imgPartenaire = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image
 $imgPartenaire->execute();
 $nomImgPartenaire = $imgPartenaire->fetchAll();
 
-
-
 $req = $connexion->prepare("SELECT Id_Partenaire FROM partenaire");
 $req->execute();
 $idPartenaire = $req->fetchAll();
+
+$count = $connexion->prepare("SELECT COUNT(Id_Partenaire) as parten FROM partenaire");
+$count->setFetchMode(PDO::FETCH_ASSOC);
+$count->execute();
+$tcount = $count->fetchAll();
+
+$nb_elements_par_page = 3;
+$pages = ceil($tcount[0]['parten'] / $nb_elements_par_page);
+@$page = $_GET["page"];
+// Verif validité 
+if (empty($page)) {
+    $page = 1;
+}
+$page = max(1, min($pages, $page));
+// Verif Si contenu offre renvoie une valeur de page 
+if (isset($_GET["anciennepage"])) {
+    try {
+        $valeur = intval($_GET["anciennepage"]);
+        if (gettype($valeur == "integer")) {
+            $page = $valeur;
+        }
+    } catch (Exception $e) {
+        $page = 1;
+    }
+}
+if ($page === 0) {
+    $page = 1;
+}
+
+$debut = ($page - 1) * $nb_elements_par_page;
+
+$select = $connexion->prepare("SELECT Nom_Image FROM image LIMIT $debut, $nb_elements_par_page");
+$select->setFetchMode(PDO::FETCH_ASSOC);
+$select->execute();
+$tab = $select->fetchAll();
 
 ?>
 
@@ -43,21 +76,27 @@ $idPartenaire = $req->fetchAll();
             <div class="right_partenaire">
                 <h1>Tous nos partenaires</h1>
                 <div class="partenaires_grid-container">
-                    <?php
-                    foreach ($nomImgPartenaire as $index => $image) {
-                        $test = $idPartenaire[$index];
-
-                    ?>
-
-                        <div class="partenaires_grid-item"><a href="partenariats.php?modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>"><img src="assets/<?= $image['Nom_Image'] ?>" alt="Image du partenaire"></a></div>
+                    <?php foreach ($tab as $partenaires) { ?>
+                        <div class="partenaires_grid-item">
+                            <a href="partenariats.php?modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>">
+                                <img src="assets/<?= $partenaires['Nom_Image']?>" alt="Image du partenaire">
+                            </a>
+                        </div>
                     <?php } ?>
                 </div>
+
                 <div class="pagination">
-                    <span class="page activepage">1</span>
-                    <span class="page">2</span>
-                    <span class="page">3</span>
-                    <span class="etc">...</span>
-                    <span class="page">10</span>
+                    <?php
+                    for ($i = 1; $i <= $pages; $i++) {
+                        if ($page != $i) {
+
+
+                    ?>
+                            <a href="?page=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
+                        <?php } else { ?>
+                            <a href="?page=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
+                    <?php }
+                    } ?>
                 </div>
 
             </div>
