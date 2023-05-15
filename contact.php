@@ -78,47 +78,49 @@ if (empty($_POST) === false) {
 </head>
 
 <body id="body" class="no-transition">
-    <?php require 'include/header.php' ?>
-    <main>
-        <?php require 'include/aside.php' ?>
-        <div class="right_contact">
-            <h1>Contactez-nous !</h1>
+    <div class="bodyDiv">
+        <?php require 'include/header.php' ?>
+        <main>
+            <?php require 'include/aside.php' ?>
+            <div class="right_contact">
+                <h1>Contactez-nous !</h1>
 
-            <section class="contact" id="linkToContact">
-                <div class="contactForm">
+                <section class="contact" id="linkToContact">
+                    <div class="contactForm">
 
-                    <form action="#" method="POST">
+                        <form action="#" method="POST">
 
-                        <label for="nom">Nom</label>
-                        <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
-                        <input type="text" name="nom" value="<?= isset($_POST['nom']) ? $_POST['nom'] : null; ?>" placeholder="Votre Nom (facultatif)">
+                            <label for="nom">Nom</label>
+                            <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
+                            <input type="text" name="nom" value="<?= isset($_POST['nom']) ? $_POST['nom'] : null; ?>" placeholder="Votre Nom (facultatif)">
 
-                        <label for="prenom">Prénom</label>
-                        <?= isset($erreurs['prenom']) ? $erreurs['prenom'] : null; ?>
-                        <input type="text" name="prenom" value="<?= isset($_POST['prenom']) ? $_POST['prenom'] : null; ?>" placeholder="Votre Prénom (facultatif)">
+                            <label for="prenom">Prénom</label>
+                            <?= isset($erreurs['prenom']) ? $erreurs['prenom'] : null; ?>
+                            <input type="text" name="prenom" value="<?= isset($_POST['prenom']) ? $_POST['prenom'] : null; ?>" placeholder="Votre Prénom (facultatif)">
 
-                        <label for="email">Email <span style="color: red;">*</span></label>
-                        <?= isset($erreurs['email']) ? $erreurs['email'] : null; ?>
-                        <input type="email" name="email" value="<?= isset($_POST['email']) ? $_POST['email'] : null; ?>" placeholder="Votre adresse Email">
+                            <label for="email">Email <span style="color: red;">*</span></label>
+                            <?= isset($erreurs['email']) ? $erreurs['email'] : null; ?>
+                            <input type="email" name="email" value="<?= isset($_POST['email']) ? $_POST['email'] : null; ?>" placeholder="Votre adresse Email">
 
-                        <label for="contenu">Contenu <span style="color: red;">*</span></label>
-                        <?= isset($erreurs['contenu']) ? $erreurs['contenu'] : null; ?>
-                        <textarea name="contenu" placeholder="Saisir votre message"><?= isset($_POST['contenu']) ? $_POST['contenu'] : null; ?></textarea>
+                            <label for="contenu">Contenu <span style="color: red;">*</span></label>
+                            <?= isset($erreurs['contenu']) ? $erreurs['contenu'] : null; ?>
+                            <textarea name="contenu" placeholder="Saisir votre message"><?= isset($_POST['contenu']) ? $_POST['contenu'] : null; ?></textarea>
 
-                        <div class="cf-turnstile" data-sitekey="0x4AAAAAAAEgyIjb34yA_KXM" data-callback="javascriptCallback"></div>
-                        <div>
-                            <input type="submit" name="validation" value="Soumettre">
-                        </div>
+                            <div class="cf-turnstile" data-sitekey="0x4AAAAAAAEgyIjb34yA_KXM" data-callback="javascriptCallback"></div>
+                            <div>
+                                <input type="submit" name="validation" value="Soumettre">
+                            </div>
 
-                        <?= isset($valider) ? $valider : null; ?>
-                    </form>
-                </div>
-            </section>
-        </div>
-    </main>
-    <?php require 'include/footer.php' ?>
-    <script src="contactScript.js"></script>
-    <script src="scriptaside.js"></script>
+                            <?= isset($valider) ? $valider : null; ?>
+                        </form>
+                    </div>
+                </section>
+            </div>
+        </main>
+        <?php require 'include/footer.php' ?>
+        <script src="contactScript.js"></script>
+        <script src="scriptaside.js"></script>
+    </div>
 </body>
 
 </html>

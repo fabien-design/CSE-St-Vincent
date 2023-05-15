@@ -5,7 +5,7 @@
     font-family: 'Montserrat', sans-serif;
 }
 .bodyDiv, body{
-    overflow-x:hidden;
+    overflow-x: hidden;
     position: relative;
     width: 100vw;
 }
