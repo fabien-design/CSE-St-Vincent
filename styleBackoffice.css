@@ -725,7 +725,9 @@ th {
 
 input[type=text],
 select,
-textarea, .modal-content input[type=password] {
+textarea,
+.modal-content input[type=password],
+input[type=url] {
     width: 100%;
     min-width: 215px;
     padding: 12px;
