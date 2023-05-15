@@ -1017,7 +1017,7 @@ if(isset($_GET['modalAfficher'])){
                 <div class="afficherBox">
                     <div>
                         <h3>Email de contact : </h3>
-                        <p class="styleBoxAfficher"><a href="mailto:<?= $message['Email_Message'] ?>"><?= $message['Email_Message'] ?></a></p>
+                        <p class="styleBoxAfficher styleBoxAfficherEmail"><a href="mailto:<?= $message['Email_Message'] ?>"><?= $message['Email_Message'] ?></a></p>
                     </div>
                     <div>
                         <h3>Message : </h3>

@@ -416,15 +416,19 @@ aside.left a {
     text-align: end;
     text-decoration: none;
     color: black;
-    transition: all 0.2s ease-in-out;
+    transition: all 0.2s ease;
     left: 100%;
     position: sticky;
     margin-top: 10px;
     text-decoration: none !important;
+    color: rgb(0, 102, 204);
+}
+.offre_learnmore img{
+    filter: invert(20%) sepia(69%) saturate(4064%) hue-rotate(199deg) brightness(96%) contrast(102%);
 }
 
 .offre_learnmore:hover {
-    color: #B6A886;
+    opacity: 0.5;
     scale: 1.05;
 }
 

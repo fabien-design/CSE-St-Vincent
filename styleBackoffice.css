@@ -1886,6 +1886,14 @@ th:last-of-type {
 #modalAfficher .styleBoxAfficherMessage{
     min-height:100px ;
 }
+.styleBoxAfficher a{
+    color: rgb(0, 102, 204) !important;
+    transition: opacity 0.2s ease;
+}
+
+.styleBoxAfficher a:hover{
+    opacity: 0.4;
+}
 
 #modalAfficher .ModalAfficherTitle{
     color: #1B3168 !important;
