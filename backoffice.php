@@ -974,13 +974,13 @@ if(isset($_GET['modalSupprBilletterie'])){
 
 // CODE MODAL POUR AFFICHER UN MESSAGE
 
-if(isset($_GET['modalAfficherMessage'])){
+if(isset($_GET['modalAfficher'])){
     $req = $connexion->prepare("SELECT * FROM message WHERE Id_Message = :id");
-    $req->bindParam('id',$_GET['modalAfficherMessage']);
+    $req->bindParam('id',$_GET['modalAfficher']);
     $req->execute();
     $message = $req->fetch();
     ?>
-    <div id="modalAfficherMessage" class="modal">
+    <div id="modalAfficher" class="modal">
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="title">
@@ -1035,7 +1035,7 @@ if(isset($_GET['modalAfficherMessage'])){
     <script>
         // Code Modal suppression d'une offre
 
-        var modalSuppr = document.getElementById("modalAfficherMessage");
+        var modalSuppr = document.getElementById("modalAfficher");
         var span = document.getElementsByClassName("close")[0];
         var btnNon = document.getElementsByClassName("formSupprNon")[0];
         var btnOui = document.getElementsByClassName("formSupprOui")[0];
@@ -1989,9 +1989,9 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     <td data-title="Partenaire"><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
                                     <td data-title="Action" class="actionBtn">  
                                         <?php
-                                            $params['modalAfficherMessage'] = $message["Id_Message"];
+                                            $params['modalAfficher'] = $message["Id_Message"];
                                             $urlafficher = http_build_query($params);
-                                            unset($params['modalAfficherMessage']);
+                                            unset($params['modalAfficher']);
 
                                             $params['modalSupprMessage'] = $message["Id_Message"];
                                             $urlsuppr = http_build_query($params);
