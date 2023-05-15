@@ -1474,7 +1474,8 @@ th:last-of-type {
 }
 
 .message .tablemessages table tbody td .modifBtn,
-.message .tablemessages table tbody td .supprBtn {
+.message .tablemessages table tbody td .supprBtn,
+.message .tablemessages table tbody td .afficherBtn {
     padding: 8px 15px;
     border-radius: 10px;
     color: #fff;
@@ -1482,7 +1483,9 @@ th:last-of-type {
     justify-content: center;
     display: flex;
 }
-
+.message .tablemessages table tbody td .afficherBtn {
+    background-color: #1b3168;
+}
 .message .tablemessages table tbody td .modifBtn {
     background-color: #1b3168;
 }

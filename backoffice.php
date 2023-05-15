@@ -972,6 +972,132 @@ if(isset($_GET['modalSupprBilletterie'])){
 <?php
 }
 
+// CODE MODAL POUR AFFICHER UN MESSAGE
+
+if(isset($_GET['modalAfficherMessage'])){
+    $req = $connexion->prepare("SELECT * FROM message WHERE Id_Message = :id");
+    $req->bindParam('id',$_GET['modalAfficherMessage']);
+    $req->execute();
+    $message = $req->fetch();
+    ?>
+    <div id="modalAfficherMessage" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="title">
+                <h2>Message de <?php echo $message['Nom_Message']." ".$message['Prenom_Message']; ?></h2>
+            </div>
+            <div class="modalBox">
+                <div class="afficherBox">
+                    <div>
+                        <h3>Email de contact : </h3>
+                        <a href="mailto:<?= $message['Email_Message'] ?>"><?= $message['Email_Message'] ?></a>
+                    </div>
+                    <div>
+                        <h3>Message : </h3>
+                        <p><?= $message['Contenu_Message'] ?></p>
+                    </div>
+                    <div>
+                        <h3>Offre associée</h3>
+                        <?php 
+                            $reqOffre = $connexion->prepare("SELECT * FROM offre")
+                        ?>
+                    </div>
+                    
+                    <div class="closeBtn">
+                        <button class="formSupprNon">FERMER</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal suppression d'une offre
+
+        var modalSuppr = document.getElementById("modalSupprMessage");
+        var span = document.getElementsByClassName("close")[0];
+        var btnNon = document.getElementsByClassName("formSupprNon")[0];
+        var btnOui = document.getElementsByClassName("formSupprOui")[0];
+        var body = document.body;
+        body.style.overflow= "hidden";
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+            modalSuppr.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        btnNon.onclick = function(e) {
+            e.preventDefault();
+            modalSuppr.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        btnOui.onclick = function() {
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
+            body.style.overflow = "auto";
+        }
+        window.onclick = function(event) {
+        if (event.target == modalSuppr) {
+            modalSuppr.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        }
+
+
+        // Code Jquery en AJAX pour la suppression d'une offre
+
+        $(document).ready(function(){
+            $("#formSupprMessage").submit(function(e){
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: "POST",
+                url: "supprMessage.php",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    alert(response);
+                    setTimeout(location.reload(true) , 3000);
+                }
+            });
+            });
+        });
+    </script>
+<?php
+}
+
 // CODE MODAL POUR SUPPRIMER UN MESSAGE
 
 if(isset($_GET['modalSupprMessage'])){
@@ -1857,10 +1983,15 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     <td data-title="Partenaire"><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
                                     <td data-title="Action" class="actionBtn">  
                                         <?php
+                                            $params['modalAfficherMessage'] = $message["Id_Message"];
+                                            $urlafficher = http_build_query($params);
+                                            unset($params['modalAfficherMessage']);
+
                                             $params['modalSupprMessage'] = $message["Id_Message"];
                                             $urlsuppr = http_build_query($params);
                                             unset($params['modalSupprMessage']);
                                         ?>
+                                        <a href="backoffice.php?<?= $urlafficher; ?>" class="afficherBtn">Afficher</a>
                                         <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
                                     </td>
                                 </tr>
