@@ -1454,7 +1454,8 @@ th:last-of-type {
 }
 
 .message .tablemessages table thead .addPart {
-    background: #1b3168;
+    background-color: #2b9336;
+    
 }
 
 .message .tablemessages table thead .addPart a {
