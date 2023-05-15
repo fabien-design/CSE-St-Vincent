@@ -406,7 +406,13 @@ if(isset($_GET['modalAjoutPartenaire'])){
 
                     <label for="imgpart">Image* :</label>
                     <div class="imgBox">
-                        <input type="file" name="imgpart">
+                        <div class="Box">
+                            <div class="edit-button">
+                                <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
+                                <input type="file" name="imgpart" onchange="document.getElementById('ImgPrev').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
+                            </div>
+                            <img id="ImgPrev" src="assets/individual-man.png" alt="Image(s) de l'offre">
+                        </div>
                     </div>
 
                     <div class="ajoutBtn">
