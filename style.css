@@ -382,11 +382,13 @@ aside.left a {
 }
 
 .offre_billetterie_header {
-    padding-bottom: 15px;
     background-color: #EFEDED;
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+}
+.offre_billetterie_header span {
+    margin-bottom: 8px;
 }
 
 .tag_offre {
