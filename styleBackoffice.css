@@ -1850,6 +1850,11 @@ th:last-of-type {
 #modalAfficher .styleBoxAfficherMessage{
     min-height:100px ;
 }
+
+#modalAfficher .ModalAfficherTitle{
+    color: #1B3168 !important;
+    font-weight: 600;
+}
 /* FIN CSS MODAL AFFICHER */
 
 /* MODAL UTILISATEUR */
