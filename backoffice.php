@@ -1009,11 +1009,11 @@ if(isset($_GET['modalAfficher'])){
                 <div class="afficherBox">
                     <div>
                         <h3>Email de contact : </h3>
-                        <a href="mailto:<?= $message['Email_Message'] ?>"><?= $message['Email_Message'] ?></a>
+                        <p class="styleBoxAfficher"><a href="mailto:<?= $message['Email_Message'] ?>"><?= $message['Email_Message'] ?></a></p>
                     </div>
                     <div>
                         <h3>Message : </h3>
-                        <p><?= $message['Contenu_Message'] ?></p>
+                        <p class="styleBoxAfficher styleBoxAfficherMessage"><?= $message['Contenu_Message'] ?></p>
                     </div>
                     <div>
                         <h3>Offre associée :</h3>
@@ -1023,9 +1023,9 @@ if(isset($_GET['modalAfficher'])){
                                 $reqOffre->bindParam("id",$message['Id_Offre']);
                                 $reqOffre->execute();
                                 $offre = $reqOffre->fetch();
-                                ?> <a href="contenu_offre_billetterie.php?id=<?= $offre['Id_Offre'] ?>&pageoffre=1" target="_blank"><?= $offre['Nom_Offre'] ?></a> <?php
+                                ?> <p class="styleBoxAfficher"><a href="contenu_offre_billetterie.php?id=<?= $offre['Id_Offre'] ?>&pageoffre=1" target="_blank"><?= $offre['Nom_Offre'] ?></a></p> <?php
                             }else{ ?>
-                                <p>Pas d'offre associée</p> <?php
+                                <p class="styleBoxAfficher">Pas d'offre associée</p> <?php
                             }?>
                             <h3>Partenaire associé :</h3> <?php
 
@@ -1035,9 +1035,9 @@ if(isset($_GET['modalAfficher'])){
                                 $reqPart->execute();
                                 $part = $reqPart->fetch();
                                  ?>
-                                <a href="partenariats.php?modalOuvirPartenaire=<?= $part['Id_Partenaire'] ?>" target="_blank"><?= $part['Nom_Partenaire'] ?></a> <?php
+                                <p class="styleBoxAfficher"><a href="partenariats.php?modalOuvirPartenaire=<?= $part['Id_Partenaire'] ?>" target="_blank"><?= $part['Nom_Partenaire'] ?></a></p> <?php
                             }else{?>
-                                <p>Pas de partenaire associé</p> <?php
+                                <p class="styleBoxAfficher">Pas de partenaire associé</p> <?php
                             }
                         ?>
                     </div>
