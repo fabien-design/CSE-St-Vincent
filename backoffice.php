@@ -997,9 +997,29 @@ if(isset($_GET['modalAfficherMessage'])){
                         <p><?= $message['Contenu_Message'] ?></p>
                     </div>
                     <div>
-                        <h3>Offre associée</h3>
+                        <h3>Offre associée :</h3>
                         <?php 
-                            $reqOffre = $connexion->prepare("SELECT * FROM offre")
+                            if (!empty($message['Id_Offre'])){
+                                $reqOffre = $connexion->prepare("SELECT * FROM offre WHERE Id_Offre = :id");
+                                $reqOffre->bindParam("id",$message['Id_Offre']);
+                                $reqOffre->execute();
+                                $offre = $reqOffre->fetch();
+                                ?> <a href="contenu_offre_billetterie.php?id=<?= $offre['Id_Offre'] ?>&pageoffre=1" target="_blank"><?= $offre['Nom_Offre'] ?></a> <?php
+                            }else{ ?>
+                                <p>Pas d'offre associée</p> <?php
+                            }?>
+                            <h3>Partenaire associé :</h3> <?php
+
+                            if(!empty($message['Id_Partenaire'])){
+                                $reqPart = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
+                                $reqPart->bindParam("id",$message['Id_Partenaire']);
+                                $reqPart->execute();
+                                $part = $reqPart->fetch();
+                                 ?>
+                                <a href="partenariats.php?modalOuvirPartenaire=<?= $part['Id_Partenaire'] ?>" target="_blank"><?= $part['Nom_Partenaire'] ?></a> <?php
+                            }else{?>
+                                <p>Pas de partenaire associé</p> <?php
+                            }
                         ?>
                     </div>
                     
@@ -1015,7 +1035,7 @@ if(isset($_GET['modalAfficherMessage'])){
     <script>
         // Code Modal suppression d'une offre
 
-        var modalSuppr = document.getElementById("modalSupprMessage");
+        var modalSuppr = document.getElementById("modalAfficherMessage");
         var span = document.getElementsByClassName("close")[0];
         var btnNon = document.getElementsByClassName("formSupprNon")[0];
         var btnOui = document.getElementsByClassName("formSupprOui")[0];
@@ -1074,26 +1094,6 @@ if(isset($_GET['modalAfficherMessage'])){
         }
         }
 
-
-        // Code Jquery en AJAX pour la suppression d'une offre
-
-        $(document).ready(function(){
-            $("#formSupprMessage").submit(function(e){
-            e.preventDefault();
-            var formData = new FormData(this);
-            $.ajax({
-                type: "POST",
-                url: "supprMessage.php",
-                data: formData,
-                contentType: false,
-                processData: false,
-                success: function(response){
-                    alert(response);
-                    setTimeout(location.reload(true) , 3000);
-                }
-            });
-            });
-        });
     </script>
 <?php
 }
@@ -1936,6 +1936,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
                     //recup param de l'url
                     $params = $_GET;
+                    if(isset($params['modaAfficherMessage'])){
+                        unset($params['modaAfficherMessage']);
+                    }
+                    if(isset($params['modalSupprMessage'])){
+                        unset($params['modalSupprMessage']);
+                    }
                 ?>
                 <div class="message">
 
