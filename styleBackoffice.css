@@ -1802,13 +1802,12 @@ th:last-of-type {
     margin-bottom: 40px;
 }
 
-#modalAfficher .modal-content .modalBox .supprBox {
+#modalAfficher .modal-content .modalBox .afficherBox {
     display: grid;
     align-items: center;
-    gap: 30px;
 }
 
-#modalAfficher .modal-content .modalBox .supprBox .supprBtn {
+#modalAfficher .modal-content .modalBox .afficherBox .closeBtn {
     display: flex;
     align-items: center;
     justify-content: space-around;
@@ -1837,6 +1836,20 @@ th:last-of-type {
     background-position: 0 0;
 }
 
+#modalAfficher .styleBoxAfficher{
+    width: 100%;
+    min-width: 215px;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-top: 6px;
+    margin-bottom: 16px;
+    resize: vertical;
+}
+#modalAfficher .styleBoxAfficherMessage{
+    min-height:100px ;
+}
 /* FIN CSS MODAL AFFICHER */
 
 /* MODAL UTILISATEUR */
