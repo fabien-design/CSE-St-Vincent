@@ -2321,7 +2321,14 @@ td:nth-child(1):before {
     }
 
 }
-
+@media only screen and (max-width: 510px) {
+    #modalSupprPartenaire .modal-content .modalBox {
+        flex-wrap: wrap;
+    }
+    #modalSupprPartenaire .modal-content .modalBox .supprBox{
+        gap: 20px;
+    }
+}
 @media only screen and (max-width: 450px) {
     nav {
         padding-left: 0 !important;
