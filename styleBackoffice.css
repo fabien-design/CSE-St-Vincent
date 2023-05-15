@@ -312,6 +312,10 @@ input:-webkit-autofill:active {
     border-radius: 10px;
 }
 
+thead{
+    height: 62px;
+}
+
 .tablepartenaires thead tr {
     color: #ffffff;
     text-align: center;
@@ -2210,6 +2214,7 @@ th:last-of-type {
 
         display: block
     }
+
 
     thead tr {
         position: absolute;
