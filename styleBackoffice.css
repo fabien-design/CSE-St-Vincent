@@ -2319,6 +2319,14 @@ td:nth-child(1):before {
     td {
         padding-left: 40% !important;
     }
+    #modalAjoutBilletterie .modal-content #formAjoutBilletterie .imgBox{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+    #modalModifBilletterie .modal-content #formModifBilletterie .imgBox{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
 
 }
 @media only screen and (max-width: 510px) {
