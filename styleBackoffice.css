@@ -828,6 +828,10 @@ input[type=submit]:hover {
     overflow: hidden;
 }
 
+.Box{
+    background-color: #80808014;
+}
+
 #modalAjoutPartenaire .modal-content #formAjoutPartenaire .imgBox .Box {
     position: relative;
     display: flex;
