@@ -1533,7 +1533,7 @@ if(isset($_GET['modalSupprUtilisateur'])){
         <div class="modal-content">
             <span class="close">&times;</span>
             <div class="title">
-                <h2><?= $droit['Libelle_Droit'] == "Administrateur" ? "<span style='color:red'>[".$droit['Libelle_Droit']."]</span>" : "<span style='color:#1B3168'>[".$droit['Libelle_Droit']."]</span>"?><?= " ".$user["Nom_Utilisateur"]." ".$user["Prenom_Utilisateur"] ?></h2>
+                <h2><?= $droit['Libelle_Droit'] == "Administrateur" ? "<span style='color:red; font-weight:600'>[".$droit['Libelle_Droit']."]</span>" : "<span style='color:#1B3168; font-weight:600'>[".$droit['Libelle_Droit']."]</span>"?><?= " ".$user["Nom_Utilisateur"]." ".$user["Prenom_Utilisateur"] ?></h2>
             </div>
             <div class="modalBox">
                 <div class="supprBox">
