@@ -666,6 +666,11 @@ footer {
     padding: 15px;
 }
 
+#linkImgFooter{
+    display: flex;
+    justify-content: center;
+}
+
 .right_footer {
     width: 100%;
     display: flex;

@@ -52,6 +52,8 @@ $link = $modalLink->fetch();
         <main>
             <?php require 'include/aside.php' ?>
             <div class="right">
+                <div class="divImagesOffre">
+                </div>
                 <h1><?= $DescOffres['Nom_Offre'] ?></h1>
                 <div class="Description_Offre">
                     <p>

@@ -7,10 +7,11 @@ $file = $parts[count($parts) - 1];
 <footer>
     <div class="left_footer">
         <div class="logo_footer">
-            <a href="index.php">
+            <a href="index.php" id="linkImgFooter">
                 <img class="img_base" src="assets/logo_lycee.png" alt="logo_st_vincent">
-            </a>
+            
                 <img class="img_responsive" src="assets/zyro-image.png" alt="logo_st_vincent">
+                </a>
 
 
         </div>
