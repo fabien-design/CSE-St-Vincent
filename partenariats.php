@@ -80,18 +80,31 @@ $nomImgPartenaire = $imgPartenaire->fetchAll();
             <div class="right_partenaire">
                 <h1>Tous nos partenaires</h1>
                 <div class="partenaires_grid-container">
-                    <?php foreach ($nomImgPartenaire as $index => $image) {
+                    <?php 
+                    //recup param de l'url
+                    $params = $_GET;
+                    if(isset($params['modalOuvirPartenaire'])){
+                        unset($params['modalOuvirPartenaire']);
+                    }
+                    
+                    foreach ($nomImgPartenaire as $index => $image) {
                         $index2 = $index;
                         if ($page > 1){
                             $index = $index + (($page - 1) * $nb_elements_par_page);
                         }
-                        $test = $idPartenaire[$index];?>
+                        $test = $idPartenaire[$index];
+                        //Creation GET + Construct url
+                        $params['modalOuvirPartenaire'] = $test['Id_Partenaire'];
+                        $urlopen = http_build_query($params);
+                        unset($params['modalOuvirPartenaire']);// je suppr la colonne pour pas l'avoir dans les autres url (urlmodif et urlsuppr)
+                        ?>
                         <div class="partenaires_grid-item">
-                            <a href="partenariats.php?modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>">
+                            <a href="partenariats.php?<?= $urlopen ?>">
                                 <img src="assets/<?= $tab[$index2]['Nom_Image'] ?>" alt="Image du partenaire">
                             </a>
                         </div>
-                    <?php } ?>
+                    <?php } 
+                    ?>
                 </div>
 
                 <div class="pagination">
