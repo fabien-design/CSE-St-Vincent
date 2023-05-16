@@ -820,6 +820,7 @@ footer {
         display: flex;
         padding-bottom: 10px !important;
         margin: 12px 0;
+        color: #1b3168;
     }
     .infocontact div{
         justify-content: center;

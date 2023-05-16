@@ -81,10 +81,14 @@ $nomImgPartenaire = $imgPartenaire->fetchAll();
                 <h1>Tous nos partenaires</h1>
                 <div class="partenaires_grid-container">
                     <?php foreach ($nomImgPartenaire as $index => $image) {
-                        $test = $idPartenaire[$index]; ?>
+                        $index2 = $index;
+                        if ($page > 1){
+                            $index = $index + (($page - 1) * $nb_elements_par_page);
+                        }
+                        $test = $idPartenaire[$index];?>
                         <div class="partenaires_grid-item">
                             <a href="partenariats.php?modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>">
-                                <img src="assets/<?= $tab[$index]['Nom_Image'] ?>" alt="Image du partenaire">
+                                <img src="assets/<?= $tab[$index2]['Nom_Image'] ?>" alt="Image du partenaire">
                             </a>
                         </div>
                     <?php } ?>
