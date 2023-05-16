@@ -4,11 +4,14 @@
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
 }
-.bodyDiv, body{
+
+.bodyDiv,
+body {
     overflow-x: hidden;
     position: relative;
     width: 100vw;
 }
+
 p {
     /*font-size: clamp(14px,1vw,1.5vw);*/
     font-size: clamp(0.95rem, 0.31vw + 0.81rem, 1.28rem);
@@ -66,7 +69,7 @@ nav {
 
 }
 
-nav .logo { 
+nav .logo {
     position: absolute;
     background-color: white;
     top: -10px;
@@ -74,17 +77,17 @@ nav .logo {
     display: block;
 }
 
-span .logo_st_vincent_responsive{
+span .logo_st_vincent_responsive {
     width: 50%;
     position: absolute;
 }
 
-span .logo_st_vincent_responsive img{
+span .logo_st_vincent_responsive img {
     width: 100%;
     object-fit: cover;
 }
 
-.logo_responsive{
+.logo_responsive {
     width: 10%;
 }
 
@@ -116,9 +119,9 @@ span .logo_st_vincent_responsive img{
     background-color: #B6A886;
 }
 
-.menu-burger{
+.menu-burger {
     position: absolute;
-    margin-top: 7px ;
+    margin-top: 7px;
     right: 5vw;
     width: 35px;
     height: 40px;
@@ -139,7 +142,7 @@ aside {
     max-width: 250px;
 }
 
-.img_responsive{
+.img_responsive {
     display: none;
 }
 
@@ -188,6 +191,10 @@ aside.left .infocontact div:last-child {
 
 aside.left .infocontact div p span {
     color: #1b3168;
+}
+
+.partenaire{
+    width: 230px;
 }
 
 aside.left .partenaire .mySlides {
@@ -387,6 +394,7 @@ aside.left a {
     flex-direction: row;
     flex-wrap: wrap;
 }
+
 .offre_billetterie_header span {
     margin-bottom: 8px;
 }
@@ -425,7 +433,8 @@ aside.left a {
     text-decoration: none !important;
     color: rgb(0, 102, 204);
 }
-.offre_learnmore img{
+
+.offre_learnmore img {
     filter: invert(20%) sepia(69%) saturate(4064%) hue-rotate(199deg) brightness(96%) contrast(102%);
 }
 
@@ -434,9 +443,16 @@ aside.left a {
     scale: 1.05;
 }
 
+.div_offre_decouvrir{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
 #offres_decouvrir {
     margin-top: 3vh;
-    display: inline-block;
+    display: flex;
+    width: fit-content;
     padding: 10px 20px;
     color: white;
     background-color: #1B3168;
@@ -444,6 +460,7 @@ aside.left a {
     text-align: center;
     transition: all 0.1s ease-in-out;
 }
+
 
 #offres_decouvrir:hover {
     scale: 1.03;
@@ -455,13 +472,15 @@ aside.left a {
 
 /*  #### PARTENARIATS ####  */
 
-.right_partenaire{
+.right_partenaire {
     display: flex;
     align-items: center;
     flex-direction: column;
 }
 
- .right_partenaire h1, .right_billetterie h1, .right_contact h1{
+.right_partenaire h1,
+.right_billetterie h1,
+.right_contact h1 {
     text-align: center;
 }
 
@@ -555,38 +574,38 @@ aside.left a {
     padding-top: 25px;
 }
 
-.back{
+.back {
     display: flex;
     justify-content: center;
     padding-top: 10%;
 }
 
-.back :hover{
+.back :hover {
     opacity: 0.60;
 }
 
-.img_partenaire{
+.img_partenaire {
     display: flex;
     justify-content: center;
     margin-top: 10%;
     width: 100%;
 }
 
-.contain_img_partenaire{
+.contain_img_partenaire {
     width: 30%;
     border-radius: 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: rgba(27, 49, 104, 0.1) ;
+    background: rgba(27, 49, 104, 0.1);
 }
 
-.contain_img_partenaire h1{
+.contain_img_partenaire h1 {
     font-size: 20px;
 }
 
-.contain_img_partenaire a{
+.contain_img_partenaire a {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -596,14 +615,14 @@ aside.left a {
 }
 
 
-.contain_img_partenaire img{
+.contain_img_partenaire img {
     z-index: 3;
     width: 100%;
     height: 100%;
     border-radius: 20px;
 }
 
-.contain_img_partenaire p{
+.contain_img_partenaire p {
     position: absolute;
     font-size: 20px;
     font-weight: bold;
@@ -617,7 +636,7 @@ aside.left a {
     transition: 0.2s ease-in-out;
 }
 
- 
+
 
 
 
@@ -704,7 +723,7 @@ footer {
 @media screen and (max-width: 1080px) {
 
     /* Responsive Header */
-    .links{
+    .links {
         position: absolute;
         width: 100%;
         animation: slideMenuBurgerExit 2s ease;
@@ -712,7 +731,7 @@ footer {
         margin: 55px 0 0 100%;
     }
 
-   .mobile-menu{
+    .mobile-menu {
         z-index: 50;
         width: 100%;
         position: absolute;
@@ -722,53 +741,86 @@ footer {
         margin: 56px 0 0 350px;
     }
 
-    .blue ul{
+    .blue ul {
         display: block;
-        margin-left:0;
+        margin-left: 0;
         width: 100%;
         background: #1B3168;
         color: #B6A886;
     }
 
-    .blue li{
+    .blue li {
         width: 100%;
     }
 
-    .logo{
+    .logo {
         margin: 0 0 0 -10vw;
     }
 
-    .img_responsive{
+    .img_responsive {
         padding: 15px 0;
         display: block;
         object-fit: cover;
     }
 
-    .img_base{
+    .img_base {
         display: none;
     }
 
-    .menu-burger{
+    .menu-burger {
         display: block;
         cursor: pointer;
     }
 
-    
+
     /* Responsive Main */
-    main{
+    main {
         flex-direction: column-reverse;
+        margin: 0;
     }
 
-    .fastaccess, .infocontact, aside.left .home{
-        display: none;
-    }
+    /* Responsive Aside */
+
     
 
-    .left{
+    aside{
+        background-color: #EFEDED;
+    }
+
+    
+
+   
+
+    .left {
         max-width: 100%;
         display: flex;
         align-items: center;
+        flex-direction: column-reverse;
+    }
+
+    .right{
+        margin-bottom: 30px;
+        padding: 0;
+        padding: 0 5%;
+    }
+
+    .fastaccess,
+    aside.left .home {
+        display: none;
+    }
+    .sectiontitle{
+        justify-content: center;
+        display: flex;
+        padding-bottom: 10px !important;
+        margin: 12px 0;
+    }
+    .infocontact div{
+        justify-content: center;
+        display: flex;
         flex-direction: column;
+    }
+    .infocontact p{
+        white-space: normal;
     }
 
 
@@ -782,13 +834,13 @@ footer {
     .right_footer {
         align-items: center;
         justify-content: center;
-        padding: 0 0 5% 0;
+        padding: 0 0 20px 0;
     }
 
     .logo_footer img {
         opacity: 1;
     }
-    
+
     .left_footer {
         margin: 0;
         justify-content: center;
@@ -798,47 +850,57 @@ footer {
     .links_footer ul {
         flex-direction: column;
     }
-    .logo_footer{
+
+    .logo_footer {
         display: flex;
         justify-content: center;
     }
-    footer .img_responsive{
+
+    footer .img_responsive {
         background: none;
         width: 30%;
     }
 
     /* Responsive Contenu Billetterie */
 
-        .contain_img_partenaire{
-            min-width: 150px;
-        }
+    .contain_img_partenaire {
+        min-width: 150px;
+    }
+
+    /* Responsive Contenu Partenaire */
+
+    .partenaires_grid-container{
+        width: 80vw;
+    }
+
+
 }
 
 @keyframes slideMenuBurger {
-    from{
+    from {
         margin: 55px 0 0 1000px;
     }
 
-    to{
+    to {
         margin: 56px 0 0 calc(width - 350);
     }
-    
+
 }
 
 @keyframes slideMenuBurgerExit {
-    from{
+    from {
         margin: 56px 0 0 calc(width - 350);
     }
 
-    to{
+    to {
         margin: 55px 0 0 100%;
     }
-    
+
 }
 
 @media screen and (max-width: 584px) {
 
-    .mobile-menu{
+    .mobile-menu {
         z-index: 50;
         width: 100%;
         position: absolute;
@@ -848,5 +910,5 @@ footer {
         -webkit-animation: slideMenuBurger 1s;
     }
 
-    
+
 }

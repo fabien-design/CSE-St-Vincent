@@ -37,7 +37,7 @@ $TexteAccueil = $texteInfoAccueil->fetch();
 $TexteAccueil = $TexteAccueil['Texte_Info_Accueil'];
 
 //Images partenaires
-$offres = $connexion->prepare("SELECT DISTINCT * FROM offre ORDER BY Id_Offre DESC LIMIT 3");
+$offres = $connexion->prepare("SELECT DISTINCT * FROM offre ORDER BY Id_Offre DESC LIMIT 4");
 $offres->execute();
 $chaqueOffre = $offres->fetchAll();
 
@@ -92,10 +92,13 @@ setlocale(LC_TIME,"fr_FR.utf8");
                             src="assets/chevron-droit.png" alt="chevron-droit"> </a></span>
                
             </div>
-                <?php } ?>
-            <a href="billetterie.php?page=1">
-                <span id="offres_decouvrir">Découvrir toutes nos offres 〉</span>
-            </a>
+            <?php } ?>
+                
+            <div class="div_offre_decouvrir">
+                <a href="billetterie.php?page=1">
+                    <span id="offres_decouvrir">Découvrir toutes nos offres 〉</span>
+                </a>
+            </div>
         </div>
 
     </main>

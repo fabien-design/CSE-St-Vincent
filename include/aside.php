@@ -96,36 +96,38 @@ $nomImg = $imgPart->fetchAll();
                     </p>
                 </div>
             </div>
-            <div class="partenaire">
-                <h1 class="sectiontitle">Nos partenaires</h1>
-                <div class="boxSlider">
-                    <div class="slideshow-container">
-                        <?php foreach($nomImg as $image ){?>
-                        <div class="mySlides"> 
-                        <?php $SelectPart = $connexion->prepare("SELECT Id_Partenaire, Nom_Partenaire FROM partenaire WHERE Id_Image = :idimg");
-                            $SelectPart->bindParam('idimg',$image['Id_Image']);
-                            $SelectPart->execute();
-                            $Part = $SelectPart->fetch();
-                                    
-                            ?>
-                            <a href="partenariats.php?modalOuvirPartenaire=<?php echo $Part['Id_Partenaire'] ?>">
-                               <p>Voir plus</p>
-                                <img src="<?php echo "assets/".$image['Nom_Image']."" ?>" alt="Image du partenaire <?php echo $Part['Nom_Partenaire'] ?>">
-                            </a>
-                            
+            <div>
+                <div class="partenaire">
+                    <h1 class="sectiontitle">Nos partenaires</h1>
+                    <div class="boxSlider">
+                        <div class="slideshow-container">
+                            <?php foreach($nomImg as $image ){?>
+                            <div class="mySlides"> 
+                            <?php $SelectPart = $connexion->prepare("SELECT Id_Partenaire, Nom_Partenaire FROM partenaire WHERE Id_Image = :idimg");
+                                $SelectPart->bindParam('idimg',$image['Id_Image']);
+                                $SelectPart->execute();
+                                $Part = $SelectPart->fetch();
+                                        
+                                ?>
+                                <a href="partenariats.php?modalOuvirPartenaire=<?php echo $Part['Id_Partenaire'] ?>">
+                                <p>Voir plus</p>
+                                    <img src="<?php echo "assets/".$image['Nom_Image']."" ?>" alt="Image du partenaire <?php echo $Part['Nom_Partenaire'] ?>">
+                                </a>
+                                
+                            </div>
+                            <?php } ?>
                         </div>
-                        <?php } ?>
-                    </div>
-                    <img class="prev" onclick="plusSlides(-1)" src="assets/chevron-gauche.png">
-                    <img class="next" onclick="plusSlides(1)" src="assets/chevron-droit.png">
-                    <div style="text-align:center">
-                        <span class="dot" onclick="currentSlide(1)"></span>
-                        <span class="dot" onclick="currentSlide(2)"></span>
-                        <span class="dot" onclick="currentSlide(3)"></span>
+                        <img class="prev" onclick="plusSlides(-1)" src="assets/chevron-gauche.png">
+                        <img class="next" onclick="plusSlides(1)" src="assets/chevron-droit.png">
+                        <div style="text-align:center">
+                            <span class="dot" onclick="currentSlide(1)"></span>
+                            <span class="dot" onclick="currentSlide(2)"></span>
+                            <span class="dot" onclick="currentSlide(3)"></span>
+                        </div>
                     </div>
                 </div>
-            </div>
-            <div class="decouverte">
-                <a href="partenariats.php">Découvrir tous nos partenaires</a>
+                <div class="decouverte">
+                    <a href="partenariats.php">Découvrir tous nos partenaires</a>
+                </div>
             </div>
         </aside>
