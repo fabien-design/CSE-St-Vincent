@@ -2,21 +2,22 @@
 
 require 'include/connexion_db.php';
 
+
+
 // CODE POUR RECCUPERER IMAGE DE CHAQUE PARTENAIRE POUR AFFICHAGE FRONT
-$imgPartenaire = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image in (SELECT Id_Image FROM partenaire)");
-$imgPartenaire->execute();
-$nomImgPartenaire = $imgPartenaire->fetchAll();
+
 
 $req = $connexion->prepare("SELECT Id_Partenaire FROM partenaire");
 $req->execute();
 $idPartenaire = $req->fetchAll();
+
 
 $count = $connexion->prepare("SELECT COUNT(Id_Partenaire) as parten FROM partenaire");
 $count->setFetchMode(PDO::FETCH_ASSOC);
 $count->execute();
 $tcount = $count->fetchAll();
 
-$nb_elements_par_page = 6;
+$nb_elements_par_page = 6 ;
 $pages = ceil($tcount[0]['parten'] / $nb_elements_par_page);
 @$page = $_GET["page"];
 // Verif validité 
@@ -46,6 +47,9 @@ $select->setFetchMode(PDO::FETCH_ASSOC);
 $select->execute();
 $tab = $select->fetchAll();
 
+$imgPartenaire = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image in (SELECT Id_Image FROM partenaire) LIMIT $debut , $nb_elements_par_page");
+$imgPartenaire->execute();
+$nomImgPartenaire = $imgPartenaire->fetchAll();
 ?>
 
 
@@ -76,10 +80,11 @@ $tab = $select->fetchAll();
             <div class="right_partenaire">
                 <h1>Tous nos partenaires</h1>
                 <div class="partenaires_grid-container">
-                    <?php foreach ($tab as $partenaires) { ?>
+                    <?php foreach ($nomImgPartenaire as $index => $image) {
+                        $test = $idPartenaire[$index]; ?>
                         <div class="partenaires_grid-item">
                             <a href="partenariats.php?modalOuvirPartenaire=<?= $test['Id_Partenaire'] ?>">
-                                <img src="assets/<?= $partenaires['Nom_Image']?>" alt="Image du partenaire">
+                                <img src="assets/<?= $tab[$index]['Nom_Image'] ?>" alt="Image du partenaire">
                             </a>
                         </div>
                     <?php } ?>
@@ -89,8 +94,6 @@ $tab = $select->fetchAll();
                     <?php
                     for ($i = 1; $i <= $pages; $i++) {
                         if ($page != $i) {
-
-
                     ?>
                             <a href="?page=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
                         <?php } else { ?>
