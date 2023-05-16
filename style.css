@@ -798,11 +798,13 @@ footer {
         flex-direction: column-reverse;
     }
 
-    .right{
+    .right,
+    .right_billetterie{
         margin-bottom: 30px;
         padding: 0;
         padding: 0 5%;
     }
+    
 
     .fastaccess,
     aside.left .home {
