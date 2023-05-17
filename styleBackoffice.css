@@ -1842,14 +1842,41 @@ th:last-of-type {
     display: grid;
     align-items: center;
 }
-
-#modalAfficher .modal-content .modalBox .afficherBox .closeBtn {
+#modalAfficher .modal-content .modalBox .afficherBoxPartenaire {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#modalAfficher .modal-content .modalBox .afficherBoxPartenaire>* {
+    margin: 20px 0;
+}
+#modalAfficher .modal-content .modalBox .afficherBoxPartenaire .imagePartenaire {
+    max-width: 250px;
+    max-height: 250px;
+}
+#modalAfficher .modal-content .modalBox .afficherBoxPartenaire #offres_decouvrir {
+    margin: 0;
+    display: flex;
+    width: fit-content;
+    padding: 10px 20px;
+    color: white;
+    background-color: #1B3168;
+    border-radius: 7px;
+    text-align: center;
+    transition: all 0.1s ease-in-out;
+}
+#modalAfficher .modal-content .modalBox .afficherBoxPartenaire #offres_decouvrir:hover {
+    scale: 1.03;
+    opacity: 0.9;
+}
+#modalAfficher .modal-content .modalBox .closeBtn {
     display: flex;
     align-items: center;
     justify-content: space-around;
 }
 
-#modalAfficher .modal-content .modalBox .afficherBox .closeBtn button {
+#modalAfficher .modal-content .modalBox .closeBtn button {
     padding: 10px 20px;
     cursor: pointer;
     border-radius: 6px;
@@ -1861,12 +1888,12 @@ th:last-of-type {
     transition: all 0.15s ease-in-out;
 }
 
-#modalAfficher .modal-content .modalBox .afficherBox .closeBtn .formSupprNon {
+#modalAfficher .modal-content .modalBox .closeBtn .formSupprNon {
     background: #FF4742;
     border: 1px solid #FF4742;
 }
 
-#modalAfficher .modal-content .modalBox .afficherBox .closeBtn .formSupprNon:hover {
+#modalAfficher .modal-content .modalBox .closeBtn .formSupprNon:hover {
     color: #FF4742 !important;
     background: initial;
     background-position: 0 0;

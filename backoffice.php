@@ -1000,132 +1000,6 @@ if(isset($_GET['modalSupprBilletterie'])){
 <?php
 }
 
-// CODE MODAL POUR AFFICHER UN MESSAGE
-
-if(isset($_GET['modalAfficher'])){
-    $req = $connexion->prepare("SELECT * FROM message WHERE Id_Message = :id");
-    $req->bindParam('id',$_GET['modalAfficher']);
-    $req->execute();
-    $message = $req->fetch();
-    ?>
-    <div id="modalAfficher" class="modal">
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <div class="title">
-                <h2>Message de <span class="ModalAfficherTitle"><?php echo $message['Nom_Message']." ".$message['Prenom_Message']; ?></span></h2>
-            </div>
-            <div class="modalBox">
-                <div class="afficherBox">
-                    <div>
-                        <h3>Email de contact : </h3>
-                        <p class="styleBoxAfficher styleBoxAfficherEmail"><a href="mailto:<?= $message['Email_Message'] ?>"><?= $message['Email_Message'] ?></a></p>
-                    </div>
-                    <div>
-                        <h3>Message : </h3>
-                        <p class="styleBoxAfficher styleBoxAfficherMessage"><?= $message['Contenu_Message'] ?></p>
-                    </div>
-                    <div>
-                        <h3>Offre associée :</h3>
-                        <?php 
-                            if (!empty($message['Id_Offre'])){
-                                $reqOffre = $connexion->prepare("SELECT * FROM offre WHERE Id_Offre = :id");
-                                $reqOffre->bindParam("id",$message['Id_Offre']);
-                                $reqOffre->execute();
-                                $offre = $reqOffre->fetch();
-                                ?> <p class="styleBoxAfficher"><a href="contenu_offre_billetterie.php?id=<?= $offre['Id_Offre'] ?>&pageoffre=1" target="_blank"><?= $offre['Nom_Offre'] ?></a></p> <?php
-                            }else{ ?>
-                                <p class="styleBoxAfficher">Pas d'offre associée</p> <?php
-                            }?>
-                            <h3>Partenaire associé :</h3> <?php
-
-                            if(!empty($message['Id_Partenaire'])){
-                                $reqPart = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
-                                $reqPart->bindParam("id",$message['Id_Partenaire']);
-                                $reqPart->execute();
-                                $part = $reqPart->fetch();
-                                 ?>
-                                <p class="styleBoxAfficher"><a href="partenariats.php?modalOuvirPartenaire=<?= $part['Id_Partenaire'] ?>" target="_blank"><?= $part['Nom_Partenaire'] ?></a></p> <?php
-                            }else{?>
-                                <p class="styleBoxAfficher">Pas de partenaire associé</p> <?php
-                            }
-                        ?>
-                    </div>
-                    
-                    <div class="closeBtn">
-                        <button class="formSupprNon">FERMER</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-    </div>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-    <script>
-        // Code Modal suppression d'une offre
-
-        var modalSuppr = document.getElementById("modalAfficher");
-        var span = document.getElementsByClassName("close")[0];
-        var btnNon = document.getElementsByClassName("formSupprNon")[0];
-        var btnOui = document.getElementsByClassName("formSupprOui")[0];
-        var body = document.body;
-        body.style.overflow= "hidden";
-        // cacher modal au click de la croix ou du btn non
-        span.onclick = function() {
-            modalSuppr.style.display = "none";
-            //suppr get dans l'url -- Depend si &numpage existe ou pas
-            $searchGet = new URLSearchParams(window.location.href);
-            if($searchGet.has("numpage")){
-                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
-            }
-            else{
-                history.pushState(null, null, window.location.href.split("&")[0]);
-            }
-            body.style.overflow = "auto";
-        }
-        btnNon.onclick = function(e) {
-            e.preventDefault();
-            modalSuppr.style.display = "none";
-            //suppr get dans l'url -- Depend si &numpage existe ou pas
-            $searchGet = new URLSearchParams(window.location.href);
-            if($searchGet.has("numpage")){
-                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
-            }
-            else{
-                history.pushState(null, null, window.location.href.split("&")[0]);
-            }
-            body.style.overflow = "auto";
-        }
-        btnOui.onclick = function() {
-            //suppr get dans l'url -- Depend si &numpage existe ou pas
-            $searchGet = new URLSearchParams(window.location.href);
-            if($searchGet.has("numpage")){
-                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
-            }
-            else{
-                history.pushState(null, null, window.location.href.split("&")[0]);
-            }
-            setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
-            body.style.overflow = "auto";
-        }
-        window.onclick = function(event) {
-        if (event.target == modalSuppr) {
-            modalSuppr.style.display = "none";
-            //suppr get dans l'url -- Depend si &numpage existe ou pas
-            $searchGet = new URLSearchParams(window.location.href);
-            if($searchGet.has("numpage")){
-                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
-            }
-            else{
-                history.pushState(null, null, window.location.href.split("&")[0]);
-            }
-            body.style.overflow = "auto";
-        }
-        }
-
-    </script>
-<?php
-}
-
 // CODE MODAL POUR SUPPRIMER UN MESSAGE
 
 if(isset($_GET['modalSupprMessage'])){
@@ -1647,6 +1521,239 @@ if(isset($_GET['modalSupprUtilisateur'])){
 }
 
 }
+
+// MODAL AFFICHER
+
+if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'])){
+        
+    // CODE MODAL POUR AFFICHER UN MESSAGE
+
+    if(isset($_GET['modalAfficherMessage'])){
+        $req = $connexion->prepare("SELECT * FROM message WHERE Id_Message = :id");
+        $req->bindParam('id',$_GET['modalAfficherMessage']);
+        $req->execute();
+        $message = $req->fetch();
+        ?>
+        <div id="modalAfficher" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="title">
+                    <h2>Message de <span class="ModalAfficherTitle"><?php echo $message['Nom_Message']." ".$message['Prenom_Message']; ?></span></h2>
+                </div>
+                <div class="modalBox">
+                    <div class="afficherBox">
+                        <div>
+                            <h3>Email de contact : </h3>
+                            <p class="styleBoxAfficher styleBoxAfficherEmail"><a href="mailto:<?= $message['Email_Message'] ?>"><?= $message['Email_Message'] ?></a></p>
+                        </div>
+                        <div>
+                            <h3>Message : </h3>
+                            <p class="styleBoxAfficher styleBoxAfficherMessage"><?= $message['Contenu_Message'] ?></p>
+                        </div>
+                        <div>
+                            <h3>Offre associée :</h3>
+                            <?php 
+                                if (!empty($message['Id_Offre'])){
+                                    $reqOffre = $connexion->prepare("SELECT * FROM offre WHERE Id_Offre = :id");
+                                    $reqOffre->bindParam("id",$message['Id_Offre']);
+                                    $reqOffre->execute();
+                                    $offre = $reqOffre->fetch();
+                                    ?> <p class="styleBoxAfficher"><a href="contenu_offre_billetterie.php?id=<?= $offre['Id_Offre'] ?>&pageoffre=1" target="_blank"><?= $offre['Nom_Offre'] ?></a></p> <?php
+                                }else{ ?>
+                                    <p class="styleBoxAfficher">Pas d'offre associée</p> <?php
+                                }?>
+                                <h3>Partenaire associé :</h3> <?php
+
+                                if(!empty($message['Id_Partenaire'])){
+                                    $reqPart = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
+                                    $reqPart->bindParam("id",$message['Id_Partenaire']);
+                                    $reqPart->execute();
+                                    $part = $reqPart->fetch();
+                                    ?>
+                                    <p class="styleBoxAfficher"><a href="partenariats.php?modalOuvirPartenaire=<?= $part['Id_Partenaire'] ?>" target="_blank"><?= $part['Nom_Partenaire'] ?></a></p> <?php
+                                }else{?>
+                                    <p class="styleBoxAfficher">Pas de partenaire associé</p> <?php
+                                }
+                            ?>
+                        </div>
+                        
+                        <div class="closeBtn">
+                            <button class="formSupprNon">FERMER</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
+            // Code Modal suppression d'une offre
+
+            var modalSuppr = document.getElementById("modalAfficher");
+            var span = document.getElementsByClassName("close")[0];
+            var btnNon = document.getElementsByClassName("formSupprNon")[0];
+            var btnOui = document.getElementsByClassName("formSupprOui")[0];
+            var body = document.body;
+            body.style.overflow= "hidden";
+            // cacher modal au click de la croix ou du btn non
+            span.onclick = function() {
+                modalSuppr.style.display = "none";
+                //suppr get dans l'url -- Depend si &numpage existe ou pas
+                $searchGet = new URLSearchParams(window.location.href);
+                if($searchGet.has("numpage")){
+                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+                }
+                else{
+                    history.pushState(null, null, window.location.href.split("&")[0]);
+                }
+                body.style.overflow = "auto";
+            }
+            btnNon.onclick = function(e) {
+                e.preventDefault();
+                modalSuppr.style.display = "none";
+                //suppr get dans l'url -- Depend si &numpage existe ou pas
+                $searchGet = new URLSearchParams(window.location.href);
+                if($searchGet.has("numpage")){
+                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+                }
+                else{
+                    history.pushState(null, null, window.location.href.split("&")[0]);
+                }
+                body.style.overflow = "auto";
+            }
+            btnOui.onclick = function() {
+                //suppr get dans l'url -- Depend si &numpage existe ou pas
+                $searchGet = new URLSearchParams(window.location.href);
+                if($searchGet.has("numpage")){
+                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+                }
+                else{
+                    history.pushState(null, null, window.location.href.split("&")[0]);
+                }
+                setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
+                body.style.overflow = "auto";
+            }
+            window.onclick = function(event) {
+            if (event.target == modalSuppr) {
+                modalSuppr.style.display = "none";
+                //suppr get dans l'url -- Depend si &numpage existe ou pas
+                $searchGet = new URLSearchParams(window.location.href);
+                if($searchGet.has("numpage")){
+                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+                }
+                else{
+                    history.pushState(null, null, window.location.href.split("&")[0]);
+                }
+                body.style.overflow = "auto";
+            }
+            }
+
+        </script>
+    <?php
+    }
+        
+    // CODE MODAL POUR AFFICHER UN PARTENAIRE
+
+    if(isset($_GET['modalAfficherPartenaire'])){
+        $req = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
+        $req->bindParam('id',$_GET['modalAfficherPartenaire']);
+        $req->execute();
+        $partenaire = $req->fetch();
+        $reqImg = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image = :id");
+        $reqImg->bindParam('id',$partenaire['Id_Image']);
+        $reqImg->execute();
+        $imgPart = $reqImg->fetch();
+        ?>
+        <div id="modalAfficher" class="modal">
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <div class="title">
+                    <h2><span class="ModalAfficherTitle"><?php echo $partenaire['Nom_Partenaire']; ?></span></h2>
+                </div>
+                <div class="modalBox">
+                    <div class="afficherBoxPartenaire">
+                        <div class="imagePartenaire">
+                            <img class="imagePartenaire" src="assets/<?php echo $imgPart['Nom_Image']  ?>" alt="Image du partenaire">
+                        </div>
+                        <p><?= $partenaire['Description_Partenaire'] ?></p>
+                        <a target='blank' href="<?= $partenaire['Lien_Partenaire'] ?>">
+                            <div id="offres_decouvrir">Voir Site du Partenaire</div>
+                        </a>
+                        <div class="closeBtn">
+                            <button class="formSupprNon">FERMER</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+        <script>
+            // Code Modal suppression d'une offre
+
+            var modalSuppr = document.getElementById("modalAfficher");
+            var span = document.getElementsByClassName("close")[0];
+            var btnNon = document.getElementsByClassName("formSupprNon")[0];
+            var btnOui = document.getElementsByClassName("formSupprOui")[0];
+            var body = document.body;
+            body.style.overflow= "hidden";
+            // cacher modal au click de la croix ou du btn non
+            span.onclick = function() {
+                modalSuppr.style.display = "none";
+                //suppr get dans l'url -- Depend si &numpage existe ou pas
+                $searchGet = new URLSearchParams(window.location.href);
+                if($searchGet.has("numpage")){
+                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+                }
+                else{
+                    history.pushState(null, null, window.location.href.split("&")[0]);
+                }
+                body.style.overflow = "auto";
+            }
+            btnNon.onclick = function(e) {
+                e.preventDefault();
+                modalSuppr.style.display = "none";
+                //suppr get dans l'url -- Depend si &numpage existe ou pas
+                $searchGet = new URLSearchParams(window.location.href);
+                if($searchGet.has("numpage")){
+                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+                }
+                else{
+                    history.pushState(null, null, window.location.href.split("&")[0]);
+                }
+                body.style.overflow = "auto";
+            }
+            btnOui.onclick = function() {
+                //suppr get dans l'url -- Depend si &numpage existe ou pas
+                $searchGet = new URLSearchParams(window.location.href);
+                if($searchGet.has("numpage")){
+                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+                }
+                else{
+                    history.pushState(null, null, window.location.href.split("&")[0]);
+                }
+                setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
+                body.style.overflow = "auto";
+            }
+            window.onclick = function(event) {
+            if (event.target == modalSuppr) {
+                modalSuppr.style.display = "none";
+                //suppr get dans l'url -- Depend si &numpage existe ou pas
+                $searchGet = new URLSearchParams(window.location.href);
+                if($searchGet.has("numpage")){
+                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+                }
+                else{
+                    history.pushState(null, null, window.location.href.split("&")[0]);
+                }
+                body.style.overflow = "auto";
+            }
+            }
+
+        </script>
+    <?php
+    }
+}
 ?>
 
 <!-- Debut Page HTML -->
@@ -2017,9 +2124,9 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     <td data-title="Partenaire"><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
                                     <td data-title="Action" class="actionBtn">  
                                         <?php
-                                            $params['modalAfficher'] = $message["Id_Message"];
+                                            $params['modalAfficherMessage'] = $message["Id_Message"];
                                             $urlafficher = http_build_query($params);
-                                            unset($params['modalAfficher']);
+                                            unset($params['modalAfficherMessage']);
 
                                             $params['modalSupprMessage'] = $message["Id_Message"];
                                             $urlsuppr = http_build_query($params);
@@ -2152,7 +2259,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                 </div>
                 <?php 
             }
-            }
+        }
 
     }else{ ?>
     <div class="accueil">
@@ -2199,8 +2306,181 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
             
         </main>
     <?php
-    }else{
-        header('Location: index.php');
+    }else{ ?>
+        <header>
+            <div class="graynav"></div>
+            <nav>
+                <div class="bgLogo">
+                    <a href="index.php">
+                        <img class="img_base" src="assets/logo_lycee.png" alt="logo_st_vincent">
+                        <img class="img_responsive" src="assets/Logo_St_Vincent_2.jpg" alt="logo_st_vincent_responsive">
+                    </a>
+                </div>
+                <ul class="links"> <?php
+                if(empty($_GET) || $_GET['page'] === "accueil"){?>
+                    <li><a href="backoffice.php?page=accueil" class="active">Accueil</a></li>
+                <?php }else{ ?>
+                    <li><a href="backoffice.php?page=accueil">Accueil</a></li>
+                <?php }
+                if(!empty($_GET) && $_GET['page'] === "partenaires"){ ?>
+                    <li><a href="backoffice.php?page=partenaires" class="active">Partenariats</a></li>
+                <?php }else{ ?>
+                    <li><a href="backoffice.php?page=partenaires">Partenariats</a></li>
+                <?php }if(!empty($_GET) && $_GET['page'] === "billetterie"){ ?>
+                    <li><a href="backoffice.php?page=billetterie" class="active">Billetterie</a></li>
+                <?php }else{ ?> 
+                    <li><a href="backoffice.php?page=billetterie">Billetterie</a></li>
+                <?php }if(!empty($_GET) && $_GET['page'] === "message"){?>
+                    <li><a href="backoffice.php?page=message" class="active">Messages</a></li>
+                <?php }else{?>
+                    <li><a href="backoffice.php?page=message">Messages</a></li>
+                <?php } ?>
+                <?php if(!empty($_GET) && $_GET['page'] === "gestion"){?>
+                    <li><a href="backoffice.php?page=gestion" class="active">Gestion</a></li>
+                <?php }else{?>
+                    <li><a href="backoffice.php?page=gestion">Gestion</a></li>
+                <?php } ?>
+                </ul>
+                <img class="menu-burger" src="assets/menu.png" alt="menu-burger">
+                <script src="scriptMenuBurger.js"></script>
+            </nav>
+        </header>
+        <main> <?php
+        if(!empty($_GET) && $_GET['page'] !== "accueil"){
+            if(!empty($_GET['page']) && $_GET['page'] !== "accueil"){
+                if($_GET['page'] === "partenaires"){
+                        $count = $connexion -> prepare("SELECT COUNT(Id_Partenaire)  as infos FROM partenaire");
+                        $count->setFetchMode(PDO::FETCH_ASSOC);
+                        $count -> execute();
+                        $tcount = $count->fetchAll();
+                        
+                        $nb_elements_par_page = 7;
+                        $pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
+                        @$page = $_GET["numpage"];
+                        // Verif validité 
+                        if(empty($page)){
+                            $page = 1;
+                        }
+                        $page = max(1, min($pages, $page));
+                        $debut = ($page - 1) * $nb_elements_par_page;
+
+                        //recup param de l'url
+                        $params = $_GET;
+
+
+                    ?>
+                    <div class="partenaires">
+
+                    <?= isset($msgvalidation) ? $msgvalidation : null ?>
+                    <div class="titlePage"> 
+                        <h1>Les partenaires</h1>
+                    </div>
+                    <div class="tablepartenaires">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="tableNom">Nom</th>
+                                <th class="tableDescription">Description</th>
+                                <th class="tableLien">Lien du site</th>
+                                <th class="tableImage">Image</th>
+                                <th class="tableAction">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            try{
+                                $req = $connexion->prepare("SELECT * FROM partenaire LIMIT $debut, $nb_elements_par_page");
+                                $req->execute();
+                                $partenaires= $req->fetchAll();
+                                foreach($partenaires as $partenaire){
+                                    if(!empty($partenaire["Id_Image"])){
+                                        $req = $connexion->prepare("SELECT Nom_Image FROM image WHERE Id_Image = :id");
+                                        $req->bindParam('id',$partenaire["Id_Image"]);
+                                        $req->execute();
+                                        $imgPart= $req->fetch();}
+                                    ?>
+                                    <tr>
+                                        <td data-title="Nom"><?php echo $partenaire["Nom_Partenaire"] ?></td>
+                                        <td data-title="Description" class="colonneDescription"><div><?php echo $partenaire["Description_Partenaire"] ?></div></td>
+                                        <td data-title="Site" class="colonneLien"><a href="<?php echo $partenaire["Lien_Partenaire"] ?>" target="_blank"><?php echo $partenaire["Lien_Partenaire"] ?></a></td>
+                                        <td data-title="Image" class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire">' : "Aucune image" ?></td>
+                                        <td data-title="Action" class="actionBtn" style="display: table-cell !important;">  
+                                            <?php 
+                                            $params['modalAfficherPartenaire'] = $partenaire["Id_Partenaire"];
+                                            $urlafficher = http_build_query($params);
+                                            unset($params['modalAfficherPartenaire']);
+
+                                            ?>
+                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn">Afficher</a>
+                                            
+                                        </td>
+                                    </tr>
+                               <?php }
+                            }catch(Exception $e){
+                                echo "Erreur lors de l'affichage";
+                            }
+
+                            ?>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="pagination">
+                        <?php
+                        for($i=1; $i<= $pages; $i++){
+                            if($page != $i){ ?>
+                            <a href="?page=partenaires&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
+                        <?php }else{?>
+                            <a href="?page=partenaires&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
+                        <?php }
+                        } ?>
+                    </div>
+                    </div>
+                    
+                    
+
+
+            <?php }
+
+            }
+        }else{
+            ?>
+            <div class="accueil">
+                <?= isset($msgvalidation) ? $msgvalidation : null ?>
+                <div class="titlePage"> 
+                    <h1>Les informations de&nbsp;la page&nbsp;d'accueil</h1>
+                </div>
+                <div class="formEdit">
+                    <form name="accueilEdit">
+                        <?php 
+                            $req = $connexion->prepare("SELECT * FROM info_accueil");
+                            $req->execute();
+                            $infoAccueil = $req->fetch();
+                        ?>
+                            <label for="tel">Numéro de téléphone<span>*</span> :</label>
+                            <input type="tel" name="accueilEdit[phone]" id="phone" required="" value="<?php echo $infoAccueil['Num_Tel_Info_Accueil'] ?>" disabled="disabled">
+                            <?= isset($erreursaccueilEdit['phone']) ? $erreursaccueilEdit['phone'] : null ?>
+        
+                            <label for="email">Email<span>*</span> :</label>
+                            <input type="email" name="accueilEdit[email]" id="email" required="" value="<?php echo $infoAccueil['Email_Info_Accueil'] ?>" disabled="disabled" >
+                            <?= isset($erreursaccueilEdit['email']) ? $erreursaccueilEdit['email'] : null ?>
+                            
+                            <label for="bureau">Emplacement du Bureau<span>*</span> :</label>
+                            <textarea type="text" name="accueilEdit[bureau]" id="bureau" required="" disabled="disabled" ><?php echo $infoAccueil['Emplacement_Bureau_Info_Accueil'] ?></textarea>
+                            <?= isset($erreursaccueilEdit['bureau']) ? $erreursaccueilEdit['bureau'] : null ?>
+                            
+                            <label for="titre">Titre de la page<span>*</span> :</label>
+                            <input type="text" name="accueilEdit[titre]" id="titre" required="" value="<?php echo $infoAccueil['Titre_Info_Accueil'] ?>" disabled="disabled" >
+                            <?= isset($erreursaccueilEdit['titre']) ? $erreursaccueilEdit['titre'] : null ?>
+                            
+                            <label for="description">Description de la page<span>*</span> :</label>
+                            <textarea type="text" name="accueilEdit[description]" id="description" required="" disabled="disabled" ><?php echo $infoAccueil['Texte_Info_Accueil'] ?></textarea>
+                            <?= isset($erreursaccueilEdit['description']) ? $erreursaccueilEdit['description'] : null ?>
+                    </form>
+                </div>
+            </div>
+            <?php 
+        }
+
     }
 
 }?>
