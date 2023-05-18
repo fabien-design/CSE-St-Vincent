@@ -1851,7 +1851,13 @@ th:last-of-type {
 #modalAfficher .modal-content .modalBox .afficherBoxPartenaire>* {
     margin: 20px 0;
 }
-#modalAfficher .modal-content .modalBox .afficherBoxPartenaire .imagePartenaire {
+#modalAfficher .modal-content .modalBox .afficherBoxPartenaire .imageBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+#modalAfficher .modal-content .modalBox .afficherBoxPartenaire .image {
     max-width: 250px;
     max-height: 250px;
 }
