@@ -240,7 +240,7 @@ input:-webkit-autofill:active {
 }
 
 .accueil .formEdit form textarea {
-    min-height: 50px;
+    min-height: 100px;
 }
 
 .accueil .formEdit .btnGroup {
@@ -1844,22 +1844,22 @@ th:last-of-type {
     align-items: center;
     flex-direction: column;
 }
-#modalAfficher .modal-content .modalBox .afficherBox.BoxPartenaire.Special>* {
+#modalAfficher .modal-content .modalBox .afficherBox.BoxModal.Special>* {
     margin: 20px 0;
 }
-#modalAfficher .modal-content .modalBox .afficherBox.BoxPartenaire .imageBox {
+#modalAfficher .modal-content .modalBox .afficherBox.BoxModal .imageBox {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
-#modalAfficher .modal-content .modalBox .afficherBox.BoxPartenaire .image {
+#modalAfficher .modal-content .modalBox .afficherBox.BoxModal .image {
     max-width: 250px;
     max-height: 250px;
     width: 100%;
     border-radius: 10px;
 }
-#modalAfficher .modal-content .modalBox .afficherBox.BoxPartenaire #offres_decouvrir {
+#modalAfficher .modal-content .modalBox .afficherBox.BoxModal #offres_decouvrir {
     margin: 0;
     display: flex;
     width: fit-content;
@@ -2258,7 +2258,9 @@ th:last-of-type {
         display: block
     }
 
-
+    thead{
+        display: none;
+    }
     thead tr {
         position: absolute;
         top: -9999px;
@@ -2400,6 +2402,11 @@ td:nth-child(1):before {
         grid-template-columns: repeat(2,1fr);
     }
     #modalModifBilletterie .modal-content #formModifBilletterie .imgBox{
+        display: grid;
+        grid-template-columns: repeat(2,1fr);
+    }
+
+    #modalAfficher .modal-content .modalBox .afficherBox.BoxModal .imageBox.Offre{
         display: grid;
         grid-template-columns: repeat(2,1fr);
     }

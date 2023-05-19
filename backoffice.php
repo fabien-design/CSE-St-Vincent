@@ -1592,7 +1592,6 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
             var modalSuppr = document.getElementById("modalAfficher");
             var span = document.getElementsByClassName("close")[0];
             var btnNon = document.getElementsByClassName("formSupprNon")[0];
-            var btnOui = document.getElementsByClassName("formSupprOui")[0];
             var body = document.body;
             body.style.overflow= "hidden";
             // cacher modal au click de la croix ou du btn non
@@ -1619,18 +1618,6 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
                 else{
                     history.pushState(null, null, window.location.href.split("&")[0]);
                 }
-                body.style.overflow = "auto";
-            }
-            btnOui.onclick = function() {
-                //suppr get dans l'url -- Depend si &numpage existe ou pas
-                $searchGet = new URLSearchParams(window.location.href);
-                if($searchGet.has("numpage")){
-                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
-                }
-                else{
-                    history.pushState(null, null, window.location.href.split("&")[0]);
-                }
-                setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
                 body.style.overflow = "auto";
             }
             window.onclick = function(event) {
@@ -1671,7 +1658,7 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
                     <h2><span class="ModalAfficherTitle"><?php echo $partenaire['Nom_Partenaire']; ?></span></h2>
                 </div>
                 <div class="modalBox">
-                    <div class="afficherBox BoxPartenaire Special">
+                    <div class="afficherBox BoxModal Special">
                         <div class="imageBox">
                             <img class="image" src="assets/<?php echo $imgPart['Nom_Image']  ?>" alt="Image du partenaire">
                         </div>
@@ -1697,7 +1684,6 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
             var modalSuppr = document.getElementById("modalAfficher");
             var span = document.getElementsByClassName("close")[0];
             var btnNon = document.getElementsByClassName("formSupprNon")[0];
-            var btnOui = document.getElementsByClassName("formSupprOui")[0];
             var body = document.body;
             body.style.overflow= "hidden";
             // cacher modal au click de la croix ou du btn non
@@ -1724,18 +1710,6 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
                 else{
                     history.pushState(null, null, window.location.href.split("&")[0]);
                 }
-                body.style.overflow = "auto";
-            }
-            btnOui.onclick = function() {
-                //suppr get dans l'url -- Depend si &numpage existe ou pas
-                $searchGet = new URLSearchParams(window.location.href);
-                if($searchGet.has("numpage")){
-                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
-                }
-                else{
-                    history.pushState(null, null, window.location.href.split("&")[0]);
-                }
-                setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
                 body.style.overflow = "auto";
             }
             window.onclick = function(event) {
@@ -1776,10 +1750,12 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
                     <h2><span class="ModalAfficherTitle"><?php echo $offre['Nom_Offre']; ?></span></h2>
                 </div>
                 <div class="modalBox">
-                    <div class="afficherBox BoxPartenaire">
-                        <div class="imageBox <?= count($imgOffre) > 0 ? "styleBoxAfficher" : "" ?>"> <?php
+                    <div class="afficherBox BoxModal">
+                        <div class="imageBox <?= count($imgOffre) > 0 ? "styleBoxAfficher Offre" : "" ?>"> <?php
                             foreach($imgOffre as $img){ ?>
-                                <img class="image" src="assets/<?php echo $img['Nom_Image']  ?>" alt="Image de l'offre">
+                                <div>
+                                    <img class="image" src="assets/<?php echo $img['Nom_Image']  ?>" alt="Image de l'offre">
+                                </div>
                         <?php
                             }
                             ?>
@@ -1848,7 +1824,6 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
             var modalSuppr = document.getElementById("modalAfficher");
             var span = document.getElementsByClassName("close")[0];
             var btnNon = document.getElementsByClassName("formSupprNon")[0];
-            var btnOui = document.getElementsByClassName("formSupprOui")[0];
             var body = document.body;
             body.style.overflow= "hidden";
             // cacher modal au click de la croix ou du btn non
@@ -1875,18 +1850,6 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
                 else{
                     history.pushState(null, null, window.location.href.split("&")[0]);
                 }
-                body.style.overflow = "auto";
-            }
-            btnOui.onclick = function() {
-                //suppr get dans l'url -- Depend si &numpage existe ou pas
-                $searchGet = new URLSearchParams(window.location.href);
-                if($searchGet.has("numpage")){
-                    history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
-                }
-                else{
-                    history.pushState(null, null, window.location.href.split("&")[0]);
-                }
-                setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
                 body.style.overflow = "auto";
             }
             window.onclick = function(event) {
