@@ -1848,20 +1848,20 @@ th:last-of-type {
     align-items: center;
     flex-direction: column;
 }
-#modalAfficher .modal-content .modalBox .afficherBoxPartenaire>* {
+#modalAfficher .modal-content .modalBox .afficherBox.BoxPartenaire.Special>* {
     margin: 20px 0;
 }
-#modalAfficher .modal-content .modalBox .afficherBoxPartenaire .imageBox {
+#modalAfficher .modal-content .modalBox .afficherBox.BoxPartenaire .imageBox {
     display: flex;
     justify-content: center;
     align-items: center;
     gap: 20px;
 }
-#modalAfficher .modal-content .modalBox .afficherBoxPartenaire .image {
+#modalAfficher .modal-content .modalBox .afficherBox.BoxPartenaire .image {
     max-width: 250px;
     max-height: 250px;
 }
-#modalAfficher .modal-content .modalBox .afficherBoxPartenaire #offres_decouvrir {
+#modalAfficher .modal-content .modalBox .afficherBox.BoxPartenaire #offres_decouvrir {
     margin: 0;
     display: flex;
     width: fit-content;

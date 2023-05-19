@@ -1671,12 +1671,15 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
                     <h2><span class="ModalAfficherTitle"><?php echo $partenaire['Nom_Partenaire']; ?></span></h2>
                 </div>
                 <div class="modalBox">
-                    <div class="afficherBoxPartenaire">
-                        <div class="imagePartenaire">
-                            <img class="imagePartenaire" src="assets/<?php echo $imgPart['Nom_Image']  ?>" alt="Image du partenaire">
+                    <div class="afficherBox BoxPartenaire Special">
+                        <div class="imageBox">
+                            <img class="image" src="assets/<?php echo $imgPart['Nom_Image']  ?>" alt="Image du partenaire">
                         </div>
-                        <p><?= $partenaire['Description_Partenaire'] ?></p>
-                        <a target='blank' href="<?= $partenaire['Lien_Partenaire'] ?>">
+                        <div>
+                            <h3>Description : </h3>
+                            <p class="styleBoxAfficher styleBoxAfficherMessage"><?= $partenaire['Description_Partenaire'] ?></p>
+                        </div>
+                        <a target='blank' style="justify-content: center; display: flex;" href="<?= $partenaire['Lien_Partenaire'] ?>">
                             <div id="offres_decouvrir">Voir Site du Partenaire</div>
                         </a>
                         <div class="closeBtn">
@@ -1773,7 +1776,7 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
                     <h2><span class="ModalAfficherTitle"><?php echo $offre['Nom_Offre']; ?></span></h2>
                 </div>
                 <div class="modalBox">
-                    <div class="afficherBoxPartenaire">
+                    <div class="afficherBox BoxPartenaire">
                         <div class="imageBox"> <?php
                             foreach($imgOffre as $img){ ?>
                                 <img class="image" src="assets/<?php echo $img['Nom_Image']  ?>" alt="Image de l'offre">
@@ -1781,10 +1784,55 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
                             }
                             ?>
                         </div>
-                        <p><?= $offre['Description_Offre'] ?></p>
-                        <a target='blank' href="<?= $partenaire['Lien_Partenaire'] ?>">
-                            <div id="offres_decouvrir">Voir Site du Partenaire</div>
-                        </a>
+                        <div>
+                            <h3>Dates de l'offre : </h3>
+                            <?php 
+                                $monthsEnglish = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                                $monthsFrench = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+                                
+                                $datedeb = $offre['Date_Debut_Offre'];
+                                $datefin = $offre['Date_Fin_Offre'];
+                                
+                                $datedeb_formattee = strftime("%d %B %Y", strtotime($datedeb));
+                                $datedeb_formattee = explode(" ", $datedeb_formattee);
+                                for ($i = 0; $i < count($monthsEnglish); $i++) {
+                                    if ($datedeb_formattee[1] == $monthsEnglish[$i]) {
+                                        $datedeb_formattee[1] = $monthsFrench[$i];
+                                    }
+                                }
+                                $datedeb_formattee = implode(" ", $datedeb_formattee);
+                                
+                                $datefin_formattee = strftime("%d %B %Y", strtotime($datefin));
+                                $datefin_formattee = explode(" ", $datefin_formattee);
+                                for ($i = 0; $i < count($monthsEnglish); $i++) {
+                                    if ($datefin_formattee[1] == $monthsEnglish[$i]) {
+                                        $datefin_formattee[1] = $monthsFrench[$i];
+                                    }
+                                }
+                                $datefin_formattee = implode(" ", $datefin_formattee);                                
+
+                            ?>
+                            <p class="styleBoxAfficher"><?= $datedeb_formattee." - ".$datefin_formattee ?></p>
+                        </div>
+                        <div>
+                            <h3>Partenaire : </h3>
+                            <?php 
+                                $req = $connexion->prepare("SELECT * FROM partenaire WHERE Id_Partenaire = :id");
+                                $req->bindParam("id", $offre['Id_Partenaire']);
+                                $req->execute();
+                                $partenaire = $req->fetch();
+                            ?>
+                            <p class="styleBoxAfficher"><a href="partenariats.php?modalOuvirPartenaire=<?= $partenaire['Id_Partenaire'] ?>" target="_blank"><?= $partenaire['Nom_Partenaire'] ?></a></p>
+                        </div>
+                        <div>
+                            <h3>Contenu : </h3>
+                            <p class="styleBoxAfficher styleBoxAfficherMessage"><?= $offre['Description_Offre'] ?></p>
+                        </div>
+                        <div>
+                            <h3>Nombres de places : </h3>
+                            <p class="styleBoxAfficher"><?= $offre['Nombre_Place_Min_Offre'] ?><?= $offre['Nombre_Place_Min_Offre'] > 1 ? " places" : " place" ?></p>
+                        </div>
+                        
                         <div class="closeBtn">
                             <button class="formSupprNon">FERMER</button>
                         </div>
@@ -2117,10 +2165,35 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     <tr>
                                         <td data-title="Nom"><?php echo $offre["Nom_Offre"] ?></td>
                                         <td data-title="Description" class="colonneDescription"><div><?php echo $offre["Description_Offre"] ?></div></td>
-                                        <td data-title="Dates"><?php echo date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Debut_Offre"]),"d-m-Y")." - ".date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Fin_Offre"]),"d-m-Y") ?></td>
+                                        <?php 
+                                            $monthsEnglish = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                                            $monthsFrench = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+                                            
+                                            $datedeb = $offre['Date_Debut_Offre'];
+                                            $datefin = $offre['Date_Fin_Offre'];
+                                            
+                                            $datedeb_formattee = strftime("%d %B %Y", strtotime($datedeb));
+                                            $datedeb_formattee = explode(" ", $datedeb_formattee);
+                                            for ($i = 0; $i < count($monthsEnglish); $i++) {
+                                                if ($datedeb_formattee[1] == $monthsEnglish[$i]) {
+                                                    $datedeb_formattee[1] = $monthsFrench[$i];
+                                                }
+                                            }
+                                            $datedeb_formattee = implode(" ", $datedeb_formattee);
+                                            
+                                            $datefin_formattee = strftime("%d %B %Y", strtotime($datefin));
+                                            $datefin_formattee = explode(" ", $datefin_formattee);
+                                            for ($i = 0; $i < count($monthsEnglish); $i++) {
+                                                if ($datefin_formattee[1] == $monthsEnglish[$i]) {
+                                                    $datefin_formattee[1] = $monthsFrench[$i];
+                                                }
+                                            }
+                                            $datefin_formattee = implode(" ", $datefin_formattee);
+                                        ?>
+                                        <td data-title="Dates"><?= $datedeb_formattee." - ".$datefin_formattee ?></td>
                                         <td data-title="Partenaires"><?= !empty($offre["Id_Partenaire"]) ? $NomPart['Nom_Partenaire'] : "Aucun partenaire Associé" ?></td>
-                                        <td data-title="Places"><?php echo $offre['Nombre_Place_Min_Offre']." place(s)" ?></td>
-                                        <td data-title="Images"><?php echo $nbImgOffre." image(s)" ?></td>
+                                        <td data-title="Places"><?php echo $offre['Nombre_Place_Min_Offre']?><?= $offre['Nombre_Place_Min_Offre'] > 1 ? " places" : " place" ?></td>
+                                        <td data-title="Images"><?php echo $nbImgOffre?><?= $nbImgOffre > 1 ? " images" : " image" ?></td>
                                         <td data-title="Action" class="actionBtn"> 
                                             <?php 
 
@@ -2441,11 +2514,6 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                 <?php }else{?>
                     <li><a href="backoffice.php?page=message">Messages</a></li>
                 <?php } ?>
-                <?php if(!empty($_GET) && $_GET['page'] === "gestion"){?>
-                    <li><a href="backoffice.php?page=gestion" class="active">Gestion</a></li>
-                <?php }else{?>
-                    <li><a href="backoffice.php?page=gestion">Gestion</a></li>
-                <?php } ?>
                 </ul>
                 <img class="menu-burger" src="assets/menu.png" alt="menu-burger">
                 <script src="scriptMenuBurger.js"></script>
@@ -2608,10 +2676,35 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     <tr>
                                         <td data-title="Nom"><?php echo $offre["Nom_Offre"] ?></td>
                                         <td data-title="Description" class="colonneDescription"><div><?php echo $offre["Description_Offre"] ?></div></td>
-                                        <td data-title="Dates"><?php echo date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Debut_Offre"]),"d-m-Y")." - ".date_format(DateTime::createFromFormat('Y-m-d', $offre["Date_Fin_Offre"]),"d-m-Y") ?></td>
+                                        <?php 
+                                            $monthsEnglish = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                                            $monthsFrench = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+                                            
+                                            $datedeb = $offre['Date_Debut_Offre'];
+                                            $datefin = $offre['Date_Fin_Offre'];
+                                            
+                                            $datedeb_formattee = strftime("%d %B %Y", strtotime($datedeb));
+                                            $datedeb_formattee = explode(" ", $datedeb_formattee);
+                                            for ($i = 0; $i < count($monthsEnglish); $i++) {
+                                                if ($datedeb_formattee[1] == $monthsEnglish[$i]) {
+                                                    $datedeb_formattee[1] = $monthsFrench[$i];
+                                                }
+                                            }
+                                            $datedeb_formattee = implode(" ", $datedeb_formattee);
+                                            
+                                            $datefin_formattee = strftime("%d %B %Y", strtotime($datefin));
+                                            $datefin_formattee = explode(" ", $datefin_formattee);
+                                            for ($i = 0; $i < count($monthsEnglish); $i++) {
+                                                if ($datefin_formattee[1] == $monthsEnglish[$i]) {
+                                                    $datefin_formattee[1] = $monthsFrench[$i];
+                                                }
+                                            }
+                                            $datefin_formattee = implode(" ", $datefin_formattee);
+                                        ?>
+                                        <td data-title="Dates"><?= $datedeb_formattee." - ".$datefin_formattee ?></td>
                                         <td data-title="Partenaires"><?= !empty($offre["Id_Partenaire"]) ? $NomPart['Nom_Partenaire'] : "Aucun partenaire Associé" ?></td>
-                                        <td data-title="Places"><?php echo $offre['Nombre_Place_Min_Offre']." place(s)" ?></td>
-                                        <td data-title="Images"><?php echo $nbImgOffre." image(s)" ?></td>
+                                        <td data-title="Places"><?php echo $offre['Nombre_Place_Min_Offre']?><?= $offre['Nombre_Place_Min_Offre'] > 1 ? " places" : " place" ?></td>
+                                        <td data-title="Images"><?php echo $nbImgOffre?><?= $nbImgOffre > 1 ? " images" : " image" ?></td>
                                         <td data-title="Action" class="actionBtn"> 
                                             <?php 
                                             $params['modalAfficherBilletterie'] = $offre["Id_Offre"];
@@ -2643,7 +2736,100 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     </div>
                     </div>
 
-            <?php }
+            <?php }else if($_GET['page'] === "message"){ ?>
+                <?php 
+                    $count = $connexion -> prepare("SELECT COUNT(Id_Message)  as infos FROM message");
+                    $count->setFetchMode(PDO::FETCH_ASSOC);
+                    $count -> execute();
+                    $tcount = $count->fetchAll();
+                    
+                    $nb_elements_par_page = 7;
+                    $pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
+                    @$page = $_GET["numpage"];
+                    // Verif validité 
+                    if(empty($page)){
+                        $page = 1;
+                    }
+                    $page = max(1, min($pages, $page));
+                    $debut = ($page - 1) * $nb_elements_par_page;
+
+                    //recup param de l'url
+                    $params = $_GET;
+                ?>
+                <div class="message">
+
+                <?= isset($msgvalidation) ? $msgvalidation : null ?>
+                <div class="titlePage"> 
+                    <h1>Tous les messages</h1>
+                </div>
+                <div class="tablemessages">
+                <table>
+                    <thead>
+                        <tr>
+                            <th class="tableNom">Nom Prénom</th>
+                            <th class="tableEmail">Email</th>
+                            <th class="tableContenu">Contenu</th>
+                            <th class="tableOffre">Offre associée</th>
+                            <th class="tablePart">Partenaire associé</th>
+                            <th class="tableAction">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php 
+                        try{
+                            $req = $connexion->prepare("SELECT * FROM message LIMIT $debut, $nb_elements_par_page");
+                            $req->execute();
+                            $messages= $req->fetchAll();
+                            foreach($messages as $message){
+                                if(!empty($message["Id_Offre"])){
+                                    $req = $connexion->prepare("SELECT Nom_Offre FROM offre WHERE Id_Offre = :id");
+                                    $req->bindParam('id',$message["Id_Offre"]);
+                                    $req->execute();
+                                    $Offre= $req->fetch();
+                                }
+                                if(!empty($message["Id_Partenaire"])){
+                                    $req = $connexion->prepare("SELECT Nom_Partenaire FROM partenaire WHERE Id_Partenaire = :id");
+                                    $req->bindParam('id',$message["Id_Partenaire"]);
+                                    $req->execute();
+                                    $Partenaire= $req->fetch();
+                                }
+                                ?>
+                                <tr>
+                                    <td data-title="Nom Prénom"><?php echo $message["Nom_Message"]." ".$message["Prenom_Message"]  ?></td>
+                                    <td data-title="Email"><a href="mailto:"><?php echo $message["Email_Message"] ?></a></td>
+                                    <td data-title="Contenu" class="colonneContenu"><div><?php echo $message["Contenu_Message"] ?></div></td>
+                                    <td data-title="Offre"><?= !empty($message["Id_Offre"]) ? $Offre['Nom_Offre'] : "Aucune offre associée" ?></td>
+                                    <td data-title="Partenaire"><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
+                                    <td data-title="Action" class="actionBtn">  
+                                        <?php
+                                            $params['modalAfficherMessage'] = $message["Id_Message"];
+                                            $urlafficher = http_build_query($params);
+                                            unset($params['modalAfficherMessage']);
+                                        ?>
+                                        <a href="backoffice.php?<?= $urlafficher; ?>" class="afficherBtn">Afficher</a>
+                                    </td>
+                                </tr>
+                            <?php }
+                        }catch(Exception $e){
+                            echo "Erreur lors de l'affichage";
+                        }
+
+                        ?>
+                    </tbody>
+                </table>
+                </div>
+                <div class="pagination">
+                        <?php
+                        for($i=1; $i<= $pages; $i++){
+                            if($page != $i){ ?>
+                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
+                        <?php }else{?>
+                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
+                        <?php }
+                        } ?>
+                    </div>
+                </div><?php 
+            }
 
             }
         }else{

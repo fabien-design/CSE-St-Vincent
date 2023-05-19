@@ -28,7 +28,7 @@ if(isset($_POST['idoffre'], $_POST['nomoffre'], $_POST['descripoffre'], $_POST['
         echo "La date de fin se finit plus tôt que le début de l'offre";
     }
     if(empty($erreurs)){
-
+        $ErreurUpdate = FALSE;
         if (!empty($_FILES['imgoffre'])) {
             $pos = -1;
             
