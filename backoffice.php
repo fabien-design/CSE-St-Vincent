@@ -1937,7 +1937,15 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
             <?php }else{?>
                 <li><a href="backoffice.php?page=gestion">Gestion</a></li>
             <?php } ?>
+                <li class="logoutLi">
+                        <form method="post" action="BackofficePHP/logout.php" class="logoutForm">
+                            <button type="submit" value="Logout"><img class="logout" src="assets/logout.png" alt="Se deconnecter" ></button>
+                        </form>
+                    </li>
             </ul>
+            <form method="post" action="BackofficePHP/logout.php" class="logoutDiv">
+                <button type="submit" value="Logout"><img class="logout" src="assets/logout.png" alt="Se deconnecter" ></button>
+            </form>
             <img class="menu-burger" src="assets/menu.png" alt="menu-burger">
             <script src="scriptMenuBurger.js"></script>
         </nav>
@@ -2587,7 +2595,15 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                 <?php }else{?>
                     <li><a href="backoffice.php?page=message">Messages</a></li>
                 <?php } ?>
+                    <li class="logoutLi">
+                        <form method="post" action="BackofficePHP/logout.php" class="logoutForm">
+                            <button type="submit" value="Logout"><img class="logout" src="assets/logout.png" alt="Se deconnecter" ></button>
+                        </form>
+                    </li>
                 </ul>
+                <form method="post" action="BackofficePHP/logout.php" class="logoutDiv">
+                    <button type="submit" value="Logout"><img class="logout" src="assets/logout.png" alt="Se deconnecter" ></button>
+                </form>
                 <img class="menu-burger" src="assets/menu.png" alt="menu-burger">
                 <script src="scriptMenuBurger.js"></script>
             </nav>

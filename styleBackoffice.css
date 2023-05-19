@@ -88,6 +88,49 @@ nav ul li a.active {
 nav ul li a:hover {
     background-color: #B6A886;
 }
+nav .logoutLi{
+    display: none;
+}
+nav .logoutForm{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+}
+nav .logoutForm button{
+    background: none;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+}
+nav .logoutForm button:hover{
+    background-color: #B6A886;
+}
+nav .logoutForm .logout{
+    filter: invert(100);
+    width: 40px;
+    height: 40px;
+}
+nav .logoutDiv{
+    position: absolute;
+    right: 5vw;
+    width: 40px;
+    height: 100%;
+    filter: invert(100);
+    display: flex;
+    align-items: center;
+    cursor:pointer
+}
+nav .logoutDiv button{
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+nav .logoutDiv .logout{
+    width: 100%;
+    height: 40px;
+}
 nav .menu-burger{
     position: absolute;
     margin-top: 7px ;
@@ -2246,7 +2289,7 @@ th:last-of-type {
 
 /* RESPONSIVE */
 
-@media only screen and (max-width: 1150px) {
+@media only screen and (max-width: 1280px) {
 
     table,
     thead,
@@ -2355,6 +2398,12 @@ th:last-of-type {
     /* Nav responsive */
     nav {
         padding-right: 0;
+    }
+    nav .logoutDiv{
+        display: none;
+    }
+    nav .logoutLi{
+        display: block;
     }
     nav .menu-burger{
         display: block;
