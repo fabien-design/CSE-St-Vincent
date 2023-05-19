@@ -1777,7 +1777,7 @@ if (!empty($_SESSION['Nom_Utilisateur']) && !empty($_SESSION['Droit_Utilisateur'
                 </div>
                 <div class="modalBox">
                     <div class="afficherBox BoxPartenaire">
-                        <div class="imageBox"> <?php
+                        <div class="imageBox <?= count($imgOffre) > 0 ? "styleBoxAfficher" : "" ?>"> <?php
                             foreach($imgOffre as $img){ ?>
                                 <img class="image" src="assets/<?php echo $img['Nom_Image']  ?>" alt="Image de l'offre">
                         <?php
@@ -1982,7 +1982,14 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
         <main> <?php
         if(!empty($_GET) && $_GET['page'] !== "accueil"){
 
-            if(!empty($_GET['page']) && $_GET['page'] !== "accueil"){
+            if(!empty($_GET['page']) && $_GET['page'] !== "accueil"){ ?>
+                <style>
+                    .actionBtn{
+                        display: grid;
+                    }
+
+                </style>
+                <?php 
                 if($_GET['page'] === "partenaires"){?>
                     <?php 
                         $count = $connexion -> prepare("SELECT COUNT(Id_Partenaire)  as infos FROM partenaire");
@@ -2625,6 +2632,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
         <main> <?php
         if(!empty($_GET) && $_GET['page'] !== "accueil"){
             if(!empty($_GET['page']) && $_GET['page'] !== "accueil"){
+                ?><style>
+                    .actionBtn{
+                        display: table-cell;
+                    }
+
+                </style> <?php
                 if($_GET['page'] === "partenaires"){
                         $count = $connexion -> prepare("SELECT COUNT(Id_Partenaire)  as infos FROM partenaire");
                         $count->setFetchMode(PDO::FETCH_ASSOC);
@@ -2687,7 +2700,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                         <td data-title="Description" class="colonneDescription"><div><?php echo $partenaire["Description_Partenaire"] ?></div></td>
                                         <td data-title="Site" class="colonneLien"><a href="<?php echo $partenaire["Lien_Partenaire"] ?>" target="_blank"><?php echo $partenaire["Lien_Partenaire"] ?></a></td>
                                         <td data-title="Image" class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire">' : "Aucune image" ?></td>
-                                        <td data-title="Action" class="actionBtn" style="display: table-cell !important;">  
+                                        <td data-title="Action" class="actionBtn">  
                                             <?php 
                                             $params['modalAfficherPartenaire'] = $partenaire["Id_Partenaire"];
                                             $urlafficher = http_build_query($params);
