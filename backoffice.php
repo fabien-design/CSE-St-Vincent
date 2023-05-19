@@ -1999,6 +1999,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         }
                         $page = max(1, min($pages, $page));
                         $debut = ($page - 1) * $nb_elements_par_page;
+                        // Nombre de pages à afficher avant et après la page courante
+                        $pagesAffiche = 2;
+                        // Calcul du début et de la fin de la plage de pages à afficher
+                        $startPage = max(1, $page - $pagesAffiche);
+                        $endPage = min($pages, $page + $pagesAffiche);
 
                         //recup param de l'url
                         $params = $_GET;
@@ -2076,14 +2081,34 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     </table>
                     </div>
                     <div class="pagination">
-                        <?php
-                        for($i=1; $i<= $pages; $i++){
-                            if($page != $i){ ?>
-                            <a href="?page=partenaires&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
-                        <?php }else{?>
-                            <a href="?page=partenaires&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
-                        <?php }
-                        } ?>
+                    <?php
+                        // Vérification si les points de suspension doivent être affichés au début
+                        if ($startPage > 1) {
+                            // Afficher la première page
+                            echo '<a href="?page=partenaires&numpage=1"><span class="page">1</span></a>';
+                            // Afficher les points de suspension au début
+                            if ($startPage > 2 && $page >= 3) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                        }
+                        // Affichage des numéros de page ou des points de suspension pour les pages au milieu
+                        for ($pag = $startPage; $pag <= $endPage; $pag++) {
+                            if($page != $pag){ 
+                                echo '<a href="?page=partenaires&numpage='.$pag.'"><span class="page">' . $pag . '</span></a>';
+                            }else{
+                                echo '<a href="?page=partenaires&numpage='.$pag.'"><span class="page activepage">' . $pag . '</span></a>';
+                            }
+                        }
+                        // Vérification si les points de suspension doivent être affichés à la fin
+                        if ($endPage < $pages) {
+                            // Afficher les points de suspension à la fin
+                            if ($endPage < $pages - 1) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                            // Afficher la dernière page
+                            echo '<a href="?page=partenaires&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
+                        }
+                        ?>
                     </div>
                     </div>
                     
@@ -2106,6 +2131,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     }
                     $page = max(1, min($pages, $page));
                     $debut = ($page - 1) * $nb_elements_par_page;
+                    // Nombre de pages à afficher avant et après la page courante
+                    $pagesAffiche = 2;
+                    // Calcul du début et de la fin de la plage de pages à afficher
+                    $startPage = max(1, $page - $pagesAffiche);
+                    $endPage = min($pages, $page + $pagesAffiche);
 
                     //recup param de l'url
                     $params = $_GET;
@@ -2220,14 +2250,35 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     </table>
                     </div>
                     <div class="pagination">
-                        <?php
-                        for($i=1; $i<= $pages; $i++){
-                            if($page != $i){ ?>
-                            <a href="?page=billetterie&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
-                        <?php }else{?>
-                            <a href="?page=billetterie&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
-                        <?php }
-                        } ?>
+                    <?php
+                        // Vérification si les points de suspension doivent être affichés au début
+                        if ($startPage > 1) {
+                            // Afficher la première page
+                            echo '<a href="?page=billetterie&numpage=1"><span class="page">1</span></a>';
+                            // Afficher les points de suspension au début
+                            if ($startPage > 2 && $page >= 3) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                        }
+                        // Affichage des numéros de page ou des points de suspension pour les pages au milieu
+                        for ($pag = $startPage; $pag <= $endPage; $pag++) {
+                            if($page != $pag){ 
+                                echo '<a href="?page=billetterie&numpage='.$pag.'"><span class="page">' . $pag . '</span></a>';
+                            }else{
+                                echo '<a href="?page=billetterie&numpage='.$pag.'"><span class="page activepage">' . $pag . '</span></a>';
+                            }
+                        }
+                        // Vérification si les points de suspension doivent être affichés à la fin
+                        if ($endPage < $pages) {
+                            // Afficher les points de suspension à la fin
+                            if ($endPage < $pages - 1) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                            // Afficher la dernière page
+                            echo '<a href="?page=billetterie&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
+                        }
+                        ?>
+                        
                     </div>
                     </div>
 
@@ -2247,6 +2298,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     }
                     $page = max(1, min($pages, $page));
                     $debut = ($page - 1) * $nb_elements_par_page;
+                    // Nombre de pages à afficher avant et après la page courante
+                    $pagesAffiche = 2;
+                    // Calcul du début et de la fin de la plage de pages à afficher
+                    $startPage = max(1, $page - $pagesAffiche);
+                    $endPage = min($pages, $page + $pagesAffiche);
 
                     //recup param de l'url
                     $params = $_GET;
@@ -2326,13 +2382,34 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                 </div>
                 <div class="pagination">
                         <?php
-                        for($i=1; $i<= $pages; $i++){
-                            if($page != $i){ ?>
-                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
-                        <?php }else{?>
-                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
-                        <?php }
-                        } ?>
+                        // Vérification si les points de suspension doivent être affichés au début
+                        if ($startPage > 1) {
+                            // Afficher la première page
+                            echo '<a href="?page=message&numpage=1"><span class="page">1</span></a>';
+                            // Afficher les points de suspension au début
+                            if ($startPage > 2 && $page >= 3) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                        }
+                        // Affichage des numéros de page ou des points de suspension pour les pages au milieu
+                        for ($pag = $startPage; $pag <= $endPage; $pag++) {
+                            if($page != $pag){ 
+                                echo '<a href="?page=message&numpage='.$pag.'"><span class="page">' . $pag . '</span></a>';
+                            }else{
+                                echo '<a href="?page=message&numpage='.$pag.'"><span class="page activepage">' . $pag . '</span></a>';
+                            }
+                        }
+                        // Vérification si les points de suspension doivent être affichés à la fin
+                        if ($endPage < $pages) {
+                            // Afficher les points de suspension à la fin
+                            if ($endPage < $pages - 1) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                            // Afficher la dernière page
+                            echo '<a href="?page=message&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
+                        }
+                        ?>
+                       
                     </div>
                 </div><?php 
             }else if($_GET['page'] === "gestion"){ ?>
@@ -2351,6 +2428,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     }
                     $page = max(1, min($pages, $page));
                     $debut = ($page - 1) * $nb_elements_par_page;
+                    // Nombre de pages à afficher avant et après la page courante
+                    $pagesAffiche = 2;
+                    // Calcul du début et de la fin de la plage de pages à afficher
+                    $startPage = max(1, $page - $pagesAffiche);
+                    $endPage = min($pages, $page + $pagesAffiche);
 
                     //recup param de l'url
                     $params = $_GET;
@@ -2427,13 +2509,34 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                 </div>
                 <div class="pagination">
                         <?php
-                        for($i=1; $i<= $pages; $i++){
-                            if($page != $i){ ?>
-                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
-                        <?php }else{?>
-                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
-                        <?php }
-                        } ?>
+                        // Vérification si les points de suspension doivent être affichés au début
+                        if ($startPage > 1) {
+                            // Afficher la première page
+                            echo '<a href="?page=gestion&numpage=1"><span class="page">1</span></a>';
+                            // Afficher les points de suspension au début
+                            if ($startPage > 2 && $page >= 3) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                        }
+                        // Affichage des numéros de page ou des points de suspension pour les pages au milieu
+                        for ($pag = $startPage; $pag <= $endPage; $pag++) {
+                            if($page != $pag){ 
+                                echo '<a href="?page=gestion&numpage='.$pag.'"><span class="page">' . $pag . '</span></a>';
+                            }else{
+                                echo '<a href="?page=gestion&numpage='.$pag.'"><span class="page activepage">' . $pag . '</span></a>';
+                            }
+                        }
+                        // Vérification si les points de suspension doivent être affichés à la fin
+                        if ($endPage < $pages) {
+                            // Afficher les points de suspension à la fin
+                            if ($endPage < $pages - 1) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                            // Afficher la dernière page
+                            echo '<a href="?page=gestion&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
+                        }
+                        ?>
+                        
                     </div>
                 </div>
                 <?php 
@@ -2537,6 +2640,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         }
                         $page = max(1, min($pages, $page));
                         $debut = ($page - 1) * $nb_elements_par_page;
+                        // Nombre de pages à afficher avant et après la page courante
+                        $pagesAffiche = 2;
+                        // Calcul du début et de la fin de la plage de pages à afficher
+                        $startPage = max(1, $page - $pagesAffiche);
+                        $endPage = min($pages, $page + $pagesAffiche);
+
 
                         //recup param de l'url
                         $params = $_GET;
@@ -2600,13 +2709,34 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     </div>
                     <div class="pagination">
                         <?php
-                        for($i=1; $i<= $pages; $i++){
-                            if($page != $i){ ?>
-                            <a href="?page=partenaires&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
-                        <?php }else{?>
-                            <a href="?page=partenaires&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
-                        <?php }
-                        } ?>
+                        // Vérification si les points de suspension doivent être affichés au début
+                        if ($startPage > 1) {
+                            // Afficher la première page
+                            echo '<a href="?page=partenaires&numpage=1"><span class="page">1</span></a>';
+                            // Afficher les points de suspension au début
+                            if ($startPage > 2 && $page >= 3) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                        }
+                        // Affichage des numéros de page ou des points de suspension pour les pages au milieu
+                        for ($pag = $startPage; $pag <= $endPage; $pag++) {
+                            if($page != $pag){ 
+                                echo '<a href="?page=partenaires&numpage='.$pag.'"><span class="page">' . $pag . '</span></a>';
+                            }else{
+                                echo '<a href="?page=partenaires&numpage='.$pag.'"><span class="page activepage">' . $pag . '</span></a>';
+                            }
+                        }
+                        // Vérification si les points de suspension doivent être affichés à la fin
+                        if ($endPage < $pages) {
+                            // Afficher les points de suspension à la fin
+                            if ($endPage < $pages - 1) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                            // Afficher la dernière page
+                            echo '<a href="?page=partenaires&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
+                        }
+                        ?>
+                        
                     </div>
                     </div>
                     
@@ -2628,6 +2758,12 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     }
                     $page = max(1, min($pages, $page));
                     $debut = ($page - 1) * $nb_elements_par_page;
+                    // Nombre de pages à afficher avant et après la page courante
+                    $pagesAffiche = 2;
+                    // Calcul du début et de la fin de la plage de pages à afficher
+                    $startPage = max(1, $page - $pagesAffiche);
+                    $endPage = min($pages, $page + $pagesAffiche);
+
 
                     //recup param de l'url
                     $params = $_GET;
@@ -2726,13 +2862,33 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     </div>
                     <div class="pagination">
                         <?php
-                        for($i=1; $i<= $pages; $i++){
-                            if($page != $i){ ?>
-                            <a href="?page=billetterie&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
-                        <?php }else{?>
-                            <a href="?page=billetterie&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
-                        <?php }
-                        } ?>
+                        // Vérification si les points de suspension doivent être affichés au début
+                        if ($startPage > 1) {
+                            // Afficher la première page
+                            echo '<a href="?page=billetterie&numpage=1"><span class="page">1</span></a>';
+                            // Afficher les points de suspension au début
+                            if ($startPage > 2 && $page >= 3) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                        }
+                        // Affichage des numéros de page ou des points de suspension pour les pages au milieu
+                        for ($pag = $startPage; $pag <= $endPage; $pag++) {
+                            if($page != $pag){ 
+                                echo '<a href="?page=billetterie&numpage='.$pag.'"><span class="page">' . $pag . '</span></a>';
+                            }else{
+                                echo '<a href="?page=billetterie&numpage='.$pag.'"><span class="page activepage">' . $pag . '</span></a>';
+                            }
+                        }
+                        // Vérification si les points de suspension doivent être affichés à la fin
+                        if ($endPage < $pages) {
+                            // Afficher les points de suspension à la fin
+                            if ($endPage < $pages - 1) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                            // Afficher la dernière page
+                            echo '<a href="?page=billetterie&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
+                        }
+                        ?>
                     </div>
                     </div>
 
@@ -2752,6 +2908,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     }
                     $page = max(1, min($pages, $page));
                     $debut = ($page - 1) * $nb_elements_par_page;
+                    // Nombre de pages à afficher avant et après la page courante
+                    $pagesAffiche = 2;
+                    // Calcul du début et de la fin de la plage de pages à afficher
+                    $startPage = max(1, $page - $pagesAffiche);
+                    $endPage = min($pages, $page + $pagesAffiche);
 
                     //recup param de l'url
                     $params = $_GET;
@@ -2820,13 +2981,33 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                 </div>
                 <div class="pagination">
                         <?php
-                        for($i=1; $i<= $pages; $i++){
-                            if($page != $i){ ?>
-                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
-                        <?php }else{?>
-                            <a href="?page=message&numpage=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
-                        <?php }
-                        } ?>
+                        // Vérification si les points de suspension doivent être affichés au début
+                        if ($startPage > 1) {
+                            // Afficher la première page
+                            echo '<a href="?page=message&numpage=1"><span class="page">1</span></a>';
+                            // Afficher les points de suspension au début
+                            if ($startPage > 2 && $page >= 3) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                        }
+                        // Affichage des numéros de page ou des points de suspension pour les pages au milieu
+                        for ($pag = $startPage; $pag <= $endPage; $pag++) {
+                            if($page != $pag){ 
+                                echo '<a href="?page=message&numpage='.$pag.'"><span class="page">' . $pag . '</span></a>';
+                            }else{
+                                echo '<a href="?page=message&numpage='.$pag.'"><span class="page activepage">' . $pag . '</span></a>';
+                            }
+                        }
+                        // Vérification si les points de suspension doivent être affichés à la fin
+                        if ($endPage < $pages) {
+                            // Afficher les points de suspension à la fin
+                            if ($endPage < $pages - 1) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                            // Afficher la dernière page
+                            echo '<a href="?page=message&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
+                        }
+                        ?>
                     </div>
                 </div><?php 
             }
