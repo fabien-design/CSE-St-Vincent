@@ -1369,6 +1369,16 @@ th:last-of-type {
     background-position: 0 0;
 }
 
+.deleteImg{
+    width: 30px !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
 .formModifNon {
     background: #FF4742;
     border: 1px solid #FF4742;

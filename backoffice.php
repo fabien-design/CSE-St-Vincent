@@ -730,6 +730,7 @@ if(isset($_GET['modalModifBilletterie'])){
                             $nb = 0;
                             foreach($imgOffre as $imgO){ ?>
                                 <div class="Box">
+                                    <img class="deleteImg" src="assets/fermer.png" onclick="supprImg(<?= $imgO['Id_Image'] ?>)">
                                     <div class="edit-button">
                                         <img src="assets/edit-button.png" alt="edit-button" id="edit-button-img">
                                         <input type="file" name="imgoffre[]" onchange="document.getElementById('ImgPrev<?= $nb ?>').src = window.URL.createObjectURL(this.files[0])" value="assets/<?= $imgO['Nom_Image'] ?>">
@@ -761,11 +762,8 @@ if(isset($_GET['modalModifBilletterie'])){
                        <button type="submit" class="formModifOui">OUI</button></form>
                        <button class="formModifNon">NON</button>
                    </div>
-               
-           </div>
-            
+           </div> 
         </div>
-
     </div>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
     <script>
@@ -828,6 +826,24 @@ if(isset($_GET['modalModifBilletterie'])){
             body.style.overflow = "auto";
         }
         }
+
+        function supprImg(n) {
+            var formData = new FormData();
+            formData.append('Id_Img', n);
+
+            $.ajax({
+                type: "POST",
+                url: "BackofficePHP/supprImg.php",
+                data: formData,
+                contentType: false,
+                processData: false,
+                error: function(xhr, status, error) {
+                    alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                }
+            });
+        }
+
+
         
         // Code Jquery en AJAX pour la modif d'une offre
 
@@ -2151,7 +2167,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         <tbody>
                             <?php 
                             try{
-                                $req = $connexion->prepare("SELECT * FROM offre LIMIT $debut, $nb_elements_par_page");
+                                $req = $connexion->prepare("SELECT * FROM offre ORDER BY Date_Debut_Offre DESC LIMIT $debut, $nb_elements_par_page");
                                 $req->execute();
                                 $offres= $req->fetchAll();
                                 foreach($offres as $offre){
