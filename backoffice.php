@@ -837,6 +837,9 @@ if(isset($_GET['modalModifBilletterie'])){
                 data: formData,
                 contentType: false,
                 processData: false,
+                success: function(response){
+                        location.reload(true);
+                    },
                 error: function(xhr, status, error) {
                     alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
                 }
