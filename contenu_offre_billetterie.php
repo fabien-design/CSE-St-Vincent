@@ -13,7 +13,7 @@ $selectOffre->bindParam(':id', $_GET['id']);
 $selectOffre->execute();
 $DescOffres = $selectOffre->fetch(PDO::FETCH_ASSOC);
 
-//Selection du nom de l'image par rapport a l'id de l'offre
+//Selection du nom de l'image par rapport a l'id de l'offre pour le partenaire
 $imgContenuBilletterie = $connexion->prepare("SELECT image.Nom_Image, image.Id_Image FROM image INNER JOIN partenaire ON image.Id_Image = partenaire.Id_Image INNER JOIN offre ON partenaire.Id_Partenaire = offre.Id_Partenaire WHERE offre.Id_Offre = :id");
 $imgContenuBilletterie->bindParam(":id", $_GET["id"]);
 $imgContenuBilletterie->execute();
@@ -24,6 +24,12 @@ $modalLink = $connexion->prepare("SELECT* FROM partenaire INNER JOIN offre ON pa
 $modalLink->bindParam(":id", $_GET["id"]);
 $modalLink->execute();
 $link = $modalLink->fetch();
+
+//Selection des images associées aux offres
+$imgPourContenu = $connexion->prepare("SELECT image.Nom_Image FROM image INNER JOIN offre_image ON image.Id_Image = offre_image.Id_Image INNER JOIN offre ON offre_image.Id_Offre = offre.Id_Offre WHERE offre.Id_Offre = :id");
+$imgPourContenu->bindParam(':id', $_GET['id']);
+$imgPourContenu->execute();
+$imgPourContenu = $imgPourContenu->fetchAll();
 
 
 //Changement des mois d'anglais en français
@@ -49,7 +55,7 @@ for ($i = 0; $i < count($monthsEnglish); $i++) {
         $datefin_formattee[1] = $monthsFrench[$i];
     }
 }
-$datefin_formattee = implode(" ", $datefin_formattee);  
+$datefin_formattee = implode(" ", $datefin_formattee);
 
 ?>
 
@@ -75,8 +81,13 @@ $datefin_formattee = implode(" ", $datefin_formattee);
         <main>
             <?php require 'include/aside.php' ?>
             <div class="right">
-                <div class="divImagesOffre">
-                </div>
+                <?php if (count($imgPourContenu) > 0) { ?>
+                    <div class="divImagesOffre">
+                        <?php foreach ($imgPourContenu as $imgContent) { ?>
+                            <img src="assets/<?= $imgContent['Nom_Image'] ?>" alt="imgContenu">
+                        <?php } ?>
+                    </div>
+                <?php } ?>
                 <h1><?= $DescOffres['Nom_Offre'] ?></h1>
                 <div class="Description_Offre">
                     <p>
@@ -84,7 +95,7 @@ $datefin_formattee = implode(" ", $datefin_formattee);
                     </p>
                 </div>
                 <div class="date_contenu_offre_billetterie">
-                    <span class="date_contenu_offre">Offre valable du <?php echo $datedeb_formattee ?> au <?php echo $datefin_formattee?>.</span>
+                    <span class="date_contenu_offre">Offre valable du <?php echo $datedeb_formattee ?> au <?php echo $datefin_formattee ?>.</span>
                     <div class="img_partenaire">
                         <div class="contain_img_partenaire">
                             <h1>Partenaire</h1>

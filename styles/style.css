@@ -59,6 +59,9 @@ main {
 /*  #### HEADER ####  */
 header {
     background-color: #efeded;
+    position: relative;
+    z-index: 5;
+    
 }
 
 nav {
@@ -66,7 +69,6 @@ nav {
     display: flex;
     gap: 10px;
     flex-direction: row;
-
 }
 
 nav .logo {
@@ -356,8 +358,8 @@ aside.left a {
 /*  #### ACCUEIL ####  */
 
 .right {
-    padding: 0 15px;
     width: 100%;
+    padding: 0 10px;
 }
 
 .info_accueil {
@@ -569,6 +571,30 @@ aside.left a {
 }
 
 /* #### CONTENU BILLETTERIE #### */
+
+.divImagesOffre{
+    position: relative;
+    z-index: 0;
+    display:flex;
+    flex-direction: row;
+    max-width: 100%;
+    height: 200px;
+    transition: all 0.2s ease-in-out;
+    filter: blur(2px);
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+.divImagesOffre:hover{
+    filter: blur(0px);
+}
+
+.divImagesOffre img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+ 
+}
+
 
 .date_contenu_offre_billetterie {
     padding-top: 25px;
@@ -792,9 +818,6 @@ footer {
         background-color: #EFEDED;
     }
 
-    
-
-   
 
     .left {
         max-width: 100%;
@@ -802,14 +825,6 @@ footer {
         align-items: center;
         flex-direction: column-reverse;
     }
-
-    .right,
-    .right_billetterie{
-        margin-bottom: 30px;
-        padding: 0;
-        padding: 0 5%;
-    }
-    
 
     .fastaccess,
     aside.left .home {
