@@ -26,6 +26,30 @@ $modalLink->execute();
 $link = $modalLink->fetch();
 
 
+//Changement des mois d'anglais en français
+$monthsEnglish = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+$monthsFrench = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
+$datedeb = $DescOffres['Date_Debut_Offre'];
+$datefin = $DescOffres['Date_Fin_Offre'];
+
+$datedeb_formattee = strftime("%d %B %Y", strtotime($datedeb));
+$datedeb_formattee = explode(" ", $datedeb_formattee);
+for ($i = 0; $i < count($monthsEnglish); $i++) {
+    if ($datedeb_formattee[1] == $monthsEnglish[$i]) {
+        $datedeb_formattee[1] = $monthsFrench[$i];
+    }
+}
+$datedeb_formattee = implode(" ", $datedeb_formattee);
+
+$datefin_formattee = strftime("%d %B %Y", strtotime($datefin));
+$datefin_formattee = explode(" ", $datefin_formattee);
+for ($i = 0; $i < count($monthsEnglish); $i++) {
+    if ($datefin_formattee[1] == $monthsEnglish[$i]) {
+        $datefin_formattee[1] = $monthsFrench[$i];
+    }
+}
+$datefin_formattee = implode(" ", $datefin_formattee);  
 
 ?>
 
@@ -60,7 +84,7 @@ $link = $modalLink->fetch();
                     </p>
                 </div>
                 <div class="date_contenu_offre_billetterie">
-                    <span class="date_contenu_offre">Offre valable du <?php echo date('d F Y', strtotime($DescOffres['Date_Debut_Offre']))?> Au <?php echo date('d F Y', strtotime($DescOffres['Date_Fin_Offre']))?></span>
+                    <span class="date_contenu_offre">Offre valable du <?php echo $datedeb_formattee ?> au <?php echo $datefin_formattee?>.</span>
                     <div class="img_partenaire">
                         <div class="contain_img_partenaire">
                             <h1>Partenaire</h1>
