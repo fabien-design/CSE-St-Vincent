@@ -78,11 +78,36 @@ setlocale(LC_TIME,"fr_FR.utf8");
             </div>
             <h1>Dernières offres de la Billetterie</h1>
 
-            <?php foreach($chaqueOffre as $offre ){?>
+            <?php foreach($chaqueOffre as $offre ){
+                
+                $monthsEnglish = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
+                    $monthsFrench = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin', 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+
+                    $datedeb = $offre['Date_Debut_Offre'];
+                    $datefin = $offre['Date_Fin_Offre'];
+
+                    $datedeb_formattee = strftime("%d %B %Y", strtotime($datedeb));
+                    $datedeb_formattee = explode(" ", $datedeb_formattee);
+                    for ($i = 0; $i < count($monthsEnglish); $i++) {
+                        if ($datedeb_formattee[1] == $monthsEnglish[$i]) {
+                            $datedeb_formattee[1] = $monthsFrench[$i];
+                        }
+                    }
+                    $datedeb_formattee = implode(" ", $datedeb_formattee);
+
+                    $datefin_formattee = strftime("%d %B %Y", strtotime($datefin));
+                    $datefin_formattee = explode(" ", $datefin_formattee);
+                    for ($i = 0; $i < count($monthsEnglish); $i++) {
+                        if ($datefin_formattee[1] == $monthsEnglish[$i]) {
+                            $datefin_formattee[1] = $monthsFrench[$i];
+                        }
+                    }
+                    $datefin_formattee = implode(" ", $datefin_formattee);
+                    ?>
             <div class="offre_billetterie">
                 <div class="offre_billetterie_header">
                     <span class="tag_offre">OFFRE</span>
-                    <span class="date_offre">Publié le <?php echo date('d F Y',strtotime($offre['Date_Debut_Offre']))?></span>
+                    <span class="date_offre">Offre valable du <?php echo $datedeb_formattee ?> au <?php echo $datefin_formattee?>.</span>
                 </div>
                 <p><?=$offre['Description_Offre']?></p>
                 
