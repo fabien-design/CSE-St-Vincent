@@ -98,18 +98,18 @@ $datefin_formattee = implode(" ", $datefin_formattee);
                 </div>
                 <div class="date_contenu_offre_billetterie">
                     <span class="date_contenu_offre">Offre valable du <?php echo $datedeb_formattee ?> au <?php echo $datefin_formattee ?>.</span>
-                    <div class="img_partenaire">
+                </div><div class="img_partenaire">
                         <div class="contain_img_partenaire">
                             <h1>Partenaire</h1>
                             <a href="partenariats.php?modalOuvirPartenaire=<?php echo $link['Id_Partenaire'] ?>">
-                                <p>Voir plus</p>
+                                
                                 <img src="<?php echo "assets/" . $imgContenu['Nom_Image'] . "" ?>" alt="Image du partenaire">
+                                <p id="voirPlus">Voir plus</p>
                             </a>
                         </div>
                     </div>
-                </div>
                 <div class="back">
-                    <a href="billetterie.php?anciennepage=<?= $_GET['pageoffre'] ?>"><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit">Retour</a>
+                    <a href="billetterie.php?anciennepage=<?= isset($_GET['pageoffre']) ? $_GET['pageoffre'] : 1 ?>"><img src="assets/chevron-droit.png" class="chevron-droit" alt="chevron-droit">Retour</a>
                 </div>
             </div>
         </main>
