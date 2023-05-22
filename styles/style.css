@@ -359,7 +359,7 @@ aside.left a {
 
 .right {
     width: 100%;
-    padding: 0 10px;
+    padding: 10px 10px;
 }
 
 .info_accueil {
@@ -433,11 +433,6 @@ aside.left a {
     position: sticky;
     margin-top: 10px;
     text-decoration: none !important;
-    color: rgb(0, 102, 204);
-}
-
-.offre_learnmore img {
-    filter: invert(20%) sepia(69%) saturate(4064%) hue-rotate(199deg) brightness(96%) contrast(102%);
 }
 
 .offre_learnmore:hover {
@@ -573,18 +568,17 @@ aside.left a {
 /* #### CONTENU BILLETTERIE #### */
 
 .divImagesOffre{
+    border-radius:20px;
     position: relative;
     z-index: 0;
     display:flex;
     flex-direction: row;
-    max-width: 100%;
-    height: 200px;
+    height: 300px;
     transition: all 0.2s ease-in-out;
-    filter: blur(2px);
     box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
 }
 
-.divImagesOffre:hover{
+.divImagesOffre :hover{
     filter: blur(0px);
 }
 
@@ -592,7 +586,6 @@ aside.left a {
     height: 100%;
     width: 100%;
     object-fit: cover;
- 
 }
 
 

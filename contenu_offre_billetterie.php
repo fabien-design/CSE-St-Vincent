@@ -84,8 +84,10 @@ $datefin_formattee = implode(" ", $datefin_formattee);
                 <?php if (count($imgPourContenu) > 0) { ?>
                     <div class="divImagesOffre">
                         <?php foreach ($imgPourContenu as $imgContent) { ?>
-                            <img src="assets/<?= $imgContent['Nom_Image'] ?>" alt="imgContenu">
+                            <img src="assets/<?= $imgContent['Nom_Image'] ?>" alt="imgContenu" style="width:calc(100% / <?php echo count($imgPourContenu) ?>);">
                         <?php } ?>
+                        <div class="img_gradient">
+                        </div>
                     </div>
                 <?php } ?>
                 <h1><?= $DescOffres['Nom_Offre'] ?></h1>
