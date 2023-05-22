@@ -65,7 +65,7 @@ $tab = $select->fetchAll();
                     <div class="offre_billetterie">
                         <div class="offre_billetterie_header">
                             <span class="tag_offre">OFFRE</span>
-                            <span class="date_offre">Publié le <?php echo date('d F Y', strtotime($offre['Date_Debut_Offre'])) ?></span>
+                            <span class="date_offre">Offre valable du <?php echo date('d F Y', strtotime($offre['Date_Debut_Offre']))?> Au <?php echo date('d F Y', strtotime($offre['Date_Fin_Offre']))?></span>
                         </div>
                         <p><?= $offre['Description_Offre'] ?></p>
 

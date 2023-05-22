@@ -36,8 +36,7 @@ $link = $modalLink->fetch();
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="responsive.css">
+    <link rel="stylesheet" href="styles/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
@@ -61,7 +60,7 @@ $link = $modalLink->fetch();
                     </p>
                 </div>
                 <div class="date_contenu_offre_billetterie">
-                    <span class="date_contenu_offre">Publié le <?php echo date('d F Y', strtotime($DescOffres['Date_Debut_Offre'])) ?></span>
+                    <span class="date_contenu_offre">Offre valable du <?php echo date('d F Y', strtotime($DescOffres['Date_Debut_Offre']))?> Au <?php echo date('d F Y', strtotime($DescOffres['Date_Fin_Offre']))?></span>
                     <div class="img_partenaire">
                         <div class="contain_img_partenaire">
                             <h1>Partenaire</h1>
