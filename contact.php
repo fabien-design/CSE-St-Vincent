@@ -88,19 +88,36 @@ if (empty($_POST) === false) {
                     <div class="contactForm">
 
                         <form action="#" method="POST">
-
-                            <label for="nom">Nom</label>
-                            <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
-                            <input type="text" name="nom" value="<?= isset($_POST['nom']) ? $_POST['nom'] : null; ?>" placeholder="Votre Nom (facultatif)">
-
-                            <label for="prenom">Prénom</label>
-                            <?= isset($erreurs['prenom']) ? $erreurs['prenom'] : null; ?>
-                            <input type="text" name="prenom" value="<?= isset($_POST['prenom']) ? $_POST['prenom'] : null; ?>" placeholder="Votre Prénom (facultatif)">
-
+                            <div class="PackNom">
+                                <div>
+                                    <label for="nom">Nom</label>
+                                    <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
+                                    <input type="text" name="nom" value="<?= isset($_POST['nom']) ? $_POST['nom'] : null; ?>" placeholder="Votre Nom (facultatif)">
+                                </div>
+                                <div>
+                                    <label for="prenom">Prénom</label>
+                                    <?= isset($erreurs['prenom']) ? $erreurs['prenom'] : null; ?>
+                                    <input type="text" name="prenom" value="<?= isset($_POST['prenom']) ? $_POST['prenom'] : null; ?>" placeholder="Votre Prénom (facultatif)">
+                                </div>
+                            </div>
                             <label for="email">Email <span style="color: red;">*</span></label>
                             <?= isset($erreurs['email']) ? $erreurs['email'] : null; ?>
                             <input type="email" name="email" value="<?= isset($_POST['email']) ? $_POST['email'] : null; ?>" placeholder="Votre adresse Email">
-
+                            <div class="PackNom">
+                                <div>
+                                    <label for="offre">Offre associée</label>
+                                    <?= isset($erreurs['offre']) ? $erreurs['offre'] : null; ?>
+                                    <select name="offre">
+                                        <option value="vide">Aucune offre assocée</option>
+                                        
+                                    </select>
+                                </div>
+                                <div>
+                                    <label for="prenom">Prénom</label>
+                                    <?= isset($erreurs['prenom']) ? $erreurs['prenom'] : null; ?>
+                                    <input type="text" name="prenom" value="<?= isset($_POST['prenom']) ? $_POST['prenom'] : null; ?>" placeholder="Votre Prénom (facultatif)">
+                                </div>
+                            </div>
                             <label for="contenu">Contenu <span style="color: red;">*</span></label>
                             <?= isset($erreurs['contenu']) ? $erreurs['contenu'] : null; ?>
                             <textarea name="contenu" placeholder="Saisir votre message"><?= isset($_POST['contenu']) ? $_POST['contenu'] : null; ?></textarea>

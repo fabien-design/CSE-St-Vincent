@@ -255,6 +255,7 @@ input:-webkit-autofill:active {
     display: flex;
     justify-content: center;
     align-items: center;
+    margin-bottom: 50px;
 }
 
 .accueil .formEdit form {
@@ -385,6 +386,7 @@ thead{
 
 .partenaires .tablepartenaires table thead .addPart {
     background-color: #2b9336;
+    padding: 0;
 }
 
 th {
@@ -393,6 +395,11 @@ th {
 
 .partenaires .tablepartenaires table thead .addPart a {
     color: white;
+    color: white;
+    display: flex;
+    height: 62px;
+    justify-content: center;
+    align-items: center;
 }
 
 .partenaires .tablepartenaires table thead .addPart a div {
@@ -1014,6 +1021,7 @@ input[type=submit]:hover {
 
 .billetterie .tableoffres table thead .addPart {
     background-color: #2b9336;
+    padding: 0;
 }
 
 th:first-of-type {
@@ -1026,6 +1034,10 @@ th:last-of-type {
 
 .billetterie .tableoffres table thead .addPart a {
     color: white;
+    display: flex;
+    height: 62px;
+    justify-content: center;
+    align-items: center;
 }
 
 .billetterie .tableoffres table thead .addPart a div {
@@ -1675,11 +1687,16 @@ th:last-of-type {
 
 .message .tablemessages table thead .addPart {
     background-color: #2b9336;
+    padding: 0;
     
 }
 
 .message .tablemessages table thead .addPart a {
     color: white;
+    display: flex;
+    height: 62px;
+    justify-content: center;
+    align-items: center;
 }
 
 .message .tablemessages table thead .addPart a div {
