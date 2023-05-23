@@ -167,14 +167,16 @@ $nomImgPartenaire = $imgPartenaire->fetchAll();
                 span.onclick = function() {
                     modalModif.style.display = "none";
                     history.pushState(null, null, window.location.href.split("?")[0]);
-                    body.style.overflow = "";
+                    body.style.overflowY = "auto";
+                    body.style.overflowX = "hidden";
                 }
 
                 window.onclick = function(event) {
                     if (event.target == modalModif) {
                         modalModif.style.display = "none";
                         history.pushState(null, null, window.location.href.split("?")[0]);
-                        body.style.overflow = "";
+                        body.style.overflowY = "auto";
+                        body.style.overflowX = "hidden";
                     }
                 }
             </script>
