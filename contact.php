@@ -142,7 +142,7 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                                     <label for="partenaire">Partenaire Associée</label>
                                     <?= isset($erreurs['partenaire']) ? $erreurs['partenaire'] : null; ?>
                                     <select name="partenaire" id="selectPart">
-                                        <option selected value="vide" onclick="SelectNomPart('None')">Aucune partenaire assocée</option>
+                                        <option selected value="vide" onclick="SelectNomPart('None')">Aucun partenaire assocée</option>
                                         <?php foreach ($listDePartenaire as $partenaire) {
                                             ?>
                                             <option value="<?= $partenaire['Nom_Partenaire']?>" onclick="SelectNomPart(<?= $partenaire['Id_Partenaire']?>)"><?= $partenaire['Nom_Partenaire']?></option>
