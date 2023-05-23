@@ -98,15 +98,14 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                         <form action="#" method="POST">
                             <div class="PackNom">
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-                                <script>
+                            <script type="text/javascript">
                                     function SelectNomPart(n){
-                                        if (typeof n === 'string'){
+                                        if (n === 'vide'){
                                             document.getElementById('divSelectOffre').innerHTML = "";	
-                                        }else if(typeof n === 'number'){
+                                        }else{
                                             document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée</label><select name="offre" id="selectOffre"></select>';
                                             data = new FormData();
                                             data.append("IdPart", n);
-                                            console.log(data);
                                             $.ajax({
                                                 type: "POST",
                                                 url: "optionOffreForContact.php",
@@ -122,7 +121,7 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                                             });
                                         }
                                     }
-                                </script>
+                            </script>
                                 <div>
                                     <label for="nom">Nom</label>
                                     <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
@@ -141,11 +140,12 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                                 <div>
                                     <label for="partenaire">Partenaire Associée</label>
                                     <?= isset($erreurs['partenaire']) ? $erreurs['partenaire'] : null; ?>
-                                    <select name="partenaire" id="selectPart">
-                                        <option selected value="vide" onclick="SelectNomPart('None')">Aucun partenaire assocée</option>
+
+                                    <select name="partenaire" id="selectPart" onchange="SelectNomPart(value)">
+                                        <option selected value="vide">Aucun partenaire assocée</option>
                                         <?php foreach ($listDePartenaire as $partenaire) {
                                             ?>
-                                            <option value="<?= $partenaire['Nom_Partenaire']?>" onclick="SelectNomPart(<?= $partenaire['Id_Partenaire']?>)"><?= $partenaire['Nom_Partenaire']?></option>
+                                            <option value="<?= $partenaire['Id_Partenaire']?>"><?= $partenaire['Nom_Partenaire']?></option>
                                             <?php
                                         }?>
                                     </select>
