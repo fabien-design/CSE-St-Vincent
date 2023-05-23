@@ -290,6 +290,7 @@ aside.left .partenaire .next {
 aside.left .partenaire .prev,
 aside.left .partenaire .next {
     width: 40px;
+    margin-top: -28px;
 }
 
 /* Position the "next button" to the right */
