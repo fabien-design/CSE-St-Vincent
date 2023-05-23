@@ -530,6 +530,15 @@ aside.left a {
     border-radius: 3px;
     cursor: pointer;
 }
+.pagination #troisPoints{
+    background-color: #ffffff00 !important;
+    color: #888 !important;
+    font-size: xx-large;
+    border: none;
+    max-width: 20px;
+    width: 5vw;
+    align-items: flex-end;
+}
 
 .pagination span:hover {
     opacity: 0.8;
@@ -935,6 +944,7 @@ footer {
         height: 35px;
         width: 35px;
     }
+    
 }
 
 @media screen and (max-width: 584px) {
@@ -948,7 +958,9 @@ footer {
         animation: slideMenuBurger 1s;
         -webkit-animation: slideMenuBurger 1s;
     }
-
+    .pagination #troisPoints{
+        font-size: x-large;
+    }
 
 }
 
@@ -963,5 +975,8 @@ footer {
         height: 25px;
         width: 25px;
         font-size: 13px;
+    }
+    .pagination #troisPoints{
+        font-size: large;
     }
 }

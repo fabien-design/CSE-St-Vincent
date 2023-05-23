@@ -2085,7 +2085,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                             echo '<a href="?page=partenaires&numpage=1"><span class="page">1</span></a>';
                             // Afficher les points de suspension au début
                             if ($startPage > 2 && $page >= 3) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                         }
                         // Affichage des numéros de page ou des points de suspension pour les pages au milieu
@@ -2100,7 +2100,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         if ($endPage < $pages) {
                             // Afficher les points de suspension à la fin
                             if ($endPage < $pages - 1) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                             // Afficher la dernière page
                             echo '<a href="?page=partenaires&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
@@ -2254,7 +2254,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                             echo '<a href="?page=billetterie&numpage=1"><span class="page">1</span></a>';
                             // Afficher les points de suspension au début
                             if ($startPage > 2 && $page >= 3) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                         }
                         // Affichage des numéros de page ou des points de suspension pour les pages au milieu
@@ -2269,7 +2269,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         if ($endPage < $pages) {
                             // Afficher les points de suspension à la fin
                             if ($endPage < $pages - 1) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                             // Afficher la dernière page
                             echo '<a href="?page=billetterie&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
@@ -2385,7 +2385,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                             echo '<a href="?page=message&numpage=1"><span class="page">1</span></a>';
                             // Afficher les points de suspension au début
                             if ($startPage > 2 && $page >= 3) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                         }
                         // Affichage des numéros de page ou des points de suspension pour les pages au milieu
@@ -2400,7 +2400,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         if ($endPage < $pages) {
                             // Afficher les points de suspension à la fin
                             if ($endPage < $pages - 1) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                             // Afficher la dernière page
                             echo '<a href="?page=message&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
@@ -2512,7 +2512,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                             echo '<a href="?page=gestion&numpage=1"><span class="page">1</span></a>';
                             // Afficher les points de suspension au début
                             if ($startPage > 2 && $page >= 3) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                         }
                         // Affichage des numéros de page ou des points de suspension pour les pages au milieu
@@ -2527,7 +2527,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         if ($endPage < $pages) {
                             // Afficher les points de suspension à la fin
                             if ($endPage < $pages - 1) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                             // Afficher la dernière page
                             echo '<a href="?page=gestion&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
@@ -2726,7 +2726,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                             echo '<a href="?page=partenaires&numpage=1"><span class="page">1</span></a>';
                             // Afficher les points de suspension au début
                             if ($startPage > 2 && $page >= 3) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                         }
                         // Affichage des numéros de page ou des points de suspension pour les pages au milieu
@@ -2741,7 +2741,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         if ($endPage < $pages) {
                             // Afficher les points de suspension à la fin
                             if ($endPage < $pages - 1) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                             // Afficher la dernière page
                             echo '<a href="?page=partenaires&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
@@ -2879,7 +2879,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                             echo '<a href="?page=billetterie&numpage=1"><span class="page">1</span></a>';
                             // Afficher les points de suspension au début
                             if ($startPage > 2 && $page >= 3) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                         }
                         // Affichage des numéros de page ou des points de suspension pour les pages au milieu
@@ -2894,7 +2894,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         if ($endPage < $pages) {
                             // Afficher les points de suspension à la fin
                             if ($endPage < $pages - 1) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                             // Afficher la dernière page
                             echo '<a href="?page=billetterie&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
@@ -2998,7 +2998,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                             echo '<a href="?page=message&numpage=1"><span class="page">1</span></a>';
                             // Afficher les points de suspension au début
                             if ($startPage > 2 && $page >= 3) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                         }
                         // Affichage des numéros de page ou des points de suspension pour les pages au milieu
@@ -3013,7 +3013,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         if ($endPage < $pages) {
                             // Afficher les points de suspension à la fin
                             if ($endPage < $pages - 1) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                             // Afficher la dernière page
                             echo '<a href="?page=message&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
