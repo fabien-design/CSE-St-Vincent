@@ -2287,6 +2287,16 @@ th:last-of-type {
     padding-bottom: 20px;
 }
 
+.pagination #troisPoints{
+    background-color: #ffffff00 !important;
+    color: #888 !important;
+    font-size: xx-large;
+    border: none;
+    max-width: 20px;
+    width: 5vw;
+    align-items: flex-end;
+}
+
 .pagination span {
     height: 55px;
     width: 55px;
@@ -2502,6 +2512,10 @@ td:nth-child(1):before {
     #modalSupprPartenaire .modal-content .modalBox .supprBox{
         gap: 20px;
     }
+
+    .pagination #troisPoints{
+        font-size: x-large;
+    }
 }
 @media only screen and (max-width: 450px) {
     nav {
@@ -2535,4 +2549,8 @@ td:nth-child(1):before {
         width: 25px;
         font-size: 13px;
     }
+    .pagination #troisPoints{
+        font-size: large;
+    }
+
 }

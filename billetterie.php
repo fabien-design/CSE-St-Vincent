@@ -112,7 +112,7 @@ $tab = $select->fetchAll();
                             echo '<a href="?page=1"><span class="page">1</span></a>';
                             // Afficher les points de suspension au début
                             if ($startPage > 2 && $page >= 3) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                         }
                         // Affichage des numéros de page ou des points de suspension pour les pages au milieu
@@ -127,7 +127,7 @@ $tab = $select->fetchAll();
                         if ($endPage < $pages) {
                             // Afficher les points de suspension à la fin
                             if ($endPage < $pages - 1) {
-                                echo '<a><span class="page">...</span></a>';
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
                             }
                             // Afficher la dernière page
                             echo '<a href="?page='.$pages.'"><span class="page">'.$pages.'</span></a>';
