@@ -392,6 +392,7 @@ aside.left a {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    align-items: center;
 }
 
 .offre_billetterie_header span {
