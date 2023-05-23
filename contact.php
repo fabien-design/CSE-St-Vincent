@@ -56,6 +56,14 @@ if (empty($_POST) === false) {
     }
 }
 
+//Selection des partenaires existant pour les proposés dans le Select du formulaire de contact et associé un partenaire à un message.
+$listDePartenaire = $connexion->prepare("SELECT * FROM partenaire");
+$listDePartenaire->execute();
+$listDePartenaire = $listDePartenaire->fetchAll();
+
+//Selection des partenaires existant pour les proposés dans le Select du formulaire de contact et associé un partenaire à un message.
+
+
 ?>
 
 <!DOCTYPE html>
@@ -89,6 +97,32 @@ if (empty($_POST) === false) {
 
                         <form action="#" method="POST">
                             <div class="PackNom">
+                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+                                <script>
+                                    function SelectNomPart(n){
+                                        if (typeof n === 'string'){
+                                            document.getElementById('divSelectOffre').innerHTML = "";	
+                                        }else if(typeof n === 'number'){
+                                            document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée</label><select name="offre" id="selectOffre"></select>';
+                                            data = new FormData();
+                                            data.append("IdPart", n);
+                                            console.log(data);
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "optionOffreForContact.php",
+                                                data: data,
+                                                contentType: false,
+                                                processData: false,
+                                                success: function(response){
+                                                    document.getElementById('selectOffre').innerHTML =response;
+                                                },
+                                                error: function(xhr, status, error) {
+                                                    alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                                                }
+                                            });
+                                        }
+                                    }
+                                </script>
                                 <div>
                                     <label for="nom">Nom</label>
                                     <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
@@ -105,17 +139,24 @@ if (empty($_POST) === false) {
                             <input type="email" name="email" value="<?= isset($_POST['email']) ? $_POST['email'] : null; ?>" placeholder="Votre adresse Email">
                             <div class="PackNom">
                                 <div>
-                                    <label for="offre">Offre associée</label>
-                                    <?= isset($erreurs['offre']) ? $erreurs['offre'] : null; ?>
-                                    <select name="offre">
-                                        <option value="vide">Aucune offre assocée</option>
-                                        
+                                    <label for="partenaire">Partenaire Associée</label>
+                                    <?= isset($erreurs['partenaire']) ? $erreurs['partenaire'] : null; ?>
+                                    <select name="partenaire" id="selectPart">
+                                        <option selected value="vide" onclick="SelectNomPart('None')">Aucune partenaire assocée</option>
+                                        <?php foreach ($listDePartenaire as $partenaire) {
+                                            ?>
+                                            <option value="<?= $partenaire['Nom_Partenaire']?>" onclick="SelectNomPart(<?= $partenaire['Id_Partenaire']?>)"><?= $partenaire['Nom_Partenaire']?></option>
+                                            <?php
+                                        }?>
                                     </select>
                                 </div>
-                                <div>
-                                    <label for="prenom">Prénom</label>
-                                    <?= isset($erreurs['prenom']) ? $erreurs['prenom'] : null; ?>
-                                    <input type="text" name="prenom" value="<?= isset($_POST['prenom']) ? $_POST['prenom'] : null; ?>" placeholder="Votre Prénom (facultatif)">
+                                <div id="divSelectOffre">
+                                   <!-- <label for="offre">Offre Associée</label>
+                                    <select name="offre" id="selectOffre">
+                                        
+                                    </select> -->
+
+                                    
                                 </div>
                             </div>
                             <label for="contenu">Contenu <span style="color: red;">*</span></label>
