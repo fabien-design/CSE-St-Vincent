@@ -1997,7 +1997,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         $page = max(1, min($pages, $page));
                         $debut = ($page - 1) * $nb_elements_par_page;
                         // Nombre de pages à afficher avant et après la page courante
-                        $pagesAffiche = 2;
+                        $pagesAffiche = 1;
                         // Calcul du début et de la fin de la plage de pages à afficher
                         $startPage = max(1, $page - $pagesAffiche);
                         $endPage = min($pages, $page + $pagesAffiche);
@@ -2129,7 +2129,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     $page = max(1, min($pages, $page));
                     $debut = ($page - 1) * $nb_elements_par_page;
                     // Nombre de pages à afficher avant et après la page courante
-                    $pagesAffiche = 2;
+                    $pagesAffiche = 1;
                     // Calcul du début et de la fin de la plage de pages à afficher
                     $startPage = max(1, $page - $pagesAffiche);
                     $endPage = min($pages, $page + $pagesAffiche);
@@ -2296,7 +2296,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     $page = max(1, min($pages, $page));
                     $debut = ($page - 1) * $nb_elements_par_page;
                     // Nombre de pages à afficher avant et après la page courante
-                    $pagesAffiche = 2;
+                    $pagesAffiche = 1;
                     // Calcul du début et de la fin de la plage de pages à afficher
                     $startPage = max(1, $page - $pagesAffiche);
                     $endPage = min($pages, $page + $pagesAffiche);
@@ -2426,7 +2426,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     $page = max(1, min($pages, $page));
                     $debut = ($page - 1) * $nb_elements_par_page;
                     // Nombre de pages à afficher avant et après la page courante
-                    $pagesAffiche = 2;
+                    $pagesAffiche = 1;
                     // Calcul du début et de la fin de la plage de pages à afficher
                     $startPage = max(1, $page - $pagesAffiche);
                     $endPage = min($pages, $page + $pagesAffiche);
@@ -2652,7 +2652,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         $page = max(1, min($pages, $page));
                         $debut = ($page - 1) * $nb_elements_par_page;
                         // Nombre de pages à afficher avant et après la page courante
-                        $pagesAffiche = 2;
+                        $pagesAffiche = 1;
                         // Calcul du début et de la fin de la plage de pages à afficher
                         $startPage = max(1, $page - $pagesAffiche);
                         $endPage = min($pages, $page + $pagesAffiche);
@@ -2770,7 +2770,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     $page = max(1, min($pages, $page));
                     $debut = ($page - 1) * $nb_elements_par_page;
                     // Nombre de pages à afficher avant et après la page courante
-                    $pagesAffiche = 2;
+                    $pagesAffiche = 1;
                     // Calcul du début et de la fin de la plage de pages à afficher
                     $startPage = max(1, $page - $pagesAffiche);
                     $endPage = min($pages, $page + $pagesAffiche);
@@ -2920,7 +2920,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     $page = max(1, min($pages, $page));
                     $debut = ($page - 1) * $nb_elements_par_page;
                     // Nombre de pages à afficher avant et après la page courante
-                    $pagesAffiche = 2;
+                    $pagesAffiche = 1;
                     // Calcul du début et de la fin de la plage de pages à afficher
                     $startPage = max(1, $page - $pagesAffiche);
                     $endPage = min($pages, $page + $pagesAffiche);

@@ -30,6 +30,12 @@ if ($page === 0) {
     $page = 1;
 }
 $debut = ($page - 1) * $nb_elements_par_page;
+// Nombre de pages à afficher avant et après la page courante
+$pagesAffiche = 1;
+// Calcul du début et de la fin de la plage de pages à afficher
+$startPage = max(1, $page - $pagesAffiche);
+$endPage = min($pages, $page + $pagesAffiche);
+
 
 $select = $connexion->prepare("SELECT * FROM offre ORDER BY Date_Debut_Offre desc LIMIT $debut, $nb_elements_par_page ");
 $select->setFetchMode(PDO::FETCH_ASSOC);
@@ -100,16 +106,33 @@ $tab = $select->fetchAll();
                 <?php } ?>
                 <div class="pagination">
                     <?php
-                    for ($i = 1; $i <= $pages; $i++) {
-                        if ($page != $i) {
-
-
+                        // Vérification si les points de suspension doivent être affichés au début
+                        if ($startPage > 1) {
+                            // Afficher la première page
+                            echo '<a href="?page=1"><span class="page">1</span></a>';
+                            // Afficher les points de suspension au début
+                            if ($startPage > 2 && $page >= 3) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                        }
+                        // Affichage des numéros de page ou des points de suspension pour les pages au milieu
+                        for ($pag = $startPage; $pag <= $endPage; $pag++) {
+                            if($page != $pag){ 
+                                echo '<a href="?page='.$pag.'"><span class="page">' . $pag . '</span></a>';
+                            }else{
+                                echo '<a href="?page='.$pag.'"><span class="page activepage">' . $pag . '</span></a>';
+                            }
+                        }
+                        // Vérification si les points de suspension doivent être affichés à la fin
+                        if ($endPage < $pages) {
+                            // Afficher les points de suspension à la fin
+                            if ($endPage < $pages - 1) {
+                                echo '<a><span class="page">...</span></a>';
+                            }
+                            // Afficher la dernière page
+                            echo '<a href="?page='.$pages.'"><span class="page">'.$pages.'</span></a>';
+                        }
                     ?>
-                            <a href="?page=<?= $i ?>"> <span class="page"><?= $i ?></span></a>
-                        <?php } else { ?>
-                            <a href="?page=<?= $i ?>"> <span class="page activepage"><?= $i ?></span></a>
-                    <?php }
-                    } ?>
 
                 </div>
             </div>

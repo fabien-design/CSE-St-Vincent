@@ -2471,6 +2471,13 @@ td:nth-child(1):before {
     }
 
 }
+@media only screen and (max-width: 600px) {
+    .pagination span{
+        height: 35px;
+        width: 35px;
+    }
+}
+
 @media only screen and (max-width: 510px) {
     #modalSupprPartenaire .modal-content .modalBox {
         flex-wrap: wrap;
@@ -2500,8 +2507,15 @@ td:nth-child(1):before {
         font-size: 12px;
     }
 
+    .pagination{
+        gap: 10px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
     .pagination span{
-        height: 35px;
-        width: 35px;
+        height: 25px;
+        width: 25px;
+        font-size: 13px;
     }
 }

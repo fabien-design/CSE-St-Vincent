@@ -923,6 +923,13 @@ footer {
 
 }
 
+@media only screen and (max-width: 600px) {
+    .pagination span{
+        height: 35px;
+        width: 35px;
+    }
+}
+
 @media screen and (max-width: 584px) {
 
     .mobile-menu {
@@ -936,4 +943,18 @@ footer {
     }
 
 
+}
+
+@media only screen and (max-width: 450px) {
+    .pagination{
+        gap: 10px;
+    }
+}
+
+@media only screen and (max-width: 380px) {
+    .pagination span{
+        height: 25px;
+        width: 25px;
+        font-size: 13px;
+    }
 }
