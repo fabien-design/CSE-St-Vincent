@@ -398,6 +398,11 @@ aside.left a {
 .offre_billetterie_header span {
     margin-bottom: 8px;
 }
+.offre_learnmore a {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+}
 
 .tag_offre {
     display: inline-block;
