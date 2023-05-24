@@ -33,6 +33,10 @@
     border: 1px solid #888;
     max-width: 1500px;
     width: 85%;
+    position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
 }
 .closeModifDiv{
     display: flex;
@@ -70,6 +74,11 @@
 .formBox p{
    text-align: center;
 }
+
+.formBox h1{
+    font-weight: 600;
+    color:#1b3168;
+ }
 
 .imagePartenaire {
     max-width: 250px;
