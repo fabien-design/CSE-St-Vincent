@@ -952,12 +952,22 @@ footer {
 
 }
 
+
 @media only screen and (max-width: 600px) {
     .pagination span{
         height: 35px;
         width: 35px;
     }
-    
+    .gris{
+        height: 0;
+    }
+    .logo{
+        background-color: none;
+        padding: 0 !important;
+    }
+    .img_responsive{
+        padding: 10px 0 0 5px;
+    }
 }
 
 @media screen and (max-width: 584px) {
