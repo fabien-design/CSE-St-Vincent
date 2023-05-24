@@ -2010,6 +2010,9 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                         if(isset($params['modalSupprPartenaire'])){
                             unset($params['modalSupprPartenaire']);
                         }
+                        if(isset($params['modalAfficherPartenaire'])){
+                            unset($params['modalAfficherPartenaire']);
+                        }
                         //Creation GET + Construct url
                         $params['modalAjoutPartenaire'] = "partenaire";
                         $urlajout = http_build_query($params);
@@ -2062,8 +2065,13 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                             $params['modalSupprPartenaire'] = $partenaire["Id_Partenaire"];
                                             $urlsuppr = http_build_query($params);
                                             unset($params['modalSupprPartenaire']);
+ 
+                                            $params['modalAfficherPartenaire'] = $partenaire["Id_Partenaire"];
+                                            $urlafficher = http_build_query($params);
+                                            unset($params['modalAfficherPartenaire']);
 
                                             ?>
+                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn">Afficher</a>
                                             <a href="backoffice.php?<?= $urlmodif; ?>" class="modifBtn">Modifier</a>
                                             <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
                                         </td>
@@ -2142,6 +2150,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     if(isset($params['modalSupprBilletterie'])){
                         unset($params['modalSupprBilletterie']);
                     }
+                    if(isset($params['modalAfficherBilletterie'])){
+                        unset($params['modalAfficherBilletterie']);
+                    }
+                    
+
                     $params['modalAjoutBilletterie'] = "offre";
                     $urlajout = http_build_query($params);
                     unset($params['modalAjoutBilletterie']);
@@ -2232,7 +2245,13 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                             $params['modalSupprBilletterie'] = $offre["Id_Offre"];
                                             $urlsuppr = http_build_query($params);
                                             unset($params['modalSupprBilletterie']);
-                                            ?> 
+
+                                            $params['modalAfficherBilletterie'] = $offre["Id_Offre"];
+                                            $urlafficher = http_build_query($params);
+                                            unset($params['modalAfficherBilletterie']);
+
+                                            ?>
+                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn">Afficher</a>
                                             <a href="backoffice.php?<?= $urlmodif; ?>" class="modifBtn">Modifier</a>
                                             <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
                                         </td>

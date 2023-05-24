@@ -2479,6 +2479,13 @@ td:nth-child(1):before {
     padding-top: 6px;
 }
 
+@media only screen and (max-width: 750px) {
+    /* Direction Boutons table */ 
+    .actionBtn{
+        flex-direction: column;
+    }
+}
+
 @media only screen and (max-width: 670px) {
     td {
         padding-left: 40% !important;
@@ -2527,10 +2534,6 @@ td:nth-child(1):before {
     }
     nav .links.mobile-menu{
         margin-left: calc(100% - 170.03px);
-    }
-    /* Direction Boutons table */ 
-    .actionBtn{
-        flex-direction: column;
     }
 
     /* Font table */
