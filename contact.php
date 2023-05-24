@@ -169,7 +169,6 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                     }, 1000)
                     document.getElementById('selectPart').className = 'displaySelectOut';
                 } else {
-                    document.get
                     document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée (facultatif)</label><select name="offre" id="selectOffre"></select>';
                     document.getElementById('divSelectOffre').className = 'displayFlex';
                     document.getElementById('selectPart').className = 'displaySelectIn';
