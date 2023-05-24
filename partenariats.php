@@ -17,7 +17,7 @@ $count->setFetchMode(PDO::FETCH_ASSOC);
 $count->execute();
 $tcount = $count->fetchAll();
 
-$nb_elements_par_page = 6 ;
+$nb_elements_par_page = 6;
 $pages = ceil($tcount[0]['parten'] / $nb_elements_par_page);
 @$page = $_GET["page"];
 // Verif validité 
@@ -84,63 +84,63 @@ $nomImgPartenaire = $imgPartenaire->fetchAll();
             <div class="right_partenaire">
                 <h1>Tous nos partenaires</h1>
                 <div class="partenaires_grid-container">
-                    <?php 
+                    <?php
                     //recup param de l'url
                     $params = $_GET;
-                    if(isset($params['modalOuvirPartenaire'])){
+                    if (isset($params['modalOuvirPartenaire'])) {
                         unset($params['modalOuvirPartenaire']);
                     }
-                    
+
                     foreach ($nomImgPartenaire as $index => $image) {
                         $index2 = $index;
-                        if ($page > 1){
+                        if ($page > 1) {
                             $index = $index + (($page - 1) * $nb_elements_par_page);
                         }
                         $test = $idPartenaire[$index];
                         //Creation GET + Construct url
                         $params['modalOuvirPartenaire'] = $test['Id_Partenaire'];
                         $urlopen = http_build_query($params);
-                        unset($params['modalOuvirPartenaire']);// je suppr la colonne pour pas l'avoir dans les autres url (urlmodif et urlsuppr)
-                        ?>
+                        unset($params['modalOuvirPartenaire']); // je suppr la colonne pour pas l'avoir dans les autres url (urlmodif et urlsuppr)
+                    ?>
                         <div class="partenaires_grid-item">
                             <a href="partenariats.php?<?= $urlopen ?>">
                                 <img src="assets/<?= $tab[$index2]['Nom_Image'] ?>" alt="Image du partenaire">
                             </a>
                         </div>
-                    <?php } 
+                    <?php }
                     ?>
                 </div>
 
                 <div class="pagination">
                     <?php
-                        // Vérification si les points de suspension doivent être affichés au début
-                        if ($startPage > 1) {
-                            // Afficher la première page
-                            echo '<a href="?page=1"><span class="page">1</span></a>';
-                            // Afficher les points de suspension au début
-                            if ($startPage > 2 && $page >= 3) {
-                                echo '<a><span class="page" id="troisPoints">...</span></a>';
-                            }
+                    // Vérification si les points de suspension doivent être affichés au début
+                    if ($startPage > 1) {
+                        // Afficher la première page
+                        echo '<a href="?page=1"><span class="page">1</span></a>';
+                        // Afficher les points de suspension au début
+                        if ($startPage > 2 && $page >= 3) {
+                            echo '<a><span class="page" id="troisPoints">...</span></a>';
                         }
-                        // Affichage des numéros de page ou des points de suspension pour les pages au milieu
-                        for ($pag = $startPage; $pag <= $endPage; $pag++) {
-                            if($page != $pag){ 
-                                echo '<a href="?page='.$pag.'"><span class="page">' . $pag . '</span></a>';
-                            }else{
-                                echo '<a href="?page='.$pag.'"><span class="page activepage">' . $pag . '</span></a>';
-                            }
+                    }
+                    // Affichage des numéros de page ou des points de suspension pour les pages au milieu
+                    for ($pag = $startPage; $pag <= $endPage; $pag++) {
+                        if ($page != $pag) {
+                            echo '<a href="?page=' . $pag . '"><span class="page">' . $pag . '</span></a>';
+                        } else {
+                            echo '<a href="?page=' . $pag . '"><span class="page activepage">' . $pag . '</span></a>';
                         }
-                        // Vérification si les points de suspension doivent être affichés à la fin
-                        if ($endPage < $pages) {
-                            // Afficher les points de suspension à la fin
-                            if ($endPage < $pages - 1) {
-                                echo '<a><span class="page" id="troisPoints">...</span></a>';
-                            }
-                            // Afficher la dernière page
-                            echo '<a href="?page='.$pages.'"><span class="page">'.$pages.'</span></a>';
+                    }
+                    // Vérification si les points de suspension doivent être affichés à la fin
+                    if ($endPage < $pages) {
+                        // Afficher les points de suspension à la fin
+                        if ($endPage < $pages - 1) {
+                            echo '<a><span class="page" id="troisPoints">...</span></a>';
                         }
+                        // Afficher la dernière page
+                        echo '<a href="?page=' . $pages . '"><span class="page">' . $pages . '</span></a>';
+                    }
                     ?>
-                    
+
                 </div>
 
             </div>
@@ -213,15 +213,15 @@ $nomImgPartenaire = $imgPartenaire->fetchAll();
 
         <script src="scriptaside.js"></script>
         <script>
-        document.addEventListener("DOMContentLoaded", function(event) { 
-            var scrollpos = localStorage.getItem('scrollpos');
-            if (scrollpos) window.scrollTo(0, scrollpos);
-        });
+            document.addEventListener("DOMContentLoaded", function(event) {
+                var scrollpos = localStorage.getItem('scrollpos');
+                if (scrollpos) window.scrollTo(0, scrollpos);
+            });
 
-        window.onbeforeunload = function(e) {
-            localStorage.setItem('scrollpos', window.scrollY);
-        };
-    </script>
+            window.onbeforeunload = function(e) {
+                localStorage.setItem('scrollpos', window.scrollY);
+            };
+        </script>
     </div>
 </body>
 
