@@ -200,7 +200,7 @@ aside.left .infocontact div p span {
 }
 
 aside.left .partenaire .mySlides {
-    display: none
+    display: none;
 }
 
 aside.left .partenaire img {
@@ -215,6 +215,9 @@ aside.left .partenaire .boxSlider {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    max-width: 100%;
+    width: 80vw;    
+    margin: auto;
 }
 
 .contactaccess a,
@@ -241,8 +244,9 @@ aside.left .partenaire .slideshow-container {
 
 .mySlides img {
     z-index: 1;
-    width: 150px;
-    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    width: 50vw;
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 10px;
