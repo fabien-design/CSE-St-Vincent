@@ -117,8 +117,8 @@ $nomImg = $imgPart->fetchAll();
                             </div>
                             <?php } ?>
                         </div>
-                        <img class="prev" onclick="plusSlides(-1)" src="assets/chevron-gauche.png">
-                        <img class="next" onclick="plusSlides(1)" src="assets/chevron-droit.png">
+                        <img class="prev" onclick="plusSlides(-1)" src="assets/chevron-gauche.png" alt="chevron précédent">
+                        <img class="next" onclick="plusSlides(1)" src="assets/chevron-droit.png" alt="chevron suivant">
                         <div style="text-align:center">
                             <span class="dot" onclick="currentSlide(1)"></span>
                             <span class="dot" onclick="currentSlide(2)"></span>
