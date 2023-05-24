@@ -39,11 +39,13 @@ if (empty($_POST) === false) {
 
     if (empty($erreurs)) {
         try {
-            $requeteInsertion = $connexion->prepare('INSERT INTO message (Nom_Message, Prenom_Message, Email_Message, Contenu_Message) VALUES (:Nom_Message, :Prenom_Message, :Email_Message, :Contenu_Message)');
+            $requeteInsertion = $connexion->prepare('INSERT INTO message (Nom_Message, Prenom_Message, Email_Message, Contenu_Message, Id_Offre, Id_Partenaire) VALUES (:Nom_Message, :Prenom_Message, :Email_Message, :Contenu_Message, :Id_Offre, :Id_Partenaire)');
             $requeteInsertion->bindParam(':Nom_Message', $_POST['nom']);
             $requeteInsertion->bindParam(':Prenom_Message', $_POST['prenom']);
             $requeteInsertion->bindParam(':Email_Message', $_POST['email']);
             $requeteInsertion->bindParam(':Contenu_Message', $_POST['contenu']);
+            $requeteInsertion->bindParam(':Id_Offre', $_POST['offre']);
+            $requeteInsertion->bindParam(':Id_Partenaire', $_POST['partenaire']);
 
             $requeteInsertion->execute();
 
@@ -111,7 +113,7 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                                 </div>
                             </div>
                             <label for="email">Email <span style="color: red;">*</span></label>
-                            <?= isset($erreurs['email']) ? $erreurs['email'] : null; ?>
+                            <?= isset($erreurs['email']) ? $erreurs['email'] : null;?>
                             <input type="email" name="email" value="<?= isset($_POST['email']) ? $_POST['email'] : null; ?>" placeholder="Votre adresse Email">
                             <div class="PackNom">
                                 <div>

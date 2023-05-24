@@ -161,18 +161,6 @@ input[type=submit]:hover {
   color: white;
 }
 
-@media only screen and (max-width: 1160px) {
-  .contactForm form .PackNom  {
-    display: block;
-  }
-}
-
-@media only screen and (max-width: 1080px) {
-  .contactForm form .PackNom  {
-    display: flex;
-  }
-}
-
 @media only screen and (max-width: 680px) {
   .contactForm form .PackNom  {
     display: block;
