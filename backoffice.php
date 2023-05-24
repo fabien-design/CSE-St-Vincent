@@ -2055,7 +2055,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                         <td data-title="Nom"><?php echo $partenaire["Nom_Partenaire"] ?></td>
                                         <td data-title="Description" class="colonneDescription"><div><?php echo $partenaire["Description_Partenaire"] ?></div></td>
                                         <td data-title="Site" class="colonneLien"><a href="<?php echo $partenaire["Lien_Partenaire"] ?>" target="_blank"><?php echo $partenaire["Lien_Partenaire"] ?></a></td>
-                                        <td data-title="Image" class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire">' : "Aucune image" ?></td>
+                                        <td data-title="Image" class="imgPart"><?= !empty($partenaire["Id_Image"]) ? '<div  style="display: flex;height: 100%;justify-content: center;"><img src="assets/'.$imgPart["Nom_Image"].'" alt="Image du partenaire"></div>' : "Aucune image" ?></td>
                                         <td data-title="Action" class="actionBtn">  
                                             <?php 
                                             $params['modalModifPartenaire'] = $partenaire["Id_Partenaire"];
