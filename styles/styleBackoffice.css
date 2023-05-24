@@ -151,6 +151,7 @@ nav .menu-burger{
 
 .formulaire form {
     width: 30%;
+    min-width: 300px;
     height: 400px;
     display: flex;
     justify-content: center;
@@ -161,6 +162,7 @@ nav .menu-burger{
 
 .formulaire form .formGroup .formTitle {
     padding: 20px 0 40px 0;
+    text-align: center;
 }
 
 .formulaire form .formGroup .inputGroup {
