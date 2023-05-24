@@ -3086,8 +3086,6 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
 
 }?>
 
-<!-- Fin Page HTML -->
-<script src="scriptBackoffice.js"></script>
 </div>
 </body>
 </html>
