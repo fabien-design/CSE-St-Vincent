@@ -33,7 +33,85 @@
 }
 .contactForm form .PackNom  {
   display: flex;
-  justify-content: space-between;
+  gap: 1vw;
+}
+
+
+.displayNone{
+  transition: display 200ms;
+  display: none !important;
+  visibility: hidden;
+  opacity: 0;
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(50vw);
+  }
+  to {
+    transform: translateX(0);
+    opacity: 1;
+  }
+}
+@keyframes slideOutRight {
+  from {
+    opacity: 1 !important;
+    transform: translateX(0);
+    display: block;
+  }
+  to {
+    transform: translateX(50vw);
+    opacity: 0 !important;
+    display: none !important;
+  }
+}
+
+@keyframes leftSelectIn {
+  from {
+    width: 200%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes leftSelectOut {
+  from {
+    width: 100%;
+  }
+  to {
+    width: 202.45%;
+  }
+}
+.displaySelectIn{
+  animation: leftSelectIn 1s;
+}
+.displaySelectOut{
+  animation: leftSelectOut 1s;
+}
+
+.displayFlex{
+  visibility: visible;
+  opacity: 1;
+  display: flex !important;
+  animation: slideInRight 1s;
+}
+
+.displayFlexOut{
+  opacity: 1 !important;
+  display: block;
+  animation: slideOutRight 1s;
+}
+
+
+
+
+.contactForm form .PackNom div {
+  transition: width 2s;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 
 }
 
@@ -83,21 +161,83 @@ input[type=submit]:hover {
   color: white;
 }
 
-@media only screen and (max-width: 1160px) {
-  .contactForm form .PackNom  {
-    display: block;
-  }
-}
-
-@media only screen and (max-width: 1080px) {
-  .contactForm form .PackNom  {
-    display: flex;
-  }
-}
-
 @media only screen and (max-width: 680px) {
   .contactForm form .PackNom  {
     display: block;
     
+  }
+  .cf-turnstile{
+    margin: auto;
+    width: fit-content;
+}
+
+  @keyframes slideInRight {
+    from {
+      opacity: 0;
+      transform: translateX(100vw);
+      height: 0 !important;
+    }
+    to {
+      transform: translateX(0);
+      opacity: 1;
+      height: 15rem !important;
+    }
+  }
+  @keyframes heightIn {
+    0% {
+      max-height: 0;
+    }
+  
+    100% {
+      max-height: 15em;
+    }
+  }
+  @keyframes slideOutRight {
+    0% {
+      max-height: 100% !important;
+      opacity: 1 !important;
+      transform: translateX(0);
+      display: block;
+    }
+    100% {
+      max-height: 0% !important;
+      transform: translateX(100vw);
+      opacity: 0 !important;
+      display: block !important;
+    }
+  }
+  @keyframes heightOut {
+    0% {
+      max-height: 15em;
+    }
+  
+    100% {
+      max-height: 0;
+    }
+  }
+  
+  .displayFlex{
+    animation: slideInRight 1s, heightIn 1s;
+  }
+  
+  .displayFlexOut{
+    animation: slideOutRight 1s, heightOut 1s;
+  }
+
+  @keyframes leftSelectIn {
+    from {
+      width: 100%;
+    }
+    to {
+    }
+  }
+  
+  @keyframes leftSelectOut {
+    from {
+      width: 100%;
+    }
+    to {
+      width: 100%;
+    }
   }
 }

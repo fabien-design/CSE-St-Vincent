@@ -9,7 +9,7 @@
 body {
     overflow-x: hidden;
     position: relative;
-    width: 100vw;
+    width: 100%;
 }
 
 p {
@@ -200,7 +200,7 @@ aside.left .infocontact div p span {
 }
 
 aside.left .partenaire .mySlides {
-    display: none
+    display: none;
 }
 
 aside.left .partenaire img {
@@ -215,6 +215,9 @@ aside.left .partenaire .boxSlider {
     display: flex;
     justify-content: center;
     flex-direction: column;
+    max-width: 100%;
+    width: 80vw;    
+    margin: auto;
 }
 
 .contactaccess a,
@@ -241,8 +244,9 @@ aside.left .partenaire .slideshow-container {
 
 .mySlides img {
     z-index: 1;
-    width: 150px;
-    height: 150px;
+    max-width: 150px;
+    max-height: 150px;
+    width: 50vw;
     aspect-ratio: 1/1;
     object-fit: cover;
     border-radius: 10px;
@@ -669,14 +673,18 @@ aside.left a {
     position: absolute;
     font-size: 20px;
     font-weight: bold;
-    z-index: 2;
     color: #000000;
     display: none;
 }
 
 .contain_img_partenaire img:hover {
     opacity: 0.25;
-    z-index: 2;
+    z-index: 1;
+    transition: 0.2s ease-in-out;
+}
+.contain_img_partenaire p:hover {
+    opacity: 0.25;
+    z-index: 1;
     transition: 0.2s ease-in-out;
 }
 
@@ -899,7 +907,8 @@ footer {
 
     footer .img_responsive {
         background: none;
-        width: 30%;
+        width: 80%;
+        max-width: 200px;
     }
 
     /* Responsive Contenu Billetterie */
@@ -914,7 +923,15 @@ footer {
         width: 80vw;
     }
 
+    .title_footer{
+        text-align: center;
+    }
 
+
+    .soumettre{
+        width: fit-content;
+        margin: auto;
+    }
 }
 
 @keyframes slideMenuBurger {
@@ -939,12 +956,22 @@ footer {
 
 }
 
+
 @media only screen and (max-width: 600px) {
     .pagination span{
         height: 35px;
         width: 35px;
     }
-    
+    .gris{
+        height: 0;
+    }
+    .logo{
+        background-color: none;
+        padding: 0 !important;
+    }
+    .img_responsive{
+        padding: 10px 0 0 5px;
+    }
 }
 
 @media screen and (max-width: 584px) {
@@ -961,6 +988,7 @@ footer {
     .pagination #troisPoints{
         font-size: x-large;
     }
+    
 
 }
 

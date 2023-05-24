@@ -18,7 +18,7 @@ $file = $parts[count($parts) - 1];
     </div>
     <div class="right_footer">
         <div class="title_footer">
-            <h1><strong> CSE Lycée Saint-Vincent</strong></h1>
+            <h1><strong> CSE Lycée <span style="white-space:nowrap;">Saint-Vincent</span></strong></h1>
         </div>
         <div class="links_footer">
             <ul class="links_list_footer">

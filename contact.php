@@ -39,11 +39,13 @@ if (empty($_POST) === false) {
 
     if (empty($erreurs)) {
         try {
-            $requeteInsertion = $connexion->prepare('INSERT INTO message (Nom_Message, Prenom_Message, Email_Message, Contenu_Message) VALUES (:Nom_Message, :Prenom_Message, :Email_Message, :Contenu_Message)');
+            $requeteInsertion = $connexion->prepare('INSERT INTO message (Nom_Message, Prenom_Message, Email_Message, Contenu_Message, Id_Offre, Id_Partenaire) VALUES (:Nom_Message, :Prenom_Message, :Email_Message, :Contenu_Message, :Id_Offre, :Id_Partenaire)');
             $requeteInsertion->bindParam(':Nom_Message', $_POST['nom']);
             $requeteInsertion->bindParam(':Prenom_Message', $_POST['prenom']);
             $requeteInsertion->bindParam(':Email_Message', $_POST['email']);
             $requeteInsertion->bindParam(':Contenu_Message', $_POST['contenu']);
+            $requeteInsertion->bindParam(':Id_Offre', $_POST['offre']);
+            $requeteInsertion->bindParam(':Id_Partenaire', $_POST['partenaire']);
 
             $requeteInsertion->execute();
 
@@ -97,31 +99,8 @@ $listDePartenaire = $listDePartenaire->fetchAll();
 
                         <form action="#" method="POST">
                             <div class="PackNom">
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-                            <script type="text/javascript">
-                                    function SelectNomPart(n){
-                                        if (n === 'vide'){
-                                            document.getElementById('divSelectOffre').innerHTML = "";	
-                                        }else{
-                                            document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée</label><select name="offre" id="selectOffre"></select>';
-                                            data = new FormData();
-                                            data.append("IdPart", n);
-                                            $.ajax({
-                                                type: "POST",
-                                                url: "optionOffreForContact.php",
-                                                data: data,
-                                                contentType: false,
-                                                processData: false,
-                                                success: function(response){
-                                                    document.getElementById('selectOffre').innerHTML =response;
-                                                },
-                                                error: function(xhr, status, error) {
-                                                    alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
-                                                }
-                                            });
-                                        }
-                                    }
-                            </script>
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
                                 <div>
                                     <label for="nom">Nom</label>
                                     <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
@@ -142,21 +121,21 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                                     <?= isset($erreurs['partenaire']) ? $erreurs['partenaire'] : null; ?>
 
                                     <select name="partenaire" id="selectPart" onchange="SelectNomPart(value)">
-                                        <option selected value="vide">Aucun partenaire assocée</option>
+                                        <option selected value="vide">Aucun partenaire associée</option>
                                         <?php foreach ($listDePartenaire as $partenaire) {
-                                            ?>
-                                            <option value="<?= $partenaire['Id_Partenaire']?>"><?= $partenaire['Nom_Partenaire']?></option>
-                                            <?php
-                                        }?>
+                                        ?>
+                                            <option value="<?= $partenaire['Id_Partenaire'] ?>"><?= $partenaire['Nom_Partenaire'] ?></option>
+                                        <?php
+                                        } ?>
                                     </select>
                                 </div>
-                                <div id="divSelectOffre">
-                                   <!-- <label for="offre">Offre Associée</label>
+                                <div id="divSelectOffre" class="displayNone">
+                                    <!-- <label for="offre">Offre Associée</label>
                                     <select name="offre" id="selectOffre">
                                         
                                     </select> -->
 
-                                    
+
                                 </div>
                             </div>
                             <label for="contenu">Contenu <span style="color: red;">*</span></label>
@@ -164,7 +143,7 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                             <textarea name="contenu" placeholder="Saisir votre message"><?= isset($_POST['contenu']) ? $_POST['contenu'] : null; ?></textarea>
 
                             <div class="cf-turnstile" data-sitekey="0x4AAAAAAAEgyIjb34yA_KXM" data-callback="javascriptCallback"></div>
-                            <div style="margin-bottom: 1px;">
+                            <div class="soumettre" style="margin-bottom: 1px;">
                                 <input type="submit" name="validation" value="Soumettre">
                             </div>
 
@@ -174,6 +153,44 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                 </section>
             </div>
         </main>
+        <script type="text/javascript">
+            function myNewFunction(sel) {
+                reponse = "<option>" +sel.options[sel.selectedIndex].text + "</option>";
+                return reponse;
+            }
+
+            function SelectNomPart(n) {
+                if (n === 'vide') {
+
+                    document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée (facultatif)</label><select name="offre" id="selectOffre">'+myNewFunction(document.getElementById('selectOffre'))+'</select>';
+                    document.getElementById('divSelectOffre').className = 'displayFlexOut';
+                    setTimeout(() => {
+                        document.getElementById('divSelectOffre').className = 'displayNone'
+                    }, 1000)
+                    document.getElementById('selectPart').className = 'displaySelectOut';
+                } else {
+                    document.get
+                    document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée (facultatif)</label><select name="offre" id="selectOffre"></select>';
+                    document.getElementById('divSelectOffre').className = 'displayFlex';
+                    document.getElementById('selectPart').className = 'displaySelectIn';
+                    data = new FormData();
+                    data.append("IdPart", n);
+                    $.ajax({
+                        type: "POST",
+                        url: "optionOffreForContact.php",
+                        data: data,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            document.getElementById('selectOffre').innerHTML = response;
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                        }
+                    });
+                }
+            }
+        </script>
         <?php require 'include/footer.php' ?>
         <script src="contactScript.js"></script>
         <script src="scriptaside.js"></script>

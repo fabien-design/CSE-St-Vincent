@@ -16,7 +16,7 @@
     overflow-y: hidden;
     display: block;
     position: fixed;
-    z-index: 1;
+    z-index: 6;
     padding-top: 100px;
     left: 0;
     top: 0;
@@ -31,7 +31,12 @@
     margin: auto;
     padding: 20px;
     border: 1px solid #888;
-    width: 70%;
+    max-width: 1500px;
+    width: 85%;
+    position: absolute;
+   top: 50%;
+   left: 50%;
+   transform: translate(-50%, -50%);
 }
 .closeModifDiv{
     display: flex;
@@ -70,9 +75,19 @@
    text-align: center;
 }
 
+.formBox h1{
+    font-weight: 600;
+    color:#1b3168;
+ }
+
 .imagePartenaire {
     max-width: 250px;
+    width: 95%;
     max-height: 250px;
+    height: 95%;
+    display: flex;
+    justify-content: center;
+    aspect-ratio: initial;
 }
 
 .partenaires_grid-item img {
