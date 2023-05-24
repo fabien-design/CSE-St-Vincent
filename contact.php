@@ -98,30 +98,7 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                         <form action="#" method="POST">
                             <div class="PackNom">
                             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-                            <script type="text/javascript">
-                                    function SelectNomPart(n){
-                                        if (n === 'vide'){
-                                            document.getElementById('divSelectOffre').innerHTML = "";	
-                                        }else{
-                                            document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée</label><select name="offre" id="selectOffre"></select>';
-                                            data = new FormData();
-                                            data.append("IdPart", n);
-                                            $.ajax({
-                                                type: "POST",
-                                                url: "optionOffreForContact.php",
-                                                data: data,
-                                                contentType: false,
-                                                processData: false,
-                                                success: function(response){
-                                                    document.getElementById('selectOffre').innerHTML =response;
-                                                },
-                                                error: function(xhr, status, error) {
-                                                    alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
-                                                }
-                                            });
-                                        }
-                                    }
-                            </script>
+                            
                                 <div>
                                     <label for="nom">Nom</label>
                                     <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
@@ -150,7 +127,7 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                                         }?>
                                     </select>
                                 </div>
-                                <div id="divSelectOffre">
+                                <div id="divSelectOffre" class="displayNone">
                                    <!-- <label for="offre">Offre Associée</label>
                                     <select name="offre" id="selectOffre">
                                         
@@ -174,6 +151,36 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                 </section>
             </div>
         </main>
+        <script type="text/javascript">
+                                    function SelectNomPart(n){
+                                        if (n === 'vide'){
+                                            document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée</label><select name="offre" id="selectOffre"></select>';
+                                            document.getElementById('divSelectOffre').className = 'displayFlexOut';
+                                            setTimeout(()=> {document.getElementById('divSelectOffre').className = 'displayNone'}, 1000)
+                                            document.getElementById('selectPart').className = 'displaySelectOut';
+                                        }else{
+                                            document.get
+                                            document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée</label><select name="offre" id="selectOffre"></select>';
+                                            document.getElementById('divSelectOffre').className = 'displayFlex';
+                                            document.getElementById('selectPart').className = 'displaySelectIn';
+                                            data = new FormData();
+                                            data.append("IdPart", n);
+                                            $.ajax({
+                                                type: "POST",
+                                                url: "optionOffreForContact.php",
+                                                data: data,
+                                                contentType: false,
+                                                processData: false,
+                                                success: function(response){
+                                                    document.getElementById('selectOffre').innerHTML =response;
+                                                },
+                                                error: function(xhr, status, error) {
+                                                    alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                                                }
+                                            });
+                                        }
+                                    }
+                            </script>
         <?php require 'include/footer.php' ?>
         <script src="contactScript.js"></script>
         <script src="scriptaside.js"></script>
