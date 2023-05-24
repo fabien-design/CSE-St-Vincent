@@ -2071,7 +2071,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                             unset($params['modalAfficherPartenaire']);
 
                                             ?>
-                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn">Afficher</a>
+                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn afficherBtn">Afficher</a>
                                             <a href="backoffice.php?<?= $urlmodif; ?>" class="modifBtn">Modifier</a>
                                             <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
                                         </td>
@@ -2251,7 +2251,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                             unset($params['modalAfficherBilletterie']);
 
                                             ?>
-                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn">Afficher</a>
+                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn afficherBtn">Afficher</a>
                                             <a href="backoffice.php?<?= $urlmodif; ?>" class="modifBtn">Modifier</a>
                                             <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
                                         </td>
@@ -2369,7 +2369,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 ?>
                                 <tr>
                                     <td data-title="Nom Prénom"><?php echo $message["Nom_Message"]." ".$message["Prenom_Message"]  ?></td>
-                                    <td data-title="Email"><a href="mailto:"><?php echo $message["Email_Message"] ?></a></td>
+                                    <td data-title="Email" class="colonneEmail"><a href="mailto:"><?php echo $message["Email_Message"] ?></a></td>
                                     <td data-title="Contenu" class="colonneContenu"><div><?php echo $message["Contenu_Message"] ?></div></td>
                                     <td data-title="Offre"><?= !empty($message["Id_Offre"]) ? $Offre['Nom_Offre'] : "Aucune offre associée" ?></td>
                                     <td data-title="Partenaire"><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
@@ -2724,7 +2724,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                             unset($params['modalAfficherPartenaire']);
 
                                             ?>
-                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn">Afficher</a>
+                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn afficherBtn">Afficher</a>
                                             
                                         </td>
                                     </tr>
@@ -2878,7 +2878,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                             unset($params['modalAfficherBilletterie']);
 
                                             ?>
-                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn">Afficher</a>
+                                            <a href="backoffice.php?<?= $urlafficher; ?>" class="modifBtn afficherBtn">Afficher</a>
                                         </td>
                                     </tr>
                                <?php }
@@ -2987,7 +2987,7 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                 ?>
                                 <tr>
                                     <td data-title="Nom Prénom"><?php echo $message["Nom_Message"]." ".$message["Prenom_Message"]  ?></td>
-                                    <td data-title="Email"><a href="mailto:"><?php echo $message["Email_Message"] ?></a></td>
+                                    <td data-title="Email" class="colonneEmail"><a href="mailto:"><?php echo $message["Email_Message"] ?></a></td>
                                     <td data-title="Contenu" class="colonneContenu"><div><?php echo $message["Contenu_Message"] ?></div></td>
                                     <td data-title="Offre"><?= !empty($message["Id_Offre"]) ? $Offre['Nom_Offre'] : "Aucune offre associée" ?></td>
                                     <td data-title="Partenaire"><?= !empty($message["Id_Partenaire"]) ? $Partenaire['Nom_Partenaire'] : "Aucun partenaire associé" ?></td>
