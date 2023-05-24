@@ -74,7 +74,7 @@ setlocale(LC_TIME,"fr_FR.utf8");
             <div class="info_accueil">
                 <h2 class="titre"><?=$TitreAccueil?></h2>
                 <p><?=$TexteAccueil?></p>
-                <p>Découvrez <span style="color:#1B3168"><u>l'équipe</u><span> et le <span style="color:#1B3168"><u>rôle</u></span> et missions de votre CSE.</p>
+                <p>Découvrez <span style="color:#1B3168"><u>l'équipe</u></span> et le <span style="color:#1B3168"><u>rôle</u></span> et missions de votre CSE.</p>
             </div>
             <h1>Dernières offres de la Billetterie</h1>
 
