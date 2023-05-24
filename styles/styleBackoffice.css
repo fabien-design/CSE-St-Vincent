@@ -2536,6 +2536,24 @@ td:nth-child(1):before {
         height: 35px;
         width: 35px;
     }
+    nav{
+        padding-left: 0;
+    }
+    nav .bgLogo{
+        padding: 0;
+        top: 0; 
+        width: auto; 
+        height: 100%;
+      
+    }
+    .img_responsive{
+        padding-left: 5px;
+        height: auto;
+        width: auto;
+    }
+    .graynav{
+        height: 0;
+    }
 }
 
 @media only screen and (max-width: 510px) {
