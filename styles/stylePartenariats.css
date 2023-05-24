@@ -16,7 +16,7 @@
     overflow-y: hidden;
     display: block;
     position: fixed;
-    z-index: 1;
+    z-index: 6;
     padding-top: 100px;
     left: 0;
     top: 0;
