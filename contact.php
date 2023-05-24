@@ -99,8 +99,8 @@ $listDePartenaire = $listDePartenaire->fetchAll();
 
                         <form action="#" method="POST">
                             <div class="PackNom">
-                            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
-                            
+                                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+
                                 <div>
                                     <label for="nom">Nom</label>
                                     <?= isset($erreurs['nom']) ? $erreurs['nom'] : null; ?>
@@ -113,7 +113,7 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                                 </div>
                             </div>
                             <label for="email">Email <span style="color: red;">*</span></label>
-                            <?= isset($erreurs['email']) ? $erreurs['email'] : null;?>
+                            <?= isset($erreurs['email']) ? $erreurs['email'] : null; ?>
                             <input type="email" name="email" value="<?= isset($_POST['email']) ? $_POST['email'] : null; ?>" placeholder="Votre adresse Email">
                             <div class="PackNom">
                                 <div>
@@ -121,21 +121,21 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                                     <?= isset($erreurs['partenaire']) ? $erreurs['partenaire'] : null; ?>
 
                                     <select name="partenaire" id="selectPart" onchange="SelectNomPart(value)">
-                                        <option selected value="vide">Aucun partenaire assocée</option>
+                                        <option selected value="vide">Aucun partenaire associée</option>
                                         <?php foreach ($listDePartenaire as $partenaire) {
-                                            ?>
-                                            <option value="<?= $partenaire['Id_Partenaire']?>"><?= $partenaire['Nom_Partenaire']?></option>
-                                            <?php
-                                        }?>
+                                        ?>
+                                            <option value="<?= $partenaire['Id_Partenaire'] ?>"><?= $partenaire['Nom_Partenaire'] ?></option>
+                                        <?php
+                                        } ?>
                                     </select>
                                 </div>
                                 <div id="divSelectOffre" class="displayNone">
-                                   <!-- <label for="offre">Offre Associée</label>
+                                    <!-- <label for="offre">Offre Associée</label>
                                     <select name="offre" id="selectOffre">
                                         
                                     </select> -->
 
-                                    
+
                                 </div>
                             </div>
                             <label for="contenu">Contenu <span style="color: red;">*</span></label>
@@ -154,35 +154,43 @@ $listDePartenaire = $listDePartenaire->fetchAll();
             </div>
         </main>
         <script type="text/javascript">
-                                    function SelectNomPart(n){
-                                        if (n === 'vide'){
-                                            document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée</label><select name="offre" id="selectOffre"></select>';
-                                            document.getElementById('divSelectOffre').className = 'displayFlexOut';
-                                            setTimeout(()=> {document.getElementById('divSelectOffre').className = 'displayNone'}, 1000)
-                                            document.getElementById('selectPart').className = 'displaySelectOut';
-                                        }else{
-                                            document.get
-                                            document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée</label><select name="offre" id="selectOffre"></select>';
-                                            document.getElementById('divSelectOffre').className = 'displayFlex';
-                                            document.getElementById('selectPart').className = 'displaySelectIn';
-                                            data = new FormData();
-                                            data.append("IdPart", n);
-                                            $.ajax({
-                                                type: "POST",
-                                                url: "optionOffreForContact.php",
-                                                data: data,
-                                                contentType: false,
-                                                processData: false,
-                                                success: function(response){
-                                                    document.getElementById('selectOffre').innerHTML =response;
-                                                },
-                                                error: function(xhr, status, error) {
-                                                    alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
-                                                }
-                                            });
-                                        }
-                                    }
-                            </script>
+            function myNewFunction(sel) {
+                reponse = "<option>" +sel.options[sel.selectedIndex].text + "</option>";
+                return reponse;
+            }
+
+            function SelectNomPart(n) {
+                if (n === 'vide') {
+
+                    document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée (facultatif)</label><select name="offre" id="selectOffre">'+myNewFunction(document.getElementById('selectOffre'))+'</select>';
+                    document.getElementById('divSelectOffre').className = 'displayFlexOut';
+                    setTimeout(() => {
+                        document.getElementById('divSelectOffre').className = 'displayNone'
+                    }, 1000)
+                    document.getElementById('selectPart').className = 'displaySelectOut';
+                } else {
+                    document.get
+                    document.getElementById('divSelectOffre').innerHTML = '<label for="offre">Offre Associée (facultatif)</label><select name="offre" id="selectOffre"></select>';
+                    document.getElementById('divSelectOffre').className = 'displayFlex';
+                    document.getElementById('selectPart').className = 'displaySelectIn';
+                    data = new FormData();
+                    data.append("IdPart", n);
+                    $.ajax({
+                        type: "POST",
+                        url: "optionOffreForContact.php",
+                        data: data,
+                        contentType: false,
+                        processData: false,
+                        success: function(response) {
+                            document.getElementById('selectOffre').innerHTML = response;
+                        },
+                        error: function(xhr, status, error) {
+                            alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                        }
+                    });
+                }
+            }
+        </script>
         <?php require 'include/footer.php' ?>
         <script src="contactScript.js"></script>
         <script src="scriptaside.js"></script>
