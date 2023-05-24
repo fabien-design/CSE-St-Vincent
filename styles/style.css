@@ -673,14 +673,18 @@ aside.left a {
     position: absolute;
     font-size: 20px;
     font-weight: bold;
-    z-index: 2;
     color: #000000;
     display: none;
 }
 
 .contain_img_partenaire img:hover {
     opacity: 0.25;
-    z-index: 2;
+    z-index: 1;
+    transition: 0.2s ease-in-out;
+}
+.contain_img_partenaire p:hover {
+    opacity: 0.25;
+    z-index: 1;
     transition: 0.2s ease-in-out;
 }
 
