@@ -143,7 +143,7 @@ $listDePartenaire = $listDePartenaire->fetchAll();
                             <textarea name="contenu" placeholder="Saisir votre message"><?= isset($_POST['contenu']) ? $_POST['contenu'] : null; ?></textarea>
 
                             <div class="cf-turnstile" data-sitekey="0x4AAAAAAAEgyIjb34yA_KXM" data-callback="javascriptCallback"></div>
-                            <div style="margin-bottom: 1px;">
+                            <div class="soumettre" style="margin-bottom: 1px;">
                                 <input type="submit" name="validation" value="Soumettre">
                             </div>
 

@@ -9,7 +9,7 @@
 body {
     overflow-x: hidden;
     position: relative;
-    width: 100vw;
+    width: 100%;
 }
 
 p {
@@ -903,7 +903,8 @@ footer {
 
     footer .img_responsive {
         background: none;
-        width: 30%;
+        width: 80%;
+        max-width: 200px;
     }
 
     /* Responsive Contenu Billetterie */
@@ -918,7 +919,15 @@ footer {
         width: 80vw;
     }
 
+    .title_footer{
+        text-align: center;
+    }
 
+
+    .soumettre{
+        width: fit-content;
+        margin: auto;
+    }
 }
 
 @keyframes slideMenuBurger {
@@ -965,6 +974,7 @@ footer {
     .pagination #troisPoints{
         font-size: x-large;
     }
+    
 
 }
 

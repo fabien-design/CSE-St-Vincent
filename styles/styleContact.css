@@ -166,6 +166,10 @@ input[type=submit]:hover {
     display: block;
     
   }
+  .cf-turnstile{
+    margin: auto;
+    width: fit-content;
+}
 
   @keyframes slideInRight {
     from {
