@@ -456,6 +456,7 @@ aside.left a {
 
 #offres_decouvrir {
     margin-top: 3vh;
+    margin-bottom: 3vh;
     display: flex;
     width: fit-content;
     padding: 10px 20px;
