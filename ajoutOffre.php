@@ -16,6 +16,10 @@ if(isset($_POST['nomoffre'], $_POST['descripoffre'], $_POST['datedeboffre'], $_P
     }
     $datedeb = $_POST['datedeboffre'];
     $datefin = $_POST['datefinoffre'];
+    if($datedeb > $datefin){
+        $erreurs['date'] = "Date début suppérieur à la date de fin.";
+    }
+
     if(empty($erreurs)){
 
         if (isset($_FILES['imgoffre'])) {
@@ -23,7 +27,7 @@ if(isset($_POST['nomoffre'], $_POST['descripoffre'], $_POST['datedeboffre'], $_P
             $req->bindParam("nom",$nom);
             $req->bindParam("descrip",$descrip);
             $req->bindParam("datedeb",$datedeb);
-            $req->bindParam("datefin",$datedeb);
+            $req->bindParam("datefin",$datefin);
             $req->bindParam('nbplace', $places);
             $req->bindParam('idpart', $_POST['partoffre']);
             if($req->execute()){
@@ -63,7 +67,11 @@ if(isset($_POST['nomoffre'], $_POST['descripoffre'], $_POST['datedeboffre'], $_P
         }
 
     }else{
-        echo "Veuillez remplir correctement tous les champs.";
+        $erreur_message = "Veuillez remplir correctement tous les champs :\n";
+        foreach ($erreurs as $cle => $valeur) {
+            $erreur_message .= "-> " . $valeur . "\n";
+        }
+        echo $erreur_message;
     }
 }else{
     header('Location : backoffice.php');

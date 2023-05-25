@@ -46,7 +46,11 @@ if(isset($_POST['nompart'], $_POST['descrippart'], $_POST['lienpart'])){
         }
 
     }else{
-        echo "Veuillez remplir correctement tous les champs.";
+        $erreur_message = "Veuillez remplir correctement tous les champs :\n";
+        foreach ($erreurs as $cle => $valeur) {
+            $erreur_message .= "-> " . $valeur . "\n";
+        }
+        echo $erreur_message;
     }
 }else{
     header('Location : backoffice.php');

@@ -24,8 +24,7 @@ if(isset($_POST['idoffre'], $_POST['nomoffre'], $_POST['descripoffre'], $_POST['
     $datefin = $_POST['datefinoffre'];
 
     if($datefin < $datedeb){
-        $erreurs['date'] = "Pb dates incoherentes";
-        echo "La date de fin se finit plus tôt que le début de l'offre";
+        $erreurs['date'] = "Dates incoherentes";
     }
     if(empty($erreurs)){
         $ErreurUpdate = FALSE;
@@ -104,6 +103,12 @@ if(isset($_POST['idoffre'], $_POST['nomoffre'], $_POST['descripoffre'], $_POST['
                 }
             }
            } 
+    }else{
+        $erreur_message = "Veuillez remplir correctement tous les champs :\n";
+        foreach ($erreurs as $cle => $valeur) {
+            $erreur_message .= "-> " . $valeur . "\n";
+        }
+        echo $erreur_message;
     }
 }else{
     header('Location : backoffice.php');
