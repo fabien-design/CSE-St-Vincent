@@ -1634,7 +1634,9 @@ a.modifBtn:hover, .supprBtn:hover, .afficherBtn:hover, .addPart:hover{
 
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .prev,
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .next {
-    width: 40px;
+    width: 25px;
+    filter: invert(1);
+    top: calc(50% - 15px);
 }
 
 /* Position the "next button" to the right */
@@ -2564,6 +2566,13 @@ td:nth-child(1):before {
         gap: 20px;
     }
 
+    #modalSupprBilletterie .modal-content .modalBox {
+        flex-wrap: wrap;
+    }
+    #modalSupprBilletterie .modal-content .modalBox .boxSlider .prev,
+    #modalSupprBilletterie .modal-content .modalBox .boxSlider .next{
+        top: calc(50% - 10px);
+    }
     .pagination #troisPoints{
         font-size: x-large;
     }
