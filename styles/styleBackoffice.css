@@ -2316,7 +2316,7 @@ a.modifBtn:hover, .supprBtn:hover, .afficherBtn:hover, .addPart:hover{
     justify-content: center;
     display: flex;
     gap: 20px;
-    padding-bottom: 20px;
+    padding-bottom: 60px;
 }
 
 .pagination #troisPoints{
