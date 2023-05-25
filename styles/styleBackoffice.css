@@ -560,6 +560,10 @@ th {
     gap: 60px;
     margin-bottom: 40px;
 }
+#modalSupprPartenaire .modal-content .modalBox img{
+    max-height: 225px;
+    max-width: 225px;
+}
 
 #modalSupprPartenaire .modal-content .modalBox .supprBox {
     display: grid;
