@@ -1,4 +1,5 @@
 <?php
+
 require('include/connexion_db.php');
 if(isset($_POST['nomoffre'], $_POST['descripoffre'], $_POST['datedeboffre'], $_POST['datefinoffre'], $_POST['placeoffre'], $_POST['partoffre'])){
     $nom = htmlspecialchars($_POST['nomoffre']);
