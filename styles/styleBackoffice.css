@@ -3194,7 +3194,7 @@ a.modifBtn:hover, a.supprBtn:hover, .afficherBtn:hover, .addPart:hover{
 
     .button {
         transform: translate(60%, -100%);
-
+    }
 }
 
 td:nth-child(1):before {
