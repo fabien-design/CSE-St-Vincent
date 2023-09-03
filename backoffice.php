@@ -1019,6 +1019,373 @@ if(isset($_GET['modalSupprBilletterie'])){
 <?php
 }
 
+// CODE MODAL POUR AJOUTER UNE OFFRE 
+
+if(isset($_GET['modalAjoutSondage'])){
+    ?>
+   <div id="modalAjoutSondage" class="modal">
+       <div class="modal-content">
+           <span class="closeAjout">&times;</span>
+           <div class="formBox">
+               <form id="formAjoutSondage" enctype="multipart/form-data" method="POST">
+                    <div class="titlePage"> 
+                        <h1>Ajouter un Sondage</h1>
+                    </div>
+                   <label for="questionSondage">Question du Sondage* :</label>
+                   <input type="text" name="questionSondage" placeholder="Nom de l'Offre">
+
+                   <label for="choix1Sondage">Choix n° 1* :</label>
+                   <input type="text" name="choix1Sondage" placeholder="Choix n° 1 du Sondage">
+
+                   <label for="choix2Sondage">Choix n° 2* :</label>
+                   <input type="text" name="choix2Sondage" placeholder="Choix n° 2 du Sondage">
+
+                   <label for="choix3Sondage">Choix n° 3* :</label>
+                   <input type="text" name="choix3Sondage" placeholder="Choix n° 3 du Sondage">
+
+                   <div class="ajoutBtn">
+                       <button type="submit" class="formAjoutOui">OUI</button></form>
+                       <button class="formAjoutNon">NON</button>
+                   </div>
+           </div>
+           
+       </div>
+
+   </div>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+   <script>
+       // Code Modal modif d'ajout d'une offre
+       var modalAjout = document.getElementById("modalAjoutSondage");
+       var span = document.getElementsByClassName("closeAjout")[0];
+       var btnNon = document.getElementsByClassName("formAjoutNon")[0];
+       var btnOui = document.getElementsByClassName("formAjoutOui")[0];
+       // cacher modal au click de la croix ou du btn non
+       span.onclick = function() {
+           modalAjout.style.display = "none";
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+       }
+       btnNon.onclick = function(e) {
+           e.preventDefault();
+           modalAjout.style.display = "none";
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+       }
+       btnOui.onclick = function() {
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+           setTimeout(function() {modalAjout.style.display = "none";}, 2000);
+       }
+       window.onclick = function(event) {
+       if (event.target == modalAjout) {
+           modalAjout.style.display = "none";
+           //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+       }
+       }
+       
+       // Code Jquery en AJAX pour l'ajout d'une offre
+
+       $(document).ready(function(){
+           $("#formAjoutSondage").submit(function(e){
+               e.preventDefault();
+               var formData = new FormData(this);
+               $.ajax({
+                   type: "POST",
+                   url: "ajoutSondage.php",
+                   data: formData,
+                   contentType: false,
+                   processData: false,
+                   success: function(response){
+                       alert(response);
+                       setTimeout(function() {
+                           location.reload(true);
+                       }, 2000);
+
+                   },
+                   error: function(xhr, status, error) {
+                       alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                   }
+               });
+           }); 
+       });
+   </script>
+<?php
+}
+
+// CODE MODAL POUR MODIFIER UN SONDAGE
+
+if(isset($_GET['modalModifSondage'])){
+    $req = $connexion->prepare("SELECT * FROM survey WHERE survey_id = :id");
+    $req->bindParam('id',$_GET['modalModifSondage']);
+    $req->execute();
+    $survey = $req->fetch();
+     ?>
+    <div id="modalModifSondage" class="modal">
+        <div class="modal-content">
+            <span class="closeModif">&times;</span>
+            <div class="formBox">
+               <form id="formModifSondage" enctype="multipart/form-data" method="POST">
+                    <div class="titlePage"> 
+                        <h1>Modifier un Sondage</h1>
+                    </div>
+
+                   <input type="hidden" name="survey_id" value="<?php echo $survey['survey_id'] ?>">
+
+                   <label for="questionSondage">Question du Sondage* :</label>
+                   <input type="text" name="questionSondage" placeholder="Question du Sondage?" value="<?php echo $survey['survey_question'] ?>">
+
+                   <label for="choix1Sondage">Choix n° 1* :</label>
+                   <input type="text" name="choix1Sondage" placeholder="Choix n° 1 du Sondage" value="<?php echo $survey['survey_option1'] ?>">
+
+                   <label for="choix2Sondage">Choix n° 2* :</label>
+                   <input type="text" name="choix2Sondage" placeholder="Choix n° 2 du Sondage" value="<?php echo $survey['survey_option2'] ?>">
+
+                   <label for="choix3Sondage">Choix n° 3* :</label>
+                   <input type="text" name="choix3Sondage" placeholder="Choix n° 3 du Sondage" value="<?php echo $survey['survey_option3'] ?>">
+
+                   <div class="modifBtn">
+                       <button type="submit" class="formModifOui">OUI</button></form>
+                       <button class="formModifNon">NON</button>
+                   </div>
+           </div> 
+        </div>
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal modif d'un Sondage
+        var modalModif = document.getElementById("modalModifSondage");
+        var span = document.getElementsByClassName("closeModif")[0];
+        var btnNon = document.getElementsByClassName("formModifNon")[0];
+        var btnOui = document.getElementsByClassName("formModifOui")[0];
+        var body = document.body;
+        body.style.overflow= "hidden";
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+            modalModif.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        btnNon.onclick = function(e) {
+            e.preventDefault();
+            modalModif.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        btnOui.onclick = function() {
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            setTimeout(function() {modalModif.style.display = "none";}, 2000);
+            body.style.overflow = "auto";
+        }
+        window.onclick = function(event) {
+        if (event.target == modalModif) {
+            modalModif.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        }
+
+        
+        // Code Jquery en AJAX pour la modif d'une offre
+
+        $(document).ready(function(){
+            $("#formModifSondage").submit(function(e){
+                e.preventDefault();
+                var formData = new FormData(this);
+                $.ajax({
+                    type: "POST",
+                    url: "modifSondage.php",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function(response){
+                        alert(response);
+                        setTimeout(function() {
+                            location.reload(true);
+                        }, 2000);
+
+                    },
+                    error: function(xhr, status, error) {
+                        alert("Une erreur s'est produite lors de la requête AJAX : " + xhr.responseText);
+                    }
+                });
+            }); 
+        });
+    </script>
+<?php
+}
+
+// CODE MODAL POUR SUPPRIMER UNE OFFRE
+
+if(isset($_GET['modalSupprSondage'])){
+    $req = $connexion->prepare("SELECT * FROM survey WHERE survey_id = :id");
+    $req->bindParam('id',$_GET['modalSupprSondage']);
+    $req->execute();
+    $survey = $req->fetch();
+    ?>
+    <div id="modalSupprSondage" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <div class="titlePage"> 
+                        <h1>Supprimer un Sondage</h1>
+                    </div>
+            <div class="title">
+                <h2><?php echo $survey['survey_question']; ?></h2>
+            </div>
+            <div class="modalBox">
+                <div class="supprBox">
+                    <p>Êtes-vous sûr de vouloir supprimer ce Sondage ?</p>
+                    <div class="supprBtn">
+                        <form id="formSupprSondage">
+                            <input type="hidden" name="survey_id" value="<?php echo $survey['survey_id'] ?>">
+                            <button type="submit" class="formSupprOui">OUI</button>
+                        </form>
+                        <button class="formSupprNon">NON</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.3/jquery.min.js"></script>
+    <script>
+        // Code Modal suppression d'une offre
+
+        var modalSuppr = document.getElementById("modalSupprSondage");
+        var span = document.getElementsByClassName("close")[0];
+        var btnNon = document.getElementsByClassName("formSupprNon")[0];
+        var btnOui = document.getElementsByClassName("formSupprOui")[0];
+        var body = document.body;
+        body.style.overflow= "hidden";
+        // cacher modal au click de la croix ou du btn non
+        span.onclick = function() {
+            modalSuppr.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        btnNon.onclick = function(e) {
+            e.preventDefault();
+            modalSuppr.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        btnOui.onclick = function() {
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            setTimeout(function() {modalSuppr.style.display = "none";}, 2000);
+            body.style.overflow = "auto";
+        }
+        window.onclick = function(event) {
+        if (event.target == modalSuppr) {
+            modalSuppr.style.display = "none";
+            //suppr get dans l'url -- Depend si &numpage existe ou pas
+            $searchGet = new URLSearchParams(window.location.href);
+            if($searchGet.has("numpage")){
+                history.pushState(null, null, window.location.href.split("&").slice(0, 2).join("&"));
+            }
+            else{
+                history.pushState(null, null, window.location.href.split("&")[0]);
+            }
+            body.style.overflow = "auto";
+        }
+        }
+
+
+        // Code Jquery en AJAX pour la suppression d'une offre
+
+        $(document).ready(function(){
+            $("#formSupprSondage").submit(function(e){
+            e.preventDefault();
+            var formData = new FormData(this);
+            $.ajax({
+                type: "POST",
+                url: "supprSondage.php",
+                data: formData,
+                contentType: false,
+                processData: false,
+                success: function(response){
+                    alert(response);
+                    setTimeout(location.reload(true) , 3000);
+                }
+            });
+            });
+        });
+    </script>
+<?php
+}
+
 // CODE MODAL POUR SUPPRIMER UN MESSAGE
 
 if(isset($_GET['modalSupprMessage'])){
@@ -1951,6 +2318,11 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
             <?php }else{?>
                 <li><a href="backoffice.php?page=message">Messages</a></li>
             <?php } ?>
+            <?php if(!empty($_GET) && $_GET['page'] === "survey"){?>
+                <li><a href="backoffice.php?page=survey" class="active">Sondages</a></li>
+            <?php }else{?>
+                <li><a href="backoffice.php?page=survey">Sondages</a></li>
+            <?php } ?>
             <?php if(!empty($_GET) && $_GET['page'] === "gestion"){?>
                 <li><a href="backoffice.php?page=gestion" class="active">Gestion</a></li>
             <?php }else{?>
@@ -2120,6 +2492,216 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     
 
 
+            <?php }else if($_GET['page'] === "survey"){ ?>
+                    <?php 
+                    $count = $connexion -> prepare("SELECT COUNT(survey_id)  as infos FROM survey");
+                    $count->setFetchMode(PDO::FETCH_ASSOC);
+                    $count -> execute();
+                    $tcount = $count->fetchAll();
+                    
+                    $nb_elements_par_page = 7;
+                    $pages =ceil($tcount[0]['infos']/$nb_elements_par_page);
+                    @$page = $_GET["numpage"];
+                    // Verif validité 
+                    if(empty($page)){
+                        $page = 1;
+                    }
+                    $page = max(1, min($pages, $page));
+                    $debut = ($page - 1) * $nb_elements_par_page;
+                    // Nombre de pages à afficher avant et après la page courante
+                    $pagesAffiche = 1;
+                    // Calcul du début et de la fin de la plage de pages à afficher
+                    $startPage = max(1, $page - $pagesAffiche);
+                    $endPage = min($pages, $page + $pagesAffiche);
+
+                    //recup param de l'url
+                    $params = $_GET;
+                    if(isset($params['modalModifSondage'])){
+                        unset($params['modalModifSondage']);
+                    }
+                    if(isset($params['modalSupprSondage'])){
+                        unset($params['modalSupprSondage']);
+                    }
+                    if(isset($params['modalAjoutSondage'])){
+                        unset($params['modalAjoutSondage']);
+                    }
+                    
+
+                    $params['modalAjoutSondage'] = "survey";
+                    $urlajout = http_build_query($params);
+                    unset($params['modalAjoutSondage']);
+                    ?>
+                    <div class="billetterie">
+
+                    <?= 
+                    isset($msgvalidation) ? $msgvalidation : null ;
+                    
+
+                    $surveyActive = $connexion -> prepare("SELECT settings_value FROM settings WHERE settings_key = 'surveyCurrentlyActive'");
+                    $surveyActive->setFetchMode(PDO::FETCH_ASSOC);
+                    $surveyActive -> execute();
+                    $surveyActive = $surveyActive->fetch();
+
+                    if(isset($_POST['toggleSurveyActivity'])){
+                        if($_POST['toggleSurveyActivity'] == 'off'){
+                            $toggleSurveyActivity = $connexion -> prepare("UPDATE settings SET settings_value = 'false' WHERE settings_key = 'surveyCurrentlyActive'");
+                            $toggleSurveyActivity-> execute();
+                        }elseif($_POST['toggleSurveyActivity'] =='on'){
+                            $toggleSurveyActivity = $connexion -> prepare("UPDATE settings SET settings_value = 'true' WHERE settings_key = 'surveyCurrentlyActive'");
+                            $toggleSurveyActivity-> execute();
+                        }
+                    }
+                    ?>
+                    <div class="titlePage"> 
+                        <h1>Tous les Sondages</h1>
+                        <div class="addBtn"><a href="backoffice.php?<?= $urlajout ?>"><div>Ajouter</div></a></div>
+                        <div class="toggle-button-cover">
+                        <form action="#" method="POST" id="surveyActive">
+                            <div class="button-cover">
+                                <div class="button r" id="button-1">
+                                <?php if ($surveyActive['settings_value'] === 'true') { ?>
+                                    <input name="toggleSurveyActivity" value="off" type="checkbox" class="checkbox" >
+                                <?php }else{ ?>
+                                    <input name="toggleSurveyActivity" value="on" type="checkbox" class="checkbox" checked>
+                                <?php } ?>
+                                <!-- <input type="hidden" name="toggleSurveyActivity" value="test"> -->
+                                <!-- <button type="submit" class="formSupprOui">OUI</button> -->
+                                <div class="knobs"></div>
+                                <div class="layer"></div>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <script>
+                        $(document).ready(function () {
+                            // Add an event listener to the checkbox with ID 'button-1'
+                            $('#button-1').on('change', function () {
+                                    var formData = new FormData($("#surveyActive")[0]);
+                                    $.ajax({
+                                        type: "POST",
+                                        url: "toggleSurveyActivity.php",
+                                        data: formData,
+                                        contentType: false,
+                                        processData: false,
+                                    });
+                            });
+                            // Prevent the form from submitting via traditional HTTP POST
+                            $("#surveyActive").submit(function (e) {
+                                e.preventDefault();
+                            });
+                        });
+                    </script>
+
+
+                    </div>
+                    <div class="tableoffres">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th class="tableSondageQuestion">Question du Sondage</th>
+                                <th class="tableSondageChoix1">Choix n°1</th>
+                                <th class="tableSondageChoix2">Choix n°2</th>
+                                <th class="tableSondageChoix3">Choix n°3</th>
+                                <th class="tableSondageResultatsChoix1">Nombre de votes pour choix n°1</th>
+                                <th class="tableSondageResultatsChoix2">Nombre de votes pour choix n°2</th>
+                                <th class="tableSondageResultatsChoix3">Nombre de votes pour choix n°3</th>
+                                <th class="tableAction">Action</th>
+                                <th class="addPart"><a href="backoffice.php?<?= $urlajout ?>"><div>Ajouter</div></a></th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <?php 
+                            try{
+                                $req = $connexion->prepare("SELECT * FROM survey ORDER BY survey_id ASC LIMIT $debut, $nb_elements_par_page");
+                                $req->execute();
+                                $surveys= $req->fetchAll();
+                                foreach($surveys as $survey){
+                                    if(!empty($offre["Id_Partenaire"])){
+                                        $reqPart = $connexion->prepare("SELECT Nom_Partenaire FROM partenaire WHERE Id_Partenaire = :idpart");
+                                        $reqPart->bindParam("idpart",$offre["Id_Partenaire"]);
+                                        $reqPart->execute();
+                                        $NomPart = $reqPart->fetch();
+                                    }
+                                    $reqImgOffre = $connexion->prepare("SELECT * FROM offre_image WHERE Id_Offre = :idoffre");
+                                    $reqImgOffre->bindParam("idoffre",$offre['Id_Offre']);
+                                    $reqImgOffre->execute();
+                                    $ImgOffres = $reqImgOffre->fetchAll();
+                                    $nbImgOffre = 0;
+                                    foreach($ImgOffres as $img){
+                                        $nbImgOffre += 1;
+                                    }
+                                    ?>
+                                    <tr>
+                                        <td data-title="tableSondageQuestion"><?php echo $survey["survey_question"] ?></td>
+                                        <td data-title="tableSondageChoix1"><?php echo $survey["survey_option1"] ?></td>
+                                        <td data-title="tableSondageChoix2"><?php echo $survey["survey_option2"] ?></td>
+                                        <td data-title="tableSondageChoix3"><?php echo $survey["survey_option3"] ?></td>
+                                        <td data-title="tableSondageResultatsChoix1"><?php echo $survey["survey_option1results"] ?></td>
+                                        <td data-title="tableSondageResultatsChoix2"><?php echo $survey["survey_option2results"] ?></td>
+                                        <td data-title="tableSondageResultatsChoix3"><?php echo $survey["survey_option3results"] ?></td>
+                                        <td data-title="Action" class="actionBtn"> 
+                                            <?php 
+
+                                            //Creation GET + Construct url
+                                            $params['modalModifSondage'] = $survey['survey_id'];
+                                            $urlmodif = http_build_query($params);
+                                            unset($params['modalModifSondage']); // je suppr la colonne pour pas l'avoir dans urlsuppr
+
+                                            $params['modalSupprSondage'] = $survey['survey_id'];
+                                            $urlsuppr = http_build_query($params);
+                                            unset($params['modalSupprSondage']);
+
+                                            $params['modalAfficherSondage'] = $survey['survey_id'];
+                                            $urlafficher = http_build_query($params);
+                                            unset($params['modalAfficherSondage']);
+
+                                            ?>
+                                            <a href="backoffice.php?<?= $urlmodif; ?>" class="modifBtn">Modifier</a>
+                                            <a href="backoffice.php?<?= $urlsuppr; ?>" class="supprBtn">Supprimer</a>
+                                        </td>
+                                    </tr>
+                               <?php }
+                            }catch(Exception $e){
+                                echo "Erreur lors de l'affichage";
+                            }
+
+                            ?>
+                        </tbody>
+                    </table>
+                    </div>
+                    <div class="pagination">
+                    <?php
+                        // Vérification si les points de suspension doivent être affichés au début
+                        if ($startPage > 1) {
+                            // Afficher la première page
+                            echo '<a href="?page=survey&numpage=1"><span class="page">1</span></a>';
+                            // Afficher les points de suspension au début
+                            if ($startPage > 2 && $page >= 3) {
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
+                            }
+                        }
+                        // Affichage des numéros de page ou des points de suspension pour les pages au milieu
+                        for ($pag = $startPage; $pag <= $endPage; $pag++) {
+                            if($page != $pag){ 
+                                echo '<a href="?page=survey&numpage='.$pag.'"><span class="page">' . $pag . '</span></a>';
+                            }else{
+                                echo '<a href="?page=survey&numpage='.$pag.'"><span class="page activepage">' . $pag . '</span></a>';
+                            }
+                        }
+                        // Vérification si les points de suspension doivent être affichés à la fin
+                        if ($endPage < $pages) {
+                            // Afficher les points de suspension à la fin
+                            if ($endPage < $pages - 1) {
+                                echo '<a><span class="page" id="troisPoints">...</span></a>';
+                            }
+                            // Afficher la dernière page
+                            echo '<a href="?page=survey&numpage='.$pages.'"><span class="page">'.$pages.'</span></a>';
+                        }
+                        ?>
+                        
+                    </div>
+                    </div>
+
             <?php }else if($_GET['page'] === "billetterie"){ ?>
                     <?php 
                     $count = $connexion -> prepare("SELECT COUNT(Id_Offre)  as infos FROM offre");
@@ -2147,8 +2729,8 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                     if(isset($params['modalModifBilletterie'])){
                         unset($params['modalModifBilletterie']);
                     }
-                    if(isset($params['modalSupprBilletterie'])){
-                        unset($params['modalSupprBilletterie']);
+                    if(isset($params['modalSupprSondage'])){
+                        unset($params['modalSupprSondage']);
                     }
                     if(isset($params['modalAfficherBilletterie'])){
                         unset($params['modalAfficherBilletterie']);

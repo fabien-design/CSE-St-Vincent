@@ -140,7 +140,6 @@ span .logo_st_vincent_responsive img {
 /*  #### ASIDE ####  */
 
 aside {
-    padding: 10px;
     max-width: 250px;
 }
 
@@ -179,6 +178,87 @@ aside.left .home .sectiontitle {
 
 aside.left .chevron-droit {
     width: 12px;
+}
+
+
+aside.left .survey{
+    display: flex;
+    flex-direction: column;
+}
+
+aside.left .survey .surveyTitle{
+    background-color: #1b3168;
+    display :flex;
+    padding: 0;
+}
+aside.left .survey .surveyTitle span{
+    margin: auto;
+    padding: 15px;
+    justify-content: center;
+    color: white;
+    font-size: 18px;
+}
+
+aside.left .survey .surveyQuestion{
+    background-color: #efeded;
+    display :flex;
+    flex-direction: column;
+    padding: 0;
+}
+aside.left .survey .surveyQuestion span{
+    margin: auto;
+    padding: 15px 0 0;
+    justify-content: center;
+    text-align: center;
+    color: black;
+    font-size: 16px;
+}
+aside.left .survey .surveyQuestion ul{
+    margin: auto;
+    padding: 15px 0 ;
+    color: black;
+    font-size: 16px;
+    list-style: none;
+}
+aside.left .survey .surveyQuestion li{
+    padding: 5px 0 0;
+}
+
+aside.left .survey .surveyQuestion h1{
+    font-size: 20px;
+      display: flex;
+      justify-content: center;
+      color: green;
+      font-weight: 600;
+}
+aside.left .survey .surveyValidate{
+    background-color:#1B3168;
+    display :grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 1fr;
+    padding: 10px;
+    gap: 10px;
+    align-items: stretch;
+}
+aside.left .survey .surveyValidate span{
+    display: flex;
+    background-color:white;
+    padding: 5px;
+    justify-content: center;
+    margin: auto 0;
+    text-align: center;
+    border: 1px solid black;
+    text-align: center;
+    align-items: center;
+    cursor: pointer;
+}
+aside.left .survey .surveyValidate input{
+    background-color:white;
+    border: 1px solid black;
+    font-size: 16px;
+    cursor: pointer;
+    color: black;
+    border-radius: 0;
 }
 
 aside.left .infocontact div {
@@ -482,6 +562,7 @@ aside.left a {
     display: flex;
     align-items: center;
     flex-direction: column;
+    padding: 0 15px;
 }
 
 .right_partenaire h1,
@@ -843,6 +924,13 @@ footer {
 
     aside{
         background-color: #EFEDED;
+    }
+
+    aside.left .survey .surveyQuestion{
+        background-color: white;
+    }
+    aside.left .survey .surveyQuestion span{
+        padding: 15px 10px 0;
     }
 
 

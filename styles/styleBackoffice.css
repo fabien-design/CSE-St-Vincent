@@ -1074,11 +1074,11 @@ th:last-of-type {
     justify-content: center;
     display: flex;
 }
-a.modifBtn, .supprBtn, .afficherBtn, .addPart{
+a.modifBtn, a.supprBtn, .afficherBtn, .addPart{
     transition: all 500ms cubic-bezier(0.285, 0.515, 0.000, 1.015);
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
 }
-a.modifBtn:hover, .supprBtn:hover, .afficherBtn:hover, .addPart:hover{
+a.modifBtn:hover, a.supprBtn:hover, .afficherBtn:hover, .addPart:hover{
     opacity: 0.7;
     scale: 1.05;
 }
@@ -1674,6 +1674,694 @@ a.modifBtn:hover, .supprBtn:hover, .afficherBtn:hover, .addPart:hover{
 #modalSupprBilletterie .modal-content .modalBox .boxSlider .dot:hover {
     background-color: #000;
 }
+
+#modalAjoutSondage {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalAjoutSondage .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalAjoutSondage .modal-content .closeAjout {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#modalAjoutSondage .modal-content .closeAjout:hover,
+#modalAjoutSondage .modal-content .closeAjout:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+
+#modalAjoutSondage .modal-content .formBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalAjoutSondage .modal-content #formAjoutSondage {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+.datesoffre{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 8px auto 0;
+    justify-content: space-evenly;
+
+}
+.datesoffre div{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.7vw;
+    margin-bottom: 16px;
+}
+
+#modalAjoutSondage .modal-content #formAjoutSondage .imgBox {
+    position: relative;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#modalAjoutSondage .modal-content #formAjoutSondage .imgBox .Box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.155);
+}
+
+#modalAjoutSondage .modal-content #formAjoutSondage .imgBox .Box:hover .edit-button {
+    display: flex;
+    opacity: 1;
+}
+
+#modalAjoutSondage .modal-content #formAjoutSondage .imgBox .Box .edit-button:hover {
+    scale: 1.1;
+    opacity: 1;
+    transition: scale 0.3s ease;
+}
+
+#modalAjoutSondage .modal-content #formAjoutSondage .imgBox .Box .edit-button:hover~img {
+    filter: blur(3px);
+}
+
+#modalAjoutSondage .modal-content #formAjoutSondage .imgBox .Box .edit-button img {
+    position: absolute;
+    max-width: 32px !important;
+}
+
+#modalAjoutSondage .modal-content #formAjoutSondage .imgBox .Box .edit-button input {
+    cursor: pointer !important;
+}
+
+#modalAjoutSondage .modal-content #formAjoutSondage .imgBox img {
+    width: 100%;
+    max-width: 300px;
+    transition: filter 1s ease;
+}
+
+#modalAjoutSondage .modal-content #formAjoutSondage .imgBox input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: transparent;
+    overflow: hidden;
+    opacity: 0;
+    left: 0;
+}
+
+#modalAjoutSondage .modal-content .modalBox .ajoutBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#modalAjoutSondage .modal-content .modalBox .ajoutBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#modalAjoutSondage .ajoutBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: 100%;
+}
+
+#modalAjoutSondage .ajoutBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.15s ease-in-out;
+}
+
+#modalAjoutSondage .ajoutBtn button:hover {
+    background-color: initial;
+    background-position: 0 0;
+}
+
+#modalAjoutSondage .formAjoutNon {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+}
+
+#modalAjoutSondage .formAjoutNon:hover {
+    color: #FF4742 !important;
+}
+
+#modalAjoutSondage .formAjoutOui {
+    background: #27bb56;
+    border: 1px solid #27bb56;
+}
+
+#modalAjoutSondage .formAjoutOui:hover {
+    color: #27bb56 !important;
+}
+
+#modalModifSondage {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalModifSondage .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalModifSondage .modal-content .closeModif {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#modalModifSondage .modal-content .closeModif:hover,
+#modalModifSondage .modal-content .closeModif:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+
+#modalModifSondage .modal-content .formBox {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalModifSondage .modal-content #formModifSondage {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalModifSondage .modal-content #formModifSondage .imgBox {
+    position: relative;
+    display: flex;
+    gap: 40px;
+    justify-content: center;
+    overflow: hidden;
+}
+
+#modalModifSondage .modal-content #formModifSondage .imgBox .Box {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 1px solid rgba(0, 0, 0, 0.155);
+}
+
+#modalModifSondage .modal-content #formModifSondage .imgBox .Box:hover .edit-button {
+    display: flex;
+    opacity: 1;
+}
+
+#modalModifSondage .modal-content #formModifSondage .imgBox .Box .edit-button:hover {
+    scale: 1.1;
+    opacity: 1;
+    transition: scale 0.3s ease;
+}
+
+#modalModifSondage .modal-content #formModifSondage .imgBox .Box .edit-button:hover~img {
+    filter: blur(3px);
+}
+
+#modalModifSondage .modal-content #formModifSondage .imgBox .Box .edit-button img {
+    position: absolute;
+    max-width: 32px !important;
+}
+
+#modalModifSondage .modal-content #formModifSondage .imgBox .Box .edit-button input {
+    cursor: pointer !important;
+}
+
+#modalModifSondage .modal-content #formModifSondage .imgBox img {
+    width: 100%;
+    max-width: 300px;
+    transition: filter 1s ease;
+}
+
+#modalModifSondage .modal-content #formModifSondage .imgBox input {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+    color: transparent;
+    overflow: hidden;
+    opacity: 0;
+    left: 0;
+}
+
+#modalModifSondage .modifBtn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 50px;
+    width: 100%;
+}
+
+#modalModifSondage .modifBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.15s ease-in-out;
+}
+
+#modalModifSondage .modifBtn button:hover {
+    background-color: initial;
+    background-position: 0 0;
+}
+
+.deleteImg{
+    width: 30px !important;
+    position: absolute;
+    right: 0;
+    top: 0;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.formModifNon {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+}
+
+.formModifNon:hover {
+    color: #FF4742 !important;
+}
+
+.formModifOui {
+    background: #27bb56;
+    border: 1px solid #27bb56;
+}
+
+.formModifOui:hover {
+    color: #27bb56 !important;
+}
+
+#modalSupprSondage {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalSupprSondage .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalSupprSondage .modal-content .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#modalSupprSondage .modal-content .close:hover,
+#modalSupprSondage .modal-content .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+
+#modalSupprSondage .modal-content .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+#modalSupprSondage .modal-content .modalBox {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
+#modalSupprSondage {
+    display: block;
+    position: fixed;
+    z-index: 1;
+    padding-top: 100px;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgb(0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalSupprSondage .modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+#modalSupprSondage .modal-content .close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+#modalSupprSondage .modal-content .close:hover,
+#modalSupprSondage .modal-content .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+    transition: color 0.35s ease-in-out;
+}
+
+#modalSupprSondage .modal-content .title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 20px;
+}
+
+#modalSupprSondage .modal-content .modalBox {
+    display: flex;
+    justify-content: center;
+    gap: 60px;
+    margin-bottom: 40px;
+}
+
+#modalSupprSondage .modal-content .modalBox .supprBox {
+    display: grid;
+    align-items: center;
+    gap: 30px;
+}
+
+#modalSupprSondage .modal-content .modalBox .supprBox .supprBtn {
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+}
+
+#modalSupprSondage .modal-content .modalBox .supprBox .supprBtn button {
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 6px;
+    box-shadow: rgba(0, 0, 0, 0.1) 1px 2px 4px;
+    box-sizing: border-box;
+    color: #FFFFFF;
+    cursor: pointer;
+    display: inline-block;
+    transition: all 0.15s ease-in-out;
+}
+
+#modalSupprSondage .modal-content .modalBox .supprBox .supprBtn button:hover {
+    background-color: initial;
+    background-position: 0 0;
+}
+
+#modalSupprSondage .modal-content .modalBox .supprBox .supprBtn .formSupprNon {
+    background: #FF4742;
+    border: 1px solid #FF4742;
+}
+
+#modalSupprSondage .modal-content .modalBox .supprBox .supprBtn .formSupprNon:hover {
+    color: #FF4742 !important;
+}
+
+#modalSupprSondage .modal-content .modalBox .supprBox .supprBtn .formSupprOui {
+    background: #27bb56;
+    border: 1px solid #27bb56;
+}
+
+#modalSupprSondage .modal-content .modalBox .supprBox .supprBtn .formSupprOui:hover {
+    color: #27bb56 !important;
+}
+
+/* Slideshow container */
+#modalSupprSondage .modal-content .modalBox .slider {
+    max-width: 250px;
+    position: relative;
+}
+
+#modalSupprSondage .modal-content .modalBox .slideshow-container {
+    max-width: 1000px;
+    position: relative;
+    margin: auto;
+}
+
+#modalSupprSondage .modal-content .modalBox .slideshow-container .mySlides {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#modalSupprSondage .modal-content .modalBox .slideshow-container .mySlides img {
+    z-index: 1;
+    width: 150px;
+    height: 150px;
+    aspect-ratio: 1/1;
+    object-fit: cover;
+    border-radius: 10px;
+}
+
+/* Next & previous buttons */
+#modalSupprSondage .modal-content .modalBox .boxSlider .prev,
+#modalSupprSondage .modal-content .modalBox .boxSlider .next {
+    cursor: pointer;
+    position: absolute;
+    z-index: 4;
+    top: 50%;
+    width: auto;
+    padding: 10px;
+    margin-top: -22px;
+    color: white;
+    font-weight: bold;
+    font-size: 18px;
+    border-radius: 0 3px 3px 0;
+    user-select: none;
+    transition: background-color 0.3s;
+}
+
+#modalSupprSondage .modal-content .modalBox .boxSlider .prev,
+#modalSupprSondage .modal-content .modalBox .boxSlider .next {
+    width: 25px;
+    filter: invert(1);
+    top: calc(50% - 15px);
+}
+
+/* Position the "next button" to the right */
+#modalSupprSondage .modal-content .modalBox .boxSlider .next {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+}
+
+#modalSupprSondage .modal-content .modalBox .boxSlider .prev {
+    left: 0;
+
+}
+
+#modalSupprSondage .modal-content .modalBox .boxSlider .prev:hover,
+#modalSupprSondage .modal-content .modalBox .boxSlider .next:hover {
+    background-color: rgba(0, 0, 0, 0.4);
+}
+
+#modalSupprSondage .modal-content .modalBox .boxSlider .dot {
+    cursor: pointer;
+    height: 12px;
+    width: 12px;
+    margin: 0 2px;
+    background-color: #C4C4C4;
+    border-radius: 50%;
+    display: inline-block;
+    transition: background-color 0.6s ease;
+}
+
+#modalSupprSondage .modal-content .modalBox .boxSlider .active,
+#modalSupprSondage .modal-content .modalBox .boxSlider .dot:hover {
+    background-color: #000;
+}
+
+
+
+
+
+
+
+.toggle-button-cover {
+    display: table-cell;
+    position: relative;
+    box-sizing: border-box;
+  }
+  
+  .button-cover {
+    margin: 20px;
+  }
+  
+  .button-cover:before {
+    counter-increment: button-counter;
+    content: counter(button-counter);
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: #d7e3e3;
+    font-size: 12px;
+    line-height: 1;
+    padding: 5px;
+  }
+  
+  .button-cover,
+  .knobs,
+  .layer {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+  
+  .button {
+    position: relative;
+    top: 50%;
+    width: 74px;
+    height: 36px;
+    margin: -20px 30% 0 auto;
+    overflow: hidden;
+    transform: translate(0, -45%);
+  }
+  
+  .button.r,
+  .button.r .layer {
+    border-radius: 100px;
+  }
+  
+  .button.b2 {
+    border-radius: 2px;
+  }
+  
+  .checkbox {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+    opacity: 0;
+    cursor: pointer;
+    z-index: 3;
+  }
+  
+  .knobs {
+    z-index: 2;
+  }
+  
+  .layer {
+    width: 100%;
+    background-color: #03ffa73f;
+    transition: 0.3s ease all;
+    z-index: 1;
+  }
+
+
+/* Button 1 */
+#button-1 .knobs:before {
+    content: "ON";
+    position: relative;
+    display: block;
+    top: 4px;
+    left: 4px;
+    width: 20px;
+    height: 10px;
+    color: #fff;
+    font-size: 10px;
+    font-weight: bold;
+    text-align: center;
+    line-height: 1;
+    padding: 9px 4px;
+    background-color: #027c51;
+    border-radius: 50%;
+    transition: 0.3s cubic-bezier(0.18, 0.89, 0.35, 1.15) all;
+  }
+  
+  #button-1 .checkbox:checked + .knobs:before {
+    content: "OFF";
+    left: 42px;
+    background-color: #f44336;
+  }
+  
+  #button-1 .checkbox:checked ~ .layer {
+    background-color: #fcebeb;
+  }
+  
+  #button-1 .knobs,
+  #button-1 .knobs:before,
+  #button-1 .layer {
+    transition: 0.3s ease all;
+  }
+  
+
 
 .message .tablemessages {
     display: flex;
@@ -2504,6 +3192,8 @@ a.modifBtn:hover, .supprBtn:hover, .afficherBtn:hover, .addPart:hover{
         background-color: #1B3168;
     }
 
+    .button {
+        transform: translate(60%, -100%);
 
 }
 
