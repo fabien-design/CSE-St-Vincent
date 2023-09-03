@@ -2632,13 +2632,13 @@ if(empty($_SESSION['Nom_Utilisateur']) && empty($_SESSION['Droit_Utilisateur']))
                                     }
                                     ?>
                                     <tr>
-                                        <td data-title="tableSondageQuestion"><?php echo $survey["survey_question"] ?></td>
-                                        <td data-title="tableSondageChoix1"><?php echo $survey["survey_option1"] ?></td>
-                                        <td data-title="tableSondageChoix2"><?php echo $survey["survey_option2"] ?></td>
-                                        <td data-title="tableSondageChoix3"><?php echo $survey["survey_option3"] ?></td>
-                                        <td data-title="tableSondageResultatsChoix1"><?php echo $survey["survey_option1results"] ?></td>
-                                        <td data-title="tableSondageResultatsChoix2"><?php echo $survey["survey_option2results"] ?></td>
-                                        <td data-title="tableSondageResultatsChoix3"><?php echo $survey["survey_option3results"] ?></td>
+                                        <td data-title="Question du Sondage"><?php echo $survey["survey_question"] ?></td>
+                                        <td data-title="Choix n°1"><?php echo $survey["survey_option1"] ?></td>
+                                        <td data-title="Choix n°2"><?php echo $survey["survey_option2"] ?></td>
+                                        <td data-title="Choix n°3"><?php echo $survey["survey_option3"] ?></td>
+                                        <td class="surveyResults" data-title="# de votes pour choix n°1"><?php echo $survey["survey_option1results"] ?></td>
+                                        <td class="surveyResults" data-title="# de votes pour choix n°2"><?php echo $survey["survey_option2results"] ?></td>
+                                        <td class="surveyResults" data-title="# de votes pour choix n°3"><?php echo $survey["survey_option3results"] ?></td>
                                         <td data-title="Action" class="actionBtn"> 
                                             <?php 
 

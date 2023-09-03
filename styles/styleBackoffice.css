@@ -2245,11 +2245,11 @@ a.modifBtn:hover, a.supprBtn:hover, .afficherBtn:hover, .addPart:hover{
     background-color: #000;
 }
 
-
-
-
-
-
+.surveyResults  {
+    font-size: 20px;
+    text-align: center;
+    font-weight: 600;
+}
 
 .toggle-button-cover {
     display: table-cell;
@@ -3195,6 +3195,9 @@ a.modifBtn:hover, a.supprBtn:hover, .afficherBtn:hover, .addPart:hover{
     .button {
         transform: translate(60%, -100%);
     }
+
+    .surveyResults {
+        font-size:inherit;
 }
 
 td:nth-child(1):before {
