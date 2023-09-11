@@ -134,7 +134,7 @@ if($surveyActive['settings_value'] == 'true'){
                 <?php } ?>
             </div>
             <div class="surveyValidate">
-                <a href="http://localhost/dashboard/projects/CSE-St-Vincent/backoffice.php?page=survey"><span>Voir les réponses</span></a>
+                <a href="http://localhost/dashboard/Projet%20Fin%20Annee%20Lycee%20BTS1/backoffice.php?page=survey"><span>Voir les réponses</span></a>
                 <input type="hidden" name="survey_id_forchoice" value="<?php echo $survey['survey_id']; ?>">
                 <input type="hidden" name="survey_option1results" value="<?php echo $survey['survey_option1results'];?>">
                 <input type="hidden" name="survey_option2results" value="<?php echo $survey['survey_option2results'];?>">
