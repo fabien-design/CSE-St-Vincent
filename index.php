@@ -1,6 +1,6 @@
 <?php 
  require 'include/connexion_db.php';
-
+ error_reporting(E_ERROR | E_PARSE);
  //Récupération des données de Téléphone
 $tel = $connexion->prepare('SELECT Num_TEL_Info_Accueil FROM info_accueil');
 $tel->execute();

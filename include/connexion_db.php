@@ -1,4 +1,6 @@
 <?php
+
+error_reporting(E_ERROR | E_PARSE);
     try{
         $dbname = "lyceestvincent_csebts1g1";
         $host = "mysql-lyceestvincent.alwaysdata.net";
